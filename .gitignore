@@ -1,0 +1,10 @@
+node_modules/
+*.sqlite
+*.sqlite-*
+.env
+.env.*
+*.pdf
+*.docx
+*.xlsx
+*.zip
+__pycache__/
