@@ -1,8 +1,8 @@
 # C — Raw API execution
 
-Started (UTC): 2026-10-19T19:50:59.511Z
+Started (UTC): 2026-10-19T20:08:00.378Z
 
-Finished (UTC): 2026-10-19T19:51:00.550Z
+Finished (UTC): 2026-10-19T20:08:01.519Z
 
 Host timezone labels use UTC explicitly; add 07:00 for Asia/Saigon. SUT clock frozen at 2026-10-19T08:00:00.000Z; runner timestamp uses real clock.
 
@@ -61,7 +61,7 @@ Original SUT files unchanged after run: **PASS**.
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:50:59.854Z
+Timestamp (UTC): 2026-10-19T20:08:00.809Z
 
 Expected: Admin creates coupon and list contains exact supplied values
 
@@ -282,7 +282,7 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:50:59.886Z
+Timestamp (UTC): 2026-10-19T20:08:00.838Z
 
 Expected: Admin creates coupon and list contains exact supplied values
 
@@ -503,7 +503,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:50:59.913Z
+Timestamp (UTC): 2026-10-19T20:08:00.863Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -723,7 +723,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:50:59.937Z
+Timestamp (UTC): 2026-10-19T20:08:00.886Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -943,7 +943,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:50:59.963Z
+Timestamp (UTC): 2026-10-19T20:08:00.910Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -1163,7 +1163,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:50:59.989Z
+Timestamp (UTC): 2026-10-19T20:08:00.935Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -1383,7 +1383,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:51:00.019Z
+Timestamp (UTC): 2026-10-19T20:08:00.958Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -1603,7 +1603,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:51:00.043Z
+Timestamp (UTC): 2026-10-19T20:08:00.983Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -1823,7 +1823,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:51:00.066Z
+Timestamp (UTC): 2026-10-19T20:08:01.006Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -2044,7 +2044,7 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:51:00.089Z
+Timestamp (UTC): 2026-10-19T20:08:01.031Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -2254,7 +2254,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:51:00.109Z
+Timestamp (UTC): 2026-10-19T20:08:01.055Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -2475,7 +2475,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:51:00.132Z
+Timestamp (UTC): 2026-10-19T20:08:01.079Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -2696,7 +2696,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:51:00.154Z
+Timestamp (UTC): 2026-10-19T20:08:01.105Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -2917,7 +2917,7 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:51:00.176Z
+Timestamp (UTC): 2026-10-19T20:08:01.128Z
 
 Expected: Admin creates coupon and list contains exact supplied values
 
@@ -3138,7 +3138,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:51:00.198Z
+Timestamp (UTC): 2026-10-19T20:08:01.153Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -3359,7 +3359,7 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:51:00.222Z
+Timestamp (UTC): 2026-10-19T20:08:01.177Z
 
 Expected: Admin creates coupon and list contains exact supplied values
 
@@ -3580,7 +3580,7 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:51:00.245Z
+Timestamp (UTC): 2026-10-19T20:08:01.202Z
 
 Expected: Admin creates coupon and list contains exact supplied values
 
@@ -3801,7 +3801,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:51:00.266Z
+Timestamp (UTC): 2026-10-19T20:08:01.226Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -4022,7 +4022,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:51:00.288Z
+Timestamp (UTC): 2026-10-19T20:08:01.248Z
 
 Expected: Reject invalid coupon; list has no newly created record
 
@@ -4243,7 +4243,7 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:51:00.311Z
+Timestamp (UTC): 2026-10-19T20:08:01.270Z
 
 Expected: Admin creates coupon and list contains exact supplied values
 
@@ -4464,7 +4464,7 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:51:00.333Z
+Timestamp (UTC): 2026-10-19T20:08:01.294Z
 
 Expected: Admin creates coupon and list contains exact supplied values
 
@@ -4685,9 +4685,9 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:51:00.355Z
+Timestamp (UTC): 2026-10-19T20:08:01.319Z
 
-Expected: Reject invalid coupon; list has no newly created record
+Expected: Reject missing/invalid JWT (401/403); valid coupon data must not be inserted
 
 Requests/responses (sanitized):
 
@@ -4895,7 +4895,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:51:00.376Z
+Timestamp (UTC): 2026-10-19T20:08:01.343Z
 
 Expected: Reject non-admin create (401/403); valid coupon data must not be inserted
 
@@ -5116,9 +5116,9 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:51:00.399Z
+Timestamp (UTC): 2026-10-19T20:08:01.367Z
 
-Expected: Reject invalid coupon; list has no newly created record
+Expected: Reject missing/invalid JWT (401/403); valid coupon data must not be inserted
 
 Requests/responses (sanitized):
 
@@ -5326,7 +5326,7 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:51:00.418Z
+Timestamp (UTC): 2026-10-19T20:08:01.387Z
 
 Expected: Return coupon list
 
@@ -5430,7 +5430,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:51:00.437Z
+Timestamp (UTC): 2026-10-19T20:08:01.407Z
 
 Expected: Reject non-admin access (401/403)
 
@@ -5534,7 +5534,7 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:51:00.456Z
+Timestamp (UTC): 2026-10-19T20:08:01.424Z
 
 Expected: Reject non-admin access (401/403)
 
@@ -5559,7 +5559,7 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:51:00.475Z
+Timestamp (UTC): 2026-10-19T20:08:01.443Z
 
 Expected: Coupon removed; other coupons unchanged
 
@@ -5752,7 +5752,7 @@ Requests/responses (sanitized):
 
 Status: FAIL
 
-Timestamp (UTC): 2026-10-19T19:51:00.497Z
+Timestamp (UTC): 2026-10-19T20:08:01.466Z
 
 Expected: Reject non-admin delete; coupon remains
 
@@ -5945,7 +5945,7 @@ Requests/responses (sanitized):
 
 Status: PASS
 
-Timestamp (UTC): 2026-10-19T19:51:00.522Z
+Timestamp (UTC): 2026-10-19T20:08:01.490Z
 
 Expected: Reject non-admin delete; coupon remains
 

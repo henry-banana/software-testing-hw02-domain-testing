@@ -119,7 +119,7 @@ Admin creates coupon and list contains exact supplied values.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:50:59.854Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:00.809Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -270,7 +270,7 @@ Admin creates coupon and list contains exact supplied values.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:50:59.886Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:00.838Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -420,7 +420,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:50:59.913Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:00.863Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -569,7 +569,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:50:59.937Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:00.886Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -718,7 +718,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:50:59.963Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:00.910Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -867,7 +867,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:50:59.989Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:00.935Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -1016,7 +1016,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.019Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:00.958Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -1165,7 +1165,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.043Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:00.983Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -1315,7 +1315,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.066Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.006Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -1468,7 +1468,7 @@ Expected chỉ yêu cầu không tạo duplicate; HTTP 500 là actual cần ghi 
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.089Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.031Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -1608,7 +1608,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.109Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.055Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -1759,7 +1759,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.132Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.079Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -1910,7 +1910,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.154Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.105Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -2061,7 +2061,7 @@ Admin creates coupon and list contains exact supplied values.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.176Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.128Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -2212,7 +2212,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.198Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.153Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -2363,7 +2363,7 @@ Admin creates coupon and list contains exact supplied values.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.222Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.177Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -2514,7 +2514,7 @@ Admin creates coupon and list contains exact supplied values.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.245Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.202Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -2665,7 +2665,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.266Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.226Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -2816,7 +2816,7 @@ Reject invalid coupon; list has no newly created record.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.288Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.248Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -2967,7 +2967,7 @@ Admin creates coupon and list contains exact supplied values.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.311Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.270Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -3118,7 +3118,7 @@ Admin creates coupon and list contains exact supplied values.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.333Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.294Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -3265,11 +3265,11 @@ Timestamp UTC thực tế: `2026-10-19T19:51:00.333Z`. Với list dài, phần d
 
 ### Expected
 
-Reject invalid coupon; list has no newly created record.
+Reject missing/invalid JWT (401/403); valid coupon data must not be inserted.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.355Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.319Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -3409,7 +3409,7 @@ Reject non-admin create (401/403); valid coupon data must not be inserted.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.376Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.343Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -3556,11 +3556,11 @@ Timestamp UTC thực tế: `2026-10-19T19:51:00.376Z`. Với list dài, phần d
 
 ### Expected
 
-Reject invalid coupon; list has no newly created record.
+Reject missing/invalid JWT (401/403); valid coupon data must not be inserted.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.399Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.367Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -3691,7 +3691,7 @@ Return coupon list.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.418Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.387Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -3773,7 +3773,7 @@ Reject non-admin access (401/403).
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.437Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.407Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -3855,7 +3855,7 @@ Reject non-admin access (401/403).
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.456Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.424Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -3919,7 +3919,7 @@ Coupon removed; other coupons unchanged.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.475Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.443Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -4037,7 +4037,7 @@ Reject non-admin delete; coupon remains.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.497Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.466Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [
@@ -4155,7 +4155,7 @@ Reject non-admin delete; coupon remains.
 
 ### Actual và Evidence
 
-Timestamp UTC thực tế: `2026-10-19T19:51:00.522Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
+Timestamp UTC thực tế: `2026-10-19T20:08:01.490Z`. Với list dài, phần dưới giữ row_count và relevant_rows; mọi trường của row liên quan giữ nguyên, full list nằm trong raw link.
 
 ```json
 [

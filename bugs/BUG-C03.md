@@ -59,7 +59,7 @@ Expected bắt buộc ở mức hành vi của SRS/mapping. HTTP status hoặc c
 
 ## 5. Actual Result và hậu điều kiện
 
-Timestamp UTC: `2026-10-19T19:51:00.109Z`. Trace sau giữ nguyên request/status/field values; danh sách dài chỉ giữ row liên quan và row_count, full record được liên kết.
+Timestamp UTC: `2026-10-19T20:08:01.055Z`. Trace sau giữ nguyên request/status/field values; danh sách dài chỉ giữ row liên quan và row_count, full record được liên kết.
 
 ```json
 [

@@ -92,4 +92,9 @@ for (const tc of cases.filter(tc => tc.kind === 'manual')) {
   delete tc.status;
   if (tc.id === 'A-UI-05' || tc.id === 'C-UI-02' || tc.id === 'D-UI-02') tc.technique = 'Domain';
 }
+for (const tc of cases.filter(tc => tc.feature === 'C' && tc.kind === 'admin-create' && tc.authCase)) {
+  tc.expected = tc.auth === 'user'
+    ? 'Reject non-admin create (401/403); valid coupon data must not be inserted'
+    : 'Reject missing/invalid JWT (401/403); valid coupon data must not be inserted';
+}
 module.exports={cases,base};
