@@ -1,0 +1,120 @@
+Git Commit Log — HW02
+
+Snapshot HEAD: 9fe2a0008557b8b3ff07c28503908c4dca949dc8
+Exported at UTC: 2026-10-19T20:10:25.605Z
+Scope: complete reachable history through Snapshot HEAD. The later commit recording this export itself is outside that boundary.
+Dates are actual Git dates; no historical steps were recreated from the old standalone log.
+
+commit 9fe2a0008557b8b3ff07c28503908c4dca949dc8
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:10:25+07:00
+
+    docs(ai-audit): pin rewritten outputs and latest visible interaction records
+
+commit 575a342c51bc3446e36c26a7a3887fe5f3319641
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:10:21+07:00
+
+    style(reports): retain metadata line breaks without trailing whitespace
+
+commit e6007630848b5950bf1793e2fef5138410283a3a
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:09:02+07:00
+
+    fix(C): align auth oracle labels and preserve refreshed execution records
+
+commit 1f205b7ba6e6eaa1cea1b5fbf5966dde492eea0d
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:51+07:00
+
+    docs(ai-audit): preserve original outputs and distinguish rewrite corrections
+
+commit 4c23222f0e86670b16ab986e587fc2e559e7937d
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:51+07:00
+
+    docs(hw02): reconcile report summary requirements and reusable skill
+
+commit d5935ed5c76061f37088aeab71550ce50ce2cd7d
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:51+07:00
+
+    docs(D): detail reproducible bugs and original UI evidence
+
+commit fe32587ef81f01308e1f6b36283d7ee01ab8c94e
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:51+07:00
+
+    test(D): document detailed cases and verified API execution
+
+commit 63e2806b6b1cbf498094293b12b556d873ec709e
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:51+07:00
+
+    docs(D): explain domain partitions and boundary selection
+
+commit d564f298e455c85b7ed7161aedae77d8f00b7a4f
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:51+07:00
+
+    docs(C): detail reproducible bugs and original UI evidence
+
+commit 773532333e97c8fb1f85d50ec0c3bfafd11579d1
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:50+07:00
+
+    test(C): document detailed cases and verified API execution
+
+commit 868ff6b6300ceefbfda309d644c1229244c92ad0
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:50+07:00
+
+    docs(C): explain domain partitions and boundary selection
+
+commit 8db14cf12ac9d1029cbb636d93ffd359b6018af4
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:50+07:00
+
+    docs(B): detail reproducible bugs and original UI evidence
+
+commit 9e9955897e1023a7aaab1c3076076d2cf563cb97
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:50+07:00
+
+    test(B): document detailed cases and verified API execution
+
+commit 101ddaa7185e1ad7d5ca0a89f058f9059aebbc98
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:50+07:00
+
+    docs(B): explain domain partitions and boundary selection
+
+commit 3247d4a068f624506bd2d4a1571d6da9fc549886
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:50+07:00
+
+    docs(A): detail reproducible bugs and original UI evidence
+
+commit 0c3c3b8c7852069b726e193b2bd87a13fae15570
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:50+07:00
+
+    test(A): document detailed cases and verified API execution
+
+commit 733790e25a5cd97c224009ddc98952d343527e5a
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:50+07:00
+
+    docs(A): explain domain partitions and boundary selection
+
+commit 130b9be6b4be73167815d2436e436bc9e57334dc
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T03:06:50+07:00
+
+    test(hw02): restore isolated API harness and artifact validation
+
+commit 5b6516e254b4b90e455003023c1e0551beda48fb
+Author: Tong Duong Thai Hoa
+Date: 2026-10-19T13:42:57+07:00
+
+    Initial commit
