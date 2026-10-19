@@ -1,6 +1,6 @@
 # D — Domain Testing và Boundary Value Analysis
 
-**Feature:** Mobile productDetail — Chi tiết sản phẩm và quantity  
+**Feature:** Mobile productDetail — Chi tiết sản phẩm và quantity<br>
 **SUT:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`.
 
 ## 1. Requirements và oracle

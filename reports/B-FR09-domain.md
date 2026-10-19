@@ -1,6 +1,6 @@
 # B — Domain Testing và Boundary Value Analysis
 
-**Feature:** FR-09 — Áp dụng mã giảm giá  
+**Feature:** FR-09 — Áp dụng mã giảm giá<br>
 **SUT:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`.
 
 ## 1. Requirements và oracle

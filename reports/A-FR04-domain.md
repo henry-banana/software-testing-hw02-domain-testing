@@ -1,6 +1,6 @@
 # A — Domain Testing và Boundary Value Analysis
 
-**Feature:** FR-04 — Quản lý hồ sơ cá nhân  
+**Feature:** FR-04 — Quản lý hồ sơ cá nhân<br>
 **SUT:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`.
 
 ## 1. Requirements và oracle
