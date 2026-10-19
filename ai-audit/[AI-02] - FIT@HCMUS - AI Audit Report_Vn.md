@@ -4718,3 +4718,53 @@ Phiên bản đầu của các bảng test, scripts và báo cáo được soạ
 ````
 
 </details>
+
+
+## Appendix C — Current rewrite output manifest
+
+Snapshot UTC: `2026-10-19T20:10:22.349219+00:00`. Git revision trước khi commit audit này: `575a342c51bc3446e36c26a7a3887fe5f3319641`. Các file hiện tại là output của lượt rewrite; Git giữ bản cụ thể để phân biệt chỉnh sửa về sau. Prompt/output messages được liên kết trong Appendix A; không tạo output hoặc timestamp model giả.
+
+| Artifact output | SHA-256 current source bytes |
+|---|---|
+| [.agents/skills/domain-bva-testing/SKILL.md](../.agents/skills/domain-bva-testing/SKILL.md) | 61cd724844f7cc154822b20c0ad47d55428278e3629fc3444047e967a6808368 |
+| [23120262_Report.md](../23120262_Report.md) | 6c296c6b35166626c7447ce489c673fae3db551b89920d43ad2ec206ff651e23 |
+| [bugs/BUG-A01.md](../bugs/BUG-A01.md) | caee6c5cae18c9f39ac689fcbfda544af43393c367e8706a876b2e437a9608e8 |
+| [bugs/BUG-A02.md](../bugs/BUG-A02.md) | 3770202e435c24c745cc3440e7ba6e8c55b96bc0835c52743b49b23d76f2d717 |
+| [bugs/BUG-A03.md](../bugs/BUG-A03.md) | fe501487b3a57ddc42fede98477cf2bb092e1ad93e455d1a758ffdc6d0483286 |
+| [bugs/BUG-B01.md](../bugs/BUG-B01.md) | 9152cb7874587998a9848a10d0f324c883edf8697540b15b9f9cc8bbb96c64a8 |
+| [bugs/BUG-B02.md](../bugs/BUG-B02.md) | dbb68b166e6864d023cdb66658197d9a9571ad04d2040e433f032e8120514cc4 |
+| [bugs/BUG-B03.md](../bugs/BUG-B03.md) | 221fe89097a719a76c3512c5245cb541a28693f5787cb60a2a40029ac406a6bd |
+| [bugs/BUG-B04.md](../bugs/BUG-B04.md) | 057fee79c0e802a11c004844f713855d2bbb2d7cacecd6241d577aee95181d50 |
+| [bugs/BUG-B05.md](../bugs/BUG-B05.md) | a476d38a93650dae1584338ce212b13c5cc88f72684be02e75d44e5bcaab8896 |
+| [bugs/BUG-C01.md](../bugs/BUG-C01.md) | d5689ff122a0c8e429e73a724b9a48c84e4157f64eb6d0b44ac000465e53f930 |
+| [bugs/BUG-C03.md](../bugs/BUG-C03.md) | 2d7c16c28c36703ff4eb2331db0aef9a95a100653b89f907af630b5509757ec3 |
+| [bugs/BUG-C04.md](../bugs/BUG-C04.md) | 09b9f96f8b9caeb9b80725ec6f1ccef8964b1c09113f6dc28bf381f697ab6420 |
+| [bugs/BUG-C05.md](../bugs/BUG-C05.md) | f8256b7709db33d1746967234ae4f16d2c01833d8f17a5eb9268c4b7ab0d6151 |
+| [bugs/BUG-C06.md](../bugs/BUG-C06.md) | b1d7f4b9eecf7e4a324f1532dbfbdade67df3b10b12595ab8d97cd0465f9c949 |
+| [bugs/BUG-C07.md](../bugs/BUG-C07.md) | 5691c248bbee5e81ed1368e79809ba7c4d7f6dbafefb2a04aa34fc22f7596ac0 |
+| [bugs/BUG-C08.md](../bugs/BUG-C08.md) | 09af0be64ffed96b2bf812f369c82b081a93a04af54779458c391eb5eb38ef74 |
+| [bugs/BUG-C09.md](../bugs/BUG-C09.md) | 56628da40f8b33e9d192e5142641d331230f19d79b38664342ca40863546b6b5 |
+| [bugs/BUG-D01.md](../bugs/BUG-D01.md) | 270ecb703e29157d82d4cba181e851751ba365e4effc1af75b722eed6de6c93d |
+| [bugs/BUG-D02.md](../bugs/BUG-D02.md) | 64d3f68f5254e89d2dc988627eec589a553f842cee62494cd43f7ae20a7adb02 |
+| [bugs/bug-reports.md](../bugs/bug-reports.md) | 3e165ae9424acdf3884dbc6d851dd631c005e3786b3ad9cdab7cc6608c51f5ea |
+| [evidence/execution/A-api.md](../evidence/execution/A-api.md) | 12e950603f397b64e2dd5c2502570397ccb0fd45ba43bb8403797873b64a575b |
+| [evidence/execution/B-api.md](../evidence/execution/B-api.md) | 430607fbbf0eb7e189028cd9ace9ff8a324d4c8f7a72417d944e52f7f287a38c |
+| [evidence/execution/C-api.md](../evidence/execution/C-api.md) | 615a2b8e9209f27c009c6c3a9da4d45fc5b28d8dea58ab76f7915b8663978f97 |
+| [evidence/execution/D-api.md](../evidence/execution/D-api.md) | f66dbf18b3d52d89f3908156faf90b4f74f0aaf8f74f8c580370d96b658424cf |
+| [evidence/README.md](../evidence/README.md) | 8e84fb71c193bb0e56f1ab321090cf7d1e50f19b3e1eb7cb9f70adb055592b6e |
+| [README.md](../README.md) | 56e7ca5530c43eb6a8c253ba4e76826c14d02e40a5280a250d8500891b8351dd |
+| [reports/A-FR04-domain.md](../reports/A-FR04-domain.md) | 7b7d670491209e7695c900fd928e60377aa245ba7ce8f13a20303f2b4604677d |
+| [reports/B-FR09-domain.md](../reports/B-FR09-domain.md) | 9ec56b05e4c61f45d8e92242bd580a83c06fbf10eccd393f64f40a169dff80f6 |
+| [reports/C-FR17-domain.md](../reports/C-FR17-domain.md) | 7ce076dc00c71ae709d5bd603af7b4ff607269168bb4be1648197e65d2171fca |
+| [reports/D-mobile-domain.md](../reports/D-mobile-domain.md) | 63d6886f24ccd93b5df531b7bd45ca37d18b6b4383651a3019a281ea8a01891b |
+| [scripts/cases.cjs](../scripts/cases.cjs) | bf47927bbcf4a153a73f38f89a10afb4621365edad931d2d1a991dbbd9e30c26 |
+| [scripts/export-git-log.cjs](../scripts/export-git-log.cjs) | e7fc12c2f9e77d5b9926351289f36c3695b5c41c619f581fd479c4f4dd135492 |
+| [scripts/run-api.cjs](../scripts/run-api.cjs) | f0c5fd2d79200bc257576a42b502ac80fce6c1378873dd776f023abdb1ecac8c |
+| [scripts/runtime.cjs](../scripts/runtime.cjs) | 85968c9839e86387e47716e7892c4cfee1dd724906aa4f26211fc1efdf31e5c6 |
+| [scripts/show-bug.cjs](../scripts/show-bug.cjs) | d7af1132dc0aacaaced8f2d03edbb6934965d37a05bf0ef698a1229c9ebcee23 |
+| [scripts/validate-deliverables.py](../scripts/validate-deliverables.py) | 97e5ff917d9e7fc925eab99e755cb067ed537360e1bd7dc18ba9c46d45826c2d |
+| [tests/A-FR04-profile.md](../tests/A-FR04-profile.md) | cf6e92d212e32d050aea5a8fb97dc820ef28d2fb0ee344dfa11c90ca249b8ec0 |
+| [tests/B-FR09-discount-coupons.md](../tests/B-FR09-discount-coupons.md) | afbdc19853f4723f7507211f4576bebbaa82efcbb83cea05efee4ee526b767ac |
+| [tests/C-FR17-coupon-management.md](../tests/C-FR17-coupon-management.md) | 859a340fe67a8791b1077de44a71f58656a2a369b7e85b1e82e4ef688a3227f6 |
+| [tests/D-mobile-product-detail.md](../tests/D-mobile-product-detail.md) | 10e01bdc6b3549e7ca2674b68c8d610249dfd2af4a104e65537ece451571ac9d |
+| [Video_Links.md](../Video_Links.md) | a368e67977bf5f9f007527e82caf453f04ecc6a2c8d284ee8cba395fb1b8cd84 |

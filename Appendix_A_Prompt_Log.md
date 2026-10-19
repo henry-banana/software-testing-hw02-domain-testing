@@ -1,6 +1,6 @@
 # Appendix A — Prompt and Output Log
 
-Snapshot UTC: `2026-10-19T20:06:12.649504+00:00`. Nguồn là visible user/assistant message records của đúng các phiên HW02; không export reasoning, system/developer messages hoặc tool payloads. Những lượt retry/fork được giữ với tên source, không coi là các thí nghiệm độc lập. Tool của các interaction được export là OpenAI Codex. Không tự gán timestamp hoặc prompt cho Antigravity khi chưa có record tương ứng.
+Snapshot UTC: `2026-10-19T20:10:22.349219+00:00`. Nguồn là visible user/assistant message records của đúng các phiên HW02; không export reasoning, system/developer messages hoặc tool payloads. Những lượt retry/fork được giữ với tên source, không coi là các thí nghiệm độc lập. Tool của các interaction được export là OpenAI Codex. Không tự gán timestamp hoặc prompt cho Antigravity khi chưa có record tương ứng.
 
 ## A. Original interaction records — 2026-10-19
 
@@ -1046,6 +1046,21 @@ Tool: OpenAI Codex. Timestamp UTC: `2026-10-19T20:05:37.494Z`. Source: `rollout-
 Bản nội dung mới đã hoàn tất: **18 bug files**, bốn phân tích Domain/BVA và 114 test cases chi tiết. Kiểm tra liên kết, số liệu và truy vết hiện đều qua; tổng đúng là **109 case đủ bằng chứng kết luận**, còn năm case thiếu một phần bằng chứng.
 
 Mình đang rà soát lượt cuối theo đề và ghi Git history thực của lần viết lại. Các bước còn cần bạn bổ sung sẽ nằm trong `hw02/TASKS.md`, ngoài repo nộp bài; video dùng link tạm như bạn yêu cầu.
+````
+
+</details>
+
+### Record R020 — assistant
+
+Tool: OpenAI Codex. Timestamp UTC: `2026-10-19T20:09:47.241Z`. Source: `rollout-2026-10-20T02-41-42-01a15369-b96b-7cb2-8351-4a091cdedffe_01a155af-20a2-7fe1-b0e4-6ad2d65641e3.jsonl`.
+
+<details>
+<summary>Verbatim assistant message</summary>
+
+````text
+Rà soát cuối đã sửa thêm nhãn expected của các test authentication FR-17 để chúng nói đúng việc từ chối quyền truy cập, thay vì gọi payload hợp lệ là coupon sai. Suite C chạy lại vẫn giữ nguyên kết quả.
+
+Phần còn thiếu theo đề đã được ghi rõ: bằng chứng cho năm UI case, ảnh của 11 bug chỉ có API evidence, GitHub Issues ở bước nhóm cuối, và phần bạn tự duyệt/xuất định dạng cuối. Các mục này không bị tính nhầm thành SUT bug hoặc PASS.
 ````
 
 </details>
