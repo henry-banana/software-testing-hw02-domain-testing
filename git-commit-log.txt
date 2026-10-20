@@ -1,9 +1,21 @@
 Git Commit Log - HW02
 
-Snapshot HEAD: 0c4621ea21b265a22d183671a30667fc2dfe4402
-Exported at UTC: 2026-10-20T04:47:43.182Z
+Snapshot HEAD: fb7ba107d4fb000eda13e706848ff3a82d103c18
+Exported at UTC: 2026-10-20T05:11:23.790Z
 Scope: complete reachable history through Snapshot HEAD. The later commit recording this export itself is outside that boundary.
 Dates are actual Git dates; no historical steps were recreated from the old standalone log.
+
+commit fb7ba107d4fb000eda13e706848ff3a82d103c18
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T12:11:23+07:00
+
+    docs(skill): expand reusable Domain and BVA workflow with guides and evals
+
+commit 01dce823548c3fdd3301e91d6f069eb644cc49c6
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T11:47:43+07:00
+
+    docs(hw02): refresh Git log after Issue screenshot naming
 
 commit 0c4621ea21b265a22d183671a30667fc2dfe4402
 Author: Duong Thai Hoa Tong
