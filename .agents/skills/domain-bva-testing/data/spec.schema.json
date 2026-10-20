@@ -1,0 +1,285 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "feature": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "id",
+        "title"
+      ],
+      "additionalProperties": false
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "requirement": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "requirement"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "fixture": {
+      "type": "object",
+      "properties": {
+        "actor": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "interface": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "initial_state": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "setup": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "readback": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "actor",
+        "interface",
+        "initial_state",
+        "setup",
+        "action",
+        "readback"
+      ],
+      "additionalProperties": false
+    },
+    "bva": {
+      "enum": [
+        "2-value",
+        "3-value"
+      ]
+    },
+    "dimensions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+              },
+              "nominal": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "rule_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "kind": {
+                "const": "enum"
+              },
+              "valid_values": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "invalid_values": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                },
+                "minItems": 0,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "name",
+              "kind",
+              "nominal",
+              "rule_ids",
+              "valid_values"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+              },
+              "nominal": {
+                "type": "string",
+                "maxLength": 48,
+                "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,18})?$"
+              },
+              "rule_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "kind": {
+                "enum": [
+                  "integer",
+                  "decimal"
+                ]
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "step": {
+                "type": "string",
+                "maxLength": 48,
+                "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,18})?$"
+              },
+              "origin": {
+                "type": "string",
+                "maxLength": 48,
+                "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,18})?$"
+              },
+              "minimum": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "maxLength": 48,
+                    "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,18})?$"
+                  },
+                  "inclusive": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "value",
+                  "inclusive"
+                ],
+                "additionalProperties": false
+              },
+              "maximum": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "maxLength": 48,
+                    "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,18})?$"
+                  },
+                  "inclusive": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "value",
+                  "inclusive"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "name",
+              "kind",
+              "nominal",
+              "rule_ids",
+              "unit",
+              "step",
+              "origin"
+            ],
+            "additionalProperties": false,
+            "anyOf": [
+              {
+                "required": [
+                  "minimum"
+                ]
+              },
+              {
+                "required": [
+                  "maximum"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "feature",
+    "rules",
+    "fixture",
+    "bva",
+    "dimensions"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Domain BVA design specification v1",
+  "$comment": "Runtime validation additionally checks lattice alignment, nominal validity, numeric magnitude <= 10^24, duplicate IDs, rule mappings and enum overlap."
+}

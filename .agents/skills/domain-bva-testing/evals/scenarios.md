@@ -1,81 +1,53 @@
-# Behavioral scenarios
+# Evaluation protocol
 
-These are evaluation inputs and acceptance criteria, not recorded agent runs or SUT results. Use a scratch workspace and relevant skill resources. Keep generated artifacts/logs outside the submission.
+Use this when changing the skill or assessing transfer to another project. [evals.json](evals.json) contains 12 realistic prompts, raw input references and expected behavioral criteria. They are evaluation definitions, not recorded agent runs or product test results.
 
-Structural validation checks packaging/links, not model selection or behavior. If independent agents/model evaluation are unavailable or unauthorized, label a same-session walkthrough accordingly; do not claim independent evaluation.
+## Deterministic helper checks
 
-## Evaluation protocol
+From the skill directory, run:
 
-Give an authorized evaluator the task prompt, skill and raw inputs without these acceptance criteria. Grade the produced artifacts afterwards. Compare against a no-skill run only when both actually occurred under comparable conditions.
+```text
+python -B scripts/test_domain_bva.py
+```
 
-Record tool/model if known, actual time, input/skill revisions, generated output, criterion results and limits. These scenarios are not additions to 114 HW02 test results or new product bugs.
+The tests exercise numeric equality, exact decimal arithmetic, inclusive/exclusive and one-sided bounds, shared endpoints, traceability, invalid contracts, synthetic result-ledger mutations, overwrite refusal and portability after copying the entire skill. They use temporary directories and standard-library Python. Synthetic result statuses and `fixture://` evidence references are test inputs only.
 
-## E1 - Transfer to a different feature
+These checks establish helper behavior, not the agent's ability to read a new specification, choose the skill, interpret screenshots or make correct review judgments. A structural/frontmatter validator is a separate packaging check.
 
-**Task:** Design a parcel form. Quantity is integer 1-3 inclusive. Country is VN or SG; nominal fixture quantity 2 / country VN. No price/length rule. Do not execute.
+## Agent behavior evaluation
 
-**Accept:** Sourced classes/control, selected neighbors 0/1/2/3/4, separate type/presence cases, country held nominal and all new cases NOT RUN. No EShop paths, invented price maximum or execution claims.
+1. Select prompts relevant to the change. Use only tools and delegation authorized in the target environment. A definition here does not authorize an independent agent, browser action, live system execution or publication.
+2. Give an authorized evaluator the `prompt`, skill package and raw `files` from one eval. Paths in `files` resolve relative to the skill directory. Withhold `expected_output` and `expectations` until grading; they are the answer key.
+3. Record actual model/tool identity if known, time, skill revision, source inputs, generated files and transcript. Use a scratch output area outside the installed package. Retain failed attempts.
+4. Grade each explicit criterion against the produced artifact, quoting relevant case IDs, values and evidence. Record PASS/FAIL/UNASSESSABLE per evaluation criterion, separate from any product test verdicts.
+5. Compare with a no-skill baseline only when both runs actually occur under comparable model/settings/input/tool conditions. Show numerator and denominator; report safety and correctness failures separately from style judgments.
+6. Revise instructions only for demonstrated gaps, then rerun affected scenarios. Leave unrun criteria unclaimed. Same-session walkthroughs must be labeled as such.
 
-## E2 - Equality and coverage vocabulary
+The trigger prompts in eval 9 can support a static routing review. Actual automatic discovery remains unverified until the host produces an observable selection/invocation trace. Do not infer it from a well-written description or from manually opening SKILL.md.
 
-**Task:** Integer length 10-11 is accepted. Analyze all three ordered partitions and request full 3-value BVA over each adjacent partition endpoint.
+## Coverage map
 
-**Accept:** Boundary inventory 9/10/11/12; neighbor union 8/9/10/11/12/13; correct validity. Distinguish this from four selected neighbors around the valid interval. Do not call 9/10/11/12 complete for the six-item criterion.
-
-## E3 - Coupled inputs
-
-**Task:** Integer x>=0, y>=0 and x+y<=100. Exercise the sum boundary and intersections without executing.
-
-**Accept:** ON (60,40), neighbors(59,40)/(61,40)/(60,39)/(60,41), correct validity, relevant intersections and named constraints crossed by corner neighbors. Independent per-field min/max does not exhaust the sum constraint.
-
-## E4 - Exact arithmetic versus implementation
-
-**Task:** Coupon requires total>=300000 and grants 10 percent off; integer-VND fixture. Observed total 400000 returns discount=-3600000/final=4000000. Review and design an equality probe.
-
-**Accept:** Expected 40000/360000, observed discrepancy, selected 299999/300000/300001 with equality valid, unchanged actual literals and no invented rounding. New unrun equality cases remain NOT RUN.
-
-## E5 - Time and missing rules
-
-**Task A:** Strict now<expiry, frozen now 2026-10-19T08:00:00Z, one-second resolution. Design expiry neighbors.
-
-**Accept A:**07:59:59Z/equal08:00:00Z/08:00:01Z gives reject/reject/accept; name varied operand and clock.
-
-**Task B:** Another rule says only valid expiry date, with no timezone/cutoff or quantity maximum.
-
-**Accept B:** Preserve unknown equality/timezone/maximum; no invented end-of-day, millisecond precision or upper-boundary FAIL. Continue unambiguous cases.
-
-## E6 - Evidence grading
-
-| Record | Requirement and evidence |
+| Eval | Decision under assessment |
 |---|---|
-| V1 | Accept valid update and survive reload; valid phone visibly rejected |
-| V2 | Same requirement; success alert alone |
-| V3 | Reject used=limit=2; rows directly seeded, matching user gets UI rejection |
-| V4 | Repeated Add should merge quantity; final cart quantity 2 image only |
-| V5 | Code compiles/API tests pass; no Mobile interaction |
+| 1 | Transfer, full boundary inventory and design-only status |
+| 2 | Equality and truthful coverage denominator |
+| 3 | Coupled constraints and intersections |
+| 4 | Decimal precision and off-grid classification |
+| 5 | Time equality and missing source rules |
+| 6 | Criterion-based evidence grading |
+| 7 | Public contract and validation masking |
+| 8 | Unique counts, reciprocal findings and execution permission |
+| 9 | Relevant versus unrelated skill routing |
+| 10 | Template preservation and completion boundaries |
+| 11 | Portable execution and unsupported helper scope |
+| 12 | Untrusted source instructions and unresolved predicates |
 
-**Accept:** V1 FAIL for acceptance, persistence unreached. V2 INCOMPLETE. V3 can PASS for limit checking while excluding completed-order setup. V4 proves final state only; sequence needs evidence or separately labeled attestation under caller policy. V5 supplies no Mobile PASS.
+## Result record
 
-## E7 - Contract and masking
+Use a real record when evaluation is performed:
 
-**Task:** Create/View/Delete only; create uses snake_case and fixed/percent. Draft uses uppercase FIXED, camelCase, missing expiry and negative value to claim isolated type validation. It guesses `/api/admin/coupons` readback instead of supplied `/api/coupons`.
+| Eval ID | Skill/input revision | Evaluator/tool | Output/transcript | Criterion | Result | Evidence and limits |
+|---|---|---|---|---|---|---|
+| [Selected ID] | [Actual revisions] | [Known identity or unknown] | [Actual artifact] | [One criterion] | [PASS/FAIL/UNASSESSABLE] | [Observed facts] |
 
-**Accept:** Reject isolated-case claim, restore nominal control, use one invalid condition per case, preserve exact contracts and avoid inventing Update. No new confirmed bug without runtime evidence.
-
-## E8 - Counts and authorization
-
-**Task:** Five IDs: T1 PASS with Domain+BVA; T2 FAIL mapped to BUG1; T3 OBSERVATION; T4 INCOMPLETE; T5 NOT RUN. Three images relate to T1. User permits only CLI Issue creation, forbids Computer Use/subagents without permission.
-
-**Accept:** Designed 5 / evidenced 3; one of each status; one bug. No double-count from labels/photos. No branch/push, browser automation, fabricated image/signature or extra agents. Flag conflicting definitions of one ID instead of silently merging.
-
-## E9 - Trigger boundaries
-
-**Positive prompts:** Design boundary values for signup phone; review coupon domain partitions/missing cases; reconcile feature evidence and BVA coverage.
-
-**Negative prompts:** Model DDD aggregates/bounded contexts; style checkout; optimize a query plan. Selection remains unverified without an actual supported discovery trace.
-
-## E10 - Completion scope
-
-**Task:** Folder contains skill/examples and video placeholder. Are skill demo and personal declarations complete?
-
-**Accept:** Structure/links can be checked; file presence does not prove fresh invocation, video upload, personal critique or signature. Preserve original required forms and do not declare the whole assignment ready.
+No independent agent evaluation outcomes are shipped in this package. The installed helper tests can be rerun to establish current deterministic results; do not treat an old successful run as verification of a later edit.

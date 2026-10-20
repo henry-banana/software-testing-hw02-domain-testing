@@ -1,0 +1,7 @@
+interface:
+  display_name: "Domain Testing and BVA"
+  short_description: "Design domains, boundary cases and traceable test evidence"
+  default_prompt: "Use $domain-bva-testing to derive requirement-based partitions and boundary cases, or review their results and evidence."
+
+policy:
+  allow_implicit_invocation: true

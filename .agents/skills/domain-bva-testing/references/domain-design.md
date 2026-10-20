@@ -6,8 +6,8 @@ Read before selecting classes or designing interactions. Use sourced rules, not 
 
 For each rule, record ID, source/version, predicate, expected result, interface and uncertainty. Separate:
 
-- Required business rule: an ordinary user cannot create an admin coupon.
-- Transport contract: the request field is `discount_value`.
+- Required business rule: an ordinary user cannot create an administrator-only reservation.
+- Transport contract: the request field is `seat_count`.
 - Implementation fact: the handler uses `value || 1`.
 - Inference: that expression may silently change zero to one.
 
@@ -15,9 +15,9 @@ Only normative requirements/contracts supply expectations. Use implementation fa
 
 ## Vector and nominal fixture
 
-A discount application may depend on:
+A reservation request may depend on:
 
-`(authenticated_actor, body_identity, coupon_state, total, clock, prior_usage)`
+`(authenticated_actor, body_identity, resource_state, requested_seats, clock, prior_reservations)`
 
 The nominal fixture includes everything needed to reach the target rule, not just the edited field.
 
@@ -60,7 +60,7 @@ Across sets, overlap is expected: an input can have valid type and invalid range
 
 Start from the valid control and change one dimension. Record unchanged coordinates or reference the complete fixture by ID.
 
-A coupon with invalid type, negative value and missing expiry does not isolate type validation. Keep required fields nominal and change only type; test missing expiry and negative value separately. Add multi-invalid cases for explicit interaction/precedence questions without inventing error order.
+A reservation with invalid category, negative seat count and missing departure does not isolate category validation. Keep required fields nominal and change only category; test missing departure and negative seat count separately. Add multi-invalid cases for explicit interaction/precedence questions without inventing error order.
 
 When persistence/uniqueness is the criterion, rejection also needs relevant state readback. A 500 response alone neither proves corruption nor creates a separate bug if the sole requirement is rejection without insertion. Error-contract/disclosure findings need their own oracle.
 
@@ -68,18 +68,18 @@ When persistence/uniqueness is the criterion, rejection also needs relevant stat
 
 Suppose acceptance requires:
 
-`exists AND active AND total >= minimum AND now < expiry AND used < limit`
+`exists AND active AND available >= requested AND now < deadline AND reserved < quota`
 
 Create an all-valid row, then falsify one condition at a time. Add combinations for named questions, such as authenticated identity versus untrusted body user ID.
 
-| Row | Exists | Active | Minimum met | Unexpired | Usage available | Expected |
+| Row | Exists | Active | Seats available | Before deadline | Quota available | Expected |
 |---|---|---|---|---|---|---|
 | DT1 | T | T | T | T | T | Accept |
-| DT2 | F | N/A | N/A | N/A | N/A | Reject nonexistent code |
-| DT3 | T | F | T | T | T | Reject inactive code |
-| DT4 | T | T | F | T | T | Reject insufficient total |
-| DT5 | T | T | T | F | T | Reject expired code |
-| DT6 | T | T | T | T | F | Reject exhausted usage |
+| DT2 | F | N/A | N/A | N/A | N/A | Reject nonexistent resource |
+| DT3 | T | F | T | T | T | Reject inactive resource |
+| DT4 | T | T | F | T | T | Reject insufficient seats |
+| DT5 | T | T | T | F | T | Reject late request |
+| DT6 | T | T | T | T | F | Reject exhausted quota |
 
 Dependent attributes of a nonexistent object are not literally true; mark them not applicable. Error wording/order is not implied by this table. The specification must supply any required precedence when multiple conditions fail.
 
@@ -87,7 +87,7 @@ Dependent attributes of a nonexistent object are not literally true; mark them n
 
 Record initial state, action, expected next state and observation method.
 
-Apply might calculate a discount while checkout records usage. Two Apply clicks do not establish two completed uses. Seeded usage can isolate limit checking but does not exercise checkout-to-usage creation.
+Preview might quote a reservation while confirmation consumes quota. Two Preview clicks do not establish two confirmed reservations. Seeded counters can isolate limit checking but do not exercise confirmation-to-counter updates.
 
 For create/view/delete:
 

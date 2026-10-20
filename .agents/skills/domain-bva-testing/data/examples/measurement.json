@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "feature": {
+    "id": "MEASURE",
+    "title": "Exact decimal measurement window"
+  },
+  "rules": [
+    {
+      "id": "R-RANGE",
+      "source": "Synthetic sensor input contract v1, range",
+      "requirement": "Measurements use a 0.01 mm lattice from origin 0; accept 0.10 to 0.11 mm inclusive; reject outside or off-grid readings."
+    }
+  ],
+  "fixture": {
+    "actor": "Test sensor operator",
+    "interface": "Measurement input interface",
+    "initial_state": "No reading recorded",
+    "setup": "Use an isolated sensor fixture",
+    "action": "Submit one measurement",
+    "readback": "Read response and stored reading if accepted"
+  },
+  "bva": "3-value",
+  "dimensions": [
+    {
+      "name": "measurement",
+      "kind": "decimal",
+      "nominal": "0.10",
+      "unit": "mm",
+      "step": "0.01",
+      "origin": "0",
+      "minimum": {
+        "value": "0.10",
+        "inclusive": true
+      },
+      "maximum": {
+        "value": "0.11",
+        "inclusive": true
+      },
+      "rule_ids": [
+        "R-RANGE"
+      ]
+    }
+  ]
+}

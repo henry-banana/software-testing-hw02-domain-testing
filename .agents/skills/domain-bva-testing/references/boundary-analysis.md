@@ -1,6 +1,6 @@
 # Boundary analysis
 
-Read for ordered values, lengths, counts, times or coupled comparisons. Start from partitions and name the course/project boundary-selection convention.
+Read for ordered values, lengths, counts, times or coupled comparisons. Start from partitions and name the project boundary-selection convention.
 
 ## Boundary record
 
@@ -42,7 +42,7 @@ For integer partitions `x <= 9`, `10 <= x <= 11`, `x >= 12`:
 | Complete 2-value inventory for those boundaries | 9,10,11,12 |
 | Complete 3-value inventory for those boundaries | 8,9,10,11,12,13 |
 
-Four selected cases can be intentional without covering the six-item 3-value inventory. If lectures use another convention, cite it, name the denominator and show values. Do not relabel an existing suite as complete without checking its points.
+Four selected cases can be intentional without covering the six-item 3-value inventory. If the project uses another convention, cite it, name the denominator and show values. Do not relabel an existing suite as complete without checking its points.
 
 ## Length, numbers and time
 
@@ -56,9 +56,9 @@ For a sourced 10-11 digit rule, 9/10/11/12 are selected neighbors of the valid i
 
 Use declared currency/precision. Do not invent 0.01, rounding or a discount cap. Integer fixtures can isolate a formula defect without deciding rounding.
 
-For `total >= 300000` with integer-unit fixture, use 299999/300000/300001. At 10 percent and 400000, exact expectations are 40000 discount and 360000 final; check both, not just success status.
+For `total >= 100` with integer-unit fixture, use 99/100/101. A sourced 10 percent adjustment on 200 gives an exact adjustment of 20 and final value of 180; check both, not just success status.
 
-For `discount_value > 0` with unspecified scale, zero is unambiguous. Label the fixture step for negative/positive probes; do not infer fractional values must be rejected.
+For `amount > 0` with unspecified scale, zero is unambiguous. Label the fixture step for negative/positive probes; do not infer fractional values must be rejected.
 
 ### Time
 

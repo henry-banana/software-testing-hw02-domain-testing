@@ -41,7 +41,7 @@ Repository chứa báo cáo cá nhân, phân tích Domain/BVA, test cases, bug r
 | [AI Disclosure](<ai-audit/[AI-03] - FIT@HCMUS - AI Disclosure Form_Vn.md>) | Công cụ, phạm vi đóng góp và xác nhận do sinh viên cung cấp. |
 | [AI Reflection](<ai-audit/[AI-04] - FIT@HCMUS - AI Reflective Statement_Vn.md>) | Reflection và AI Critique245 từ. |
 | [AI Privacy](<ai-audit/[AI-05] - FIT@HCMUS - AI Privacy Checklist_Vn.md>) | Checklist theo evidence và bước cuối còn lại. |
-| [Agent Skill](.agents/skills/domain-bva-testing/SKILL.md) | Domain/BVA tám bước, guides theo ngữ cảnh, mẫu đầu ra, ví dụ FR-17 và10tình huống đánh giá. |
+| [Agent Skill](.agents/skills/domain-bva-testing/SKILL.md) | Skill Domain/BVA dùng lại cho nhiều dự án: references, mẫu Markdown, Python helpers, schemas, dữ liệu mẫu, 12 tình huống đánh giá và metadata Codex. |
 | [Video Links](Video_Links.md) | Link tạm demo, chờ sinh viên thay URL. |
 | [Git Log](git-commit-log.txt) | Snapshot lịch sử Git thực, ghi rõ HEAD phạm vi. |
 

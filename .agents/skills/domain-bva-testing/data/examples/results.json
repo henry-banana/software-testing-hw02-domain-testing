@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "rule_ids": [
+    "R1"
+  ],
+  "designed_case_ids": [
+    "T1",
+    "T2",
+    "T3",
+    "T4",
+    "T5",
+    "T6"
+  ],
+  "cases": [
+    {
+      "id": "T1",
+      "status": "PASS",
+      "rule_ids": [
+        "R1"
+      ],
+      "expected": "Synthetic rule R1 outcome; this file is a helper test fixture, not product evidence.",
+      "actual": "Synthetic PASS observation for testing the record auditor",
+      "evidence": [
+        "fixture://synthetic/run-1"
+      ],
+      "reason": "Synthetic metadata only; no live system was exercised.",
+      "finding_ids": []
+    },
+    {
+      "id": "T2",
+      "status": "FAIL",
+      "rule_ids": [
+        "R1"
+      ],
+      "expected": "Synthetic rule R1 outcome; this file is a helper test fixture, not product evidence.",
+      "actual": "Synthetic FAIL observation for testing the record auditor",
+      "evidence": [
+        "fixture://synthetic/run-2"
+      ],
+      "reason": "Synthetic metadata only; no live system was exercised.",
+      "finding_ids": [
+        "F1"
+      ]
+    },
+    {
+      "id": "T3",
+      "status": "FAIL",
+      "rule_ids": [
+        "R1"
+      ],
+      "expected": "Synthetic rule R1 outcome; this file is a helper test fixture, not product evidence.",
+      "actual": "Synthetic FAIL observation for testing the record auditor",
+      "evidence": [
+        "fixture://synthetic/run-3"
+      ],
+      "reason": "Synthetic metadata only; no live system was exercised.",
+      "finding_ids": [
+        "F1"
+      ]
+    },
+    {
+      "id": "T4",
+      "status": "OBSERVATION",
+      "rule_ids": [
+        "R1"
+      ],
+      "expected": "Synthetic rule R1 outcome; this file is a helper test fixture, not product evidence.",
+      "actual": "Synthetic OBSERVATION observation for testing the record auditor",
+      "evidence": [
+        "fixture://synthetic/run-4"
+      ],
+      "reason": "Synthetic metadata only; no live system was exercised.",
+      "finding_ids": []
+    },
+    {
+      "id": "T5",
+      "status": "INCOMPLETE",
+      "rule_ids": [
+        "R1"
+      ],
+      "expected": "Synthetic rule R1 outcome; this file is a helper test fixture, not product evidence.",
+      "actual": "Synthetic INCOMPLETE observation for testing the record auditor",
+      "evidence": [],
+      "reason": "Synthetic metadata only; no live system was exercised.",
+      "finding_ids": []
+    },
+    {
+      "id": "T6",
+      "status": "NOT RUN",
+      "rule_ids": [
+        "R1"
+      ],
+      "expected": "Synthetic rule R1 outcome; this file is a helper test fixture, not product evidence.",
+      "actual": null,
+      "evidence": [],
+      "reason": "Synthetic metadata only; no live system was exercised.",
+      "finding_ids": []
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "case_ids": [
+        "T2",
+        "T3"
+      ]
+    }
+  ]
+}

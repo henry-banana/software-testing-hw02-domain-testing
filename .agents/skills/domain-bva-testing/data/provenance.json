@@ -1,0 +1,142 @@
+{
+  "inspected_on": "2026-10-20",
+  "purpose": "Pinned source provenance; not runtime dependencies or copied implementations",
+  "files": [
+    {
+      "repo": "affaan-m/ECC",
+      "path": ".agents/skills/eval-harness/SKILL.md",
+      "commit": "6f1881aeafa3c48f7b603cc4be4b2e4e70daad59",
+      "source_url": "https://github.com/affaan-m/ECC/blob/6f1881aeafa3c48f7b603cc4be4b2e4e70daad59/.agents/skills/eval-harness/SKILL.md",
+      "sha256": "49a5a10975860bb2d7e3c4e260ff19b6580e43f5fbc7770b32dece02dde48e49",
+      "bytes": 5610
+    },
+    {
+      "repo": "affaan-m/ECC",
+      "path": ".agents/skills/verification-loop/SKILL.md",
+      "commit": "6f1881aeafa3c48f7b603cc4be4b2e4e70daad59",
+      "source_url": "https://github.com/affaan-m/ECC/blob/6f1881aeafa3c48f7b603cc4be4b2e4e70daad59/.agents/skills/verification-loop/SKILL.md",
+      "sha256": "6d4a399d856207297168cc03f3f8c90d4085ff14566bb928af3c97d9a31f2650",
+      "bytes": 2572
+    },
+    {
+      "repo": "mrgoonie/claudekit-skills",
+      "path": ".claude/skills/skill-creator/references/structure-organization-criteria.md",
+      "commit": "80113d86bc4407f105af40a2c4ea58194f7c370a",
+      "source_url": "https://github.com/mrgoonie/claudekit-skills/blob/80113d86bc4407f105af40a2c4ea58194f7c370a/.claude/skills/skill-creator/references/structure-organization-criteria.md",
+      "sha256": "b8c137a4484883323d7692f10a5f585ba285dbfabfe284913a80a56f92ac2ce4",
+      "bytes": 2133
+    },
+    {
+      "repo": "mrgoonie/claudekit-skills",
+      "path": ".claude/skills/skill-creator/references/metadata-quality-criteria.md",
+      "commit": "80113d86bc4407f105af40a2c4ea58194f7c370a",
+      "source_url": "https://github.com/mrgoonie/claudekit-skills/blob/80113d86bc4407f105af40a2c4ea58194f7c370a/.claude/skills/skill-creator/references/metadata-quality-criteria.md",
+      "sha256": "a9f2b46a89cbc18f7d1256e5a978b06faa4e658b163f6eefb1f0d08b788ace6b",
+      "bytes": 1780
+    },
+    {
+      "repo": "mrgoonie/claudekit-skills",
+      "path": ".claude/skills/web-testing/references/functional-testing-checklist.md",
+      "commit": "80113d86bc4407f105af40a2c4ea58194f7c370a",
+      "source_url": "https://github.com/mrgoonie/claudekit-skills/blob/80113d86bc4407f105af40a2c4ea58194f7c370a/.claude/skills/web-testing/references/functional-testing-checklist.md",
+      "sha256": "373531b6a74e1be71f7daff73e9fcb2c8c1f9f1f97c57cc2e257d6d0ca531333",
+      "bytes": 2751
+    },
+    {
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/writing-for-agents/SKILL.md",
+      "commit": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+      "source_url": "https://github.com/mattpocock/skills/blob/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/productivity/writing-for-agents/SKILL.md",
+      "sha256": "551adca942227b44192edba88acd4e8db911f0121ce58ad16944ccf6a896a74a",
+      "bytes": 10886
+    },
+    {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/tdd/tests.md",
+      "commit": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+      "source_url": "https://github.com/mattpocock/skills/blob/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/engineering/tdd/tests.md",
+      "sha256": "859f9e592c188fda4fc7277dd180e4ce9c7a2e13f6efe1f6f29eccc9d28c106a",
+      "bytes": 2214
+    },
+    {
+      "repo": "MengTo/Skills",
+      "path": "agent-skills/codex/audit-verify-explain-grade-5/SKILL.md",
+      "commit": "398cd41c86ba42fbb30e944ae507f463648f08b7",
+      "source_url": "https://github.com/MengTo/Skills/blob/398cd41c86ba42fbb30e944ae507f463648f08b7/agent-skills/codex/audit-verify-explain-grade-5/SKILL.md",
+      "sha256": "d4b5ce0ccda298b75fc7927f88a67dd5528693085ee52fa92b0623544665ba32",
+      "bytes": 3679
+    },
+    {
+      "repo": "MengTo/Skills",
+      "path": "agent-skills/codex/audit-verify-explain-grade-5/demo/input.md",
+      "commit": "398cd41c86ba42fbb30e944ae507f463648f08b7",
+      "source_url": "https://github.com/MengTo/Skills/blob/398cd41c86ba42fbb30e944ae507f463648f08b7/agent-skills/codex/audit-verify-explain-grade-5/demo/input.md",
+      "sha256": "637bcc36106f080aba20e2707b9e1c6914cf38fb7506d0d4db3c888b152dc8a4",
+      "bytes": 272
+    },
+    {
+      "repo": "MengTo/Skills",
+      "path": "agent-skills/codex/audit-verify-explain-grade-5/demo/expected-output.md",
+      "commit": "398cd41c86ba42fbb30e944ae507f463648f08b7",
+      "source_url": "https://github.com/MengTo/Skills/blob/398cd41c86ba42fbb30e944ae507f463648f08b7/agent-skills/codex/audit-verify-explain-grade-5/demo/expected-output.md",
+      "sha256": "ef6c80b2e9e68a4ade20c7ff55e1bc1b4958450ef482d96c8894960a22f1dc70",
+      "bytes": 266
+    },
+    {
+      "repo": "agentskills/agentskills",
+      "path": "docs/specification.mdx",
+      "commit": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
+      "source_url": "https://github.com/agentskills/agentskills/blob/69ef37e9424c0a7ea9dd2293b559e43ec8176379/docs/specification.mdx",
+      "sha256": "b9079c0c10b7930e8c6a20ff2bc10cda2a3343c55185120e3f1116a1a529b220",
+      "bytes": 7166
+    },
+    {
+      "repo": "agentskills/agentskills",
+      "path": "docs/skill-creation/best-practices.mdx",
+      "commit": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
+      "source_url": "https://github.com/agentskills/agentskills/blob/69ef37e9424c0a7ea9dd2293b559e43ec8176379/docs/skill-creation/best-practices.mdx",
+      "sha256": "a729bc1d746366ecb8c5056b100439fbf760007a0f836e089c0f3aff9ce5c2f8",
+      "bytes": 14608
+    },
+    {
+      "repo": "agentskills/agentskills",
+      "path": "docs/skill-creation/evaluating-skills.mdx",
+      "commit": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
+      "source_url": "https://github.com/agentskills/agentskills/blob/69ef37e9424c0a7ea9dd2293b559e43ec8176379/docs/skill-creation/evaluating-skills.mdx",
+      "sha256": "20e53ee9085966bb25345fc4c431bcf24f1f1b410b687605dc870c76f8579a49",
+      "bytes": 16755
+    },
+    {
+      "repo": "addyosmani/agent-skills",
+      "path": "skills/test-driven-development/SKILL.md",
+      "commit": "aeac41d4d005999432bb7312f7ff06383a91d59d",
+      "source_url": "https://github.com/addyosmani/agent-skills/blob/aeac41d4d005999432bb7312f7ff06383a91d59d/skills/test-driven-development/SKILL.md",
+      "sha256": "a3aa6ba95638497025577469eda10ed17918698209615aeafbc26f131bf2469d",
+      "bytes": 16676
+    },
+    {
+      "repo": "addyosmani/agent-skills",
+      "path": "evals/skill-impact.md",
+      "commit": "aeac41d4d005999432bb7312f7ff06383a91d59d",
+      "source_url": "https://github.com/addyosmani/agent-skills/blob/aeac41d4d005999432bb7312f7ff06383a91d59d/evals/skill-impact.md",
+      "sha256": "be4022f34d556baef3ea9c45627d2beea8820224e1de12b406db7b95706619a8",
+      "bytes": 400
+    },
+    {
+      "repo": "obra/superpowers",
+      "path": "skills/writing-skills/SKILL.md",
+      "commit": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "source_url": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/writing-skills/SKILL.md",
+      "sha256": "bbdfe742f853562e643a3d40d64476359d47881e39cef80a189283fa26d11ab9",
+      "bytes": 26623
+    },
+    {
+      "repo": "obra/superpowers",
+      "path": "skills/verification-before-completion/SKILL.md",
+      "commit": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "source_url": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/verification-before-completion/SKILL.md",
+      "sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3",
+      "bytes": 3646
+    }
+  ]
+}

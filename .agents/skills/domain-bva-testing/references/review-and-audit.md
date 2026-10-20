@@ -31,7 +31,7 @@ Retain original prompt/output and a visible correction record:
 
 `artifact -> original claim -> verdict -> rule/evidence -> corrected version -> review owner/status`
 
-Use supplied AI-template vocabulary, commonly VALID/INVALID/INCOMPLETE. Preserve its fields/declarations; fill answer areas, rows and evidence-backed checkboxes. Leave human signatures, personal experience and unverified declarations to the student.
+Use supplied AI-template vocabulary, commonly VALID/INVALID/INCOMPLETE. Preserve its fields/declarations; fill answer areas, rows and evidence-backed checkboxes. Leave human signatures, personal experience and unverified declarations to the responsible person.
 
 If displayed transcripts need punctuation normalization, retain recoverable source text/hash separately and label the transformation. A normalized copy is not byte-identical.
 
@@ -70,4 +70,4 @@ Recalculate summaries and check reciprocal case/bug links and file paths. A corr
 
 ## Final claim
 
-State result, verification and material limits. File presence/static validation cannot prove unrun device behavior, independent model evaluation, personal review, signature, video upload or final packaging.
+State result, verification and material limits. File presence/static validation cannot prove unrun device behavior, independent model evaluation, personal review, signature, external publication or final packaging.

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "feature": {
+    "id": "QUOTA",
+    "title": "One-sided worker admission gate"
+  },
+  "rules": [
+    {
+      "id": "R-QUOTA",
+      "source": "Synthetic scheduler admission contract v1, gate",
+      "requirement": "For the isolated admission comparison, accept integer load less than 8; reject load equal to or above 8. No lower threshold is specified by this rule."
+    }
+  ],
+  "fixture": {
+    "actor": "Scheduler test operator",
+    "interface": "Admission policy function",
+    "initial_state": "Fixed capacity 8; other admission conditions satisfied",
+    "setup": "Use isolated policy evaluation without starting jobs",
+    "action": "Evaluate admission for the supplied load",
+    "readback": "Observe the admission decision"
+  },
+  "bva": "3-value",
+  "dimensions": [
+    {
+      "name": "load",
+      "kind": "integer",
+      "nominal": "7",
+      "unit": "workers",
+      "step": "1",
+      "origin": "0",
+      "maximum": {
+        "value": "8",
+        "inclusive": false
+      },
+      "rule_ids": [
+        "R-QUOTA"
+      ]
+    }
+  ]
+}

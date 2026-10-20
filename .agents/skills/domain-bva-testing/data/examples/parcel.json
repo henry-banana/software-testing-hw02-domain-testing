@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "feature": {
+    "id": "PARCEL",
+    "title": "Parcel quantity and destination"
+  },
+  "rules": [
+    {
+      "id": "R-QUANTITY",
+      "source": "Synthetic parcel acceptance criteria v1, AC1",
+      "requirement": "Accept integer quantity 1 through 3 inclusive; reject other quantities without submitting a parcel."
+    },
+    {
+      "id": "R-COUNTRY",
+      "source": "Synthetic parcel acceptance criteria v1, AC2",
+      "requirement": "Accept destination VN or SG; reject all other destination codes without submitting a parcel."
+    }
+  ],
+  "fixture": {
+    "actor": "Isolated test operator with permission to submit parcels",
+    "interface": "Public parcel form; bind actual field types before execution",
+    "initial_state": "No parcel submitted for this fixture",
+    "setup": "Create a fresh isolated draft; nominal quantity 2 and country VN",
+    "action": "Submit the complete logical input through the chosen public interface",
+    "readback": "Read the submission response and draft/submission state through that interface"
+  },
+  "bva": "3-value",
+  "dimensions": [
+    {
+      "name": "quantity",
+      "kind": "integer",
+      "nominal": "2",
+      "unit": "items",
+      "step": "1",
+      "origin": "0",
+      "minimum": {
+        "value": "1",
+        "inclusive": true
+      },
+      "maximum": {
+        "value": "3",
+        "inclusive": true
+      },
+      "rule_ids": [
+        "R-QUANTITY"
+      ]
+    },
+    {
+      "name": "country",
+      "kind": "enum",
+      "nominal": "VN",
+      "valid_values": [
+        "VN",
+        "SG"
+      ],
+      "invalid_values": [
+        "XX"
+      ],
+      "rule_ids": [
+        "R-COUNTRY"
+      ]
+    }
+  ]
+}

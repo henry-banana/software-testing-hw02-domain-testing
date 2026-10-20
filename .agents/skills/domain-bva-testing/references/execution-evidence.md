@@ -8,7 +8,7 @@ Read before exercising an authorized SUT or grading supplied records. Environmen
 2. Inspect startup/seed behavior before importing modules or starting servers. Use a disposable copy/database when startup resets data.
 3. Match actor, role, ownership, clock and counters. Record setup method and a control object for destructive operations.
 4. Choose an observable interface proving the rule. API cases can use HTTP; a UI criterion still needs that UI.
-5. Check authorization/tool availability. Browser/device automation, subagents and external publication need the required user authorization. Continue independent authorized work while a dependent action is blocked.
+5. Check authorization/tool availability. Browser/device automation, delegation and external publication follow the target environment's authorization rules. Continue independent authorized work while a dependent action is blocked.
 
 Separate setup/cleanup from the measured action. Do not reset a fixture if that would erase another tester's evidence; isolate instead.
 
@@ -30,7 +30,7 @@ A readback collected after a screenshot supports the later observed state. It do
 | Public readback | Observed persisted state | An unobserved sequence producing that state |
 | UI input plus rejection | Displayed input blocked at that step | Backend behavior if client never sent it |
 | Success alert alone | A message was displayed | Save-and-reload/fresh-login persistence |
-| Final cart/list image | Visible final state | Exact Add/Create/Delete sequence |
+| Final object/list image | Visible final state | Exact request/Create/Delete sequence |
 | Human statement | Claimed action sequence | Independent replay/machine-recorded trace |
 | Issue header image | Visible title/number/status/metadata | Lower Steps/Expected/Actual or attachments |
 | Issue API readback | Publication content/identity/URL at that time | Screenshot of the GitHub page |
@@ -43,9 +43,9 @@ For valid-update acceptance and persistence:
 - Success alert without readback: INCOMPLETE for the full criterion.
 - Exact values after reload/fresh login: PASS for the specified persistence scope.
 
-For usage limits, `used=limit` setup plus observed rejection can satisfy limit checking. If rows were seeded directly, do not claim completion of prior orders end to end.
+For usage limits, `used=limit` setup plus observed rejection can satisfy limit checking. If rows were seeded directly, do not claim completion of prior operations end to end.
 
-For sequences, distinguish final-state from sequence evidence. If student attestation is accepted under the caller's evidence policy, record it and its limits instead of calling it independently replayed.
+For sequences, distinguish final-state from sequence evidence. If tester attestation is accepted under the caller's evidence policy, record it and its limits instead of calling it independently replayed.
 
 Observed behavior with an unspecified oracle can be OBSERVATION. An unexecuted exploratory candidate stays NOT RUN. Missing infrastructure/fixture produces an environment/incomplete result, not product FAIL.
 
