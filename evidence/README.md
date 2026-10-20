@@ -89,12 +89,100 @@ Raw reports ghi thời gian UTC thật, clock SUT mô phỏng, HTTP request/resp
 | [A-UI-07_02-validation-error.png](screenshots/A/A-UI-07_02-validation-error.png) | codex-clipboard-d0bf2597-89a0-4ea9-9b32-d3f672bcc6c4.png | 99c90d4d44b2613a79968d476a1e09f0928e8f9f50845b36dd309b03d8bbacc4 | A-UI-07 |
 | [B-UI-06_01-limit-rejected.png](screenshots/B/B-UI-06_01-limit-rejected.png) | codex-clipboard-0d378fb8-0d60-494a-978e-cd4e980704fe.png | 7bd40d70e92c6c107bc210f04c7071e661921c88807e70892e69ac7b7e38a608 | B-UI-06 |
 
-## 3. GitHub Issue evidence
 
-Đã đăng18Issues cá nhân: [Issue Evidence](github-issues/README.md), gồm URL/number và trạng thái ảnh. [Readback record](github-issues/issue-publication.json) được đối chiếu body bằng CLI; không có ảnh trang Issue tự sinh. Sinh viên sẽ đính kèm ảnh trực tiếp lên Issues và lưu ảnh trang Issue vào evidence/github-issues/.
+<a id="b-ui-06-fixture"></a>
 
-Bản hiển thị prompt/output đã chuẩn hóa dấu câu; [source-records.json](ai-originals/source-records.json) giữ nội dung gốc vàSHA256, bao gồm rawAPI trước đổi dấu tiêu đề. PayloadJSON/rawactual không bị sửa bởi chuẩn hóa trình bày.
+## B-UI-06 fixture
 
-## 4. Ảnh trang GitHub Issues
+**Readback recorded UTC:** 2026-10-20T04:22:38.564688+00:00. Đây là thời điểm đọc trạng thái fixture, không phải timestamp chụp UI.
 
-Đã nhận18ảnh do sinh viên chụp, đổi tên theoBug ID và kiểmSHA256 nguyênbytes. [Danh sách ảnh](github-issues/README.md) và [provenance/hash](github-issues/issue-publication.json) ánh xạ đầy đủ Issues #31-#48. Các ảnh hiện thấy phần đầu trang Issue; không thay ảnh actual của lỗi hoặc xác nhận nội dung đính kèm bên dưới.
+Database runtime Web riêng được đọc bằng SQLite `mode=ro`; không chạy lại seed, không thay đổi dữ liệu hoặc dừng server đang dùng. Account và coupon khớp ảnh UI B-UI-06. Hai dòng `coupon_usage` được helper tạo trực tiếp để kiểm điều kiện `used=limit=2`; không tuyên bố sinh viên đã hoàn tất hai đơn mới. Readback sau khi nhận ảnh bổ sung xác nhận trạng thái hiện tại; không phải query được chụp đồng thời với thao tác UI.
+
+```sql
+SELECT u.email, c.code, c.max_uses_per_user, COUNT(cu.id) AS used_count
+FROM users u JOIN coupon_usage cu ON cu.user_id=u.id
+JOIN coupons c ON c.id=cu.coupon_id
+WHERE u.email='b_ui_06@hw02.invalid' AND c.code='VIP100'
+GROUP BY u.id, c.id;
+```
+
+```json
+[
+  {
+    "email": "b_ui_06@hw02.invalid",
+    "code": "VIP100",
+    "max_uses_per_user": 2,
+    "used_count": 2
+  }
+]
+```
+
+UI sau khi bấm Áp dụng hiển thị `Bạn đã sử dụng mã này 2 lần (đã đạt giới hạn)` với account B-UI-06, VIP100 và total 400000; [ảnh gốc](screenshots/B/B-UI-06_01-limit-rejected.png) và [test case](../tests/B-FR09-discount-coupons.md#b-ui-06). Kết luận PASS giới hạn ở hành vi từ chối tại trạng thái exhausted; quy trình tạo usage qua checkout không được kiểm end-to-end trong case này.
+
+
+## API, browser and handler evidence
+
+125 test images comprise 71 supplied original captures, 6 live SUT browser captures and 48 clearly labeled recorded-execution viewer captures. Viewer images show actual executed HTTP/handler output; they do not simulate terminal or native UI. Existing native captures retain their original bytes.
+
+[A execution](execution/A-execution.md), [B execution](execution/B-execution.md), [C execution](execution/C-execution.md), [D execution](execution/D-execution.md).
+
+| New image | SHA-256 |
+|---|---|
+| [A-UI-08_email-field.jpg](screenshots/A/A-UI-08_email-field.jpg) | 1b091c2716b1b8deeb2886720e8c9a079b565b7c26b8d6773dea91d77f3ac73b |
+| [A-UI-09_stored-name-executes.jpg](screenshots/A/A-UI-09_stored-name-executes.jpg) | 07c85447ee3e8188c4ed3e2b5e0335fae8eaaa4fddced193eb6c9a8bc540c6ec |
+| [A-UI-10_after-save.jpg](screenshots/A/A-UI-10_after-save.jpg) | 380fbfc60bba44ee739d305ad8cb775dc0f66ff37617328396a84d1df13b307c |
+| [A-UI-10_stale-after-navigation.jpg](screenshots/A/A-UI-10_stale-after-navigation.jpg) | 264142563ff0715e9c270c224b99e02caab6aef2533305e6638dda8d5fc4be86 |
+| [FR04-01_execution.jpg](screenshots/A/FR04-01_execution.jpg) | 7a852c9ddc9c355e12ffa14aa677517c022522107902424d0be7fdd0d280c6b8 |
+| [FR04-02_execution.jpg](screenshots/A/FR04-02_execution.jpg) | 421e875243a7b11b01659634d34a2d2ef9a0897f8d94aac0f43a2708080d2dff |
+| [FR04-03_execution.jpg](screenshots/A/FR04-03_execution.jpg) | 9adaf83fc0f754513efa56ae7655342336eb1f49d60d07d3dd70b14ab90bd120 |
+| [FR04-04_execution.jpg](screenshots/A/FR04-04_execution.jpg) | 51e5929e9d6056a289602e342b8973c1f6afec1438b4c414c90096a980e519e3 |
+| [FR04-05_execution.jpg](screenshots/A/FR04-05_execution.jpg) | 1afdf83be5637540d276730fc4f1e4c9f21326bad55c23155d90378ce18aa8c1 |
+| [FR04-06_execution.jpg](screenshots/A/FR04-06_execution.jpg) | 36f74539514efd8f0bc2660c4a0e4652dda49a74da6dbf5e55013bafa5afd6ee |
+| [FR04-07_execution.jpg](screenshots/A/FR04-07_execution.jpg) | ecde38d6f9a09834ed0c1155d85b8f791c5eddf50d606ea8c817d4039335436d |
+| [FR04-08_execution.jpg](screenshots/A/FR04-08_execution.jpg) | e8a727043d6a49f261ba6ced6ef02de2682d483776dfaff1b4fe45b859b70c1c |
+| [FR04-09_execution.jpg](screenshots/A/FR04-09_execution.jpg) | c0b12583d51f16aeb72bec5363faef3bb64286c77551ffb09b0f0071c11909a3 |
+| [FR04-10_execution.jpg](screenshots/A/FR04-10_execution.jpg) | 94252fef445e95a8ba4163243f696a9e49d01d1d55d2b32801d9336c13c85188 |
+| [FR04-11_execution.jpg](screenshots/A/FR04-11_execution.jpg) | c557e0c6bf613fd8f7d970cd8f386258b2c00a0a6cce2f63f184f9bc3fb7c6e8 |
+| [FR04-12_execution.jpg](screenshots/A/FR04-12_execution.jpg) | 8b66fabc551c6789d6a6d91bc79138f46171be7eb24cdf18e6ed7a0405f2940b |
+| [FR04-13_execution.jpg](screenshots/A/FR04-13_execution.jpg) | f0c089a89ae3af67a51ffe219cb44240cdb041e825f0e21df692d7b83b598d45 |
+| [FR04-14_execution.jpg](screenshots/A/FR04-14_execution.jpg) | a61bb26a85a0e2cd8e5140e307085084d0032e31e53229fa7dc7b24c3fad1bbd |
+| [FR04-18_execution.jpg](screenshots/A/FR04-18_execution.jpg) | fbcf11becc773b535135d674191acfab4541b3a0208eb59a59544be940c1dfff |
+| [FR04-19_execution.jpg](screenshots/A/FR04-19_execution.jpg) | 0db0e3fc595a9ee9a37123e0378a3beea39aae2aac6b67a54002b9ec82348036 |
+| [FR04-20_execution.jpg](screenshots/A/FR04-20_execution.jpg) | a5107998c636f0b0798b913f25af4135ea9ce91141e3ad2656c8d3eeed625607 |
+| [FR04-21_execution.jpg](screenshots/A/FR04-21_execution.jpg) | 564e67699ced94ea61ed005f17359382853fc142bf3ff43465d5abb91d39d18b |
+| [FR04-22_execution.jpg](screenshots/A/FR04-22_execution.jpg) | aa7c5d572ac24261aa523bad2079cfaf692954c2dcb9e5947676820a456047cc |
+| [FR04-23_execution.jpg](screenshots/A/FR04-23_execution.jpg) | ccf250b1112ce02acf912821550a97d41286accb2c3c8ee208f46dc01e114bd1 |
+| [FR04-24_execution.jpg](screenshots/A/FR04-24_execution.jpg) | 82ef5ac04b23dbfa236cb4543daf62d886e6c4de02af15accd8e22c4722e1cf3 |
+| [B-UI-07_coupon-response-race.jpg](screenshots/B/B-UI-07_coupon-response-race.jpg) | 0198b300b17f85258fd318ee8cb8fb59b68fd6f6ca5f564c013f2b3ffa08f3e3 |
+| [FR09-01_execution.jpg](screenshots/B/FR09-01_execution.jpg) | b77bc155b5886de3cf0242da5de9759eb8f38c033567976c0130d237bc00613f |
+| [FR09-02_execution.jpg](screenshots/B/FR09-02_execution.jpg) | 3045ab136378cc41d9b2fad1c47aed95ce32e4b74db8d385c6ef2d7f41b52a6a |
+| [FR09-03_execution.jpg](screenshots/B/FR09-03_execution.jpg) | cc8dbe02f82c126cba85aa68c3d398904234088e3f7e91ff0febb451d98a057a |
+| [FR09-04_execution.jpg](screenshots/B/FR09-04_execution.jpg) | b2d0c6f4cf28e1223e108365f80fe0284d79aa87c83588de6b52175ae9936ae3 |
+| [FR09-05_execution.jpg](screenshots/B/FR09-05_execution.jpg) | 9e4b0ee12b626b457d1ef82e7e8fd075b796e373123935b39844bd594be23754 |
+| [FR09-06_execution.jpg](screenshots/B/FR09-06_execution.jpg) | 4b7fea0b8ce06d6ba6530a5bc0b0ece3e457833e11baf77a7f2e92cdc47dde96 |
+| [FR09-07_execution.jpg](screenshots/B/FR09-07_execution.jpg) | fcb2f901c9a3826741a7e047411d45265a9e62affbcc14dc5b4cc058f0ae7fc3 |
+| [FR09-08_execution.jpg](screenshots/B/FR09-08_execution.jpg) | fd0d036235bb73dfe9b9011674684ecc4edc66b5e59b18f3cdb0560bbff5512a |
+| [FR09-09_execution.jpg](screenshots/B/FR09-09_execution.jpg) | 21e8e66295dad8a5011eb7ac55e379ab9a7a6fecb73306021ff1e81357ea49e4 |
+| [FR09-10_execution.jpg](screenshots/B/FR09-10_execution.jpg) | d8dcddfa69f4b0b79bcfe117b26f5ecf88b0dbce40ac9f93a1b31c6f8fc2377a |
+| [FR09-11_execution.jpg](screenshots/B/FR09-11_execution.jpg) | d7747f2811694e8d86f05a81112797cc1143d97d7bdbed9af9be3070a25d0edb |
+| [C-UI-07_required-markers.jpg](screenshots/C/C-UI-07_required-markers.jpg) | a7e6684b693f6247d01eeea7d29322a435cb5070027d68576e46776711ec5054 |
+| [FR17-01_execution.jpg](screenshots/C/FR17-01_execution.jpg) | 6936099b3865d5eae5b7aae3ba3f76baf6a627fc916ac97deb8cf63d2180cafd |
+| [FR17-02_execution.jpg](screenshots/C/FR17-02_execution.jpg) | 3299250ad6c680659d695679e0d7c550f64ba80406e96222cd76d2075d0d3e02 |
+| [FR17-03_execution.jpg](screenshots/C/FR17-03_execution.jpg) | 211bca5a47761b8a2cb1b6c3f48239655e7f0e105175490f991ecaecca671b9a |
+| [FR17-04_execution.jpg](screenshots/C/FR17-04_execution.jpg) | 4bc8b8b315f6a9203dcad453a8e9b6fd8a785e4e998cfcdec4699e6957aefc3b |
+| [FR17-05_execution.jpg](screenshots/C/FR17-05_execution.jpg) | 5bb85d0e5c20dcd923944d4f70cc68732c78612a58a1119c5ba3842f6dad848b |
+| [FR17-06_execution.jpg](screenshots/C/FR17-06_execution.jpg) | dd2018676657774fdc28853c37a13884fcd56b064cb72ce582058b2cfa28eb83 |
+| [FR17-07_execution.jpg](screenshots/C/FR17-07_execution.jpg) | 9084aa948f4c8cbe343e0336b6f611e3ebbc4c85038f6315d19716fcc274dfdd |
+| [FR17-08_execution.jpg](screenshots/C/FR17-08_execution.jpg) | 7de7b70257a292a37d7cf8e08bab3810b39e9e224324fa91ba70d462af745475 |
+| [FR17-09_execution.jpg](screenshots/C/FR17-09_execution.jpg) | bd467189d1efff8b3895745d0de6dd3b801744d367b5eb6fb8bb4cc302d16332 |
+| [FR17-10_execution.jpg](screenshots/C/FR17-10_execution.jpg) | f983d24a580d4ae4ead81052caef60c813c45e52817817d7fb249df45ec02fc8 |
+| [FR17-11_execution.jpg](screenshots/C/FR17-11_execution.jpg) | aba17a3c68b0b9ded084696ba80adab6e7b78d6c628ce880fcdbcd29888b3374 |
+| [FR17-12_execution.jpg](screenshots/C/FR17-12_execution.jpg) | 39e0dbb7fb659311c49aa1d286821138f20fd1b97a7aa7ac8a271e6525778130 |
+| [FR17-13_execution.jpg](screenshots/C/FR17-13_execution.jpg) | 212f1455fab9407c3b9e087483ae000c180c8c142100af64c7e61c5326c48a38 |
+| [FR17-14_execution.jpg](screenshots/C/FR17-14_execution.jpg) | 076fa57143c426903216dd63e821e0ca6928cafc6389b6b4fc0b00877f09c3bb |
+| [FR17-15_execution.jpg](screenshots/C/FR17-15_execution.jpg) | 77d0cffbaba99c97b83a78d295e17c241cb228e94520a929c158f50a1ba9817f |
+| [FR17-16_execution.jpg](screenshots/C/FR17-16_execution.jpg) | 86598d7bea856f902bd9df34e96fe8008b131a834dab261b150b64db68f2fe52 |
+
+## GitHub Issue pages
+
+64 individual issues use requirement-based IDs and the bug label. Their uploaded attachments and actual public-page screenshots are indexed in [GitHub Issue evidence](github-issues/README.md). These page images are separate from the 125 test captures.

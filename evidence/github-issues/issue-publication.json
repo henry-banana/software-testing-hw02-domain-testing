@@ -1,482 +1,1634 @@
 {
   "repository": "tkob-team/eshop-sut",
-  "verified_utc": "2026-10-20T04:39:58.710315+00:00",
-  "method": "GitHub CLI authenticated API readback; no browser or computer use",
-  "group_repository_file_changes": false,
+  "method": "GitHub CLI attachment upload and remote body readback; public-page Playwright screenshots",
   "issues": [
     {
-      "bug_id": "BUG-A01",
-      "number": 31,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/31",
-      "title": "[23120262][BUG-A01] API ch\u1ea5p nh\u1eadn v\u00e0 l\u01b0u phone kh\u00f4ng h\u1ee3p l\u1ec7",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-01",
+      "number": 97,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/97",
+      "title": "[FR04-01] Profile API accepts and persists a 9-digit phone",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/56407cbd-a59f-4acb-af34-af37647d949d"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:37:32Z",
-      "body_sha256_utf8_lf": "fc9a61f11435927ef3cf9c3ee6faf6203b8ea81be1379e8d5e73595180661e07",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114356.png",
-        "filename": "BUG-A01_issue-01.png",
-        "sha256": "178e413bbc74b2d8ea6c8b19b2c800d1e77fc883724adda7c7a3534b76c59bf7",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/31",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:13.092379+00:00",
+      "screenshot_at": "2026-10-20T08:14:11.310950+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-01_issue-01.jpg",
+          "sha256": "ec59b8ab431c4c73eb1385780c03f1cb9acff658b24b0743be0bf89eefb0615a",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-01_issue-02.jpg",
+          "sha256": "fbb5eda638e5f7ab54f8119800f710889eb4bfe256d221df80f0e77af0b995b0",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-A02",
-      "number": 32,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/32",
-      "title": "[23120262][BUG-A02] User t\u1ef1 ghi role=admin qua c\u1eadp nh\u1eadt h\u1ed3 s\u01a1",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-02",
+      "number": 98,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/98",
+      "title": "[FR04-02] Profile API accepts and persists a 12-digit phone",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/1f95a343-0f09-4acb-b862-b155b116a97d"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:37:36Z",
-      "body_sha256_utf8_lf": "ea475ce33e164455d6417f3e930dbbedf8c504d71818d9d74a6df1bde3182b0f",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114359.png",
-        "filename": "BUG-A02_issue-01.png",
-        "sha256": "547e4cb500ffb2d2e9c409a2313f05e45b9c5ea3c1d2ef4dccbfce2348c9adb8",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/32",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:13.911327+00:00",
+      "screenshot_at": "2026-10-20T08:14:09.544739+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-02_issue-01.jpg",
+          "sha256": "e738e8dca56042e6ef8e067137b9870985783ecfa98145a54ed9f2a76815ca06",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-02_issue-02.jpg",
+          "sha256": "21a7cf89f1e463bd6daaca83852697c97914472cf4c8de9bd23d7b565b7fc687",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-A03",
-      "number": 33,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/33",
-      "title": "[23120262][BUG-A03] Frontend t\u1eeb ch\u1ed1i phone h\u1ee3p l\u1ec7 v\u00e0 ch\u1ea5p nh\u1eadn prefix sai",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-03",
+      "number": 99,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/99",
+      "title": "[FR04-03] Profile API accepts and persists an empty phone",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/f6c6b02c-62b3-418c-aa13-cbc0418aa902"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:37:40Z",
-      "body_sha256_utf8_lf": "56e66ed4380920e23c21f0442c73bff7f272b242c2290cff476d86af6665c644",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114402.png",
-        "filename": "BUG-A03_issue-01.png",
-        "sha256": "dfe1b1051037040b18d536ed5f4282afb247f84390b1cad774471421dc781e52",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/33",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:14.685482+00:00",
+      "screenshot_at": "2026-10-20T08:14:07.946692+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-03_issue-01.jpg",
+          "sha256": "edf5ca34325b3a9de7d3d1beb406aefbf6918c925148293e966740668e5ce68e",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-03_issue-02.jpg",
+          "sha256": "0e2647326de0bda4a1e968a129c9cc169baa04dcb255002d6456ea73f6f0c556",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-B01",
-      "number": 34,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/34",
-      "title": "[23120262][BUG-B01] Coupon b\u1ecb t\u1eeb ch\u1ed1i khi t\u1ed5ng ti\u1ec1n b\u1eb1ng \u0111\u00fang ng\u01b0\u1ee1ng",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-04",
+      "number": 100,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/100",
+      "title": "[FR04-04] Profile API accepts and persists a one-digit phone",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/79732db0-ad0c-45ca-9b6c-7cf71f9fb36a"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:37:44Z",
-      "body_sha256_utf8_lf": "b91e6dd1977b5a4cec59ca44d985e295b63d22abd115d0c1218247d00850c10c",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114404.png",
-        "filename": "BUG-B01_issue-01.png",
-        "sha256": "2a35a8f0f13f847d2c8bac33c3c9729563bf4944be9f67c807c32c2c2fe8419e",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/34",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:15.676665+00:00",
+      "screenshot_at": "2026-10-20T08:14:13.596711+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-04_issue-01.jpg",
+          "sha256": "53df2dbf43244464812def1ddb8af462f658894a322dcc544bfd1c73543078b9",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-04_issue-02.jpg",
+          "sha256": "857145b9be2f794f7c6842bf554076912f08950115b8f9d5ef3409090b62961d",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-B02",
-      "number": 35,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/35",
-      "title": "[23120262][BUG-B02] Coupon percent tr\u1ea3 ti\u1ec1n gi\u1ea3m \u00e2m v\u00e0 t\u0103ng th\u00e0nh ti\u1ec1n",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-05",
+      "number": 101,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/101",
+      "title": "[FR04-05] Profile API accepts and persists an 8-digit phone",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/00f0a102-1b6d-411f-ab93-a72e1213bc77"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:37:50Z",
-      "body_sha256_utf8_lf": "4a24d4bb40c5cba8fab5319c970db2bb372a630a607c8cd9beef8fb94ace4b9c",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114407.png",
-        "filename": "BUG-B02_issue-01.png",
-        "sha256": "7e9d2e9345234b735d82e0e9f2c1b2de7ca36493a8ce59588a3a404075afcd6b",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/35",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:16.494425+00:00",
+      "screenshot_at": "2026-10-20T08:14:17.019103+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-05_issue-01.jpg",
+          "sha256": "fea8e8cbdfa6bb748f3c10aa7cf0ce53cae7b8972eda9c3eb5669031fed66aa7",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-05_issue-02.jpg",
+          "sha256": "c878f86506bf3b825c7ca201eae3c695600d570a44ddfc0195c0843932884787",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-B03",
-      "number": 36,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/36",
-      "title": "[23120262][BUG-B03] Coupon c\u00f2n \u0111\u01b0\u1ee3c d\u00f9ng t\u1ea1i \u0111\u00fang th\u1eddi \u0111i\u1ec3m h\u1ebft h\u1ea1n",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-06",
+      "number": 102,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/102",
+      "title": "[FR04-06] Profile API accepts and persists a 13-digit phone",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/1d75e4b2-1e24-4263-a234-92da97630347"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:37:54Z",
-      "body_sha256_utf8_lf": "947e0dc01a09c4b9f03454ae444b76ca4ef5772c0404bf7e87ffc6b28c9641d1",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114409.png",
-        "filename": "BUG-B03_issue-01.png",
-        "sha256": "2b5c2cb53e3cdf7b9e78a19a223856e3844c3509a7495ddcfbcfbcef4186dcf7",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/36",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:17.923383+00:00",
+      "screenshot_at": "2026-10-20T08:14:16.360575+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-06_issue-01.jpg",
+          "sha256": "2ebb14f92eb132972735ec8b3af396759097a8c159cdedd2222102fbd3bed29f",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-06_issue-02.jpg",
+          "sha256": "8c8df5e7d6373149d872443058fe2ccf0cfd2c8548ab59902a64fa78e0784839",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-B04",
-      "number": 37,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/37",
-      "title": "[23120262][BUG-B04] Apply coupon b\u1ecf qua JWT thi\u1ebfu, sai v\u00e0 h\u1ebft h\u1ea1n",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-07",
+      "number": 103,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/103",
+      "title": "[FR04-07] Profile API accepts and persists a 10-digit phone with a nonzero prefix",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/6e53a591-8d75-40da-95d8-1955bc75c125"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:37:58Z",
-      "body_sha256_utf8_lf": "709928a9577e65a4692986fba6abd3c543d86b053cbab3b1607323df0c738bf7",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114412.png",
-        "filename": "BUG-B04_issue-01.png",
-        "sha256": "8ab6b59b30e9b5f113fc52e1f38b07232e7d961308ceb2d971752c6515707d61",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/37",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:18.761024+00:00",
+      "screenshot_at": "2026-10-20T08:14:17.508572+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-07_issue-01.jpg",
+          "sha256": "0085d63e205bc82b46c6acd4b8df0f17809e564815c1ac81417b9a8bcd3c6e43",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-07_issue-02.jpg",
+          "sha256": "825ac6be48b61332bfa948b2fac5693a847dd35f911a3245006c0b65e36817be",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-B05",
-      "number": 38,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/38",
-      "title": "[23120262][BUG-B05] Body user_id cho ph\u00e9p bypass l\u01b0\u1ee3t d\u00f9ng c\u1ee7a user x\u00e1c th\u1ef1c",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-08",
+      "number": 104,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/104",
+      "title": "[FR04-08] Profile API accepts and persists an 11-digit phone with a nonzero prefix",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/3e820a18-a328-4c90-8378-e424d1962140"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:38:02Z",
-      "body_sha256_utf8_lf": "e093c37a7bc17227443f2e1ddfb2ec246461c6a417f3354a83914bef9221f982",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114415.png",
-        "filename": "BUG-B05_issue-01.png",
-        "sha256": "e39a0e33c846ec3894a2fae67adbcda30eeb3720049c47b8eb9d150b0cb3e5d0",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/38",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:19.657752+00:00",
+      "screenshot_at": "2026-10-20T08:14:24.346056+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-08_issue-01.jpg",
+          "sha256": "da6227481d55e16a87b01dcdd269ead4bd67997b7a793925a98840e1c244a402",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-08_issue-02.jpg",
+          "sha256": "9a678caed407c2a91974332f29dd65bcce5725805f2d46acd0a161ef37b7e208",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-C01",
-      "number": 39,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/39",
-      "title": "[23120262][BUG-C01] Thi\u1ebfu required fields ho\u1eb7c code r\u1ed7ng v\u1eabn t\u1ea1o coupon",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-09",
+      "number": 105,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/105",
+      "title": "[FR04-09] Profile API accepts and persists a phone containing a letter",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/b866f2aa-345f-4714-9aff-37a0f7924d05"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:38:06Z",
-      "body_sha256_utf8_lf": "9653002ecd082d60b4ebf9be31df66514e4d57e731909291ab9f0f244232d6f0",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114418.png",
-        "filename": "BUG-C01_issue-01.png",
-        "sha256": "93e6e5a109af7c6e0a2cffc31ba70ab5efa5d3790e499056a33640451a0af20d",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/39",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:20.394337+00:00",
+      "screenshot_at": "2026-10-20T08:14:24.566293+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-09_issue-01.jpg",
+          "sha256": "2736df3677825d0eee8347591edd5606f9f5cec0c14ed4ab638d11d23f9c0e22",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-09_issue-02.jpg",
+          "sha256": "59f83b7c18d8f770ecd6eb14706c0d9d6d28228d5a5a717b335208e8808af7ba",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-C03",
-      "number": 40,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/40",
-      "title": "[23120262][BUG-C03] Type ngo\u00e0i enum percent/fixed v\u1eabn \u0111\u01b0\u1ee3c l\u01b0u",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-10",
+      "number": 106,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/106",
+      "title": "[FR04-10] Profile API accepts and persists a phone containing an embedded space",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/7b5681d3-53b5-44e7-8ac7-2b0d8361dd3e"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:38:11Z",
-      "body_sha256_utf8_lf": "ebc9d9d24dab9623741c916a6d8b2769e7719e73a2d0083a83bc7007c1fc164a",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114421.png",
-        "filename": "BUG-C03_issue-01.png",
-        "sha256": "9b171bd9d0376e2a96fe4242896d19e992f1d529e46d2bb2f85660154c8df8b5",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/40",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:21.271195+00:00",
+      "screenshot_at": "2026-10-20T08:14:21.140470+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-10_issue-01.jpg",
+          "sha256": "78e86a34a3afba018a28382a08318f11d14a3fbf6bbe2a79259b68f39cf4d47d",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-10_issue-02.jpg",
+          "sha256": "39e0bf42e41eff298817429491c7f5b27a8ad514124f1e24338c532c5884f726",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-C04",
-      "number": 41,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/41",
-      "title": "[23120262][BUG-C04] discount_value b\u1eb1ng 0 ho\u1eb7c \u00e2m v\u1eabn t\u1ea1o coupon",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-11",
+      "number": 107,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/107",
+      "title": "[FR04-11] Profile API accepts and persists a country-code phone instead of the required 0 prefix",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/a0ac6abc-a8b9-489c-a508-6305ed5a47a1"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:38:15Z",
-      "body_sha256_utf8_lf": "cfcf2ddbf544e08de06c8f788e58b4daa5fce52e027ec7c7b7e9850160755116",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114423.png",
-        "filename": "BUG-C04_issue-01.png",
-        "sha256": "9060b2af5daf58c0eb0b07d7fdec0737c52a2d9079e4430ca5e985b8728dae70",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/41",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:22.146865+00:00",
+      "screenshot_at": "2026-10-20T08:14:25.570302+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-11_issue-01.jpg",
+          "sha256": "cf0575e81b2628cf7be08e48f83502f47bba7e745db2d1721b97e1b488c1752b",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-11_issue-02.jpg",
+          "sha256": "05dba9c579b2f38fd5841a215505ad50e749e80d105cdde488d5dab3f98b6a16",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-C05",
-      "number": 42,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/42",
-      "title": "[23120262][BUG-C05] min_order_amount \u00e2m v\u1eabn \u0111\u01b0\u1ee3c l\u01b0u",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-12",
+      "number": 108,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/108",
+      "title": "[FR04-12] Profile API accepts and persists a hyphenated phone",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/b5623544-7592-493b-bf7d-b24ab9c63649"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:38:19Z",
-      "body_sha256_utf8_lf": "63a11f5cedc4c0153e475a2554bcb5c7fd306753b58d69ac7734bf87cabb4865",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114430.png",
-        "filename": "BUG-C05_issue-01.png",
-        "sha256": "40bad762b91ba48fbe673b581c8a43b8f0ab61f96ae4f3a162c97bc4511f2634",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/42",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:22.964023+00:00",
+      "screenshot_at": "2026-10-20T08:14:32.570100+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-12_issue-01.jpg",
+          "sha256": "7caf1983a76068e37d0923325953dadcf7987d3e7cdd944438ee50e4d5f1776f",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-12_issue-02.jpg",
+          "sha256": "83779d63328ca5be26f122072d30096135a3a149b213cf9de20fae134d1222f3",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-C06",
-      "number": 43,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/43",
-      "title": "[23120262][BUG-C06] Usage limit \u00e2m \u0111\u01b0\u1ee3c l\u01b0u, zero b\u1ecb \u0111\u1ed5i ng\u1ea7m th\u00e0nh 1",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-13",
+      "number": 109,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/109",
+      "title": "[FR04-13] Profile API accepts and persists a null phone",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/150f8b8b-8ab1-40b5-ba65-549c79d5b11b"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:38:23Z",
-      "body_sha256_utf8_lf": "dd7dc95b2ae2fe2348fe7e8f577c77b609455f73cd64085a82b8757d6b8bc538",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114433.png",
-        "filename": "BUG-C06_issue-01.png",
-        "sha256": "4f8451634d56ebdf94db50181501512ecaf0d17ebe49cb7d9343aaf4bc8c7aeb",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/43",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:23.920794+00:00",
+      "screenshot_at": "2026-10-20T08:14:30.043473+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.078125,
+      "screenshots": [
+        {
+          "filename": "FR04-13_issue-01.jpg",
+          "sha256": "bb120cc11db886cfebe648ee7e4dc950377060f067cfeaa2c02f73fab0ca08a3",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-13_issue-02.jpg",
+          "sha256": "7bba74ea1f63df3363a98b3e806f5eea04d440af1f80b6209767aa81213e8801",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-C07",
-      "number": 44,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/44",
-      "title": "[23120262][BUG-C07] User th\u01b0\u1eddng t\u1ea1o \u0111\u01b0\u1ee3c coupon c\u1ee7a Admin",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-14",
+      "number": 110,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/110",
+      "title": "[FR04-14] Regular users can change their stored role to admin",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/ef82a00d-ef39-45de-b255-284581881460"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:38:27Z",
-      "body_sha256_utf8_lf": "27889baf7672c5642ce6acfcb9bca79a2305cbfce3b553abc29367b5d81716c5",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114436.png",
-        "filename": "BUG-C07_issue-01.png",
-        "sha256": "25b373f676c1d6741b2af04b48ca00d43445319e3f71152aa45c7dcd0c5e34b2",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/44",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:25.057431+00:00",
+      "screenshot_at": "2026-10-20T08:14:29.296257+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.65625,
+      "screenshots": [
+        {
+          "filename": "FR04-14_issue-01.jpg",
+          "sha256": "6db3ec48fe20fad8538a7957e0d017eeac97d986bcfd980ea5e24b4bf55c4a1c",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-14_issue-02.jpg",
+          "sha256": "7baede9d342fef753a8bbab6bee66e164430fcf1947a464eb88eb33d50d466ca",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-C08",
-      "number": 45,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/45",
-      "title": "[23120262][BUG-C08] User th\u01b0\u1eddng \u0111\u1ecdc \u0111\u01b0\u1ee3c danh s\u00e1ch coupon qu\u1ea3n tr\u1ecb",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-15",
+      "number": 111,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/111",
+      "title": "[FR04-15] Web rejects a valid 10-digit 0-prefixed phone",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/6762de81-77ed-49cd-b456-23b1d778f7b7",
+        "https://github.com/user-attachments/assets/e8af6751-3917-4299-94a2-0d2674bb9ab7",
+        "https://github.com/user-attachments/assets/7fc05651-3bb6-4352-80e5-d56f19c32816",
+        "https://github.com/user-attachments/assets/29a84398-d165-43e3-b985-305945be5534",
+        "https://github.com/user-attachments/assets/fa755a0e-487c-4e3b-a06f-611731d8bad1",
+        "https://github.com/user-attachments/assets/f2b8ef24-34f0-4259-895b-2c2375993a4a",
+        "https://github.com/user-attachments/assets/6c019293-440b-4ee7-9f4f-ffaed0f09dc7"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:38:30Z",
-      "body_sha256_utf8_lf": "88cdf7ce16ef9150ccd8d80fcdd39d1a81067d35707586ac44d26e43554b95de",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114438.png",
-        "filename": "BUG-C08_issue-01.png",
-        "sha256": "036b73fb30aa9139c27bc9a1cd1ee7e8035ab61f2c5e06bfc7dd85ce6f4859e4",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/45",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:25.829416+00:00",
+      "screenshot_at": "2026-10-20T08:14:35.454774+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.578125,
+      "screenshots": [
+        {
+          "filename": "FR04-15_issue-01.jpg",
+          "sha256": "e3d592e6c18a703ed8f944c9bc9846dbdb82d98b716112fadc5f9775bf832eca",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-15_issue-02.jpg",
+          "sha256": "5ac2c6fd25ad426a5bbff2ff0a984f5cee37dfe6d1d218ec3ba6fe95cabac345",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-C09",
-      "number": 46,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/46",
-      "title": "[23120262][BUG-C09] User th\u01b0\u1eddng x\u00f3a \u0111\u01b0\u1ee3c coupon c\u1ee7a Admin",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-16",
+      "number": 112,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/112",
+      "title": "[FR04-16] Web rejects a valid 11-digit 0-prefixed phone",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/0e394205-83b7-480d-b6aa-f29064c2d3ca",
+        "https://github.com/user-attachments/assets/ee52f4a3-8aa3-4e74-b35d-aec85b11552e"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:38:34Z",
-      "body_sha256_utf8_lf": "04c55f86e97ea5134458cd9fd66e0f337a63da07a88ad27f414fbd64492beb51",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114441.png",
-        "filename": "BUG-C09_issue-01.png",
-        "sha256": "5228dcc784b9492126b371537a59679e2dfef73ead2cd66e7f181b4b5c46e037",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/46",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:26.557969+00:00",
+      "screenshot_at": "2026-10-20T08:14:33.785299+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.578125,
+      "screenshots": [
+        {
+          "filename": "FR04-16_issue-01.jpg",
+          "sha256": "0181988902b74cbd0fed6e9136cebb4a1cbbc3be901cf3359b392753656e9fdf",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-16_issue-02.jpg",
+          "sha256": "e835f4bbc29b7c762a5867c2d98972240c29d53e7c1f85a29935b01c3b551216",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-D01",
-      "number": 47,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/47",
-      "title": "[23120262][BUG-D01] Mobile ch\u1ea5p nh\u1eadn quantity kh\u00f4ng h\u1ee3p l\u1ec7 khi Add",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-17",
+      "number": 113,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/113",
+      "title": "[FR04-17] Web accepts a 10-digit phone with an invalid nonzero prefix",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/ad92fae3-099d-4058-9fa0-332a5c14c717",
+        "https://github.com/user-attachments/assets/45c41572-9341-4a1b-b83b-c66af7922e0a"
       ],
-      "labels": [
-        "bug"
-      ],
-      "created_at": "2026-10-20T04:38:38Z",
-      "body_sha256_utf8_lf": "7da1cbcad1e75bd2a0d6498e0a42a577112ec2beef35b36aae1ed12268aca90b",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114444.png",
-        "filename": "BUG-D01_issue-01.png",
-        "sha256": "402062cee44d71570cbc7a18b3464805d6d9b5e1ac891a19b91445886978a702",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/47",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:27.368726+00:00",
+      "screenshot_at": "2026-10-20T08:14:38.882657+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.578125,
+      "screenshots": [
+        {
+          "filename": "FR04-17_issue-01.jpg",
+          "sha256": "7c226c7bd5b4f100366f4fcbbd965f9c3e1026c9cecfff46e07aa62ea850a362",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-17_issue-02.jpg",
+          "sha256": "1da51ac1a1f8858e64b2640d04da143e5ebf0efa63e572f401171f35e1e7d71a",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     },
     {
-      "bug_id": "BUG-D02",
-      "number": 48,
-      "url": "https://github.com/tkob-team/eshop-sut/issues/48",
-      "title": "[23120262][BUG-D02] Mobile productDetail thi\u1ebfu hi\u1ec3n th\u1ecb danh m\u1ee5c",
-      "state": "OPEN",
-      "author": "henry-banana",
-      "assignees": [
-        "henry-banana"
+      "bug_id": "FR04-18",
+      "number": 114,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/114",
+      "title": "[FR04-18] Profile response discloses the plaintext password",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/f4fd26d1-0286-460c-adb9-70e3c7b7264c"
       ],
-      "labels": [
-        "bug"
+      "verified_at": "2026-10-20T08:08:28.198449+00:00",
+      "screenshot_at": "2026-10-20T08:14:39.346592+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.46875,
+      "screenshots": [
+        {
+          "filename": "FR04-18_issue-01.jpg",
+          "sha256": "a2a5be496342443cab2d099c07fba5dd2b30ceb4232556ce53ada0e5d4418e6c",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-18_issue-02.jpg",
+          "sha256": "002e58b9b009235b844bcdc3213f15903e19c08267969938a80d794e63415cad",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR04-19",
+      "number": 115,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/115",
+      "title": "[FR04-19] Profile response discloses an active password-reset token",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/0ad0fb54-bbcd-4fc1-8a11-9eec7fd26d43"
       ],
-      "created_at": "2026-10-20T04:38:42Z",
-      "body_sha256_utf8_lf": "92c39553405e8cfc52237dae92fceda34217debb77f90b32ec34d82bc9ea84b8",
-      "body_verified_against_prepared_markdown": true,
-      "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false,
-      "local_issue_page_screenshot": {
-        "original_filename": "Screenshot 2026-10-20 114447.png",
-        "filename": "BUG-D02_issue-01.png",
-        "sha256": "6b5cf02409631d9359ff1df890af72965930740943f8e4dd3132e4df2fbdcd8e",
-        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/48",
-        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
-      }
+      "verified_at": "2026-10-20T08:08:28.823350+00:00",
+      "screenshot_at": "2026-10-20T08:14:39.146689+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.796875,
+      "screenshots": [
+        {
+          "filename": "FR04-19_issue-01.jpg",
+          "sha256": "3ce071f0fe1fa9baaa2d84c37cbacebb50d42207def8a39e4a2366340604233a",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-19_issue-02.jpg",
+          "sha256": "c95ea344926504aeecc3c4d60ec15e398210ffb79a2bf3c2e00c9d95565038a6",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR04-20",
+      "number": 116,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/116",
+      "title": "[FR04-20] Login response includes password and reset-state properties",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/37c3c41a-9335-4490-8862-ca18252c1cef"
+      ],
+      "verified_at": "2026-10-20T08:08:29.490226+00:00",
+      "screenshot_at": "2026-10-20T08:14:47.563232+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.21875,
+      "screenshots": [
+        {
+          "filename": "FR04-20_issue-01.jpg",
+          "sha256": "5133b90e92c573ed40c3ed168d34858ce7ad63b9c10851e75bee84328cc16927",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-20_issue-02.jpg",
+          "sha256": "c7b62b4e3f83a78dd3a6db911661f5e2f5c53f7805fec53136a463727b08f1bf",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR04-21",
+      "number": 117,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/117",
+      "title": "[FR04-21] Mobile profile payload silently clears the shipping address",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/615dd260-7640-4132-94ac-ff4844fbb583"
+      ],
+      "verified_at": "2026-10-20T08:08:30.139935+00:00",
+      "screenshot_at": "2026-10-20T08:14:46.460501+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.828125,
+      "screenshots": [
+        {
+          "filename": "FR04-21_issue-01.jpg",
+          "sha256": "925fa6df43ba664cf5d399ecb6c201147cfb4aeeefa1511e0862fe686aaa8089",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-21_issue-02.jpg",
+          "sha256": "a42ed96d992f2cf99f0c9e0d1e9418704097eaf23a171ac5f6898f96bb431686",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR04-22",
+      "number": 118,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/118",
+      "title": "[FR04-22] Mobile handler rejects a valid 10-digit 0-prefixed phone",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/7d3ea4c0-6836-437c-99a3-27ac61d676b6"
+      ],
+      "verified_at": "2026-10-20T08:08:30.807257+00:00",
+      "screenshot_at": "2026-10-20T08:14:42.963821+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.109375,
+      "screenshots": [
+        {
+          "filename": "FR04-22_issue-01.jpg",
+          "sha256": "83f80bbdd0d28fb1af423ae83157b621252fd1a596542a434dea72fc6271631e",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-22_issue-02.jpg",
+          "sha256": "c34ae675a5e6b9de42c9a6f6fca3316528fc5a686d9eb2f1d6f3c07ac5685eec",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR04-23",
+      "number": 119,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/119",
+      "title": "[FR04-23] Mobile handler rejects a valid 11-digit 0-prefixed phone",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/fb434378-b0dc-4e49-a62d-a7848da94b72"
+      ],
+      "verified_at": "2026-10-20T08:08:31.621708+00:00",
+      "screenshot_at": "2026-10-20T08:14:47.159277+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.109375,
+      "screenshots": [
+        {
+          "filename": "FR04-23_issue-01.jpg",
+          "sha256": "b00804260395026fd19d1c35e4d28e0653fde0425d0dab15c4cd29c1fd29398a",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-23_issue-02.jpg",
+          "sha256": "dd01456ebac7779bc3acdab89624d096e90e2041f9a9b2f352b300cdcf1e5497",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR04-24",
+      "number": 120,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/120",
+      "title": "[FR04-24] Mobile handler accepts an invalid nonzero phone prefix",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/904deded-13f0-4b45-8a41-ae2287ce3da3"
+      ],
+      "verified_at": "2026-10-20T08:08:32.344722+00:00",
+      "screenshot_at": "2026-10-20T08:14:53.684062+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.859375,
+      "screenshots": [
+        {
+          "filename": "FR04-24_issue-01.jpg",
+          "sha256": "3517e64f0c8486f0dfffe1e07f4d624419bdb40502aa58ab529efca563f817be",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-24_issue-02.jpg",
+          "sha256": "b991bd208cf76bc432a889ee18537f82ea4fd8a1780174d7618397df55cf4092",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR04-25",
+      "number": 121,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/121",
+      "title": "[FR04-25] Disabled Web profile email uses text instead of email input type",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/997f5349-9547-45da-b457-075aef555283"
+      ],
+      "verified_at": "2026-10-20T08:08:33.158381+00:00",
+      "screenshot_at": "2026-10-20T08:14:52.928921+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.859375,
+      "screenshots": [
+        {
+          "filename": "FR04-25_issue-01.jpg",
+          "sha256": "64e724494cf47cc527d7b0b3ec9f5affbfebff3b23c201a253b4ca00411f6d09",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-25_issue-02.jpg",
+          "sha256": "d8755e2098d3a7fc5f75a588e4d8303de3615dd9a7a0c3b28476cd0f9c2e2f6c",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR04-26",
+      "number": 122,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/122",
+      "title": "[FR04-26] Stored profile name executes an HTML event handler in Web greeting",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/27434d54-9539-4e71-8c5a-fb4c9c7478f8"
+      ],
+      "verified_at": "2026-10-20T08:08:34.080906+00:00",
+      "screenshot_at": "2026-10-20T08:14:51.633769+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.703125,
+      "screenshots": [
+        {
+          "filename": "FR04-26_issue-01.jpg",
+          "sha256": "d8a4e230375f9b91c4dd7c017ae1c77ddbd861bc29b0dbe5bf3a0aa5020d3f0b",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-26_issue-02.jpg",
+          "sha256": "57264fea0a00080ea08f8e30edbed33fe7fd898bd7d97b02e5bcd1767a6f80f0",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR04-27",
+      "number": 123,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/123",
+      "title": "[FR04-27] SPA profile re-entry shows stale data after a successful save",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/5c7489ad-edd7-40a5-8c65-ad2cbe4457fc",
+        "https://github.com/user-attachments/assets/6a47a86a-a790-4bfe-a740-2fa50c36afcb"
+      ],
+      "verified_at": "2026-10-20T08:08:34.772149+00:00",
+      "screenshot_at": "2026-10-20T08:14:57.853688+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.859375,
+      "screenshots": [
+        {
+          "filename": "FR04-27_issue-01.jpg",
+          "sha256": "1457f226d57e05377c663febe63f51c93e22d85484f69f166003cd9de25173d4",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR04-27_issue-02.jpg",
+          "sha256": "81151e417cf96098a51f170654610e4ac68947123cce42b6ef76732ef43a1e88",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR09-01",
+      "number": 124,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/124",
+      "title": "[FR09-01] Fixed coupon is rejected at its exact minimum total",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/bc3cabec-ad72-4a07-a4b8-29e9aceea759",
+        "https://github.com/user-attachments/assets/78b4929a-b7a5-4f16-9b70-81869cd5b421",
+        "https://github.com/user-attachments/assets/25ded82d-7775-4cac-9478-64ca704c9ab0"
+      ],
+      "verified_at": "2026-10-20T08:08:35.434372+00:00",
+      "screenshot_at": "2026-10-20T08:14:58.396394+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.34375,
+      "screenshots": [
+        {
+          "filename": "FR09-01_issue-01.jpg",
+          "sha256": "8a13b2cf4a3dee3874babf9da69db6a8e79c86322c09180b56218b0f2be2d2f9",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR09-01_issue-02.jpg",
+          "sha256": "171d4a8cac3f86cc8aa5c48ada70d0ae007ca069bee27a6ca5ff37df58fd273c",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR09-02",
+      "number": 125,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/125",
+      "title": "[FR09-02] Percentage coupon is rejected at its exact minimum total",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/cc0a1f88-0c9e-45dc-a256-e0c2cd9991ff"
+      ],
+      "verified_at": "2026-10-20T08:08:36.229754+00:00",
+      "screenshot_at": "2026-10-20T08:14:57.055525+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.34375,
+      "screenshots": [
+        {
+          "filename": "FR09-02_issue-01.jpg",
+          "sha256": "f913074587e0faa4502e78615a99bd65a65748b616e332a2e9388d5eed0d0387",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR09-02_issue-02.jpg",
+          "sha256": "d9c53d082c6f0d58908192d31e7e744cca4513ec8c747babdfaf6bdd096f8b15",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR09-03",
+      "number": 126,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/126",
+      "title": "[FR09-03] A 10 percent coupon returns a negative discount and increases total",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/265a2b58-493a-4de1-b9b7-9210c3ef8866",
+        "https://github.com/user-attachments/assets/610bc099-3069-44ce-81ce-f38c675b9ec8",
+        "https://github.com/user-attachments/assets/2b8cc74e-5e68-4e73-884b-009d3a535dd8"
+      ],
+      "verified_at": "2026-10-20T08:08:36.948086+00:00",
+      "screenshot_at": "2026-10-20T08:15:04.931628+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.34375,
+      "screenshots": [
+        {
+          "filename": "FR09-03_issue-01.jpg",
+          "sha256": "a0566f689ed5a304495007761ff3539d35babb0a246ad64e9a025492f5988ac6",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR09-03_issue-02.jpg",
+          "sha256": "bf7b98c7fbcd7a043cc4a429597fe144edc56f8e438b331efed8bfb2eee6f6bc",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR09-04",
+      "number": 127,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/127",
+      "title": "[FR09-04] Coupon remains valid at the exact expiration instant",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/01ffe93c-6298-4388-894a-3d92131ad93e"
+      ],
+      "verified_at": "2026-10-20T08:08:43.535287+00:00",
+      "screenshot_at": "2026-10-20T08:15:03.264430+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.5625,
+      "screenshots": [
+        {
+          "filename": "FR09-04_issue-01.jpg",
+          "sha256": "8e5ee61081e470c5b6d2a61ec02b29d8de964b46dd585a1e600276976c5c3f5a",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR09-04_issue-02.jpg",
+          "sha256": "4fe6203ca9feb4398883387fbbf473af5fc240fd8798ec5c4b95e293e861234a",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR09-05",
+      "number": 128,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/128",
+      "title": "[FR09-05] Coupon application succeeds without an Authorization header",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/29ebd507-6370-4b1b-9437-93b55ec28b79"
+      ],
+      "verified_at": "2026-10-20T08:08:49.703248+00:00",
+      "screenshot_at": "2026-10-20T08:15:01.874866+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.34375,
+      "screenshots": [
+        {
+          "filename": "FR09-05_issue-01.jpg",
+          "sha256": "4a96d1fb1183dbd43744abe4a39fd3e12c6160bb8d7c80f97a191d7b21c82e1b",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR09-05_issue-02.jpg",
+          "sha256": "6d03afadbdc01256b477e0ff949bc24293a513333c4833e448be406ad7105a08",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR09-06",
+      "number": 129,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/129",
+      "title": "[FR09-06] Coupon application succeeds with a malformed JWT",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/defc0b12-ede9-410f-99ec-8973cbd42adc"
+      ],
+      "verified_at": "2026-10-20T08:08:54.690829+00:00",
+      "screenshot_at": "2026-10-20T08:15:09.267378+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.34375,
+      "screenshots": [
+        {
+          "filename": "FR09-06_issue-01.jpg",
+          "sha256": "8b0f626cb2b37d4ce273b2a907a7ddfd4b2d6c1ab990617e29ad981f46766441",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR09-06_issue-02.jpg",
+          "sha256": "88653eb3349645c92dd51e18ded14428bd2950ea8d9d9388421727e75855f142",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR09-07",
+      "number": 130,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/130",
+      "title": "[FR09-07] Coupon application succeeds with an expired JWT",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/be7c280f-e69a-48b3-9e7a-32fb7423ce2d"
+      ],
+      "verified_at": "2026-10-20T08:08:59.704095+00:00",
+      "screenshot_at": "2026-10-20T08:15:07.811343+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.34375,
+      "screenshots": [
+        {
+          "filename": "FR09-07_issue-01.jpg",
+          "sha256": "a772fe2737b2892a59bf707e00f2a13c02f18859ad6d7794ad34ba72931cff44",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR09-07_issue-02.jpg",
+          "sha256": "766bcf057598b55bb2da9255c0e362b8674ee46312279c9d0ed3eda3ce101f67",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR09-08",
+      "number": 131,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/131",
+      "title": "[FR09-08] Substituted body user_id bypasses the authenticated coupon limit",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/fc2769a9-2a38-49c3-8118-8facfa846738"
+      ],
+      "verified_at": "2026-10-20T08:09:05.622095+00:00",
+      "screenshot_at": "2026-10-20T08:15:08.441863+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.5625,
+      "screenshots": [
+        {
+          "filename": "FR09-08_issue-01.jpg",
+          "sha256": "b845deca176fdc3d2a4e43671a9c4f48ee520c0ba73a1aefb5656d4055d82b0f",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR09-08_issue-02.jpg",
+          "sha256": "dccb9e427b049ed82ad40850cd79f6ea2d7c1b81d1a8acc48e193434d9e93cc5",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR09-09",
+      "number": 132,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/132",
+      "title": "[FR09-09] Omitted body user_id bypasses the authenticated coupon limit",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/0ef13f44-7efc-4b3e-888a-6118cf0b9631"
+      ],
+      "verified_at": "2026-10-20T08:09:10.376392+00:00",
+      "screenshot_at": "2026-10-20T08:15:14.936587+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.3125,
+      "screenshots": [
+        {
+          "filename": "FR09-09_issue-01.jpg",
+          "sha256": "6f47bd893f09b189a249d3362e331adc2ec15990355645e37534268a92d84e18",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR09-09_issue-02.jpg",
+          "sha256": "9bef68190baa3937909541aaeb9fff30bcf479781e60fdf44f703233adcceb70",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR09-10",
+      "number": 133,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/133",
+      "title": "[FR09-10] VIP100 minimum equality is rejected on the last eligible use",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/5d88941e-0169-4cd2-be44-88abe258a42f"
+      ],
+      "verified_at": "2026-10-20T08:09:15.772209+00:00",
+      "screenshot_at": "2026-10-20T08:15:16.290121+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.34375,
+      "screenshots": [
+        {
+          "filename": "FR09-10_issue-01.jpg",
+          "sha256": "223674d956df1c8b3f2ce5c84d1f6ff5c8dea9140ce14eb3e7222a8f9812399f",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR09-10_issue-02.jpg",
+          "sha256": "b2f7e5cdb3e5a783923c26718142be19b5eb100c4f92d8afc223544c64339cfe",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR09-11",
+      "number": 134,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/134",
+      "title": "[FR09-11] A 100 percent coupon produces a negative discount instead of zero total",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/b06b4805-44a8-4591-ac23-ab0082b63c6e"
+      ],
+      "verified_at": "2026-10-20T08:09:20.880387+00:00",
+      "screenshot_at": "2026-10-20T08:15:12.869348+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.34375,
+      "screenshots": [
+        {
+          "filename": "FR09-11_issue-01.jpg",
+          "sha256": "89caf4432ccd4accd8104b2d5587faff38bb6f60a593eed9d99435c12021e1d7",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR09-11_issue-02.jpg",
+          "sha256": "8073ccdfb7e7239184b5d8d9146073705e561cb60fa0df10e701039f25ff735c",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR09-12",
+      "number": 135,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/135",
+      "title": "[FR09-12] Late coupon response applies a discount after the input code changes",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/badfb0cd-43a0-47cc-a4af-f47f471f9110"
+      ],
+      "verified_at": "2026-10-20T08:09:26.135155+00:00",
+      "screenshot_at": "2026-10-20T08:15:21.082646+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.109375,
+      "screenshots": [
+        {
+          "filename": "FR09-12_issue-01.jpg",
+          "sha256": "bbc2f3beb4063444f055be0624349b2338462c59bc523e85c8cd3d02ea20adbb",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR09-12_issue-02.jpg",
+          "sha256": "bea8faef014d129e5f55093e1e748bda1edccf7d4825b911ad5c0b073b0f0516",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-01",
+      "number": 136,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/136",
+      "title": "[FR17-01] Coupon creation accepts a missing required code",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/6ed89780-51f6-45fc-a2b2-e3d8768fa299"
+      ],
+      "verified_at": "2026-10-20T08:09:31.563513+00:00",
+      "screenshot_at": "2026-10-20T08:15:21.258930+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.9375,
+      "screenshots": [
+        {
+          "filename": "FR17-01_issue-01.jpg",
+          "sha256": "361779dd23e14dc03607ad99ca708b1e014e409c388f58b9f03b82bdc9cffdaf",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-01_issue-02.jpg",
+          "sha256": "3b0ef62b7ba01e7f0268613dfdd8d7fc330266e3610e485beab4ffdbab5c4166",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-02",
+      "number": 137,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/137",
+      "title": "[FR17-02] Coupon creation accepts a missing required type",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/bee5d61c-f31f-48e7-bad4-1d66a9b20c5f"
+      ],
+      "verified_at": "2026-10-20T08:09:36.452934+00:00",
+      "screenshot_at": "2026-10-20T08:15:20.054517+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.9375,
+      "screenshots": [
+        {
+          "filename": "FR17-02_issue-01.jpg",
+          "sha256": "5641686ed37e970100743222a996fa3b77a44cb192627f555165ea5782d2a1dd",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-02_issue-02.jpg",
+          "sha256": "ac41fe851779d8cb79878dee07ef857657a22653770338dd345f093bb1a6550f",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-03",
+      "number": 138,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/138",
+      "title": "[FR17-03] Coupon creation accepts a missing required discount_value",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/f544e6a7-7b35-447a-bb3a-254d89e866c5"
+      ],
+      "verified_at": "2026-10-20T08:09:41.502423+00:00",
+      "screenshot_at": "2026-10-20T08:15:27.543406+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.9375,
+      "screenshots": [
+        {
+          "filename": "FR17-03_issue-01.jpg",
+          "sha256": "3274e91536fc8fc10387e9e2c2155bb09a2c2fbb6135047bd5d55d9716cc6b16",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-03_issue-02.jpg",
+          "sha256": "711a60cf598e9e3ae23c6a1f30863837f97c5c5f9cd728e8c60e5bb4b6fbb0cb",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-04",
+      "number": 139,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/139",
+      "title": "[FR17-04] Coupon creation accepts a missing required min_order_amount",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/5d2b0ef4-24cc-4cb8-91aa-e126cd30fba5"
+      ],
+      "verified_at": "2026-10-20T08:09:46.400985+00:00",
+      "screenshot_at": "2026-10-20T08:15:26.635523+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.9375,
+      "screenshots": [
+        {
+          "filename": "FR17-04_issue-01.jpg",
+          "sha256": "db8fda47ee917a9ad8588fd113098455d7ce4178f9513e77e3eb654d3f07daf0",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-04_issue-02.jpg",
+          "sha256": "6f095cd788d490b1232f95a015fb7e2dda928f27f15bca1b6a2045571fc7f425",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-05",
+      "number": 140,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/140",
+      "title": "[FR17-05] Coupon creation accepts a missing required expired_at",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/9157e859-d07d-47d0-a220-b3199d33c212"
+      ],
+      "verified_at": "2026-10-20T08:09:51.255072+00:00",
+      "screenshot_at": "2026-10-20T08:15:25.298015+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.9375,
+      "screenshots": [
+        {
+          "filename": "FR17-05_issue-01.jpg",
+          "sha256": "618396706e4c3281477e401c6aa4d061523552f34dfbdc6455abf7b8b5e8c53e",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-05_issue-02.jpg",
+          "sha256": "a03ea378c667c3641dd7ac8eba3aec68da90f7e3fd1e3c4e0a76c8aaf007e3ad",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-06",
+      "number": 141,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/141",
+      "title": "[FR17-06] Coupon creation accepts a missing required max_uses_per_user",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/5198a3d7-8fcc-4667-9fbc-b9fc23763776"
+      ],
+      "verified_at": "2026-10-20T08:09:56.185146+00:00",
+      "screenshot_at": "2026-10-20T08:15:33.166956+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.9375,
+      "screenshots": [
+        {
+          "filename": "FR17-06_issue-01.jpg",
+          "sha256": "a6594609700c12b30e95983dae88efecd92dad401e7fe5ed8a2c947efbd28b3b",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-06_issue-02.jpg",
+          "sha256": "fcf3e56669ea9776161425796ede8730930968061a262df3c90c2c12ec964c20",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-07",
+      "number": 142,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/142",
+      "title": "[FR17-07] Coupon creation accepts an empty code",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/3e06e93e-d522-4848-991b-f61af0837ac9"
+      ],
+      "verified_at": "2026-10-20T08:10:00.905651+00:00",
+      "screenshot_at": "2026-10-20T08:15:34.570558+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.1875,
+      "screenshots": [
+        {
+          "filename": "FR17-07_issue-01.jpg",
+          "sha256": "48e15022d7cba16c6832b48e4bc3497abdd40b6e77eb094e54ed7c82344e0656",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-07_issue-02.jpg",
+          "sha256": "4958a0bf528f0a81d9fd1b129dd8e64016317c672f2a6518676c6c554215f2f0",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-08",
+      "number": 143,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/143",
+      "title": "[FR17-08] Coupon creation persists a type outside percent and fixed",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/5fb10613-1f17-47fd-b6ff-b41d424b5527"
+      ],
+      "verified_at": "2026-10-20T08:10:06.535515+00:00",
+      "screenshot_at": "2026-10-20T08:15:31.157413+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.1875,
+      "screenshots": [
+        {
+          "filename": "FR17-08_issue-01.jpg",
+          "sha256": "049c2b02ee9e73d565629c0f16aa8431a9549fa7ce118844660141fbaae5e6a7",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-08_issue-02.jpg",
+          "sha256": "d75043521dbe38c614e46a9d4657adcc95d0d0ac069c4ff0b7682add42b30b3a",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-09",
+      "number": 144,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/144",
+      "title": "[FR17-09] Coupon creation accepts a negative discount_value",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/d7bb81f1-de2c-43b0-a4e2-2b204847d5e4"
+      ],
+      "verified_at": "2026-10-20T08:10:11.377496+00:00",
+      "screenshot_at": "2026-10-20T08:15:39.102480+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.1875,
+      "screenshots": [
+        {
+          "filename": "FR17-09_issue-01.jpg",
+          "sha256": "df33bc1c2f49946b9af0f5aade138c7f0816c0d1da4b3b19ab7d9bc595260f56",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-09_issue-02.jpg",
+          "sha256": "2bda916dc29368ce52930eb9763c42fc9e570b090fc027a6957194e47ee57317",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-10",
+      "number": 145,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/145",
+      "title": "[FR17-10] Coupon creation accepts discount_value equal to zero",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/3f523ebb-32e5-4457-818d-d4e5ea99a43b",
+        "https://github.com/user-attachments/assets/c91d305b-a9f9-4afa-9c96-0b146419a97a",
+        "https://github.com/user-attachments/assets/b7d504d6-8671-44df-91ac-680698343627"
+      ],
+      "verified_at": "2026-10-20T08:10:19.024778+00:00",
+      "screenshot_at": "2026-10-20T08:15:39.191318+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.1875,
+      "screenshots": [
+        {
+          "filename": "FR17-10_issue-01.jpg",
+          "sha256": "9a00ddcbef837a8ec089a5164f837c9bb2eeb339993eec6269d831de83489ab1",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-10_issue-02.jpg",
+          "sha256": "000d15ec961508e0dd64bb6e5817fb8173620b1eeb45b1738478f9cf6307c418",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-11",
+      "number": 146,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/146",
+      "title": "[FR17-11] Coupon creation accepts a negative min_order_amount",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/8fdfdf37-88d4-4633-96d6-250bc268ab78",
+        "https://github.com/user-attachments/assets/7d4f499e-940d-4965-a786-97454c59a1cc",
+        "https://github.com/user-attachments/assets/ad6ee312-d6a4-40bc-8155-5074b969b51c"
+      ],
+      "verified_at": "2026-10-20T08:10:25.923508+00:00",
+      "screenshot_at": "2026-10-20T08:15:38.077892+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.1875,
+      "screenshots": [
+        {
+          "filename": "FR17-11_issue-01.jpg",
+          "sha256": "789a86425523a2a44988766c82c88acc78bf3453e54bf15a5572a41309bbccdc",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-11_issue-02.jpg",
+          "sha256": "7ba3f0d3e7406216a2b3f0c945058779a4f3c16ce9cb8f83154e6be70375aa18",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-12",
+      "number": 147,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/147",
+      "title": "[FR17-12] Coupon creation accepts a negative max_uses_per_user",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/0207f5c0-3b8e-4084-a958-95d6c2ecb117"
+      ],
+      "verified_at": "2026-10-20T08:10:31.036616+00:00",
+      "screenshot_at": "2026-10-20T08:15:46.153032+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.1875,
+      "screenshots": [
+        {
+          "filename": "FR17-12_issue-01.jpg",
+          "sha256": "5a2409e7e925b957f5ca3eb430e2b97b47e8aab3d926a0790b9e3ba0d553e208",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-12_issue-02.jpg",
+          "sha256": "6b4893eff6111ed27bc248d456fc90d0799957b69bbb0470733cec6ef4d9f853",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-13",
+      "number": 148,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/148",
+      "title": "[FR17-13] Coupon creation silently changes a zero max_uses_per_user to one",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/094a0949-934d-468d-99ae-059dfab43621"
+      ],
+      "verified_at": "2026-10-20T08:10:36.186339+00:00",
+      "screenshot_at": "2026-10-20T08:15:46.360267+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.1875,
+      "screenshots": [
+        {
+          "filename": "FR17-13_issue-01.jpg",
+          "sha256": "7444db8b33fb45075531e467509c1603d1b1bc5428c0362d6370aa0ca46c3e8f",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-13_issue-02.jpg",
+          "sha256": "82c09cbaebfc166af71730a601e966e23762f921acbd4946c37464e65f5ade91",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-14",
+      "number": 149,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/149",
+      "title": "[FR17-14] A regular user can create an administrator coupon",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/dc4a2197-c9fb-4447-b9c4-81fa0e8bdb6a"
+      ],
+      "verified_at": "2026-10-20T08:10:42.177902+00:00",
+      "screenshot_at": "2026-10-20T08:15:42.822318+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.1875,
+      "screenshots": [
+        {
+          "filename": "FR17-14_issue-01.jpg",
+          "sha256": "38ad69ef53738c880c4af3f06e84a90e4aea9214d9bc14d06294f4ff01dd33cb",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-14_issue-02.jpg",
+          "sha256": "8a188b1d3bb21c764f435cd2646d4091aa435cfaa282d8f945370091a12b7acd",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-15",
+      "number": 150,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/150",
+      "title": "[FR17-15] A regular user can read the administrator coupon list",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/254a1a0c-dc32-4abc-a44c-7e2d22b7f458"
+      ],
+      "verified_at": "2026-10-20T08:10:47.108194+00:00",
+      "screenshot_at": "2026-10-20T08:15:46.838327+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.21875,
+      "screenshots": [
+        {
+          "filename": "FR17-15_issue-01.jpg",
+          "sha256": "717e6de9bdb95f4353e4e2ae97361b59ccf91234cf3340cc9a7a8695e3fe39e4",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-15_issue-02.jpg",
+          "sha256": "b91571c191d42a98ad64ef12348abb8906be243cb821f822094558c2a5bd4359",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-16",
+      "number": 151,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/151",
+      "title": "[FR17-16] A regular user can delete an administrator coupon",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/6faae445-4bc1-4373-881f-50c438efabe8"
+      ],
+      "verified_at": "2026-10-20T08:10:52.372773+00:00",
+      "screenshot_at": "2026-10-20T08:15:54.379374+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.78125,
+      "screenshots": [
+        {
+          "filename": "FR17-16_issue-01.jpg",
+          "sha256": "5bb4a208b210ae64f97b32eb94a779c416dc4e052e4c2b86246e51a5f42fcf5c",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-16_issue-02.jpg",
+          "sha256": "269ef7743020d3582b267b47bfc1663226abf098e701fe5c0d1bc09357bb0645",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR17-17",
+      "number": 152,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/152",
+      "title": "[FR17-17] Coupon form omits required-field markers",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/bab99a32-47b0-4244-b75d-fdaa4b97b4dc"
+      ],
+      "verified_at": "2026-10-20T08:10:58.293055+00:00",
+      "screenshot_at": "2026-10-20T08:15:54.153579+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.109375,
+      "screenshots": [
+        {
+          "filename": "FR17-17_issue-01.jpg",
+          "sha256": "ec932bfa3c4b5ecc17c4b14fc253744ddcf7f8c7a62bea9d667833065c8eb258",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR17-17_issue-02.jpg",
+          "sha256": "8f8b525fced0bbcecf301b7a249a2fd185d0969b356b02f4ad2c7d16b0a60545",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR20-01",
+      "number": 153,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/153",
+      "title": "[FR20-01] Mobile Add to Cart accepts an empty quantity",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/1c307438-1383-4045-b123-c311a29d5f6d",
+        "https://github.com/user-attachments/assets/b750b132-1c58-4c44-a2ff-2f3d4ebb764f",
+        "https://github.com/user-attachments/assets/9e9cb34c-a9b8-438d-b819-6593aacfa4be"
+      ],
+      "verified_at": "2026-10-20T08:11:06.322834+00:00",
+      "screenshot_at": "2026-10-20T08:15:50.792357+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.71875,
+      "screenshots": [
+        {
+          "filename": "FR20-01_issue-01.jpg",
+          "sha256": "71bd91b673bc2cc79bf8370365c079abf3aafe3c44d62fb0cc7638253e9fb22a",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR20-01_issue-02.jpg",
+          "sha256": "ef82a90f8629a22e302c46116744171872441c3b76cf45b5e2fefac183cfadd7",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR20-02",
+      "number": 154,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/154",
+      "title": "[FR20-02] Mobile Add to Cart accepts a negative quantity",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/bf4ab18d-3e14-4f96-8524-d170a6e0b2ec",
+        "https://github.com/user-attachments/assets/bc70565b-1fa8-4f75-84f6-4683c8974334",
+        "https://github.com/user-attachments/assets/57913037-467f-44f1-a502-d6d8af84a3ee"
+      ],
+      "verified_at": "2026-10-20T08:11:13.676300+00:00",
+      "screenshot_at": "2026-10-20T08:15:55.054840+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.71875,
+      "screenshots": [
+        {
+          "filename": "FR20-02_issue-01.jpg",
+          "sha256": "2b0259484859d5436bf18ff1fd9b32389a718879eaef80866e09e8e32b747db7",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR20-02_issue-02.jpg",
+          "sha256": "ed00d232aa92cdfbaa2ffaf72ecbc2c68894455b8a108acad9fa052a5228b37f",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR20-03",
+      "number": 155,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/155",
+      "title": "[FR20-03] Mobile Add to Cart accepts zero quantity",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/490eefbb-33d2-4619-8e24-fe1f3f143ca7",
+        "https://github.com/user-attachments/assets/ee1fe47e-6582-4290-926d-f9a1dbf4ca6b",
+        "https://github.com/user-attachments/assets/6cd80173-f34b-4076-a169-c731cdace14f"
+      ],
+      "verified_at": "2026-10-20T08:11:20.820476+00:00",
+      "screenshot_at": "2026-10-20T08:16:01.888378+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.71875,
+      "screenshots": [
+        {
+          "filename": "FR20-03_issue-01.jpg",
+          "sha256": "d6c727857c0c33b48f34a4ce63a0afe13cf8aa5fe5043fead65f1431ed57142a",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR20-03_issue-02.jpg",
+          "sha256": "4ac29f767af184f1896647c5daaa4ca5f4fa4538ae5630c9ae2a806f280ead13",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR20-04",
+      "number": 156,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/156",
+      "title": "[FR20-04] Mobile Add to Cart accepts a fractional quantity",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/878015c0-af77-40f9-8ed9-0b937ec3811a",
+        "https://github.com/user-attachments/assets/065bf0cd-de36-4cd5-b4b7-afe0aff77c0a",
+        "https://github.com/user-attachments/assets/6caf7eb9-156c-4af5-bb9a-2483faba96fb"
+      ],
+      "verified_at": "2026-10-20T08:11:27.662006+00:00",
+      "screenshot_at": "2026-10-20T08:15:59.674678+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.71875,
+      "screenshots": [
+        {
+          "filename": "FR20-04_issue-01.jpg",
+          "sha256": "9c1a190eec0dc0dd955e52d0188c22b2887ae9e4ab3a1f88276a93c121a8a60d",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR20-04_issue-02.jpg",
+          "sha256": "9535430d682ba8fc7190eeec3a343524960a713844a5d0ffde1a7c3ee553964f",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR20-05",
+      "number": 157,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/157",
+      "title": "[FR20-05] Mobile Add to Cart accepts an alphabetic quantity",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/7395e39e-b6b4-4dea-9549-ba2fa51b03e2",
+        "https://github.com/user-attachments/assets/3c112404-30d8-4cc4-95a8-5dbd07fce6c5",
+        "https://github.com/user-attachments/assets/3ccbce39-5a00-4566-8176-671ace0a5c6f"
+      ],
+      "verified_at": "2026-10-20T08:11:34.088129+00:00",
+      "screenshot_at": "2026-10-20T08:15:58.566761+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.71875,
+      "screenshots": [
+        {
+          "filename": "FR20-05_issue-01.jpg",
+          "sha256": "59c664802a8a1259829cff1f652a82eaf85717626de85f005facd6afcdcb3513",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR20-05_issue-02.jpg",
+          "sha256": "0c16c1c42b5f7da1543e6169f94dbfb6139b47494cf69155b08b020bb5ae2e54",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR20-06",
+      "number": 158,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/158",
+      "title": "[FR20-06] Mobile Add to Cart accepts a mixed digit-and-letter quantity",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/09bd6c96-985c-4906-ab03-ecfc57e7e27b",
+        "https://github.com/user-attachments/assets/e39a4c59-493e-4050-b46b-2cf094664311"
+      ],
+      "verified_at": "2026-10-20T08:11:40.492015+00:00",
+      "screenshot_at": "2026-10-20T08:16:04.822870+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 79.71875,
+      "screenshots": [
+        {
+          "filename": "FR20-06_issue-01.jpg",
+          "sha256": "98fb6b5d5bd5d478d91b7f4e449ea89db69a2aef79cd34679bbbf4ca88d4506d",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR20-06_issue-02.jpg",
+          "sha256": "53b0f3561222fc910fbcc1805157ecd2cf6d15764a7e1f7e1deb592a67802b0a",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR20-07",
+      "number": 159,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/159",
+      "title": "[FR20-07] Mobile product detail omits the product category",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/e83b9523-725f-49f2-ba11-26d63d701553"
+      ],
+      "verified_at": "2026-10-20T08:11:45.777302+00:00",
+      "screenshot_at": "2026-10-20T08:16:03.209529+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.359375,
+      "screenshots": [
+        {
+          "filename": "FR20-07_issue-01.jpg",
+          "sha256": "5aebdcc06c4686df315b285fe628a07b3ad6bdb41b2bae8ae7b9eadc930acbd5",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR20-07_issue-02.jpg",
+          "sha256": "d554f3a44bbf7511a9a9cc2ae53d79a97ffcf9e427f5982f97cbd4c03c221ce2",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
+    },
+    {
+      "bug_id": "FR20-08",
+      "number": 160,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/160",
+      "title": "[FR20-08] Mobile positive Add to Cart action is green instead of blue",
+      "attachment_urls": [
+        "https://github.com/user-attachments/assets/1fa02a9f-fe35-47cd-b8e1-979f238427bb"
+      ],
+      "verified_at": "2026-10-20T08:11:50.767023+00:00",
+      "screenshot_at": "2026-10-20T08:16:05.911627+00:00",
+      "capture_version": 2,
+      "evidence_heading_viewport_y": 80.359375,
+      "screenshots": [
+        {
+          "filename": "FR20-08_issue-01.jpg",
+          "sha256": "b175f4615afa74e8d719212e7d080e3cfc3dd3a3fc2d5d29ae6df80caf5a3f70",
+          "view": "Issue title and opening content"
+        },
+        {
+          "filename": "FR20-08_issue-02.jpg",
+          "sha256": "df54dd9b22f7f206a71c8be0355a3b8a7d2b7dc34e8d79c398cdb9b65cf4fbf7",
+          "view": "Issue evidence and attached bug image"
+        }
+      ]
     }
-  ],
-  "local_screenshot_review": {
-    "reviewed_utc": "2026-10-20T04:47:27.129702+00:00",
-    "source": "18 screenshots supplied by student; inspected as static local images, no browser/computer use",
-    "count": 18,
-    "note": "No exact capture timestamps asserted. Earlier bug_screenshot_attached flags are from the original API publication readback; new images do not establish current attachment coverage."
-  }
+  ]
 }
