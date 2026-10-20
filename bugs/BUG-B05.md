@@ -46,7 +46,7 @@ User2 có đúng hai row usage của VIP100 (limit2), user3 có0. Cả hai user 
 }
 ```
 
-Chạy tự động từ repository: `node scripts/run-api.cjs B`. Runner reset fixture từng TC, sở hữu server riêng, dừng server khi kết thúc; chọn record `B-API-22` trong raw output. Hướng dẫn setup chung nằm ở README.
+Tái hiện qua HTTP theo request, authentication và preconditions nêu trên. Full raw record giữ nguyên kết quả thực thi; script hỗ trợ chạy được quản lý ngoài repository nộp bài.
 
 ## 4. Expected Result
 

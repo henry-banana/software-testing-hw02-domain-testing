@@ -49,7 +49,7 @@ Run xác nhận: Windows, Node v24.16.0; backend copy tại `http://127.0.0.1:31
 }
 ```
 
-Chạy tự động từ repository: `node scripts/run-api.cjs C`. Runner reset fixture từng TC, sở hữu server riêng, dừng server khi kết thúc; chọn record `C-API-11` trong raw output. Hướng dẫn setup chung nằm ở README.
+Tái hiện qua HTTP theo request, authentication và preconditions nêu trên. Full raw record giữ nguyên kết quả thực thi; script hỗ trợ chạy được quản lý ngoài repository nộp bài.
 
 ## 4. Expected Result
 

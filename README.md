@@ -43,21 +43,12 @@ Repository chứa báo cáo cá nhân, phân tích Domain/BVA, test cases, bug r
 | [Agent Skill](.agents/skills/domain-bva-testing/SKILL.md) | Workflow tái sử dụng với FR-17 làm example. |
 | [Video Links](Video_Links.md) | Link tạm demo, chờ sinh viên thay URL. |
 | [Git Log](git-commit-log.txt) | Snapshot lịch sử Git thực, ghi rõ HEAD phạm vi. |
-| [API runner](scripts/run-api.cjs) | Harness reset/isolation,81public HTTP cases; dependencies từ SUT. |
 
-## Tái chạy API
+## Kiểm tra bằng chứng và tái hiện
 
-Cần Node và dependencies của baseline EShop đã cài tại `../eshop-sut/backend/node_modules` (hoặc đặt `HW02_SUT` đến checkout tương ứng). Kiểm tra SUT đang ở SHA trên. Không chạy file database.js gốc để dựng harness vì file này drop/seed. Runner tạo bản copy và database riêng, dùng port3100; nếu port bận, runner từ chối thay vì dùng server khác.
+Mỗi test case/bug report ghi preconditions, request hoặc thao tác UI, expected, actual và hậu điều kiện. Raw HTTP trong `evidence/execution/` giữ timestamp, input/output và source hashes; ảnh thật được đối chiếu qua Evidence Register.
 
-```powershell
-node scripts/run-api.cjs A
-node scripts/run-api.cjs B
-node scripts/run-api.cjs C
-node scripts/run-api.cjs D
-python scripts/validate-deliverables.py
-```
-
-Suite có expected theo SRS nên các FAIL là SUT defects đã ghi, không phải lý do đổi expected theo implementation. Exit2 dành cho BLOCKED, lỗi harness hoặc source bị thay đổi. Mỗi lần chạy ghi lại raw evidence với timestamp mới; giữ Git snapshot nếu muốn so sánh run trước.
+Các script hỗ trợ thực thi/kiểm tra được quản lý trong workspace bên ngoài repository nộp bài. Bộ nộp giữ tài liệu và evidence đã ghi nhận; người đọc có thể tái hiện qua các bước HTTP/UI đầy đủ trong từng case/bug, không phụ thuộc một liên kết ra ngoài gói nộp.
 
 ## Self-Assessment
 

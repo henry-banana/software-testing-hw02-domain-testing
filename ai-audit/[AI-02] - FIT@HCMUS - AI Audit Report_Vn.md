@@ -16,7 +16,7 @@ Tống Dương Thái Hòa — MSSV23120262 — Software Testing CQ2023/3. Bài H
 | B | Sai tiền trong draft; nominal VIP100 bị thay thành exhausted test | Dùng raw literals; B-UI-06 incomplete; giữ original target |
 | C | CamelCase/enum/endpoint sai; zero/negative đảo ID | Snake_case; fixed/percent; GET /api/coupons; map12/13,18/19 đúng |
 | D | Detail category bị false PASS; cart suy từ alert; thiếu two-add sequence | D02 theo mapping; giới hạn kết luận1abc; D12 incomplete |
-| Harness | scripts bị dời khỏi submission | Khôi phục3CJS; rerun81HTTP cases; original hashes unchanged |
+| Harness | Lượt rewrite trước đưa helper scripts vào submission | Đã tái chạy81HTTP cases; sau đó dời toàn bộ helpers ra ngoài theo cấu trúc sinh viên yêu cầu; hashes SUT giữ nguyên |
 | Summary | 114executed và counts không khớp | 114designed;109executed đủ evidence;49P/56F/4OBS/5incomplete |
 | Video/Issues | Link video thật chưa có, nhóm chưa đăng Issues | Một link tạm thống nhất; group stage giữ cuối |
 | AI provenance | Header Claude nhưng transcript Codex; human review lẫn version | Phân biệt tool theo record; student confirmation cũ không tự áp bản mới |
@@ -4720,6 +4720,11 @@ Phiên bản đầu của các bảng test, scripts và báo cáo được soạ
 </details>
 
 
+## Appendix C — Historical rewrite output manifest
+
+Manifest dưới đây ghi snapshot trước khi dời scripts. Đường dẫn/hash trong snapshot là dữ liệu lịch sử, không phải danh mục file đang có trong submission.
+
+````text
 ## Appendix C — Current rewrite output manifest
 
 Snapshot UTC: `2026-10-19T20:10:22.349219+00:00`. Git revision trước khi commit audit này: `575a342c51bc3446e36c26a7a3887fe5f3319641`. Các file hiện tại là output của lượt rewrite; Git giữ bản cụ thể để phân biệt chỉnh sửa về sau. Prompt/output messages được liên kết trong Appendix A; không tạo output hoặc timestamp model giả.
@@ -4768,3 +4773,8 @@ Snapshot UTC: `2026-10-19T20:10:22.349219+00:00`. Git revision trước khi comm
 | [tests/C-FR17-coupon-management.md](../tests/C-FR17-coupon-management.md) | 859a340fe67a8791b1077de44a71f58656a2a369b7e85b1e82e4ef688a3227f6 |
 | [tests/D-mobile-product-detail.md](../tests/D-mobile-product-detail.md) | 10e01bdc6b3549e7ca2674b68c8d610249dfd2af4a104e65537ece451571ac9d |
 | [Video_Links.md](../Video_Links.md) | a368e67977bf5f9f007527e82caf453f04ecc6a2c8d284ee8cba395fb1b8cd84 |
+````
+
+## Appendix D — Correction: submission boundary
+
+Theo yêu cầu tiếp theo của sinh viên, sáu helper scripts đã được dời ra khỏi repository nộp bài và giữ trong workspace `hw02/scripts/`. Các phiên bản cũ ở đích được lưu bản sao riêng trước khi thay. README, case/bug reports và skill không còn yêu cầu script bên trong gói nộp. Original prompts/output snapshots được giữ nguyên; thay đổi này không tạo lần thực thi SUT mới hoặc thay verdict.
