@@ -4,15 +4,7 @@
 
 ## 1. Phạm vi, quy ước và fixture
 
-Chúng tôi lấy SRS làm oracle, sau đó dùng source để xây dựng giả thuyết và giải thích nguyên nhân. Source không thay thế yêu cầu. Mỗi TC có ID ổn định; một TC có thể phủ cả Domain Testing và BVA nhưng chỉ được tính một lần. Chúng tôi tách API với Web/Admin/Mobile UI vì validation ở một lớp không chứng minh lớp còn lại đạt.
-
-Với từng input/state, chúng tôi xác định miền hợp lệ, phần bù không hợp lệ, precision và các ràng buộc giữa các chiều. Các lớp trong cùng một chiều được chọn để phân biệt hành vi; bảng nhiều chiều không có nghĩa mọi hàng đều là các tập rời nhau của toàn bộ vector. Test invalid giữ các chiều khác nominal; interaction nhiều lỗi có chủ đích được ghi riêng. Chúng tôi dùng readback public HTTP sau thay đổi để kiểm tra hậu điều kiện.
-
-BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu >= hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
-
-API execution dùng backend copy, clock cố định và fixture reset mỗi TC. UI evidence là ảnh thật đã cung cấp; không suy timestamp chạy từ ngày sửa file, không dùng ảnh vẽ hoặc build output làm bằng chứng UI. PASS/FAIL chỉ kết luận theo criterion có evidence; OBSERVATION dành cho oracle chưa quy định; INCOMPLETE dành cho TC còn thiếu bước/precondition/evidence. Một TC INCOMPLETE có thể đã được thao tác một phần, nhưng không được cộng vào executed đủ bằng chứng.
-
-Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL mục 4.2.1-4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
+SRS supplies expected behavior; source inspection explains hypotheses and causes. Each ID is counted once. API, browser UI and Mobile source-handler execution are distinct evidence seams. Invalid cases hold other relevant inputs nominal unless an interaction is explicitly declared. The final extension and its evidence limits are recorded in [Execution records](../evidence/execution/A-execution.md).
 
 ### API fixture và môi trường tái hiện
 
@@ -28,7 +20,7 @@ Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có b�
 
 ### UI fixture và bằng chứng
 
-Ảnh ghi Web ở `localhost:5173`, Admin ở `localhost:5174`, và Expo Go/Android trên Samsung. Account hiển thị trong ảnh có thể được tái sử dụng (A-UI-01, B-UI-01, D-UI-01); tên file TC không chứng minh đã login account cùng tên. Chúng tôi ghi rõ variant và trạng thái dữ liệu có thể chứng minh. Không có nhật ký runtime UI đầy đủ về phiên bản OS/Expo hoặc timestamp từng lượt; không tự bổ sung các thông số đó. UI clock dùng thời gian thật của lần chụp, khác clock API.
+Ảnh ghi Web ở `localhost:5173`, Admin ở `localhost:5174`, và Expo Go/Android trên Samsung. Account hiển thị trong ảnh có thể được tái sử dụng (A-UI-01, B-UI-01, D-UI-01); tên file TC không chứng minh đã login account cùng tên. Quy trình ghi rõ variant và trạng thái dữ liệu có thể chứng minh. Không có nhật ký runtime UI đầy đủ về phiên bản OS/Expo hoặc timestamp từng lượt; không tự bổ sung các thông số đó. UI clock dùng thời gian thật của lần chụp, khác clock API.
 
 Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-10-19; trường timestamp thực thi UI không đủ log để khẳng định chính xác. File raw API giữ timestamp thật độc lập. Ảnh vẫn giữ nguyên bytes; đổi tên ảnh không tạo lần thực thi mới.
 
@@ -38,33 +30,33 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 |---|---|---|---|---|---|
 | [A-API-01](#a-api-01) | Domain+BVA | 10 digits: lower ON boundary | PASS | A-D1 | - |
 | [A-API-02](#a-api-02) | Domain+BVA | 11 digits: upper ON boundary | PASS | A-D1 | - |
-| [A-API-03](#a-api-03) | Domain+BVA | 9 digits: lower OFF boundary | FAIL | A-D2 | BUG-A01 |
-| [A-API-04](#a-api-04) | Domain+BVA | 12 digits: upper OFF boundary | FAIL | A-D3 | BUG-A01 |
-| [A-API-05](#a-api-05) | Domain | Empty phone | FAIL | A-D2 | BUG-A01 |
-| [A-API-06](#a-api-06) | Domain | One digit | FAIL | A-D2 | BUG-A01 |
-| [A-API-07](#a-api-07) | Domain | 8 digits: invalid IN point | FAIL | A-D2 | BUG-A01 |
-| [A-API-08](#a-api-08) | Domain | 13 digits: invalid IN point | FAIL | A-D3 | BUG-A01 |
-| [A-API-09](#a-api-09) | Domain | Wrong leading digit, length 10 | FAIL | A-D4 | BUG-A01 |
-| [A-API-10](#a-api-10) | Domain | Wrong leading digit, length 11 | FAIL | A-D4 | BUG-A01 |
-| [A-API-11](#a-api-11) | Domain | Alphabetic character | FAIL | A-D5 | BUG-A01 |
-| [A-API-12](#a-api-12) | Domain | Embedded space | FAIL | A-D5 | BUG-A01 |
-| [A-API-13](#a-api-13) | Domain | Country prefix instead of 0 | FAIL | A-D5 | BUG-A01 |
-| [A-API-14](#a-api-14) | Domain | Hyphenated digits | FAIL | A-D5 | BUG-A01 |
+| [A-API-03](#a-api-03) | Domain+BVA | 9 digits: lower OFF boundary | FAIL | A-D2 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
+| [A-API-04](#a-api-04) | Domain+BVA | 12 digits: upper OFF boundary | FAIL | A-D3 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
+| [A-API-05](#a-api-05) | Domain | Empty phone | FAIL | A-D2 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
+| [A-API-06](#a-api-06) | Domain | One digit | FAIL | A-D2 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
+| [A-API-07](#a-api-07) | Domain | 8 digits: invalid IN point | FAIL | A-D2 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
+| [A-API-08](#a-api-08) | Domain | 13 digits: invalid IN point | FAIL | A-D3 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
+| [A-API-09](#a-api-09) | Domain | Wrong leading digit, length 10 | FAIL | A-D4 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
+| [A-API-10](#a-api-10) | Domain | Wrong leading digit, length 11 | FAIL | A-D4 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
+| [A-API-11](#a-api-11) | Domain | Alphabetic character | FAIL | A-D5 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
+| [A-API-12](#a-api-12) | Domain | Embedded space | FAIL | A-D5 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
+| [A-API-13](#a-api-13) | Domain | Country prefix instead of 0 | FAIL | A-D5 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
+| [A-API-14](#a-api-14) | Domain | Hyphenated digits | FAIL | A-D5 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
 | [A-API-15](#a-api-15) | Domain | Unicode fullwidth digits | OBSERVATION | A-D6 | - |
-| [A-API-16](#a-api-16) | Domain | Null phone | FAIL | A-D5 | BUG-A01 |
+| [A-API-16](#a-api-16) | Domain | Null phone | FAIL | A-D5 | FR04-01, FR04-02, FR04-03, FR04-04, FR04-05, FR04-06, FR04-07, FR04-08, FR04-09, FR04-10, FR04-11, FR04-12, FR04-13 |
 | [A-API-17](#a-api-17) | Domain | Unicode name and address | PASS | A-D7 | - |
-| [A-API-18](#a-api-18) | Domain | Client role escalation | FAIL | A-D8 | BUG-A02 |
+| [A-API-18](#a-api-18) | Domain | Client role escalation | FAIL | A-D8 | FR04-14 |
 | [A-API-19](#a-api-19) | Domain | Body user id cannot redirect update | PASS | A-D9 | - |
 | [A-API-20](#a-api-20) | Domain | Profile update: none token | PASS | A-D10 | - |
 | [A-API-21](#a-api-21) | Domain | Profile update: invalid token | PASS | A-D10 | - |
 | [A-API-22](#a-api-22) | Domain | Profile read needs authentication | PASS | A-D10 | - |
 | [A-UI-01](#a-ui-01) | Domain+BVA | Profile phone 091234567 | PASS | A-D2 | - |
-| [A-UI-02](#a-ui-02) | Domain+BVA | Profile phone 0912345678 | FAIL | A-D1 | BUG-A03 |
-| [A-UI-03](#a-ui-03) | Domain+BVA | Profile phone 09123456789 | FAIL | A-D1 | BUG-A03 |
+| [A-UI-02](#a-ui-02) | Domain+BVA | Profile phone 0912345678 | FAIL | A-D1 | FR04-15, FR04-16, FR04-17 |
+| [A-UI-03](#a-ui-03) | Domain+BVA | Profile phone 09123456789 | FAIL | A-D1 | FR04-15, FR04-16, FR04-17 |
 | [A-UI-04](#a-ui-04) | Domain+BVA | Profile phone 091234567890 | PASS | A-D3 | - |
-| [A-UI-05](#a-ui-05) | Domain | Profile phone 1912345678 | FAIL | A-D4 | BUG-A03 |
+| [A-UI-05](#a-ui-05) | Domain | Profile phone 1912345678 | FAIL | A-D4 | FR04-15, FR04-16, FR04-17 |
 | [A-UI-06](#a-ui-06) | Domain | Email field cannot be changed | PASS | A-D11 | - |
-| [A-UI-07](#a-ui-07) | Domain | Unicode editable profile fields | FAIL | A-D7 | BUG-A03 |
+| [A-UI-07](#a-ui-07) | Domain | Unicode editable profile fields | FAIL | A-D7 | FR04-15, FR04-16, FR04-17 |
 
 <a id="a-api-01"></a>
 
@@ -251,7 +243,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.771Z`. Với list dài, phần d
 | Domains | A-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-01 |
 
 ### Preconditions
 
@@ -337,7 +329,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.797Z`. Với list dài, phần d
 | Domains | A-D3 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-02 |
 
 ### Preconditions
 
@@ -423,7 +415,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.825Z`. Với list dài, phần d
 | Domains | A-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-03 |
 
 ### Preconditions
 
@@ -509,7 +501,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.860Z`. Với list dài, phần d
 | Domains | A-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-04 |
 
 ### Preconditions
 
@@ -595,7 +587,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.895Z`. Với list dài, phần d
 | Domains | A-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-05 |
 
 ### Preconditions
 
@@ -681,7 +673,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.922Z`. Với list dài, phần d
 | Domains | A-D3 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-06 |
 
 ### Preconditions
 
@@ -767,7 +759,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.955Z`. Với list dài, phần d
 | Domains | A-D4 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-07 |
 
 ### Preconditions
 
@@ -853,7 +845,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.984Z`. Với list dài, phần d
 | Domains | A-D4 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-08 |
 
 ### Preconditions
 
@@ -939,7 +931,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.013Z`. Với list dài, phần d
 | Domains | A-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-09 |
 
 ### Preconditions
 
@@ -1025,7 +1017,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.041Z`. Với list dài, phần d
 | Domains | A-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-10 |
 
 ### Preconditions
 
@@ -1111,7 +1103,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.073Z`. Với list dài, phần d
 | Domains | A-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-11 |
 
 ### Preconditions
 
@@ -1198,7 +1190,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.103Z`. Với list dài, phần d
 | Domains | A-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-12 |
 
 ### Preconditions
 
@@ -1370,7 +1362,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.161Z`. Với list dài, phần d
 | Domains | A-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A01 |
+| Bug | FR04-13 |
 
 ### Preconditions
 
@@ -1542,7 +1534,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.231Z`. Với list dài, phần d
 | Domains | A-D8 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-A02 |
+| Bug | FR04-14 |
 
 ### Preconditions
 
@@ -1997,7 +1989,6 @@ Phone 091234567 bị từ chối bằng cảnh báo validation. Ảnh xác nhậ
 
 ![A-UI-01_02-response](../evidence/screenshots/A/A-UI-01_02-response.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -2016,7 +2007,7 @@ Phone 091234567 bị từ chối bằng cảnh báo validation. Ảnh xác nhậ
 | Domains | A-D1 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-A03 |
+| Bug | FR04-15 |
 
 ### Preconditions
 
@@ -2057,7 +2048,6 @@ Phone hợp lệ 0912345678 bị cảnh báo không hợp lệ; thao tác cập 
 
 ![A-UI-02_variant-0987654321_response](../evidence/screenshots/A/A-UI-02_variant-0987654321_response.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -2076,7 +2066,7 @@ Phone hợp lệ 0912345678 bị cảnh báo không hợp lệ; thao tác cập 
 | Domains | A-D1 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-A03 |
+| Bug | FR04-16 |
 
 ### Preconditions
 
@@ -2113,7 +2103,6 @@ Phone hợp lệ 09123456789 bị từ chối. Thông báo nói 9-10 chữ số,
 
 ![A-UI-03_02-response](../evidence/screenshots/A/A-UI-03_02-response.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -2169,7 +2158,6 @@ Phone 091234567890 bị frontend từ chối. Kết quả từ chối đạt m�
 
 ![A-UI-04_02-response](../evidence/screenshots/A/A-UI-04_02-response.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -2188,7 +2176,7 @@ Phone 091234567890 bị frontend từ chối. Kết quả từ chối đạt m�
 | Domains | A-D4 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-A03 |
+| Bug | FR04-17 |
 
 ### Preconditions
 
@@ -2225,7 +2213,6 @@ Phone 1912345678 có prefix sai nhưng UI báo cập nhật thành công. API A-
 
 ![A-UI-05_02-response](../evidence/screenshots/A/A-UI-05_02-response.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -2278,7 +2265,6 @@ Email hiển thị ở field disabled. Source Profile.jsx dùng disabled cho inp
 
 ![A-UI-06_01-email-field](../evidence/screenshots/A/A-UI-06_01-email-field.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -2297,11 +2283,11 @@ Email hiển thị ở field disabled. Source Profile.jsx dùng disabled cho inp
 | Domains | A-D7 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-A03 |
+| Bug | FR04-15 |
 
 ### Preconditions
 
-Web runtime riêng tại 127.0.0.1:5173, account A-UI-07 (a_ui_07@hw02.invalid), mở /profile. Name/address có dấu và phone 0912345678 đều hợp lệ theo thiết kế; SUT chưa sửa BUG-A03.
+Web runtime riêng tại 127.0.0.1:5173, account A-UI-07 (a_ui_07@hw02.invalid), mở /profile. Name/address có dấu và phone 0912345678 đều hợp lệ theo thiết kế; SUT chưa sửa FR04-15, FR04-16, FR04-17.
 
 ### Input - thiết kế
 
@@ -2332,7 +2318,7 @@ Valid update accepted; name/address persist after fresh login.
 
 ![A-UI-07 validation error](../evidence/screenshots/A/A-UI-07_02-validation-error.png)
 
-**Variant / giới hạn:** Ảnh cũ dưới đây dùng phone sai prefix 1912345678 và chỉ có alert thành công; giữ để truy vết lịch sử, không dùng để chứng minh persistence hay PASS. Ảnh mới đủ chứng minh valid update bị chặn bởi BUG-A03. Bước fresh login/readback chưa đạt tới do validation chặn; không kết luận dữ liệu Unicode bị hỏng hoặc lưu thành công.
+**Variant / giới hạn:** Ảnh cũ dưới đây dùng phone sai prefix 1912345678 và chỉ có alert thành công; giữ để truy vết lịch sử, không dùng để chứng minh persistence hay PASS. Ảnh mới đủ chứng minh valid update bị chặn bởi FR04-15, FR04-16, FR04-17. Bước fresh login/readback chưa đạt tới do validation chặn; không kết luận dữ liệu Unicode bị hỏng hoặc lưu thành công.
 
 ![A-UI-07 historical variant](../evidence/screenshots/A/A-UI-07_variant-01_response.png)
 
@@ -2340,20 +2326,1411 @@ Valid update accepted; name/address persist after fresh login.
 
 ### Verdict và rationale
 
-**FAIL** - Criterion đầu tiên là chấp nhận cập nhật hợp lệ đã bị vi phạm. Gắn vào BUG-A03 vì cùng lỗi frontend từ chối phone đúng SRS; không tạo bug Unicode mới. Persistence sau sửa vẫn cần regression riêng.
+**FAIL** - Criterion đầu tiên là chấp nhận cập nhật hợp lệ đã bị vi phạm. Gắn vào FR04-15, FR04-16, FR04-17 vì cùng lỗi frontend từ chối phone đúng SRS; không tạo bug Unicode mới. Persistence sau sửa vẫn cần regression riêng.
 
 ## 3. Test Summary
 
 | Scope | Designed | Executed đủ bằng chứng | PASS | FAIL | OBSERVATION | INCOMPLETE | NOT RUN |
 |---|---|---|---|---|---|---|---|
-| A - API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
-| A - UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
-| B - API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
-| B - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| C - API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
-| C - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| D - API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
-| D - UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
-| **Tổng** | 114 | 114 | 53 | 57 | 4 | 0 | 0 |
+| A - API | 29 | 29 | 8 | 18 | 3 | 0 | 0 |
+| A - UI | 10 | 10 | 3 | 7 | 0 | 0 | 0 |
+| A - HND | 5 | 5 | 2 | 3 | 0 | 0 | 0 |
+| **Tổng feature A** | 44 | 44 | 13 | 28 | 3 | 0 | 0 |
 
-Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.
+Tổng hợp riêng feature; số liệu toàn bài nằm trong README/report. Handler và native-image review được khai rõ ở từng case.
+
+## Additional case index
+
+| Case | Seam | Status | Bug |
+|---|---|---|---|
+| [A-API-23](#a-api-23) | API | FAIL | FR04-18, FR04-19, FR04-20 |
+| [A-API-24](#a-api-24) | API | FAIL | FR04-18, FR04-19, FR04-20 |
+| [A-API-25](#a-api-25) | API | PASS | - |
+| [A-API-26](#a-api-26) | API | FAIL | FR04-21 |
+| [A-API-27](#a-api-27) | API | OBSERVATION | - |
+| [A-API-28](#a-api-28) | API | OBSERVATION | - |
+| [A-API-29](#a-api-29) | API | FAIL | FR04-18, FR04-19, FR04-20 |
+| [A-HND-01](#a-hnd-01) | Source handler + HTTP adapter | FAIL | FR04-22, FR04-23, FR04-24 |
+| [A-HND-02](#a-hnd-02) | Source handler + HTTP adapter | FAIL | FR04-22, FR04-23, FR04-24 |
+| [A-HND-03](#a-hnd-03) | Source handler + HTTP adapter | FAIL | FR04-22, FR04-23, FR04-24 |
+| [A-HND-04](#a-hnd-04) | Source handler + HTTP adapter | PASS | - |
+| [A-HND-05](#a-hnd-05) | Source handler + HTTP adapter | PASS | - |
+| [A-UI-08](#a-ui-08) | Browser UI via Playwright | FAIL | FR04-25 |
+| [A-UI-09](#a-ui-09) | Browser UI via Playwright | FAIL | FR04-26 |
+| [A-UI-10](#a-ui-10) | Browser UI via Playwright | FAIL | FR04-27 |
+
+
+<a id="a-api-23"></a>
+
+## A-API-23
+
+**Objective:** Profile response excludes credentials and reset state
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | SEC-01 storage rule; supplementary OWASP API3 response minimization |
+| Domains | A-D12 |
+| Seam | API |
+| Status | FAIL |
+| Bug | FR04-18 |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+[
+  {
+    "method": "GET",
+    "url": "/api/users/me",
+    "input": null
+  }
+]
+```
+
+### Steps
+
+1. Send `GET /api/users/me` using the isolated identity shown in the execution record.
+
+### Expected
+
+Password is not stored as plaintext (SEC-01); profile excludes password/reset_token (supplementary response-minimization oracle).
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.318Z",
+  "trace": [
+    {
+      "method": "GET",
+      "url": "/api/users/me",
+      "authentication": "isolated JWT (redacted)",
+      "input": null,
+      "status": 200,
+      "body": {
+        "id": 2,
+        "name": "Test User",
+        "email": "test@eshop.com",
+        "password": "<REDACTED>",
+        "role": "user",
+        "login_attempts": 0,
+        "locked_until": null,
+        "reset_token": null,
+        "shipping_address": "1 Test Street",
+        "phone": "0912345678"
+      }
+    }
+  ],
+  "observed": {
+    "profileStatus": 200,
+    "passwordFieldPresent": true,
+    "passwordMatchesFixture": true,
+    "resetTokenFieldPresent": true,
+    "storageMatchesPlaintextFixture": true
+  }
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-api-23).
+
+
+<a id="a-api-24"></a>
+
+## A-API-24
+
+**Objective:** Active recovery token is not disclosed by profile
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | SEC-01 storage rule; supplementary OWASP API3 response minimization |
+| Domains | A-D12 |
+| Seam | API |
+| Status | FAIL |
+| Bug | FR04-19 |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+[
+  {
+    "method": "POST",
+    "url": "/api/forgot-password",
+    "input": {
+      "email": "test@eshop.com"
+    }
+  },
+  {
+    "method": "GET",
+    "url": "/api/users/me",
+    "input": null
+  },
+  {
+    "method": "POST",
+    "url": "/api/reset-password",
+    "input": {
+      "email": "test@eshop.com",
+      "resetToken": "<REDACTED>",
+      "newPassword": "<REDACTED>"
+    }
+  },
+  {
+    "method": "POST",
+    "url": "/api/login",
+    "input": {
+      "email": "test@eshop.com",
+      "password": "<REDACTED>"
+    }
+  }
+]
+```
+
+### Steps
+
+1. Send `POST /api/forgot-password` using the isolated identity shown in the execution record.
+2. Send `GET /api/users/me` using the isolated identity shown in the execution record.
+3. Send `POST /api/reset-password` using the isolated identity shown in the execution record.
+4. Send `POST /api/login` using the isolated identity shown in the execution record.
+
+### Expected
+
+An authenticated profile response does not disclose a recovery secret; test the state before and after issuing OTP.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.330Z",
+  "trace": [
+    {
+      "method": "POST",
+      "url": "/api/forgot-password",
+      "authentication": "none",
+      "input": {
+        "email": "test@eshop.com"
+      },
+      "status": 200,
+      "body": {
+        "message": "Mã đặt lại mật khẩu đã được tạo",
+        "resetToken": "<REDACTED>"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "/api/users/me",
+      "authentication": "isolated JWT (redacted)",
+      "input": null,
+      "status": 200,
+      "body": {
+        "id": 2,
+        "name": "Test User",
+        "email": "test@eshop.com",
+        "password": "<REDACTED>",
+        "role": "user",
+        "login_attempts": 0,
+        "locked_until": null,
+        "reset_token": "<REDACTED>",
+        "shipping_address": "1 Test Street",
+        "phone": "0912345678"
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/reset-password",
+      "authentication": "none",
+      "input": {
+        "email": "test@eshop.com",
+        "resetToken": "<REDACTED>",
+        "newPassword": "<REDACTED>"
+      },
+      "status": 200,
+      "body": {
+        "message": "Password reset successfully"
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/login",
+      "authentication": "none",
+      "input": {
+        "email": "test@eshop.com",
+        "password": "<REDACTED>"
+      },
+      "status": 200,
+      "body": {
+        "message": "Login successful",
+        "token": "<REDACTED>",
+        "user": {
+          "id": 2,
+          "name": "Test User",
+          "email": "test@eshop.com",
+          "password": "<REDACTED>",
+          "role": "user",
+          "login_attempts": 0,
+          "locked_until": null,
+          "reset_token": null,
+          "shipping_address": "1 Test Street",
+          "phone": "0912345678"
+        }
+      }
+    }
+  ],
+  "observed": {
+    "forgotStatus": 200,
+    "tokenPresent": true,
+    "tokenLength": 4,
+    "profileTokenMatchesGenerated": true,
+    "resetWithProfileTokenStatus": 200,
+    "loginWithNewPasswordStatus": 200
+  }
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-api-24).
+
+
+<a id="a-api-25"></a>
+
+## A-API-25
+
+**Objective:** Canonical profile payload persists address (control)
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | The canonical snake_case request persists name, phone and shipping_address. |
+| Domains | A-D13 |
+| Seam | API |
+| Status | PASS |
+| Bug | - |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+[
+  {
+    "method": "PUT",
+    "url": "/api/users/me",
+    "input": {
+      "name": "Mobile User",
+      "phone": "0912345678",
+      "shipping_address": "Mobile Address"
+    }
+  },
+  {
+    "method": "GET",
+    "url": "/api/users/me",
+    "input": null
+  }
+]
+```
+
+### Steps
+
+1. Send `PUT /api/users/me` using the isolated identity shown in the execution record.
+2. Send `GET /api/users/me` using the isolated identity shown in the execution record.
+
+### Expected
+
+The canonical snake_case request persists name, phone and shipping_address.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.354Z",
+  "trace": [
+    {
+      "method": "PUT",
+      "url": "/api/users/me",
+      "authentication": "isolated JWT (redacted)",
+      "input": {
+        "name": "Mobile User",
+        "phone": "0912345678",
+        "shipping_address": "Mobile Address"
+      },
+      "status": 200,
+      "body": {
+        "message": "Profile updated"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "/api/users/me",
+      "authentication": "isolated JWT (redacted)",
+      "input": null,
+      "status": 200,
+      "body": {
+        "id": 2,
+        "name": "Mobile User",
+        "email": "test@eshop.com",
+        "password": "<REDACTED>",
+        "role": "user",
+        "login_attempts": 0,
+        "locked_until": null,
+        "reset_token": null,
+        "shipping_address": "Mobile Address",
+        "phone": "0912345678"
+      }
+    }
+  ]
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-api-25).
+
+
+<a id="a-api-26"></a>
+
+## A-API-26
+
+**Objective:** Mobile-shaped payload loses address at API boundary
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | FR-04 default shipping-address update |
+| Domains | A-D13 |
+| Seam | API |
+| Status | FAIL |
+| Bug | FR04-21 |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+[
+  {
+    "method": "PUT",
+    "url": "/api/users/me",
+    "input": {
+      "name": "Mobile User",
+      "phone": "0912345678",
+      "shippingAddress": "Mobile Address"
+    }
+  },
+  {
+    "method": "GET",
+    "url": "/api/users/me",
+    "input": null
+  }
+]
+```
+
+### Steps
+
+1. Send `PUT /api/users/me` using the isolated identity shown in the execution record.
+2. Send `GET /api/users/me` using the isolated identity shown in the execution record.
+
+### Expected
+
+The Mobile profile operation maps its address to shipping_address and persists it; this API replay isolates serialization, not native UI execution.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.367Z",
+  "trace": [
+    {
+      "method": "PUT",
+      "url": "/api/users/me",
+      "authentication": "isolated JWT (redacted)",
+      "input": {
+        "name": "Mobile User",
+        "phone": "0912345678",
+        "shippingAddress": "Mobile Address"
+      },
+      "status": 200,
+      "body": {
+        "message": "Profile updated"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "/api/users/me",
+      "authentication": "isolated JWT (redacted)",
+      "input": null,
+      "status": 200,
+      "body": {
+        "id": 2,
+        "name": "Mobile User",
+        "email": "test@eshop.com",
+        "password": "<REDACTED>",
+        "role": "user",
+        "login_attempts": 0,
+        "locked_until": null,
+        "reset_token": null,
+        "shipping_address": null,
+        "phone": "0912345678"
+      }
+    }
+  ],
+  "observed": {
+    "accepted": true,
+    "persistedAddress": null,
+    "masking": "The real Mobile handler rejects this valid 0-prefixed phone before HTTP; see A-HND-01/02."
+  }
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-api-26).
+
+
+<a id="a-api-27"></a>
+
+## A-API-27
+
+**Objective:** O1: missing profile fields become null
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | Observe behavior only: the specification does not define partial update versus full replacement. |
+| Domains | A-D14 |
+| Seam | API |
+| Status | OBSERVATION |
+| Bug | - |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+[
+  {
+    "method": "PUT",
+    "url": "/api/users/me",
+    "input": {
+      "name": "Only Name"
+    }
+  },
+  {
+    "method": "GET",
+    "url": "/api/users/me",
+    "input": null
+  }
+]
+```
+
+### Steps
+
+1. Send `PUT /api/users/me` using the isolated identity shown in the execution record.
+2. Send `GET /api/users/me` using the isolated identity shown in the execution record.
+
+### Expected
+
+Observe behavior only: the specification does not define partial update versus full replacement.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.381Z",
+  "trace": [
+    {
+      "method": "PUT",
+      "url": "/api/users/me",
+      "authentication": "isolated JWT (redacted)",
+      "input": {
+        "name": "Only Name"
+      },
+      "status": 200,
+      "body": {
+        "message": "Profile updated"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "/api/users/me",
+      "authentication": "isolated JWT (redacted)",
+      "input": null,
+      "status": 200,
+      "body": {
+        "id": 2,
+        "name": "Only Name",
+        "email": "test@eshop.com",
+        "password": "<REDACTED>",
+        "role": "user",
+        "login_attempts": 0,
+        "locked_until": null,
+        "reset_token": null,
+        "shipping_address": null,
+        "phone": null
+      }
+    }
+  ],
+  "observed": {
+    "status": 200,
+    "phone": null,
+    "address": null
+  }
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-api-27).
+
+
+<a id="a-api-28"></a>
+
+## A-API-28
+
+**Objective:** O2: checkout without shipping_address
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | Observe cross-feature default-address behavior; FR-08 does not expressly require copying the profile address. |
+| Domains | A-D14 |
+| Seam | API |
+| Status | OBSERVATION |
+| Bug | - |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+[
+  {
+    "method": "POST",
+    "url": "/api/checkout",
+    "input": {
+      "items": [
+        {
+          "id": 1,
+          "quantity": 1
+        }
+      ],
+      "total_amount": 30000000,
+      "coupon_id": null
+    }
+  },
+  {
+    "method": "GET",
+    "url": "/api/orders/my-orders",
+    "input": null
+  }
+]
+```
+
+### Steps
+
+1. Send `POST /api/checkout` using the isolated identity shown in the execution record.
+2. Send `GET /api/orders/my-orders` using the isolated identity shown in the execution record.
+
+### Expected
+
+Observe cross-feature default-address behavior; FR-08 does not expressly require copying the profile address.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.394Z",
+  "trace": [
+    {
+      "method": "POST",
+      "url": "/api/checkout",
+      "authentication": "isolated JWT (redacted)",
+      "input": {
+        "items": [
+          {
+            "id": 1,
+            "quantity": 1
+          }
+        ],
+        "total_amount": 30000000,
+        "coupon_id": null
+      },
+      "status": 200,
+      "body": {
+        "message": "Checkout successful",
+        "orderId": 1
+      }
+    },
+    {
+      "method": "GET",
+      "url": "/api/orders/my-orders",
+      "authentication": "isolated JWT (redacted)",
+      "input": null,
+      "status": 200,
+      "body": [
+        {
+          "id": 1,
+          "user_id": 2,
+          "total_amount": 30000000,
+          "status": "pending",
+          "shipping_address": null,
+          "created_at": "2026-10-20 07:21:52"
+        }
+      ]
+    }
+  ],
+  "observed": {
+    "checkoutStatus": 200,
+    "orderShippingAddress": null
+  }
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-api-28).
+
+
+<a id="a-api-29"></a>
+
+## A-API-29
+
+**Objective:** Related login response excludes user secrets
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | SEC-01 storage rule; supplementary OWASP API3 response minimization |
+| Domains | A-D12 |
+| Seam | API |
+| Status | FAIL |
+| Bug | FR04-20 |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+[
+  {
+    "method": "POST",
+    "url": "/api/login",
+    "input": {
+      "email": "test@eshop.com",
+      "password": "<REDACTED>"
+    }
+  }
+]
+```
+
+### Steps
+
+1. Send `POST /api/login` using the isolated identity shown in the execution record.
+
+### Expected
+
+JWT remains a legitimate login output; nested user must exclude password/reset_token under the supplementary response-minimization oracle.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.404Z",
+  "trace": [
+    {
+      "method": "POST",
+      "url": "/api/login",
+      "authentication": "none",
+      "input": {
+        "email": "test@eshop.com",
+        "password": "<REDACTED>"
+      },
+      "status": 200,
+      "body": {
+        "message": "Login successful",
+        "token": "<REDACTED>",
+        "user": {
+          "id": 2,
+          "name": "Test User",
+          "email": "test@eshop.com",
+          "password": "<REDACTED>",
+          "role": "user",
+          "login_attempts": 0,
+          "locked_until": null,
+          "reset_token": null,
+          "shipping_address": "1 Test Street",
+          "phone": "0912345678"
+        }
+      }
+    }
+  ],
+  "observed": {
+    "passwordMatchesFixture": true,
+    "nestedKeys": [
+      "id",
+      "name",
+      "email",
+      "password",
+      "role",
+      "login_attempts",
+      "locked_until",
+      "reset_token",
+      "shipping_address",
+      "phone"
+    ]
+  }
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-api-29).
+
+
+<a id="a-hnd-01"></a>
+
+## A-HND-01
+
+**Objective:** Mobile profile handler phone 0912345678
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | FR-04 phone rule |
+| Domains | A-D15 |
+| Seam | Source handler + HTTP adapter |
+| Status | FAIL |
+| Bug | FR04-22 |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+{
+  "phone": "0912345678",
+  "shouldAccept": true,
+  "httpCalls": 0,
+  "alerts": [
+    [
+      "Lỗi",
+      "Số điện thoại không hợp lệ. Vui lòng nhập đúng 9-10 chữ số."
+    ]
+  ],
+  "localUser": null,
+  "persistedAddress": null,
+  "sourceBodySha256": "a6975cfae3415194652d76547f7feedacf830c906bad0f21e6c4f9ba696eec74",
+  "evidenceScope": "Exact source handler executed with injected Alert/setUser and loopback HTTP. No React render, device, UI screenshot or native interaction."
+}
+```
+
+### Steps
+
+1. Establish the documented isolated fixture and target evidence seam.
+2. Execute the unchanged Mobile update handler with captured Alert/setUser and loopback HTTP adapters for the five documented phone representatives.
+3. Compare the observed response/state with the sourced expected criterion.
+
+### Expected
+
+Accept the valid 0-prefixed phone and reach the update request.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.507Z",
+  "trace": [],
+  "observed": {
+    "phone": "0912345678",
+    "shouldAccept": true,
+    "httpCalls": 0,
+    "alerts": [
+      [
+        "Lỗi",
+        "Số điện thoại không hợp lệ. Vui lòng nhập đúng 9-10 chữ số."
+      ]
+    ],
+    "localUser": null,
+    "persistedAddress": null,
+    "sourceBodySha256": "a6975cfae3415194652d76547f7feedacf830c906bad0f21e6c4f9ba696eec74",
+    "evidenceScope": "Exact source handler executed with injected Alert/setUser and loopback HTTP. No React render, device, UI screenshot or native interaction."
+  }
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-hnd-01).
+
+
+<a id="a-hnd-02"></a>
+
+## A-HND-02
+
+**Objective:** Mobile profile handler phone 09123456789
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | FR-04 phone rule |
+| Domains | A-D15 |
+| Seam | Source handler + HTTP adapter |
+| Status | FAIL |
+| Bug | FR04-23 |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+{
+  "phone": "09123456789",
+  "shouldAccept": true,
+  "httpCalls": 0,
+  "alerts": [
+    [
+      "Lỗi",
+      "Số điện thoại không hợp lệ. Vui lòng nhập đúng 9-10 chữ số."
+    ]
+  ],
+  "localUser": null,
+  "persistedAddress": null,
+  "sourceBodySha256": "a6975cfae3415194652d76547f7feedacf830c906bad0f21e6c4f9ba696eec74",
+  "evidenceScope": "Exact source handler executed with injected Alert/setUser and loopback HTTP. No React render, device, UI screenshot or native interaction."
+}
+```
+
+### Steps
+
+1. Establish the documented isolated fixture and target evidence seam.
+2. Execute the unchanged Mobile update handler with captured Alert/setUser and loopback HTTP adapters for the five documented phone representatives.
+3. Compare the observed response/state with the sourced expected criterion.
+
+### Expected
+
+Accept the valid 0-prefixed phone and reach the update request.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.510Z",
+  "trace": [],
+  "observed": {
+    "phone": "09123456789",
+    "shouldAccept": true,
+    "httpCalls": 0,
+    "alerts": [
+      [
+        "Lỗi",
+        "Số điện thoại không hợp lệ. Vui lòng nhập đúng 9-10 chữ số."
+      ]
+    ],
+    "localUser": null,
+    "persistedAddress": null,
+    "sourceBodySha256": "a6975cfae3415194652d76547f7feedacf830c906bad0f21e6c4f9ba696eec74",
+    "evidenceScope": "Exact source handler executed with injected Alert/setUser and loopback HTTP. No React render, device, UI screenshot or native interaction."
+  }
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-hnd-02).
+
+
+<a id="a-hnd-03"></a>
+
+## A-HND-03
+
+**Objective:** Mobile profile handler phone 1912345678
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | FR-04 phone rule |
+| Domains | A-D15 |
+| Seam | Source handler + HTTP adapter |
+| Status | FAIL |
+| Bug | FR04-24 |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+[
+  {
+    "method": "PUT",
+    "url": "/api/users/me",
+    "input": {
+      "name": "Mobile User",
+      "phone": "1912345678",
+      "shippingAddress": "Mobile Address"
+    }
+  },
+  {
+    "method": "GET",
+    "url": "/api/users/me",
+    "input": null
+  }
+]
+```
+
+### Steps
+
+1. Send `PUT /api/users/me` using the isolated identity shown in the execution record.
+2. Send `GET /api/users/me` using the isolated identity shown in the execution record.
+
+### Expected
+
+Reject invalid phone before any HTTP mutation.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.512Z",
+  "trace": [
+    {
+      "method": "PUT",
+      "url": "/api/users/me",
+      "authentication": "isolated JWT (redacted)",
+      "input": {
+        "name": "Mobile User",
+        "phone": "1912345678",
+        "shippingAddress": "Mobile Address"
+      },
+      "status": 200,
+      "body": {
+        "message": "Profile updated"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "/api/users/me",
+      "authentication": "isolated JWT (redacted)",
+      "input": null,
+      "status": 200,
+      "body": {
+        "id": 2,
+        "name": "Mobile User",
+        "email": "test@eshop.com",
+        "password": "<REDACTED>",
+        "role": "user",
+        "login_attempts": 0,
+        "locked_until": null,
+        "reset_token": null,
+        "shipping_address": null,
+        "phone": "1912345678"
+      }
+    }
+  ],
+  "observed": {
+    "phone": "1912345678",
+    "shouldAccept": false,
+    "httpCalls": 1,
+    "alerts": [
+      [
+        "Thành công",
+        "Cập nhật thành công!"
+      ]
+    ],
+    "localUser": {
+      "id": 2,
+      "name": "Mobile User",
+      "shipping_address": "Mobile Address",
+      "phone": "1912345678"
+    },
+    "persistedAddress": null,
+    "sourceBodySha256": "a6975cfae3415194652d76547f7feedacf830c906bad0f21e6c4f9ba696eec74",
+    "evidenceScope": "Exact source handler executed with injected Alert/setUser and loopback HTTP. No React render, device, UI screenshot or native interaction."
+  }
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-hnd-03).
+
+
+<a id="a-hnd-04"></a>
+
+## A-HND-04
+
+**Objective:** Mobile profile handler phone 091234567
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | Reject invalid phone before any HTTP mutation. |
+| Domains | A-D15 |
+| Seam | Source handler + HTTP adapter |
+| Status | PASS |
+| Bug | - |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+{
+  "phone": "091234567",
+  "shouldAccept": false,
+  "httpCalls": 0,
+  "alerts": [
+    [
+      "Lỗi",
+      "Số điện thoại không hợp lệ. Vui lòng nhập đúng 9-10 chữ số."
+    ]
+  ],
+  "localUser": null,
+  "persistedAddress": null,
+  "sourceBodySha256": "a6975cfae3415194652d76547f7feedacf830c906bad0f21e6c4f9ba696eec74",
+  "evidenceScope": "Exact source handler executed with injected Alert/setUser and loopback HTTP. No React render, device, UI screenshot or native interaction."
+}
+```
+
+### Steps
+
+1. Execute the documented observation against an isolated fixture.
+2. Record the observed state without inventing an unspecified oracle.
+
+### Expected
+
+Reject invalid phone before any HTTP mutation.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.525Z",
+  "trace": [],
+  "observed": {
+    "phone": "091234567",
+    "shouldAccept": false,
+    "httpCalls": 0,
+    "alerts": [
+      [
+        "Lỗi",
+        "Số điện thoại không hợp lệ. Vui lòng nhập đúng 9-10 chữ số."
+      ]
+    ],
+    "localUser": null,
+    "persistedAddress": null,
+    "sourceBodySha256": "a6975cfae3415194652d76547f7feedacf830c906bad0f21e6c4f9ba696eec74",
+    "evidenceScope": "Exact source handler executed with injected Alert/setUser and loopback HTTP. No React render, device, UI screenshot or native interaction."
+  }
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-hnd-04).
+
+
+<a id="a-hnd-05"></a>
+
+## A-HND-05
+
+**Objective:** Mobile profile handler phone 091234567890
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | Reject invalid phone before any HTTP mutation. |
+| Domains | A-D15 |
+| Seam | Source handler + HTTP adapter |
+| Status | PASS |
+| Bug | - |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+{
+  "phone": "091234567890",
+  "shouldAccept": false,
+  "httpCalls": 0,
+  "alerts": [
+    [
+      "Lỗi",
+      "Số điện thoại không hợp lệ. Vui lòng nhập đúng 9-10 chữ số."
+    ]
+  ],
+  "localUser": null,
+  "persistedAddress": null,
+  "sourceBodySha256": "a6975cfae3415194652d76547f7feedacf830c906bad0f21e6c4f9ba696eec74",
+  "evidenceScope": "Exact source handler executed with injected Alert/setUser and loopback HTTP. No React render, device, UI screenshot or native interaction."
+}
+```
+
+### Steps
+
+1. Execute the documented observation against an isolated fixture.
+2. Record the observed state without inventing an unspecified oracle.
+
+### Expected
+
+Reject invalid phone before any HTTP mutation.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.527Z",
+  "trace": [],
+  "observed": {
+    "phone": "091234567890",
+    "shouldAccept": false,
+    "httpCalls": 0,
+    "alerts": [
+      [
+        "Lỗi",
+        "Số điện thoại không hợp lệ. Vui lòng nhập đúng 9-10 chữ số."
+      ]
+    ],
+    "localUser": null,
+    "persistedAddress": null,
+    "sourceBodySha256": "a6975cfae3415194652d76547f7feedacf830c906bad0f21e6c4f9ba696eec74",
+    "evidenceScope": "Exact source handler executed with injected Alert/setUser and loopback HTTP. No React render, device, UI screenshot or native interaction."
+  }
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-hnd-05).
+
+
+<a id="a-ui-08"></a>
+
+## A-UI-08
+
+**Objective:** Disabled profile email uses the semantic email input type
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | FR-22 email input type |
+| Domains | A-D16 |
+| Seam | Browser UI via Playwright |
+| Status | FAIL |
+| Bug | FR04-25 |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+{
+  "type": "text",
+  "disabled": true,
+  "outerHTML": "<input disabled=\"\" class=\"w-full border p-2 rounded bg-gray-100\" type=\"text\" value=\"test@eshop.com\">"
+}
+```
+
+### Steps
+
+1. Establish the documented isolated fixture and target evidence seam.
+2. Open Web /profile and inspect the disabled email input in the live DOM.
+3. Compare the observed response/state with the sourced expected criterion.
+
+### Expected
+
+FR-22: email fields use type=email, including a disabled field.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:43:51.616313+00:00",
+  "observed": {
+    "type": "text",
+    "disabled": true,
+    "outerHTML": "<input disabled=\"\" class=\"w-full border p-2 rounded bg-gray-100\" type=\"text\" value=\"test@eshop.com\">"
+  },
+  "expected": "FR-22: email fields use type=email, including a disabled field.",
+  "precondition": ""
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-ui-08).
+
+![A-UI-08](../evidence/screenshots/A/A-UI-08_email-field.jpg)
+
+
+<a id="a-ui-09"></a>
+
+## A-UI-09
+
+**Objective:** Profile name is rendered as inert text in the greeting
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | SEC-04 user input must be escaped |
+| Domains | A-D17 |
+| Seam | Browser UI via Playwright |
+| Status | FAIL |
+| Bug | FR04-26 |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+{
+  "stored_name": "<img src=x onerror=\"document.documentElement.dataset.profileCanary='executed';this.outerHTML='<b>PROFILE_CANARY_EXECUTED</b>'\">",
+  "canary_executed": true,
+  "persisted_via": "Authenticated PUT /api/users/me",
+  "update_response": {
+    "message": "Profile updated"
+  },
+  "greeting": "EShop\nGiỏ hàng\nChào, PROFILE_CANARY_EXECUTED\nThoát",
+  "scope": "Harmless DOM canary only; no token theft tested."
+}
+```
+
+### Steps
+
+1. Establish the documented isolated fixture and target evidence seam.
+2. Store the documented harmless img/onerror canary as the demo profile name; open Web /profile with that user and observe the header DOM.
+3. Compare the observed response/state with the sourced expected criterion.
+
+### Expected
+
+SEC-04: user-controlled name is escaped; an HTML event handler cannot execute.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:43:52.151983+00:00",
+  "observed": {
+    "stored_name": "<img src=x onerror=\"document.documentElement.dataset.profileCanary='executed';this.outerHTML='<b>PROFILE_CANARY_EXECUTED</b>'\">",
+    "canary_executed": true,
+    "persisted_via": "Authenticated PUT /api/users/me",
+    "update_response": {
+      "message": "Profile updated"
+    },
+    "greeting": "EShop\nGiỏ hàng\nChào, PROFILE_CANARY_EXECUTED\nThoát",
+    "scope": "Harmless DOM canary only; no token theft tested."
+  },
+  "expected": "SEC-04: user-controlled name is escaped; an HTML event handler cannot execute.",
+  "precondition": ""
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-ui-09).
+
+![A-UI-09](../evidence/screenshots/A/A-UI-09_stored-name-executes.jpg)
+
+
+<a id="a-ui-10"></a>
+
+## A-UI-10
+
+**Objective:** SPA profile re-entry displays the successfully saved name
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | FR-04 successful profile update and displayed persisted state |
+| Domains | A-D18 |
+| Seam | Browser UI via Playwright |
+| Status | FAIL |
+| Bug | FR04-27 |
+
+### Preconditions
+
+Controlled interaction: the pre-existing phone 1912345678 is accepted by the faulty UI guard. Normal valid 0-prefixed saves are masked by FR04-15, FR04-16, FR04-17; no claim that this fixture is SRS-valid.
+
+### Input
+
+```json
+{
+  "save_dialogs": [
+    "Cập nhật thành công!"
+  ],
+  "persisted_name": "Saved Profile Canary",
+  "shown_after_navigation": "Test User",
+  "hard_reload_would_refetch": true,
+  "phone": "1912345678"
+}
+```
+
+### Steps
+
+1. Establish the documented isolated fixture and target evidence seam.
+2. Using the explicitly documented UI-accepted phone fixture, save a new name, confirm it via GET, navigate home with the SPA link and return to profile without reload.
+3. Compare the observed response/state with the sourced expected criterion.
+
+### Expected
+
+After a successful profile save, returning via SPA navigation displays the persisted fields.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:43:53.025509+00:00",
+  "observed": {
+    "save_dialogs": [
+      "Cập nhật thành công!"
+    ],
+    "persisted_name": "Saved Profile Canary",
+    "shown_after_navigation": "Test User",
+    "hard_reload_would_refetch": true,
+    "phone": "1912345678"
+  },
+  "expected": "After a successful profile save, returning via SPA navigation displays the persisted fields.",
+  "precondition": "Controlled interaction: the pre-existing phone 1912345678 is accepted by the faulty UI guard. Normal valid 0-prefixed saves are masked by BUG-A03; no claim that this fixture is SRS-valid."
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/A-execution.md#a-ui-10).
+
+![A-UI-10](../evidence/screenshots/A/A-UI-10_after-save.jpg)
+
+![A-UI-10](../evidence/screenshots/A/A-UI-10_stale-after-navigation.jpg)
