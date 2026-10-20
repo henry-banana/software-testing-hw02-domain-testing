@@ -1,9 +1,21 @@
 Git Commit Log - HW02
 
-Snapshot HEAD: bcedd00876f6e126cde7915dca952a1dbe0db3c7
-Exported at UTC: 2026-10-20T04:43:48.350Z
+Snapshot HEAD: 0c4621ea21b265a22d183671a30667fc2dfe4402
+Exported at UTC: 2026-10-20T04:47:43.182Z
 Scope: complete reachable history through Snapshot HEAD. The later commit recording this export itself is outside that boundary.
 Dates are actual Git dates; no historical steps were recreated from the old standalone log.
+
+commit 0c4621ea21b265a22d183671a30667fc2dfe4402
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T11:47:43+07:00
+
+    docs(evidence): name and link 18 Issue page screenshots
+
+commit 5fb600c165db32eeb79db23c969a80587141b0c6
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T11:43:48+07:00
+
+    docs(hw02): export Git history after template and Issue updates
 
 commit bcedd00876f6e126cde7915dca952a1dbe0db3c7
 Author: Duong Thai Hoa Tong
