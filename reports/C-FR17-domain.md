@@ -1,9 +1,6 @@
-# C - Domain Testing và Boundary Value Analysis
+# Feature C - FR-17 - Quản lý mã giảm giá
 
-**Feature:** FR-17 - Quản lý mã giảm giá<br>
-**SUT:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`.
-
-## 1. Requirements và oracle
+### 5.1. Requirements và oracle
 
 | Rule | Nội dung theo SRS | Domain |
 |---|---|---|
@@ -13,55 +10,45 @@
 | FR-17.4 | discount_value>0; min_order_amount>=0; max_uses_per_user>=1 | C-D5-D7 |
 | FR-12 / SEC-03 | Admin API phải kiểm tra role=admin trong token | C-D8-D10 |
 
-[Nguồn SRS cố định](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md). Các tên rule dạng FR-04.1 trong báo cáo là nhãn nội bộ để truy vết, không phải mã mới của SRS.
+[Nguồn SRS cố định](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md). Các nhãn rule trong bảng được dùng để truy vết giữa yêu cầu, domain và test case.
 
 Contract API: POST `/api/admin/coupons`; GET `/api/coupons`; DELETE `/api/admin/coupons/:id`. Body snake_case, enum `percent`/`fixed`. Tên "CRUD" không tự tạo yêu cầu Update.
 
-## 2. Domain Testing - quy trình từng bước
+### 5.2. Domain Testing - quy trình từng bước
 
-Chúng tôi lấy SRS làm oracle, sau đó dùng source để xây dựng giả thuyết và giải thích nguyên nhân. Source không thay thế yêu cầu. Mỗi TC có ID ổn định; một TC có thể phủ cả Domain Testing và BVA nhưng chỉ được tính một lần. Chúng tôi tách API với Web/Admin/Mobile UI vì validation ở một lớp không chứng minh lớp còn lại đạt.
+#### Bước 1 - Xác định inputs/outputs
 
-Với từng input/state, chúng tôi xác định miền hợp lệ, phần bù không hợp lệ, precision và các ràng buộc giữa các chiều. Các lớp trong cùng một chiều được chọn để phân biệt hành vi; bảng nhiều chiều không có nghĩa mọi hàng đều là các tập rời nhau của toàn bộ vector. Test invalid giữ các chiều khác nominal; interaction nhiều lỗi có chủ đích được ghi riêng. Chúng tôi dùng readback public HTTP sau thay đổi để kiểm tra hậu điều kiện.
+Vector gồm `(requester role/JWT, code, type, discount_value, min_order_amount, expired_at, max_uses_per_user, operation)`. Đầu ra gồm phản hồi Create/List/Delete và trạng thái coupon đọc lại qua GET /api/coupons.
 
-BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu >= hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
+#### Bước 2 - Thiết lập nominal fixture
 
-API execution dùng backend copy, clock cố định và fixture reset mỗi TC. UI evidence là ảnh thật đã cung cấp; không suy timestamp chạy từ ngày sửa file, không dùng ảnh vẽ hoặc build output làm bằng chứng UI. PASS/FAIL chỉ kết luận theo criterion có evidence; OBSERVATION dành cho oracle chưa quy định; INCOMPLETE dành cho TC còn thiếu bước/precondition/evidence. Một TC INCOMPLETE có thể đã được thao tác một phần, nhưng không được cộng vào executed đủ bằng chứng.
+Payload nominal sử dụng code riêng biệt, enum hợp lệ, discount_value dương, min_order_amount không âm, expired_at và max_uses_per_user hợp lệ. Admin thực hiện các case dữ liệu; user thường và thiếu JWT được dùng cho các case quyền truy cập.
 
-Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL mục 4.2.1-4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
+#### Bước 3 - Chia lớp hợp lệ/không hợp lệ
 
-### Bước 1 - Xác định inputs/outputs
+Các lớp bao gồm required fields, code rỗng/trùng, enum ngoài percent/fixed và miền số của ba trường giá trị. Authentication và role được phân lớp riêng cho từng operation Create/List/Delete.
 
-Vector `(requester role/JWT, code, type, discount_value, min_order_amount, expired_at, max_uses_per_user, operation)`. Output gồm thông báo, response và hậu điều kiện ở profile/coupon/cart tương ứng.
+#### Bước 4 - Cô lập một điều kiện sai
 
-### Bước 2 - Thiết lập nominal fixture
+Từng required field được bỏ riêng trong khi năm trường còn lại hợp lệ. Các case zero, negative và enum sai giữ code unique cùng quyền Admin, giúp tránh lỗi uniqueness hoặc authorization che khuất validation mục tiêu.
 
-Bỏ từng required field, giữ năm field còn lại đúng. Code unique được kiểm bằng row count; auth và role kiểm riêng cho Create/List/Delete vì một route đạt không chứng minh route khác đạt.
+#### Bước 5 - Chọn đại diện và giải thích
 
-### Bước 3 - Chia lớp hợp lệ/không hợp lệ
+Giá trị -1, 0, 1 và 2 được chọn theo ràng buộc từng trường. Code trùng được kiểm tra bằng số row và dữ liệu đọc lại. Create, View và Delete được đánh giá riêng; phạm vi không bao gồm Update.
 
-Mỗi domain ID dưới đây mô tả một điều kiện hoặc chiều. Ghi representative, expected và TC phủ; phần không có oracle được tách observation.
+#### Bước 6 - Phân tích cross-constraint
 
-### Bước 4 - Cô lập một điều kiện sai
+Payload hợp lệ vẫn phải đáp ứng role của operation. Sau Create, các trường phải khớp dữ liệu gửi; sau Delete, coupon đích phải biến mất và coupon đối chứng được giữ nguyên. Một route có kiểm tra quyền không đại diện cho các route còn lại.
 
-Giữ fixture, auth và dữ liệu ngoài mục tiêu hợp lệ; ghi interaction nhiều lỗi riêng. Không dùng success response làm bằng chứng persistence nếu chưa readback.
+#### Bước 7 - Đối chiếu hypothesis bằng thực thi
 
-### Bước 5 - Chọn đại diện và giải thích
+Các request POST/DELETE được theo sau bởi GET /api/coupons để kiểm tra hậu điều kiện. Admin UI cung cấp bằng chứng về coupon được tạo, hiển thị và xóa. Raw records được dùng để phân biệt zero bị đổi thành 1 với negative được giữ nguyên.
 
-Dùng giá trị dễ kiểm bằng tay; thêm các lân cận và identity/state classes. Một đại diện không chứng minh mọi phần tử của lớp đều đã chạy.
+#### Bước 8 - Review coverage và AI output
 
-### Bước 6 - Phân tích cross-constraint
+Contract snake_case, enum percent/fixed và endpoint readback được đối chiếu với API specification. Mapping C-API-12/13 và C-API-18/19 được kiểm tra theo input thực tế. Uniqueness đạt nên không lập Issue cho điều kiện code trùng.
 
-A: target=JWT user và role unchanged; B: C1∧C2∧C3∧C4∧C5; C: dữ liệu đúng vẫn cần role đúng; D: quantity ảnh hưởng cart và tổng tiền. Chỉ các ví dụ liên quan feature này được áp dụng.
-
-### Bước 7 - Đối chiếu hypothesis bằng thực thi
-
-Source đưa ra giả thuyết; API/ảnh UI kiểm hành vi công khai. Các bug hypothesis không được tính confirmed chỉ từ static suspicion.
-
-### Bước 8 - Review coverage và AI output
-
-Kiểm domain->TC->actual->bug; sửa metadata/expected sai. Giữ các vùng oracle chưa rõ và evidence thiếu ở trạng thái riêng.
-
-## 3. Domain partition và traceability
+### 5.3. Domain partition và traceability
 
 | Domain ID | Chiều/lớp | Loại | Representative | Expected | TC coverage |
 |---|---|---|---|---|---|
@@ -76,14 +63,14 @@ Kiểm domain->TC->actual->bug; sửa metadata/expected sai. Giữ các vùng or
 | C-D9 | List permission | Role/auth | Admin/user/none | Admin allow; user/none deny | [C-API-25](../tests/C-FR17-coupon-management.md#c-api-25), [C-API-26](../tests/C-FR17-coupon-management.md#c-api-26), [C-API-27](../tests/C-FR17-coupon-management.md#c-api-27) |
 | C-D10 | Delete permission | Role/auth | Admin/user/none; coupon có thật | Admin xóa đúng row; user/none không xóa | [C-API-28](../tests/C-FR17-coupon-management.md#c-api-28), [C-API-29](../tests/C-FR17-coupon-management.md#c-api-29), [C-API-30](../tests/C-FR17-coupon-management.md#c-api-30), [C-UI-06](../tests/C-FR17-coupon-management.md#c-ui-06) |
 
-## 4. Boundary Value Analysis - từng bước
+### 5.4. Boundary Value Analysis - từng bước
 
-1. Chọn biến có thứ tự và miền áp dụng từ rule; không lấy giới hạn tùy ý trong code.
-2. Viết bất đẳng thức và xác định điểm equality hợp lệ hay không.
-3. Ghi precision của fixture, lấy điểm biên và lân cận hai phía.
-4. Giữ các chiều ngoài biên đang xét nominal; thêm giao biên khi có lý do.
-5. Tính expected độc lập; liên kết TC và phân biệt numerical boundary với missing/type domain.
-6. So actual với expected; khi rounding/MAX/reset không có rule, giữ observation hoặc giới hạn kết luận.
+1. Các biến số được xác định là discount_value, min_order_amount và max_uses_per_user.
+2. Ràng buộc lần lượt là v > 0, m >= 0 và k >= 1, trong đó k là số lượt nguyên.
+3. Fixture tiền dùng bước 1 VND; fixture số lượt dùng bước 1 lượt. Các trường khác và quyền Admin được giữ nominal.
+4. Các điểm -1/0/1 và 0/1/2 được chọn theo từng ràng buộc, kèm negative interior để kiểm tra đường xử lý giá trị âm.
+5. Sau Create, dữ liệu đọc lại được đối chiếu với input để phân biệt chấp nhận dữ liệu sai và biến đổi dữ liệu ngầm.
+6. expired_at bị thiếu được kiểm tra như required-field domain; quy tắc cấm tạo mã hết hạn không được bổ sung khi SRS không quy định.
 
 | Biến | Rule | Delta/precision | Điểm chọn và giải thích | Cases |
 |---|---|---|---|---|
@@ -92,63 +79,72 @@ Kiểm domain->TC->actual->bug; sửa metadata/expected sai. Giữ các vùng or
 | max_uses_per_user k | k >= 1, k là số lượt | 1 lượt | 0 invalid; 1 ON valid; 2 valid; -1 thêm invalid interior | C-API-18-21; C-UI-04 |
 | expired_at presence | Field bắt buộc | Không áp BVA ngày ở create | Thiếu field là Domain; SRS không cấm tạo mã hết hạn | C-API-07 |
 
-## 5. Kết quả thực thi
+### 5.5. Kết quả thực thi
 
 | TC | Status | Actual tóm tắt | Bug |
 |---|---|---|---|
 | [C-API-01](../tests/C-FR17-coupon-management.md#c-api-01) | PASS | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":13}<br>GET /api/coupons -> HTTP 200: array 9 rows | - |
 | [C-API-02](../tests/C-FR17-coupon-management.md#c-api-02) | PASS | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":22}<br>GET /api/coupons -> HTTP 200: array 9 rows | - |
-| [C-API-03](../tests/C-FR17-coupon-management.md#c-api-03) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":31}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C01 |
-| [C-API-04](../tests/C-FR17-coupon-management.md#c-api-04) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":40}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C01 |
-| [C-API-05](../tests/C-FR17-coupon-management.md#c-api-05) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":49}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C01 |
-| [C-API-06](../tests/C-FR17-coupon-management.md#c-api-06) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":58}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C01 |
-| [C-API-07](../tests/C-FR17-coupon-management.md#c-api-07) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":67}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C01 |
-| [C-API-08](../tests/C-FR17-coupon-management.md#c-api-08) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":76}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C01 |
-| [C-API-09](../tests/C-FR17-coupon-management.md#c-api-09) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":85}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C01 |
+| [C-API-03](../tests/C-FR17-coupon-management.md#c-api-03) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":31}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
+| [C-API-04](../tests/C-FR17-coupon-management.md#c-api-04) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":40}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
+| [C-API-05](../tests/C-FR17-coupon-management.md#c-api-05) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":49}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
+| [C-API-06](../tests/C-FR17-coupon-management.md#c-api-06) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":58}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
+| [C-API-07](../tests/C-FR17-coupon-management.md#c-api-07) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":67}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
+| [C-API-08](../tests/C-FR17-coupon-management.md#c-api-08) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":76}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
+| [C-API-09](../tests/C-FR17-coupon-management.md#c-api-09) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":85}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
 | [C-API-10](../tests/C-FR17-coupon-management.md#c-api-10) | PASS | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 500: {"error":"SQLITE_CONSTRAINT: UNIQUE constraint failed: coupons.code"}<br>GET /api/coupons -> HTTP 200: array 8 rows | - |
-| [C-API-11](../tests/C-FR17-coupon-management.md#c-api-11) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":102}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C03 |
-| [C-API-12](../tests/C-FR17-coupon-management.md#c-api-12) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":111}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C04 |
-| [C-API-13](../tests/C-FR17-coupon-management.md#c-api-13) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":120}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C04 |
+| [C-API-11](../tests/C-FR17-coupon-management.md#c-api-11) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":102}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-08 |
+| [C-API-12](../tests/C-FR17-coupon-management.md#c-api-12) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":111}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-09, FR17-10 |
+| [C-API-13](../tests/C-FR17-coupon-management.md#c-api-13) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":120}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-09, FR17-10 |
 | [C-API-14](../tests/C-FR17-coupon-management.md#c-api-14) | PASS | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":129}<br>GET /api/coupons -> HTTP 200: array 9 rows | - |
-| [C-API-15](../tests/C-FR17-coupon-management.md#c-api-15) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":138}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C05 |
+| [C-API-15](../tests/C-FR17-coupon-management.md#c-api-15) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":138}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-11 |
 | [C-API-16](../tests/C-FR17-coupon-management.md#c-api-16) | PASS | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":147}<br>GET /api/coupons -> HTTP 200: array 9 rows | - |
 | [C-API-17](../tests/C-FR17-coupon-management.md#c-api-17) | PASS | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":156}<br>GET /api/coupons -> HTTP 200: array 9 rows | - |
-| [C-API-18](../tests/C-FR17-coupon-management.md#c-api-18) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":165}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C06 |
-| [C-API-19](../tests/C-FR17-coupon-management.md#c-api-19) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":174}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C06 |
+| [C-API-18](../tests/C-FR17-coupon-management.md#c-api-18) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":165}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-12, FR17-13 |
+| [C-API-19](../tests/C-FR17-coupon-management.md#c-api-19) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":174}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-12, FR17-13 |
 | [C-API-20](../tests/C-FR17-coupon-management.md#c-api-20) | PASS | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":183}<br>GET /api/coupons -> HTTP 200: array 9 rows | - |
 | [C-API-21](../tests/C-FR17-coupon-management.md#c-api-21) | PASS | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":192}<br>GET /api/coupons -> HTTP 200: array 9 rows | - |
 | [C-API-22](../tests/C-FR17-coupon-management.md#c-api-22) | PASS | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 401: {"error":"Unauthorized"}<br>GET /api/coupons -> HTTP 200: array 8 rows | - |
-| [C-API-23](../tests/C-FR17-coupon-management.md#c-api-23) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":209}<br>GET /api/coupons -> HTTP 200: array 9 rows | BUG-C07 |
+| [C-API-23](../tests/C-FR17-coupon-management.md#c-api-23) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 200: {"message":"Coupon created","id":209}<br>GET /api/coupons -> HTTP 200: array 9 rows | FR17-14 |
 | [C-API-24](../tests/C-FR17-coupon-management.md#c-api-24) | PASS | GET /api/coupons -> HTTP 200: array 8 rows<br>POST /api/admin/coupons -> HTTP 403: {"error":"Forbidden"}<br>GET /api/coupons -> HTTP 200: array 8 rows | - |
 | [C-API-25](../tests/C-FR17-coupon-management.md#c-api-25) | PASS | GET /api/coupons -> HTTP 200: array 8 rows | - |
-| [C-API-26](../tests/C-FR17-coupon-management.md#c-api-26) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows | BUG-C08 |
+| [C-API-26](../tests/C-FR17-coupon-management.md#c-api-26) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows | FR17-15 |
 | [C-API-27](../tests/C-FR17-coupon-management.md#c-api-27) | PASS | GET /api/coupons -> HTTP 401: {"error":"Unauthorized"} | - |
 | [C-API-28](../tests/C-FR17-coupon-management.md#c-api-28) | PASS | GET /api/coupons -> HTTP 200: array 8 rows<br>DELETE /api/admin/coupons/249 -> HTTP 200: {"message":"Coupon deleted"}<br>GET /api/coupons -> HTTP 200: array 7 rows | - |
-| [C-API-29](../tests/C-FR17-coupon-management.md#c-api-29) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>DELETE /api/admin/coupons/257 -> HTTP 200: {"message":"Coupon deleted"}<br>GET /api/coupons -> HTTP 200: array 7 rows | BUG-C09 |
+| [C-API-29](../tests/C-FR17-coupon-management.md#c-api-29) | FAIL | GET /api/coupons -> HTTP 200: array 8 rows<br>DELETE /api/admin/coupons/257 -> HTTP 200: {"message":"Coupon deleted"}<br>GET /api/coupons -> HTTP 200: array 7 rows | FR17-16 |
 | [C-API-30](../tests/C-FR17-coupon-management.md#c-api-30) | PASS | GET /api/coupons -> HTTP 200: array 8 rows<br>DELETE /api/admin/coupons/265 -> HTTP 401: {"error":"Unauthorized"}<br>GET /api/coupons -> HTTP 200: array 8 rows | - |
-| [C-UI-01](../tests/C-FR17-coupon-management.md#c-ui-01) | FAIL | Coupon có discount_value=0 được tạo và xuất hiện trong danh sách. | BUG-C04 |
-| [C-UI-02](../tests/C-FR17-coupon-management.md#c-ui-02) | PASS | Sau reload, ảnh danh sách vẫn có HW02_C_UI_02: fixed, discount_value=1, min_order_amount=0, expired_at=2099-12-31, max_uses_per_user=1. Sinh viên xác nhận ảnh danh sách dùng chung này là evidence cho C-UI-02 và C-UI-06. | - |
-| [C-UI-03](../tests/C-FR17-coupon-management.md#c-ui-03) | FAIL | Coupon với min_order_amount=-1 được tạo và hiển thị ngưỡng âm. | BUG-C05 |
+| [C-UI-01](../tests/C-FR17-coupon-management.md#c-ui-01) | FAIL | Coupon có discount_value=0 được tạo và xuất hiện trong danh sách. | FR17-09, FR17-10 |
+| [C-UI-02](../tests/C-FR17-coupon-management.md#c-ui-02) | PASS | Sau reload, ảnh danh sách vẫn có HW02_C_UI_02: fixed, discount_value=1, min_order_amount=0, expired_at=2099-12-31, max_uses_per_user=1. Ảnh danh sách được dùng chung cho C-UI-02/C-UI-06, kết hợp xác nhận thao tác sau reload. | - |
+| [C-UI-03](../tests/C-FR17-coupon-management.md#c-ui-03) | FAIL | Coupon với min_order_amount=-1 được tạo và hiển thị ngưỡng âm. | FR17-11 |
 | [C-UI-04](../tests/C-FR17-coupon-management.md#c-ui-04) | PASS | Browser native validation chặn max_uses_per_user=0 ở bước submit. Đây là PASS của frontend rejection; C-API-19 vẫn FAIL ở backend. | - |
 | [C-UI-05](../tests/C-FR17-coupon-management.md#c-ui-05) | PASS | Tạo trùng SAVE10 trả lỗi UNIQUE. Source/schema và C-API-10 xác nhận không có bản ghi trùng; không tự đặt HTTP 409 làm oracle. | - |
-| [C-UI-06](../tests/C-FR17-coupon-management.md#c-ui-06) | PASS | Ảnh trước đó có HW02_DELETE_UI; ảnh danh sách dùng chung không còn coupon này, vẫn còn HW02_C_UI_02 và SAVE10. Sinh viên xác nhận ảnh chung được dùng cho bước sau xóa/reload của C-UI-06. | - |
+| [C-UI-06](../tests/C-FR17-coupon-management.md#c-ui-06) | PASS | Ảnh trước đó có HW02_DELETE_UI; ảnh danh sách dùng chung không còn coupon này, vẫn còn HW02_C_UI_02 và SAVE10. Xác nhận thao tác xác định ảnh chung thuộc bước sau xóa/reload của C-UI-06. | - |
 
-## 6. Spec vs Code và bug groups
+### 5.6. Spec vs Code và findings
 
-| Bug | Rule | Nguyên nhân có source support | Representative |
-|---|---|---|---|
-| [BUG-C01](../bugs/BUG-C01.md) | FR-17 required fields | Route INSERT không kiểm tra presence; schema cho phép NULL/default ở các field này. | C-API-03 |
-| [BUG-C03](../bugs/BUG-C03.md) | FR-17 type enum | Route không whitelist type trước INSERT; DB không enforce enum. | C-API-11 |
-| [BUG-C04](../bugs/BUG-C04.md) | FR-17 discount_value>0 | Route không kiểm tra giá trị dương; C-API-12 là -1, C-API-13 là 0. | C-API-13 |
-| [BUG-C05](../bugs/BUG-C05.md) | FR-17 min_order_amount>=0 | Route không kiểm tra ngưỡng không âm trước INSERT. | C-API-15 |
-| [BUG-C06](../bugs/BUG-C06.md) | FR-17 max_uses_per_user>=1 | Source dùng max_uses_per_user &#124;&#124; 1: 0 trở thành1, -1 truthy nên giữ nguyên. Không phải Math.max. | C-API-19 |
-| [BUG-C07](../bugs/BUG-C07.md) | FR-12 / SEC-03 / FR-17 | Route POST có authenticateToken nhưng không kiểm tra req.user.role===admin. | C-API-23 |
-| [BUG-C08](../bugs/BUG-C08.md) | FR-12 / SEC-03 / FR-17 | GET /api/coupons chỉ xác thực token; không kiểm tra role. Đây là endpoint Admin UI dùng xem danh sách. | C-API-26 |
-| [BUG-C09](../bugs/BUG-C09.md) | FR-12 / SEC-03 / FR-17 | DELETE /api/admin/coupons/:id chỉ authenticateToken, thiếu role guard. | C-API-29 |
+| ID | Điều kiện vi phạm | Oracle / root cause |
+|---|---|---|
+| [FR17-01](../bugs/FR17-01.md) | Coupon creation accepts a missing required code | FR-17 required fields; The creation route passes request values directly to SQLite without required-field checks. |
+| [FR17-02](../bugs/FR17-02.md) | Coupon creation accepts a missing required type | FR-17 required fields; The creation route passes request values directly to SQLite without required-field checks. |
+| [FR17-03](../bugs/FR17-03.md) | Coupon creation accepts a missing required discount_value | FR-17 required fields; The creation route passes request values directly to SQLite without required-field checks. |
+| [FR17-04](../bugs/FR17-04.md) | Coupon creation accepts a missing required min_order_amount | FR-17 required fields; The creation route passes request values directly to SQLite without required-field checks. |
+| [FR17-05](../bugs/FR17-05.md) | Coupon creation accepts a missing required expired_at | FR-17 required fields; The creation route passes request values directly to SQLite without required-field checks. |
+| [FR17-06](../bugs/FR17-06.md) | Coupon creation accepts a missing required max_uses_per_user | FR-17 required fields; The creation route passes request values directly to SQLite without required-field checks. |
+| [FR17-07](../bugs/FR17-07.md) | Coupon creation accepts an empty code | FR-17 required fields; The creation route passes request values directly to SQLite without required-field checks. |
+| [FR17-08](../bugs/FR17-08.md) | Coupon creation persists a type outside percent and fixed | FR-17 enum; Neither the route nor database schema enforces the declared enum. |
+| [FR17-09](../bugs/FR17-09.md) | Coupon creation accepts a negative discount_value | FR-17 discount_value > 0; There is no positive-value validation before INSERT. |
+| [FR17-10](../bugs/FR17-10.md) | Coupon creation accepts discount_value equal to zero | FR-17 discount_value > 0; There is no positive-value validation before INSERT. |
+| [FR17-11](../bugs/FR17-11.md) | Coupon creation accepts a negative min_order_amount | FR-17 min_order_amount >= 0; The route has no nonnegative minimum check. |
+| [FR17-12](../bugs/FR17-12.md) | Coupon creation accepts a negative max_uses_per_user | FR-17 max_uses_per_user >= 1; The expression max_uses_per_user || 1 substitutes only falsy input and does not validate the range. |
+| [FR17-13](../bugs/FR17-13.md) | Coupon creation silently changes a zero max_uses_per_user to one | FR-17 max_uses_per_user >= 1; The expression max_uses_per_user || 1 substitutes only falsy input and does not validate the range. |
+| [FR17-14](../bugs/FR17-14.md) | A regular user can create an administrator coupon | FR-17 admin operation; SEC-03; The route verifies token presence/validity without checking role=admin. |
+| [FR17-15](../bugs/FR17-15.md) | A regular user can read the administrator coupon list | FR-17 admin view; SEC-03; The management-list route lacks an admin-role check. |
+| [FR17-16](../bugs/FR17-16.md) | A regular user can delete an administrator coupon | FR-17 admin delete; SEC-03; The delete route authenticates the token but never checks its role. |
+| [FR17-17](../bugs/FR17-17.md) | Coupon form omits required-field markers | FR-22 required markers; FR-17 required fields; The form uses placeholders and bare controls without required-field labels/markers. |
 
-## 7. AI gap analysis
+### 5.7. AI gap analysis
 
-Các mục dưới đây là technical corrections có evidence của quá trình soạn/kiểm tra; không tự gán mọi phát hiện cho sinh viên hoặc một model bên ngoài. Bản nháp nguyên văn giữ trong AI audit snapshot.
+Các sai lệch trong đầu ra AI và cách hiệu chỉnh được đối chiếu với rule, raw record và ảnh tương ứng. Bản nháp gốc được lưu trong AI audit snapshot.
 
 | Gap | Nhóm nguyên nhân | Evidence/điều sai | Cách sửa |
 |---|---|---|---|
@@ -157,8 +153,25 @@ Các mục dưới đây là technical corrections có evidence của quá trìn
 | CRUD naming và duplicate status | Prompt/assumption | Tên CRUD không có Update; duplicate500 vẫn không nhân bản | Không tạo bug missing Update hoặc unique-status409 |
 | UI block và API acceptance | Độ phức tạp nhiều seam | C-UI-04 chặn 0 nhưng C-API-19 vẫn accept/default1 | UI PASS, API FAIL, không gán một verdict cho cả hai |
 
-## 8. Coverage và giới hạn
+### 5.8. Coverage và giới hạn
 
-Các domain và điểm biên đã liệt kê đều có TC-ID. Một số TC có evidence một phần nên chưa có verdict hoàn chỉnh. Không suy full requirement coverage từ số TC hoặc số ảnh; class chưa có rule rõ không biến thành bug. Các form/UI tiêu chuẩn chung ngoài mục tiêu các TC hiện tại chưa được kiểm chứng exhaustive. Lecture chưa có trong bộ nguồn; cần đối chiếu bản giảng viên trước nộp.
+Coverage gồm required fields, enum, code uniqueness, các miền số và quyền truy cập riêng cho Create/List/Delete. Các case được truy vết từ domain đến dữ liệu đọc lại và bug. C-UI-02/C-UI-06 dùng chung ảnh danh sách kết hợp xác nhận thao tác; tính dùng chung của bằng chứng được ghi rõ trong kết quả. Update không thuộc phạm vi FR-17 đã chọn.
 
-[Detailed test cases](../tests/C-FR17-coupon-management.md) , [Raw API evidence](../evidence/execution/C-api.md) , [Bug index](../bugs/bug-reports.md).
+[Detailed test cases](../tests/C-FR17-coupon-management.md), [Raw API evidence](../evidence/execution/C-api.md), [Bug index](../bugs/bug-reports.md).
+
+
+### Kiểm thử contract và state bổ sung
+
+| Domain | Chiều phân hoạch | Oracle / controls | TC-ID | Kết luận |
+|---|---|---|---|---|
+| C-D11 | Required form affordance | Các nhãn trường bắt buộc phải có dấu * theo FR-22; đối chiếu trong DOM thật. | C-UI-07 | FR17-17 |
+
+Các lớp bổ sung được suy từ contract, security property và state transition; không gắn nhãn BVA cho boolean/DOM/enum. Riêng phone Mobile dùng cùng các biên độ dài 9/10/11/12, với các chiều prefix được cô lập.
+
+| TC-ID | Seam | Status | Actual / bug |
+|---|---|---|---|
+| [C-UI-07](../tests/C-FR17-coupon-management.md#c-ui-07) | UI | FAIL | Required coupon fields have visible required markers / FR17-17 |
+
+AI gap mới: validate dữ liệu và authorization chưa bao phủ đầy đủ quy định hiển thị bắt buộc của FR-22. C-UI-07 đọc DOM và ảnh form thật; đây là lỗi affordance riêng, không trùng lỗi backend chấp nhận dữ liệu sai.
+
+[A execution](../evidence/execution/A-execution.md), [B execution](../evidence/execution/B-execution.md), [C execution](../evidence/execution/C-execution.md), [D execution](../evidence/execution/D-execution.md).

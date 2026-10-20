@@ -4,15 +4,7 @@
 
 ## 1. Phạm vi, quy ước và fixture
 
-Chúng tôi lấy SRS làm oracle, sau đó dùng source để xây dựng giả thuyết và giải thích nguyên nhân. Source không thay thế yêu cầu. Mỗi TC có ID ổn định; một TC có thể phủ cả Domain Testing và BVA nhưng chỉ được tính một lần. Chúng tôi tách API với Web/Admin/Mobile UI vì validation ở một lớp không chứng minh lớp còn lại đạt.
-
-Với từng input/state, chúng tôi xác định miền hợp lệ, phần bù không hợp lệ, precision và các ràng buộc giữa các chiều. Các lớp trong cùng một chiều được chọn để phân biệt hành vi; bảng nhiều chiều không có nghĩa mọi hàng đều là các tập rời nhau của toàn bộ vector. Test invalid giữ các chiều khác nominal; interaction nhiều lỗi có chủ đích được ghi riêng. Chúng tôi dùng readback public HTTP sau thay đổi để kiểm tra hậu điều kiện.
-
-BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu >= hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
-
-API execution dùng backend copy, clock cố định và fixture reset mỗi TC. UI evidence là ảnh thật đã cung cấp; không suy timestamp chạy từ ngày sửa file, không dùng ảnh vẽ hoặc build output làm bằng chứng UI. PASS/FAIL chỉ kết luận theo criterion có evidence; OBSERVATION dành cho oracle chưa quy định; INCOMPLETE dành cho TC còn thiếu bước/precondition/evidence. Một TC INCOMPLETE có thể đã được thao tác một phần, nhưng không được cộng vào executed đủ bằng chứng.
-
-Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL mục 4.2.1-4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
+SRS supplies expected behavior; source inspection explains hypotheses and causes. Each ID is counted once. API, browser UI and Mobile source-handler execution are distinct evidence seams. Invalid cases hold other relevant inputs nominal unless an interaction is explicitly declared. The final extension and its evidence limits are recorded in [Execution records](../evidence/execution/C-execution.md).
 
 ### API fixture và môi trường tái hiện
 
@@ -28,7 +20,7 @@ Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có b�
 
 ### UI fixture và bằng chứng
 
-Ảnh ghi Web ở `localhost:5173`, Admin ở `localhost:5174`, và Expo Go/Android trên Samsung. Account hiển thị trong ảnh có thể được tái sử dụng (A-UI-01, B-UI-01, D-UI-01); tên file TC không chứng minh đã login account cùng tên. Chúng tôi ghi rõ variant và trạng thái dữ liệu có thể chứng minh. Không có nhật ký runtime UI đầy đủ về phiên bản OS/Expo hoặc timestamp từng lượt; không tự bổ sung các thông số đó. UI clock dùng thời gian thật của lần chụp, khác clock API.
+Ảnh ghi Web ở `localhost:5173`, Admin ở `localhost:5174`, và Expo Go/Android trên Samsung. Account hiển thị trong ảnh có thể được tái sử dụng (A-UI-01, B-UI-01, D-UI-01); tên file TC không chứng minh đã login account cùng tên. Quy trình ghi rõ variant và trạng thái dữ liệu có thể chứng minh. Không có nhật ký runtime UI đầy đủ về phiên bản OS/Expo hoặc timestamp từng lượt; không tự bổ sung các thông số đó. UI clock dùng thời gian thật của lần chụp, khác clock API.
 
 Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-10-19; trường timestamp thực thi UI không đủ log để khẳng định chính xác. File raw API giữ timestamp thật độc lập. Ảnh vẫn giữ nguyên bytes; đổi tên ảnh không tạo lần thực thi mới.
 
@@ -38,37 +30,37 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 |---|---|---|---|---|---|
 | [C-API-01](#c-api-01) | Domain | Nominal fixed coupon | PASS | C-D1, C-D8 | - |
 | [C-API-02](#c-api-02) | Domain | Nominal percent coupon | PASS | C-D1 | - |
-| [C-API-03](#c-api-03) | Domain | Missing mandatory code | FAIL | C-D2 | BUG-C01 |
-| [C-API-04](#c-api-04) | Domain | Missing mandatory type | FAIL | C-D2 | BUG-C01 |
-| [C-API-05](#c-api-05) | Domain | Missing mandatory discount_value | FAIL | C-D2 | BUG-C01 |
-| [C-API-06](#c-api-06) | Domain | Missing mandatory min_order_amount | FAIL | C-D2 | BUG-C01 |
-| [C-API-07](#c-api-07) | Domain | Missing mandatory expired_at | FAIL | C-D2 | BUG-C01 |
-| [C-API-08](#c-api-08) | Domain | Missing mandatory max_uses_per_user | FAIL | C-D2 | BUG-C01 |
-| [C-API-09](#c-api-09) | Domain | Empty code | FAIL | C-D2 | BUG-C01 |
+| [C-API-03](#c-api-03) | Domain | Missing mandatory code | FAIL | C-D2 | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
+| [C-API-04](#c-api-04) | Domain | Missing mandatory type | FAIL | C-D2 | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
+| [C-API-05](#c-api-05) | Domain | Missing mandatory discount_value | FAIL | C-D2 | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
+| [C-API-06](#c-api-06) | Domain | Missing mandatory min_order_amount | FAIL | C-D2 | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
+| [C-API-07](#c-api-07) | Domain | Missing mandatory expired_at | FAIL | C-D2 | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
+| [C-API-08](#c-api-08) | Domain | Missing mandatory max_uses_per_user | FAIL | C-D2 | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
+| [C-API-09](#c-api-09) | Domain | Empty code | FAIL | C-D2 | FR17-01, FR17-02, FR17-03, FR17-04, FR17-05, FR17-06, FR17-07 |
 | [C-API-10](#c-api-10) | Domain | Duplicate code | PASS | C-D3 | - |
-| [C-API-11](#c-api-11) | Domain | Unknown type | FAIL | C-D4 | BUG-C03 |
-| [C-API-12](#c-api-12) | Domain+BVA | discount_value=-1 | FAIL | C-D5 | BUG-C04 |
-| [C-API-13](#c-api-13) | Domain+BVA | discount_value=0 | FAIL | C-D5 | BUG-C04 |
+| [C-API-11](#c-api-11) | Domain | Unknown type | FAIL | C-D4 | FR17-08 |
+| [C-API-12](#c-api-12) | Domain+BVA | discount_value=-1 | FAIL | C-D5 | FR17-09, FR17-10 |
+| [C-API-13](#c-api-13) | Domain+BVA | discount_value=0 | FAIL | C-D5 | FR17-09, FR17-10 |
 | [C-API-14](#c-api-14) | Domain+BVA | discount_value=1 | PASS | C-D5 | - |
-| [C-API-15](#c-api-15) | Domain+BVA | min_order_amount=-1 | FAIL | C-D6 | BUG-C05 |
+| [C-API-15](#c-api-15) | Domain+BVA | min_order_amount=-1 | FAIL | C-D6 | FR17-11 |
 | [C-API-16](#c-api-16) | Domain+BVA | min_order_amount=0 | PASS | C-D6 | - |
 | [C-API-17](#c-api-17) | Domain+BVA | min_order_amount=1 | PASS | C-D6 | - |
-| [C-API-18](#c-api-18) | Domain+BVA | max_uses_per_user=-1 | FAIL | C-D7 | BUG-C06 |
-| [C-API-19](#c-api-19) | Domain+BVA | max_uses_per_user=0 | FAIL | C-D7 | BUG-C06 |
+| [C-API-18](#c-api-18) | Domain+BVA | max_uses_per_user=-1 | FAIL | C-D7 | FR17-12, FR17-13 |
+| [C-API-19](#c-api-19) | Domain+BVA | max_uses_per_user=0 | FAIL | C-D7 | FR17-12, FR17-13 |
 | [C-API-20](#c-api-20) | Domain+BVA | max_uses_per_user=1 | PASS | C-D7 | - |
 | [C-API-21](#c-api-21) | Domain+BVA | max_uses_per_user=2 | PASS | C-D7 | - |
 | [C-API-22](#c-api-22) | Domain | No JWT creates coupon | PASS | C-D8 | - |
-| [C-API-23](#c-api-23) | Domain | User role creates coupon | FAIL | C-D8 | BUG-C07 |
+| [C-API-23](#c-api-23) | Domain | User role creates coupon | FAIL | C-D8 | FR17-14 |
 | [C-API-24](#c-api-24) | Domain | Invalid JWT creates coupon | PASS | C-D8 | - |
 | [C-API-25](#c-api-25) | Domain | List coupons as admin | PASS | C-D9 | - |
-| [C-API-26](#c-api-26) | Domain | List coupons as user | FAIL | C-D9 | BUG-C08 |
+| [C-API-26](#c-api-26) | Domain | List coupons as user | FAIL | C-D9 | FR17-15 |
 | [C-API-27](#c-api-27) | Domain | List coupons as none | PASS | C-D9 | - |
 | [C-API-28](#c-api-28) | Domain | Delete coupon as admin | PASS | C-D10 | - |
-| [C-API-29](#c-api-29) | Domain | Delete coupon as user | FAIL | C-D10 | BUG-C09 |
+| [C-API-29](#c-api-29) | Domain | Delete coupon as user | FAIL | C-D10 | FR17-16 |
 | [C-API-30](#c-api-30) | Domain | Delete coupon as none | PASS | C-D10 | - |
-| [C-UI-01](#c-ui-01) | Domain+BVA | Admin coupon form 1 | FAIL | C-D5 | BUG-C04 |
+| [C-UI-01](#c-ui-01) | Domain+BVA | Admin coupon form 1 | FAIL | C-D5 | FR17-09, FR17-10 |
 | [C-UI-02](#c-ui-02) | Domain | Admin coupon form 2 | PASS | C-D1 | - |
-| [C-UI-03](#c-ui-03) | Domain+BVA | Admin coupon form 3 | FAIL | C-D6 | BUG-C05 |
+| [C-UI-03](#c-ui-03) | Domain+BVA | Admin coupon form 3 | FAIL | C-D6 | FR17-11 |
 | [C-UI-04](#c-ui-04) | Domain+BVA | Admin coupon form 4 | PASS | C-D7 | - |
 | [C-UI-05](#c-ui-05) | Domain | Admin coupon form 5 | PASS | C-D3 | - |
 | [C-UI-06](#c-ui-06) | Domain | Admin delete lifecycle | PASS | C-D10 | - |
@@ -388,7 +380,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.838Z`. Với list dài, phần d
 | Domains | C-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C01 |
+| Bug | FR17-01 |
 
 ### Preconditions
 
@@ -537,7 +529,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.863Z`. Với list dài, phần d
 | Domains | C-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C01 |
+| Bug | FR17-02 |
 
 ### Preconditions
 
@@ -686,7 +678,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.886Z`. Với list dài, phần d
 | Domains | C-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C01 |
+| Bug | FR17-03 |
 
 ### Preconditions
 
@@ -835,7 +827,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.910Z`. Với list dài, phần d
 | Domains | C-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C01 |
+| Bug | FR17-04 |
 
 ### Preconditions
 
@@ -984,7 +976,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.935Z`. Với list dài, phần d
 | Domains | C-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C01 |
+| Bug | FR17-05 |
 
 ### Preconditions
 
@@ -1133,7 +1125,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.958Z`. Với list dài, phần d
 | Domains | C-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C01 |
+| Bug | FR17-06 |
 
 ### Preconditions
 
@@ -1282,7 +1274,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.983Z`. Với list dài, phần d
 | Domains | C-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C01 |
+| Bug | FR17-07 |
 
 ### Preconditions
 
@@ -1575,7 +1567,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.031Z`. Với list dài, phần d
 | Domains | C-D4 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C03 |
+| Bug | FR17-08 |
 
 ### Preconditions
 
@@ -1726,7 +1718,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.055Z`. Với list dài, phần d
 | Domains | C-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C04 |
+| Bug | FR17-09 |
 
 ### Preconditions
 
@@ -1877,7 +1869,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.079Z`. Với list dài, phần d
 | Domains | C-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C04 |
+| Bug | FR17-10 |
 
 ### Preconditions
 
@@ -2179,7 +2171,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.128Z`. Với list dài, phần d
 | Domains | C-D6 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C05 |
+| Bug | FR17-11 |
 
 ### Preconditions
 
@@ -2632,7 +2624,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.202Z`. Với list dài, phần d
 | Domains | C-D7 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C06 |
+| Bug | FR17-12 |
 
 ### Preconditions
 
@@ -2783,7 +2775,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.226Z`. Với list dài, phần d
 | Domains | C-D7 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C06 |
+| Bug | FR17-13 |
 
 ### Preconditions
 
@@ -3376,7 +3368,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.319Z`. Với list dài, phần d
 | Domains | C-D8 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C07 |
+| Bug | FR17-14 |
 
 ### Preconditions
 
@@ -3749,7 +3741,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.387Z`. Với list dài, phần d
 | Domains | C-D9 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C08 |
+| Bug | FR17-15 |
 
 ### Preconditions
 
@@ -4009,7 +4001,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.443Z`. Với list dài, phần d
 | Domains | C-D10 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-C09 |
+| Bug | FR17-16 |
 
 ### Preconditions
 
@@ -4255,7 +4247,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.490Z`. Với list dài, phần d
 | Domains | C-D5 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-C04 |
+| Bug | FR17-10 |
 
 ### Preconditions
 
@@ -4297,7 +4289,6 @@ Coupon có discount_value=0 được tạo và xuất hiện trong danh sách.
 
 ![C-UI-01_02-created](../evidence/screenshots/C/C-UI-01_02-created.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -4377,7 +4368,7 @@ Sau reload, ảnh danh sách vẫn có HW02_C_UI_02: fixed, discount_value=1, mi
 | Domains | C-D6 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-C05 |
+| Bug | FR17-11 |
 
 ### Preconditions
 
@@ -4419,7 +4410,6 @@ Coupon với min_order_amount=-1 được tạo và hiển thị ngưỡng âm.
 
 ![C-UI-03_02-created](../evidence/screenshots/C/C-shared_coupon-list.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -4480,7 +4470,6 @@ Browser native validation chặn max_uses_per_user=0 ở bước submit. Đây l
 
 ![C-UI-04_02-browser-validation](../evidence/screenshots/C/C-UI-04_02-browser-validation.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -4541,7 +4530,6 @@ Tạo trùng SAVE10 trả lỗi UNIQUE. Source/schema và C-API-10 xác nhận k
 
 ![C-UI-05_02-response](../evidence/screenshots/C/C-UI-05_02-response.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -4607,14 +4595,149 @@ Create test coupon, delete it; disappears after reload; SAVE10 unchanged.
 
 | Scope | Designed | Executed đủ bằng chứng | PASS | FAIL | OBSERVATION | INCOMPLETE | NOT RUN |
 |---|---|---|---|---|---|---|---|
-| A - API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
-| A - UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
-| B - API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
-| B - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | C - API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
-| C - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| D - API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
-| D - UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
-| **Tổng** | 114 | 114 | 53 | 57 | 4 | 0 | 0 |
+| C - UI | 7 | 7 | 4 | 3 | 0 | 0 | 0 |
+| **Tổng feature C** | 37 | 37 | 18 | 19 | 0 | 0 | 0 |
 
-Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.
+Tổng hợp riêng feature; số liệu toàn bài nằm trong README/report. Handler và native-image review được khai rõ ở từng case.
+
+## Additional case index
+
+| Case | Seam | Status | Bug |
+|---|---|---|---|
+| [C-UI-07](#c-ui-07) | Browser UI via Playwright | FAIL | FR17-17 |
+
+
+<a id="c-ui-07"></a>
+
+## C-UI-07
+
+**Objective:** Required coupon fields have visible required markers
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | FR-22 required markers; FR-17 required fields |
+| Domains | C-D11 |
+| Seam | Browser UI via Playwright |
+| Status | FAIL |
+| Bug | FR17-17 |
+
+### Preconditions
+
+Fresh isolated baseline state; public demo identity and valid controls are established before the target action.
+
+### Input
+
+```json
+{
+  "visible_form_text": "Tạo mã giảm giá mới\nPhần trăm (%)\nSố tiền cố định (₫)\nTạo mã",
+  "fields": [
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "placeholder": "Mã coupon (VD: SAVE10)",
+      "required": true
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-one",
+      "placeholder": null,
+      "required": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "placeholder": "Giá trị % (VD: 10)",
+      "required": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "placeholder": "Đơn tối thiểu (₫)",
+      "required": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "date",
+      "placeholder": "Ngày hết hạn",
+      "required": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "placeholder": "Số lần dùng tối đa/người",
+      "required": false
+    }
+  ],
+  "has_required_marker": false
+}
+```
+
+### Steps
+
+1. Establish the documented isolated fixture and target evidence seam.
+2. Open Admin coupon management and inspect all six creation inputs and their visible labels/markers.
+3. Compare the observed response/state with the sourced expected criterion.
+
+### Expected
+
+FR-22 requires an asterisk next to required-field labels; FR-17 identifies all six required fields.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:43:54.893794+00:00",
+  "observed": {
+    "visible_form_text": "Tạo mã giảm giá mới\nPhần trăm (%)\nSố tiền cố định (₫)\nTạo mã",
+    "fields": [
+      {
+        "tag": "INPUT",
+        "type": "text",
+        "placeholder": "Mã coupon (VD: SAVE10)",
+        "required": true
+      },
+      {
+        "tag": "SELECT",
+        "type": "select-one",
+        "placeholder": null,
+        "required": false
+      },
+      {
+        "tag": "INPUT",
+        "type": "number",
+        "placeholder": "Giá trị % (VD: 10)",
+        "required": true
+      },
+      {
+        "tag": "INPUT",
+        "type": "number",
+        "placeholder": "Đơn tối thiểu (₫)",
+        "required": false
+      },
+      {
+        "tag": "INPUT",
+        "type": "date",
+        "placeholder": "Ngày hết hạn",
+        "required": true
+      },
+      {
+        "tag": "INPUT",
+        "type": "number",
+        "placeholder": "Số lần dùng tối đa/người",
+        "required": false
+      }
+    ],
+    "has_required_marker": false
+  },
+  "expected": "FR-22 requires an asterisk next to required-field labels; FR-17 identifies all six required fields.",
+  "precondition": ""
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/C-execution.md#c-ui-07).
+
+![C-UI-07](../evidence/screenshots/C/C-UI-07_required-markers.jpg)
