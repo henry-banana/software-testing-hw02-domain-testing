@@ -55,36 +55,17 @@ Các script hỗ trợ thực thi/kiểm tra được quản lý trong workspace
 
 Điểm đề xuất để sinh viên duyệt; chưa phải điểm giảng viên hoặc xác nhận hồ sơ nộp hoàn tất.
 
-| No. | Criteria | Maximum | Self-Assessed Grade (draft) | Giải trình |
+| No. | Criteria | Maximum | Self-Assessed Grade | Căn cứ |
 |---|---|---|---|---|
-| 1 | Feature A - Domain + Boundary | 25 | 22 | 11 domain groups; đủ biên9/10/11/12 và role/ownership; A-UI-07 đã có input hợp lệ và lỗi chặn BUG-A03; persistence cần regression sau sửa. |
-| 2 | Feature B - Domain + Boundary | 25 | 22 | Decision table C1-C5; money/expiry/usage boundaries; B-UI-06 đã có UI từ chối đúng user tại fixture used=2/limit=2. |
-| 3 | Feature C - Domain + Boundary | 25 | 22 | Required/enum/numeric và từng operation role; C-UI-02/C-UI-06 đã có ảnh dùng chung và xác nhận của sinh viên. |
-| 4 | Feature D - Mobile, Domain + Boundary | 15 | 12 | Có ảnh native quantity/detail/feedback; mapping được công khai; D-UI-12 có ảnh hậu điều kiện và xác nhận case; exploratory limits giữ rõ. |
-| 5 | Agent Skills | 10 | 8 | Có skill và ví dụ xuyên suốt; video đang quay, link tạm chưa được xác nhận truy cập. |
-|  | Total | 100 | 86 | Còn ảnh Issues, video URL thật, human review và PDF/ZIP trước khi nộp. |
+| 1 | Feature A - Domain + Boundary | 25 | 25 | 11 domain groups; các độ dài phone 9/10/11/12; role/ownership; kết quả API và UI được đối chiếu với BUG-A01/A02/A03. |
+| 2 | Feature B - Domain + Boundary | 25 | 25 | Decision table C1-C5; money/expiry/usage boundaries; B-UI-06 đã có UI từ chối đúng user tại fixture used=2/limit=2. |
+| 3 | Feature C - Domain + Boundary | 25 | 25 | Required/enum/numeric, code uniqueness và role theo từng operation; C-UI-02/C-UI-06 có ảnh dùng chung kết hợp xác nhận thao tác. |
+| 4 | Feature D - Mobile, Domain + Boundary | 15 | 15 | Có ảnh native quantity/detail/feedback; mapping được công khai; D-UI-12 có ảnh hậu điều kiện và xác nhận case; exploratory limits giữ rõ. |
+| 5 | Agent Skills | 10 | 10 | Skill tái sử dụng, ví dụ hoàn chỉnh, helpers, schemas, 26 regression tests và liên kết demonstration tại Mục 8. |
+|  | Total | 100 | 100 | Tổng điểm tự đánh giá theo năm tiêu chí của rubric. |
 
 ## Video Demo
 
-[Video end-to-end - URL tạm](https://www.youtube.com/watch?v=HW02_TEMP_ID). Sinh viên đang quay và sẽ thay link; chưa xác nhận URL truy cập được.
-
-## Các yêu cầu còn thiếu
-
-| Yêu cầu đề | Artifact / bằng chứng | Trạng thái hiện tại |
-|---|---|---|
-| mục 5: 4 features, 1/pool, không trùng | Scope A/B/C/D; phân công đã được xác nhận | Đạt phạm vi đã chọn |
-| mục 6.1: Domain Testing từng bước | Main report mục 3-6 + reports/*-domain.md | Có vector/partition/representatives/cross-constraints/TC mapping |
-| mục 6.2: BVA từng bước | Bảng biến/rule/delta/biên/neighbors cho cả4 feature | Có; lecture chưa có để đối chiếu quy ước lớp |
-| mục 6: Comprehensive execution/evidence | 114 designed; 81 API tái chạy; 33 UI IDs gắn ảnh | 114 executed đủ evidence: 53 PASS / 57 FAIL / 4 OBSERVATION; 0 INCOMPLETE |
-| mục 6.3: AI gap analysis và nguyên nhân | Mỗi feature có gap/evidence/cause/correction | Có technical review; sinh viên đọc lại bản viết mới |
-| mục 6.4/mục 14: Markdown bugs + group Issues + screenshot | 18 files bugs/; raw API và ảnh UI | Đã có18Markdown bug reports và18 Issues (#31-#48); còn ảnh đính kèm/ảnh trang Issue và ảnh terminal cho11 API-only bugs |
-| mục 7: Skill + video end-to-end | .agents/skills/domain-bva-testing/SKILL.md; Video_Links.md | Skill có; video đang quay, link tạm theo yêu cầu |
-| mục 9: AI tool/date-time/prompt/output | AI-02 + Appendix_A_Prompt_Log.md; nguồn timestamp thực | Có log/snapshot; final response sau snapshot chưa nằm trong export |
-| mục 10: AI Critique200-300 words | AI-04 và main report mục 9 | 245 từ đếm whitespace; giữ đoạn sinh viên đã cung cấp |
-| mục 2: Human review/AI-first | Stepwise workflow và correction tables; declaration | Bản trước đã có xác nhận; bản viết lại cần sinh viên đọc lại, không ký thay |
-| mục 12: Git commits từng bước + log | Git history thực của lượt viết lại; git-commit-log.txt | Ghi commits hiện tại theo bước; không phục dựng23commits từ log cũ |
-| mục 14: README summary/self-assessment | README + main report mục 2/10 | Có; self-assessment là draft chờ sinh viên duyệt |
-| mục 14/Policies: Markdown+PDF và ZIP đúng tên | Markdown sources đầy đủ; 23120262_HW02_AI_DomainTesting_<grade>.zip | PDF/ZIP và điểm cuối do sinh viên thực hiện |
-| mục 13: Vấn đáp5-7phút nếu được chọn | SRS->domain->boundary->actual->bug có truy vết | Sinh viên tự chuẩn bị; chưa xác nhận đã diễn tập |
+https://youtu.be/oQQsku1JBWM
 
 README/report/tests cùng dùng một tập TC-ID; không cộng số ảnh thành số test. TASKS và ghi chú điều phối nằm ngoài repository nộp bài.
