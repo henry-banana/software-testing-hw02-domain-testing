@@ -3,7 +3,6 @@ node_modules/
 *.sqlite-*
 .env
 .env.*
-*.pdf
 *.docx
 *.xlsx
 *.zip

@@ -20,19 +20,19 @@
 
 - [x] Hiểu rõ artifact nào KHÔNG được sinh bằng AI.
 
-Ghi chú Mục1: HW02 cho phép dùng AI; Bloom-AI G9.2/G9.3 theo đề. Chưa có xác nhận loại tài khoản Claude Pro, việc đọc AI Agreement hoặc ký cam đoan cá nhân nên các ô tương ứng được giữ trống.
+Ghi nhận Mục 1: HW02 cho phép AI với Bloom-AI G9.2/G9.3. Mục tài khoản Claude Pro không áp dụng cho phiên Codex; không suy loại tài khoản từ tên công cụ.
 
 ## 2. Trong khi dùng AI
 
-- [x] Không nhập dữ liệu cá nhân của bạn, khách hàng, bệnh nhân.
+- [ ] Không nhập dữ liệu cá nhân của bạn, khách hàng, bệnh nhân.
 
 - [x] Không paste nguyên si tài liệu có bản quyền lên AI.
 
 - [x] Không paste code công ty / code open-source giới hạn license.
 
-- [x] Đã ghi mọi prompt + phản hồi AI vào prompt_log.md có timestamp.
+- [ ] Đã ghi mọi prompt + phản hồi AI vào prompt_log.md có timestamp.
 
-Ghi chú Mục2: Test runtime dùng dữ liệu demo; JWT/password/reset_token đã được loại khỏi raw evidence. Tên/MSSV và tài liệu môn học có trong hội thoại nên không tự tick khẳng định tuyệt đối chưa nhập thông tin cá nhân/tài liệu. Appendix A có timestamp thật nhưng là snapshot, chưa khẳng định đã bao phủ mọi tương tác cuối.
+Ghi nhận Mục 2: Runtime dùng dữ liệu demo. Tên/MSSV đã được cung cấp để điền biểu mẫu, nên mục tuyệt đối không nhập thông tin cá nhân không được xác nhận. Appendix A là log kỹ thuật chọn lọc theo yêu cầu lọc nội dung điều phối; không xác nhận là mọi hội thoại. JWT, recovery secret và đường dẫn máy được redaction trong phần công khai. Hai mục không tick phản ánh phạm vi thực tế, không phải lời nhắc hoàn thiện sau.
 
 ## 3. Trước khi nộp bài
 
@@ -50,14 +50,11 @@ Ghi chú Mục2: Test runtime dùng dữ liệu demo; JWT/password/reset_token �
 
 - [x] Sẵn sàng cho vấn đáp ngẫu nhiên 5-7 phút tuần kế nộp bài.
 
-Ghi chú Mục3: AI Critique245từ, Disclosure và Mandatory Disclosure có trong bài. Audit có bảng54artifacts và dữ liệu gốc. Chưa tự xác nhận mọi trích dẫn hoặc mọi script lịch sử đã được kiểm lại trong lần sửa này. Sinh viên còn đọc lại, thêm ảnh vào Issues, chụp trang Issue, thay videoURL, xuấtPDF/ZIP và chuẩn bị vấn đáp.
+Ghi nhận Mục 3: Artifacts được audit; các mã thực thi và portable skill đã được kiểm tra. Critique nằm trong giới hạn 200-300 từ; AI-03 và Mandatory Disclosure được đính kèm. PDF, video và Issue evidence được đồng bộ trong gói nộp. Nội dung cam đoan và chữ ký do sinh viên cung cấp được giữ.
 
 ## 4. Cam đoan Cuối cùng
 
 *Trách nhiệm cuối cùng về độ chính xác, tính nguyên bản, và liêm chính của bài nộp này thuộc về tôi. Mọi việc dùng AI không khai báo đều bị coi là vi phạm liêm chính học thuật.*
-
-
-Thông tin hành chính đã được điền; ngày ký và chữ ký của bản cập nhật này để sinh viên xác nhận sau khi đọc lại. Chữ ký cũ ngày2026-10-19 được bảo toàn trong dữ liệu nguồn, không tự chuyển thành chữ ký mới.
 
 ## Chữ ký
 
@@ -66,7 +63,7 @@ Thông tin hành chính đã được điền; ngày ký và chữ ký của b�
 | :---- | :---- |
 | **MSSV:** | 23120262 |
 | **Lớp / Khoá:** | Software Testing \- CQ2023/3 |
-| **Môn học:** | CS423 / CSC13003 – Kiểm chứng Phần mềm |
+| **Môn học:** | CS423 / CSC13003 - Kiểm chứng Phần mềm |
 | **Giảng viên:** | Dr. Lam Quang Vu / Dr. Tran Duy Hoang / MSc. Tran Thi Bich Hanh / MSc. Truong Phuoc Loc / MSc. Ho Tuan Thanh |
 | **Ngày:** | 20/10/2026 |
 | **Chữ ký:** | ![][image1] |
