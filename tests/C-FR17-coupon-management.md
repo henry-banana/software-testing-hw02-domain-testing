@@ -1,6 +1,6 @@
-# C — Test Case Report: FR-17 — Quản lý mã giảm giá
+# C - Test Case Report: FR-17 - Quản lý mã giảm giá
 
-**Sinh viên:** Tống Dương Thái Hòa — 23120262.
+**Sinh viên:** Tống Dương Thái Hòa - 23120262.
 
 ## 1. Phạm vi, quy ước và fixture
 
@@ -8,11 +8,11 @@ Chúng tôi lấy SRS làm oracle, sau đó dùng source để xây dựng giả
 
 Với từng input/state, chúng tôi xác định miền hợp lệ, phần bù không hợp lệ, precision và các ràng buộc giữa các chiều. Các lớp trong cùng một chiều được chọn để phân biệt hành vi; bảng nhiều chiều không có nghĩa mọi hàng đều là các tập rời nhau của toàn bộ vector. Test invalid giữ các chiều khác nominal; interaction nhiều lỗi có chủ đích được ghi riêng. Chúng tôi dùng readback public HTTP sau thay đổi để kiểm tra hậu điều kiện.
 
-BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu ≥ hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
+BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu >= hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
 
 API execution dùng backend copy, clock cố định và fixture reset mỗi TC. UI evidence là ảnh thật đã cung cấp; không suy timestamp chạy từ ngày sửa file, không dùng ảnh vẽ hoặc build output làm bằng chứng UI. PASS/FAIL chỉ kết luận theo criterion có evidence; OBSERVATION dành cho oracle chưa quy định; INCOMPLETE dành cho TC còn thiếu bước/precondition/evidence. Một TC INCOMPLETE có thể đã được thao tác một phần, nhưng không được cộng vào executed đủ bằng chứng.
 
-Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL §4.2.1–4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
+Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL mục 4.2.1-4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
 
 ### API fixture và môi trường tái hiện
 
@@ -36,8 +36,8 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 
 | TC-ID | Technique | Mục tiêu | Status | Domain | Bug |
 |---|---|---|---|---|---|
-| [C-API-01](#c-api-01) | Domain | Nominal fixed coupon | PASS | C-D1, C-D8 | — |
-| [C-API-02](#c-api-02) | Domain | Nominal percent coupon | PASS | C-D1 | — |
+| [C-API-01](#c-api-01) | Domain | Nominal fixed coupon | PASS | C-D1, C-D8 | - |
+| [C-API-02](#c-api-02) | Domain | Nominal percent coupon | PASS | C-D1 | - |
 | [C-API-03](#c-api-03) | Domain | Missing mandatory code | FAIL | C-D2 | BUG-C01 |
 | [C-API-04](#c-api-04) | Domain | Missing mandatory type | FAIL | C-D2 | BUG-C01 |
 | [C-API-05](#c-api-05) | Domain | Missing mandatory discount_value | FAIL | C-D2 | BUG-C01 |
@@ -45,33 +45,33 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 | [C-API-07](#c-api-07) | Domain | Missing mandatory expired_at | FAIL | C-D2 | BUG-C01 |
 | [C-API-08](#c-api-08) | Domain | Missing mandatory max_uses_per_user | FAIL | C-D2 | BUG-C01 |
 | [C-API-09](#c-api-09) | Domain | Empty code | FAIL | C-D2 | BUG-C01 |
-| [C-API-10](#c-api-10) | Domain | Duplicate code | PASS | C-D3 | — |
+| [C-API-10](#c-api-10) | Domain | Duplicate code | PASS | C-D3 | - |
 | [C-API-11](#c-api-11) | Domain | Unknown type | FAIL | C-D4 | BUG-C03 |
 | [C-API-12](#c-api-12) | Domain+BVA | discount_value=-1 | FAIL | C-D5 | BUG-C04 |
 | [C-API-13](#c-api-13) | Domain+BVA | discount_value=0 | FAIL | C-D5 | BUG-C04 |
-| [C-API-14](#c-api-14) | Domain+BVA | discount_value=1 | PASS | C-D5 | — |
+| [C-API-14](#c-api-14) | Domain+BVA | discount_value=1 | PASS | C-D5 | - |
 | [C-API-15](#c-api-15) | Domain+BVA | min_order_amount=-1 | FAIL | C-D6 | BUG-C05 |
-| [C-API-16](#c-api-16) | Domain+BVA | min_order_amount=0 | PASS | C-D6 | — |
-| [C-API-17](#c-api-17) | Domain+BVA | min_order_amount=1 | PASS | C-D6 | — |
+| [C-API-16](#c-api-16) | Domain+BVA | min_order_amount=0 | PASS | C-D6 | - |
+| [C-API-17](#c-api-17) | Domain+BVA | min_order_amount=1 | PASS | C-D6 | - |
 | [C-API-18](#c-api-18) | Domain+BVA | max_uses_per_user=-1 | FAIL | C-D7 | BUG-C06 |
 | [C-API-19](#c-api-19) | Domain+BVA | max_uses_per_user=0 | FAIL | C-D7 | BUG-C06 |
-| [C-API-20](#c-api-20) | Domain+BVA | max_uses_per_user=1 | PASS | C-D7 | — |
-| [C-API-21](#c-api-21) | Domain+BVA | max_uses_per_user=2 | PASS | C-D7 | — |
-| [C-API-22](#c-api-22) | Domain | No JWT creates coupon | PASS | C-D8 | — |
+| [C-API-20](#c-api-20) | Domain+BVA | max_uses_per_user=1 | PASS | C-D7 | - |
+| [C-API-21](#c-api-21) | Domain+BVA | max_uses_per_user=2 | PASS | C-D7 | - |
+| [C-API-22](#c-api-22) | Domain | No JWT creates coupon | PASS | C-D8 | - |
 | [C-API-23](#c-api-23) | Domain | User role creates coupon | FAIL | C-D8 | BUG-C07 |
-| [C-API-24](#c-api-24) | Domain | Invalid JWT creates coupon | PASS | C-D8 | — |
-| [C-API-25](#c-api-25) | Domain | List coupons as admin | PASS | C-D9 | — |
+| [C-API-24](#c-api-24) | Domain | Invalid JWT creates coupon | PASS | C-D8 | - |
+| [C-API-25](#c-api-25) | Domain | List coupons as admin | PASS | C-D9 | - |
 | [C-API-26](#c-api-26) | Domain | List coupons as user | FAIL | C-D9 | BUG-C08 |
-| [C-API-27](#c-api-27) | Domain | List coupons as none | PASS | C-D9 | — |
-| [C-API-28](#c-api-28) | Domain | Delete coupon as admin | PASS | C-D10 | — |
+| [C-API-27](#c-api-27) | Domain | List coupons as none | PASS | C-D9 | - |
+| [C-API-28](#c-api-28) | Domain | Delete coupon as admin | PASS | C-D10 | - |
 | [C-API-29](#c-api-29) | Domain | Delete coupon as user | FAIL | C-D10 | BUG-C09 |
-| [C-API-30](#c-api-30) | Domain | Delete coupon as none | PASS | C-D10 | — |
+| [C-API-30](#c-api-30) | Domain | Delete coupon as none | PASS | C-D10 | - |
 | [C-UI-01](#c-ui-01) | Domain+BVA | Admin coupon form 1 | FAIL | C-D5 | BUG-C04 |
-| [C-UI-02](#c-ui-02) | Domain | Admin coupon form 2 | PASS | C-D1 | — |
+| [C-UI-02](#c-ui-02) | Domain | Admin coupon form 2 | PASS | C-D1 | - |
 | [C-UI-03](#c-ui-03) | Domain+BVA | Admin coupon form 3 | FAIL | C-D6 | BUG-C05 |
-| [C-UI-04](#c-ui-04) | Domain+BVA | Admin coupon form 4 | PASS | C-D7 | — |
-| [C-UI-05](#c-ui-05) | Domain | Admin coupon form 5 | PASS | C-D3 | — |
-| [C-UI-06](#c-ui-06) | Domain | Admin delete lifecycle | PASS | C-D10 | — |
+| [C-UI-04](#c-ui-04) | Domain+BVA | Admin coupon form 4 | PASS | C-D7 | - |
+| [C-UI-05](#c-ui-05) | Domain | Admin coupon form 5 | PASS | C-D3 | - |
+| [C-UI-06](#c-ui-06) | Domain | Admin delete lifecycle | PASS | C-D10 | - |
 
 <a id="c-api-01"></a>
 
@@ -86,14 +86,14 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 | Domains | C-D1, C-D8 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -222,7 +222,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.809Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-02"></a>
 
@@ -237,14 +237,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.809Z`. Với list dài, phần d
 | Domains | C-D1 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -373,7 +373,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.838Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-03"></a>
 
@@ -395,7 +395,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.838Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -522,7 +522,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.863Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-04"></a>
 
@@ -544,7 +544,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.863Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -671,7 +671,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.886Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-05"></a>
 
@@ -693,7 +693,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.886Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -820,7 +820,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.910Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-06"></a>
 
@@ -842,7 +842,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.910Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -969,7 +969,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.935Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-07"></a>
 
@@ -991,7 +991,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.935Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1118,7 +1118,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.958Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-08"></a>
 
@@ -1140,7 +1140,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.958Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1267,7 +1267,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.983Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-09"></a>
 
@@ -1289,7 +1289,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:00.983Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1418,7 +1418,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.006Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-10"></a>
 
@@ -1433,14 +1433,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.006Z`. Với list dài, phần d
 | Domains | C-D3 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1560,7 +1560,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.031Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-11"></a>
 
@@ -1582,7 +1582,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.031Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1711,7 +1711,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.055Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-12"></a>
 
@@ -1733,7 +1733,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.055Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1862,7 +1862,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.079Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-13"></a>
 
@@ -1884,7 +1884,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.079Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2013,7 +2013,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.105Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-14"></a>
 
@@ -2028,14 +2028,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.105Z`. Với list dài, phần d
 | Domains | C-D5 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2164,7 +2164,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.128Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-15"></a>
 
@@ -2186,7 +2186,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.128Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2315,7 +2315,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.153Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-16"></a>
 
@@ -2330,14 +2330,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.153Z`. Với list dài, phần d
 | Domains | C-D6 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2466,7 +2466,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.177Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-17"></a>
 
@@ -2481,14 +2481,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.177Z`. Với list dài, phần d
 | Domains | C-D6 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2617,7 +2617,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.202Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-18"></a>
 
@@ -2639,7 +2639,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.202Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2768,7 +2768,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.226Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-19"></a>
 
@@ -2790,7 +2790,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.226Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2919,7 +2919,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.248Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-20"></a>
 
@@ -2934,14 +2934,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.248Z`. Với list dài, phần d
 | Domains | C-D7 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -3070,7 +3070,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.270Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-21"></a>
 
@@ -3085,14 +3085,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.270Z`. Với list dài, phần d
 | Domains | C-D7 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -3221,7 +3221,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.294Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-22"></a>
 
@@ -3236,14 +3236,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.294Z`. Với list dài, phần d
 | Domains | C-D8 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `none`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -3361,7 +3361,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.319Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-23"></a>
 
@@ -3383,7 +3383,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.319Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -3512,7 +3512,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.343Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-24"></a>
 
@@ -3527,14 +3527,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.343Z`. Với list dài, phần d
 | Domains | C-D8 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `invalid`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -3652,7 +3652,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.367Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-25"></a>
 
@@ -3667,14 +3667,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.367Z`. Với list dài, phần d
 | Domains | C-D9 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {}
@@ -3734,7 +3734,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.387Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-26"></a>
 
@@ -3756,7 +3756,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.387Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {}
@@ -3816,7 +3816,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.407Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-27"></a>
 
@@ -3831,14 +3831,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.407Z`. Với list dài, phần d
 | Domains | C-D9 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `none`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {}
@@ -3876,7 +3876,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.424Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-28"></a>
 
@@ -3891,14 +3891,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.424Z`. Với list dài, phần d
 | Domains | C-D10 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `admin`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -3994,7 +3994,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.443Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-api-29"></a>
 
@@ -4016,7 +4016,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.443Z`. Với list dài, phần d
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -4112,7 +4112,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.466Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-api-30"></a>
 
@@ -4127,14 +4127,14 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.466Z`. Với list dài, phần d
 | Domains | C-D10 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset coupon list có SAVE10 và DELETE_ME. Admin token dùng cho GET trước/sau; token của request mục tiêu theo bảng dưới. Chỉ thay field/role được nêu.
 - Authentication request mục tiêu: `none`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -4240,7 +4240,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.490Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-ui-01"></a>
 
@@ -4261,7 +4261,7 @@ Timestamp UTC thực tế: `2026-10-19T20:08:01.490Z`. Với list dài, phần d
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -4301,7 +4301,7 @@ Coupon có discount_value=0 được tạo và xuất hiện trong danh sách.
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-ui-02"></a>
 
@@ -4316,13 +4316,13 @@ Coupon có discount_value=0 được tạo và xuất hiện trong danh sách.
 | Domains | C-D1 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -4362,7 +4362,7 @@ Sau reload, ảnh danh sách vẫn có HW02_C_UI_02: fixed, discount_value=1, mi
 
 ### Verdict và rationale
 
-**PASS** — Hậu điều kiện khớp expected; mapping/thao tác đã được sinh viên xác nhận. Phần ảnh và phần xác nhận được ghi riêng theo provenance.
+**PASS** - Hậu điều kiện khớp expected; mapping/thao tác đã được sinh viên xác nhận. Phần ảnh và phần xác nhận được ghi riêng theo provenance.
 
 <a id="c-ui-03"></a>
 
@@ -4383,7 +4383,7 @@ Sau reload, ảnh danh sách vẫn có HW02_C_UI_02: fixed, discount_value=1, mi
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -4409,7 +4409,7 @@ Reject negative minimum.
 
 ### Actual và Evidence
 
-Coupon với min_order_amount=−1 được tạo và hiển thị ngưỡng âm.
+Coupon với min_order_amount=-1 được tạo và hiển thị ngưỡng âm.
 
 **Variant / giới hạn:** Không đổi dữ liệu thiết kế.
 
@@ -4423,7 +4423,7 @@ Coupon với min_order_amount=−1 được tạo và hiển thị ngưỡng âm
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="c-ui-04"></a>
 
@@ -4438,13 +4438,13 @@ Coupon với min_order_amount=−1 được tạo và hiển thị ngưỡng âm
 | Domains | C-D7 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -4484,7 +4484,7 @@ Browser native validation chặn max_uses_per_user=0 ở bước submit. Đây l
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-ui-05"></a>
 
@@ -4499,13 +4499,13 @@ Browser native validation chặn max_uses_per_user=0 ở bước submit. Đây l
 | Domains | C-D3 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -4545,7 +4545,7 @@ Tạo trùng SAVE10 trả lỗi UNIQUE. Source/schema và C-API-10 xác nhận k
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="c-ui-06"></a>
 
@@ -4560,13 +4560,13 @@ Tạo trùng SAVE10 trả lỗi UNIQUE. Source/schema và C-API-10 xác nhận k
 | Domains | C-D10 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -4601,20 +4601,20 @@ Create test coupon, delete it; disappears after reload; SAVE10 unchanged.
 
 ### Verdict và rationale
 
-**PASS** — Hậu điều kiện khớp expected; mapping/thao tác đã được sinh viên xác nhận. Phần ảnh và phần xác nhận được ghi riêng theo provenance.
+**PASS** - Hậu điều kiện khớp expected; mapping/thao tác đã được sinh viên xác nhận. Phần ảnh và phần xác nhận được ghi riêng theo provenance.
 
 ## 3. Test Summary
 
 | Scope | Designed | Executed đủ bằng chứng | PASS | FAIL | OBSERVATION | INCOMPLETE | NOT RUN |
 |---|---|---|---|---|---|---|---|
-| A — API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
-| A — UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
-| B — API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
-| B — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| C — API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
-| C — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| D — API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
-| D — UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
+| A - API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
+| A - UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
+| B - API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
+| B - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
+| C - API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
+| C - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
+| D - API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
+| D - UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
 | **Tổng** | 114 | 114 | 53 | 57 | 4 | 0 | 0 |
 
 Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.

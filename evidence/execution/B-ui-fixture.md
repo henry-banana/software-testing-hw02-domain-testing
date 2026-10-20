@@ -1,4 +1,4 @@
-# B-UI-06 — Exhausted usage fixture
+# B-UI-06 - Exhausted usage fixture
 
 **Readback recorded UTC:** 2026-10-20T04:22:38.564688+00:00. Đây là thời điểm đọc trạng thái fixture, không phải timestamp chụp UI.
 

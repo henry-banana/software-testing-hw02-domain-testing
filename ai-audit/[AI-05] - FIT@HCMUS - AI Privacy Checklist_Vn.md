@@ -1,36 +1,87 @@
-# Bảng Kiểm Quyền Riêng tư & Sử dụng AI Có Trách nhiệm — HW02
+**Khoa Công nghệ Thông tin (FIT) - Trường Đại học Khoa học Tự nhiên (HCMUS)**
 
-**Sinh viên:** Tống Dương Thái Hòa — MSSV23120262 — Software Testing CQ2023/3.
+**CS423 / CSC13003 - Kiểm chứng Phần mềm (AI-augmented, 2026)**
 
-## 1. Nguồn và công cụ
+**CHÍNH SÁCH AI, BIỂU MẪU - 2026 v1.0**
 
-- [x] Đề HW02 và Homework Policies được đối chiếu với artifacts hiện có.
-- [x] Công cụ được phân biệt theo provenance: transcript Codex; Antigravity/Claude theo declaration sinh viên cung cấp.
-- [x] Prompt/output lịch sử giữ nguyên; phần sửa mới tách khỏi original output.
-- [ ] Sinh viên đối chiếu lại lecture/AI Agreement riêng nếu môn đã phát; chưa có tài liệu đó để xác nhận trong workspace.
+# Bảng Kiểm Quyền Riêng tư & Sử dụng AI Có Trách nhiệm
 
-## 2. Dữ liệu và evidence
+*Thực hiện bảng kiểm này TRƯỚC KHI nộp bất kỳ bài tập có dùng AI.*
 
-- [x] API fixture là dữ liệu demo; runtime/database tách SUT gốc.
-- [x] Raw HTTP loại password/token/reset_token; không ghi JWT thật trong case/bug.
-- [x] 71 ảnh dùng nguyên bytes, có SHA-256 và mapping tên nguồn.
-- [x] PASS/FAIL/OBSERVATION/INCOMPLETE được tách theo bằng chứng; không dùng build/API thay native UI.
-- [x] Không tạo screenshots/video/chữ ký mới thay sinh viên.
+*Tài liệu được biên soạn lại từ Med Kharbach, PhD (2026) - Mẫu Chính sách Sử dụng AI cho Giáo dục Đại học. Giấy phép CC BY-NC-SA 4.0. Phiên bản này được FIT@HCMUS điều chỉnh cho môn CS423 / CSC13003 Kiểm chứng Phần mềm.*
 
-## 3. Trước khi nộp
+## 1. Trước khi dùng AI
 
-- [x] AI Critique giữ nguyên245từ, trong khoảng200–300.
-- [x] Có skill, 18bug files, testcase report và Git log actual.
-- [ ] Sinh viên đọc lại verdicts, disclosure, critique và self-assessment sau rewrite.
-- [x] Đã bổ sung3ảnh cho A-UI-07/B-UI-06 và read-only fixture readback; C-UI-02/C-UI-06/D-UI-12 đã được sinh viên làm rõ.
-- [ ] Đính kèm ảnh API-only bugs và ảnh/URL GitHub Issues ở giai đoạn nhóm cuối.
-- [ ] Thay link video tạm bằng URL thật khi quay/upload xong.
-- [ ] Xuất PDF/ZIP và kiểm tra quy cách Moodle; đây là bước sinh viên tự thực hiện.
+- [x] Đã xác nhận Cấp độ AI cho bài tập này.
 
-## 4. Chữ ký đã cung cấp
+- [ ] Dùng tài khoản Claude Pro tự chọn (không phải tài khoản cá nhân).
 
-Khối chữ ký giữ nguyên từ bản sinh viên cung cấp, không tự xác nhận bản rewrite đã được ký. Sinh viên cập nhật sau khi đọc bản cuối.
+- [ ] Đã đọc Thoả thuận AI của môn học.
 
-| Họ tên | MSSV | Lớp | Ngày ký | Chữ ký |
-|---|---|---|---|---|
-| Tống Dương Thái Hòa | 23120262 | CQ2023/3 | 2026-10-19 | Tống Dương Thái Hòa |
+- [ ] Hiểu rõ artifact nào KHÔNG được sinh bằng AI.
+
+Ghi chú Mục1: HW02 cho phép dùng AI; Bloom-AI G9.2/G9.3 theo đề. Chưa có xác nhận loại tài khoản Claude Pro, việc đọc AI Agreement hoặc ký cam đoan cá nhân nên các ô tương ứng được giữ trống.
+
+## 2. Trong khi dùng AI
+
+- [ ] Không nhập dữ liệu cá nhân của bạn, khách hàng, bệnh nhân.
+
+- [ ] Không paste nguyên si tài liệu có bản quyền lên AI.
+
+- [ ] Không paste code công ty / code open-source giới hạn license.
+
+- [ ] Đã ghi mọi prompt + phản hồi AI vào prompt_log.md có timestamp.
+
+Ghi chú Mục2: Test runtime dùng dữ liệu demo; JWT/password/reset_token đã được loại khỏi raw evidence. Tên/MSSV và tài liệu môn học có trong hội thoại nên không tự tick khẳng định tuyệt đối chưa nhập thông tin cá nhân/tài liệu. Appendix A có timestamp thật nhưng là snapshot, chưa khẳng định đã bao phủ mọi tương tác cuối.
+
+## 3. Trước khi nộp bài
+
+- [ ] Mọi artifact AI sinh đã được gắn tag trong AI Audit Report.
+
+- [ ] Mọi trích dẫn AI đã được xác minh (nguồn thực sự tồn tại).
+
+- [ ] Mọi code AI sinh đã được thực thi và test.
+
+- [x] AI Critique 200-300 chữ đã có trong báo cáo.
+
+- [x] Đoạn Mandatory Disclosure ở cuối báo cáo.
+
+- [x] Đính kèm AI Use Disclosure Form.
+
+- [ ] Sẵn sàng cho vấn đáp ngẫu nhiên 5-7 phút tuần kế nộp bài.
+
+Ghi chú Mục3: AI Critique245từ, Disclosure và Mandatory Disclosure có trong bài. Audit có bảng54artifacts và dữ liệu gốc. Chưa tự xác nhận mọi trích dẫn hoặc mọi script lịch sử đã được kiểm lại trong lần sửa này. Sinh viên còn đọc lại, thêm ảnh vào Issues, chụp trang Issue, thay videoURL, xuấtPDF/ZIP và chuẩn bị vấn đáp.
+
+## 4. Cam đoan Cuối cùng
+
+*Trách nhiệm cuối cùng về độ chính xác, tính nguyên bản, và liêm chính của bài nộp này thuộc về tôi. Mọi việc dùng AI không khai báo đều bị coi là vi phạm liêm chính học thuật.*
+
+
+Thông tin hành chính đã được điền; ngày ký và chữ ký của bản cập nhật này để sinh viên xác nhận sau khi đọc lại. Chữ ký cũ ngày2026-10-19 được bảo toàn trong dữ liệu nguồn, không tự chuyển thành chữ ký mới.
+
+## Chữ ký
+
+| Họ tên sinh viên (in hoa): | TỐNG DƯƠNG THÁI HÒA |
+|----------------------------|----------------------------------------|
+| MSSV:                      | 23120262 |
+| Lớp / Khoá:                | Software Testing - CQ2023/3 |
+| Môn học:                   | CS423 / CSC13003 - Kiểm chứng Phần mềm |
+| Giảng viên:                |                                        |
+| Ngày:                      |                                        |
+| Chữ ký:                    |                                        |
+
+## Tham khảo
+
+- Kharbach, M. (2026). AI Use Policy Templates for Higher Education. CC BY-NC-SA 4.0.
+
+- ISTQB Foundation Level Syllabus (latest version).
+
+- Hardman, P. (2025). A Post-AI Learning Taxonomy.
+
+- Fuster Rabella, M. (2025). OECD Education Working Paper No. 338.
+
+- Perkins, M., Roe, J., & Furze, L. (2025). AI Assessment Scale.
+
+- Anthropic (2025). Building reliable AI test agents - engineering blog.
+
+- DeepEval & Promptfoo documentation - testing frameworks for LLM systems.

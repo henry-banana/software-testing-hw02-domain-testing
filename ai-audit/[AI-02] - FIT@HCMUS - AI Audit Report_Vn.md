@@ -1,41 +1,507 @@
-# AI Audit Report — HW02
+**Khoa Công nghệ Thông tin (FIT) - Trường Đại học Khoa học Tự nhiên (HCMUS)**
 
-## 1. Thông tin Sinh viên và công cụ
+**CS423 / CSC13003 - Kiểm chứng Phần mềm (AI-augmented, 2026)**
 
-Tống Dương Thái Hòa — MSSV23120262 — Software Testing CQ2023/3. Bài HW02-AI. OpenAI Codex có transcript nguồn cho planning, design, harness, execution và rewrite. Antigravity IDE/Claude Sonnet được khai trong bản sinh viên cung cấp; chưa có transcript tương ứng trong bộ nguồn để tự gán từng prompt/output cho công cụ này.
+**CHÍNH SÁCH AI, BIỂU MẪU - 2026 v1.0**
 
-## 2. Provenance và phạm vi
+# AI Audit Report - Mẫu 5 mục cho mỗi Artifact
 
-[Appendix_A_Prompt_Log.md](../Appendix_A_Prompt_Log.md) chứa prompt và output messages nguyên văn cùng timestamp nguồn. API raw output là kết quả chương trình, không phải lời sinh viên tự viết. Appendix B dưới đây là snapshot output AI lịch sử giữ nguyên; mọi con số pending/NOT RUN bên trong fence thuộc bản cũ, không phải summary hiện tại. Không có interactions/.
+*Phụ lục bắt buộc đính kèm cho mọi bài tập có dùng AI (HW#01-HW#06, Seminar).*
 
-## 3. Technical audit của bản viết lại
+*Tài liệu được biên soạn lại từ Med Kharbach, PhD (2026) - Mẫu Chính sách Sử dụng AI cho Giáo dục Đại học. Giấy phép CC BY-NC-SA 4.0. Phiên bản này được FIT@HCMUS điều chỉnh cho môn CS423 / CSC15003 Kiểm chứng Phần mềm.*
 
-| Artifact | Vấn đề có evidence | Correction |
-|---|---|---|
-| A | Unicode ASCII assumption; UI/API khác nhau; ảnh cũ A-UI-07 chưa đủ | Oracle metadata sửa; A03 riêng; ảnh mới valid input bị chặn xác nhận A-UI-07 FAIL |
-| B | Sai tiền trong draft; nominal VIP100 bị thay thành exhausted test | Dùng raw literals; ảnh mới đúng user và fixtureused2/limit2 xác nhận B-UI-06 PASS |
-| C | CamelCase/enum/endpoint sai; zero/negative đảo ID | Snake_case; fixed/percent; GET /api/coupons; map12/13,18/19 đúng |
-| D | Detail category bị false PASS; cart suy từ alert; thiếu two-add sequence | D02 theo mapping; giới hạn kết luận1abc; D12 cập nhật PASS sau xác nhận ảnh của sinh viên |
-| Harness | Lượt rewrite trước đưa helper scripts vào submission | Đã tái chạy81HTTP cases; sau đó dời toàn bộ helpers ra ngoài theo cấu trúc sinh viên yêu cầu; hashes SUT giữ nguyên |
-| Summary | 114executed và counts không khớp | 114designed;114executed đủ evidence;53P/57F/4OBS/0incomplete sau bổ sung ảnh A/B |
-| Video/Issues | Link video thật chưa có, nhóm chưa đăng Issues | Một link tạm thống nhất; group stage giữ cuối |
-| AI provenance | Header Claude nhưng transcript Codex; human review lẫn version | Phân biệt tool theo record; student confirmation cũ không tự áp bản mới |
+## 1. Thông tin Sinh viên
 
-Các verdict này là technical review của Codex trong cùng phiên, không phải independent review hoặc human signoff. AI gap tables trong từng feature giải thích Prompt/Tool/Complexity cùng evidence, không bịa một thí nghiệm so sánh model.
+| Mục                              | Giá trị              |
+|----------------------------------|----------------------|
+| Họ tên sinh viên (in hoa):       | TỐNG DƯƠNG THÁI HÒA |
+| MSSV:                            | 23120262 |
+| Lớp / Khoá:                      | Software Testing - CQ2023/3 |
+| Mã bài tập (ví dụ HW#00, HW#02): | HW02-AI |
+| Ngày làm bài:                    | 19-20/10/2026 |
+| Công cụ AI đã dùng:              | OpenAI Codex; Antigravity IDE / Claude Sonnet theo khai báo trước của sinh viên |
+| Công cụ AI đã dùng:              | [x] Có [ ] Không |
 
-## 4. Mức độ đáp ứng và human review
+## 2. Hướng dẫn (đọc trước khi điền)
 
-Bản trước có declaration/signature do sinh viên cung cấp và statement đã review. Lượt viết lại này thay đổi cases, verdicts, bug descriptions và summary, nên cần sinh viên đọc lại các thay đổi trước khi ký/xuất bản cuối. Không tự chuyển xác nhận bản cũ thành chữ ký cho bản mới. Technical completeness không phải tỷ lệ test PASS; SUT FAIL là finding, không phải lỗi AI tương ứng.
+- Thêm 1 hàng cho mỗi artifact AI sinh (test case, script, checklist, OpenAPI spec, JMeter plan...).
 
-## 5. Kết luận sử dụng AI
+- Dán nguyên văn prompt - KHÔNG paraphrase.
 
-AI giúp tổ chức constraint, đại diện, biên, fixture và traceability; hạn chế rõ nhất là giữ literal contract/số tiền và suy luận state qua ảnh. Chúng tôi kiểm bằng nguồn SRS, raw HTTP và ảnh thật, đồng thời giữ incomplete/observation. Giữ nguyên lịch sử output giúp thấy việc sửa sai thay vì xóa dấu vết; trách nhiệm kết luận và nộp bài thuộc sinh viên.
+- Dán nguyên văn output AI (hoặc kèm screenshot có chú thích trong báo cáo).
 
-## 6. Mandatory Disclosure
+- Gắn nhãn: VALID / INVALID / INCOMPLETE.
 
-I use AI tools for requirement analysis, Domain Testing and BVA design, scripts, API execution, evidence review, bug reporting and Markdown authoring. Ảnh UI do sinh viên cung cấp; không có ảnh/video do AI dựng, không có chữ ký mới được AI tạo. Bản nguồn cuối cần human review; video URL tạm và group Issues vẫn chờ bước được phân công.
+- Lý do phải dẫn chiếu slide, mục ISTQB, hoặc RFC kỹ thuật.
 
-## Appendix B — Full artifact output snapshot
+- Hiển thị bản sửa với phần thay đổi được tô sáng.
+
+- Hàng mẫu in nghiêng - thay trước khi nộp.
+
+## 3. Bảng Audit - 1 hàng / artifact
+
+
+Nguồn prompt: Interaction item20, 19/10/2026 14:50:32 +07:00 và Record R015, 20/10/2026 02:48:53 +07:00 trong <a href="../Appendix_A_Prompt_Log.md">Appendix A</a>. Các mốc này là thời gian prompt nguồn, không phải giờ sinh riêng từng file. Tool có transcript là OpenAI Codex. Antigravity IDE / Claude Sonnet được khai theo bản sinh viên cung cấp; không gán transcript Codex cho Claude.
+
+Bảng đánh giá artifact AI, không dùng PASS/FAIL của SUT để tính độ chính xác AI. Prompt và output trong bản Markdown chỉ chuẩn hóa dấu câu theo yêu cầu trình bày. Dữ liệu <a href="../evidence/ai-originals/source-records.json">source-records.json</a> giữ nội dung gốc và SHA-256 để khôi phục nguyên văn; các output cũ trong Appendix B thuộc thời điểm export, không phải thống kê hiện tại. Phần tô sáng là bản sửa kỹ thuật hiện có; chữ ký human review chưa được tự điền.
+
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 21%" />
+<col style="width: 10%" />
+<col style="width: 23%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>(1) Prompt + Công cụ</th>
+<th>(2) Output AI</th>
+<th>(3) Verdict</th>
+<th>(4) Lý do (ISTQB)</th>
+<th>(5) Bản SV sửa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Artifact #1: <code>.agents/skills/domain-bva-testing/SKILL.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>VALID</td>
+<td>ISTQB mục4.2.1-4.2.2: workflow tách oracle, phân lớp, biên, thực thi và audit.</td>
+<td><mark>Giữ quy trình8bước; không lấy build/API làm bằng chứng Mobile.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #2: <code>reports/A-FR04-domain.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>ISTQB CTFL v4.0.1, mục4.2.1-4.2.2: lớp và biên phải khớp oracle; kết quả cần traceability.</td>
+<td><mark>Không tự coi Unicode digits là invalid; A-UI-07 FAIL do BUG-A03 với phone0912345678, không suy persistence.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #3: <code>reports/A-FR04-review.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INVALID</td>
+<td>Yêu cầu trình bày của sinh viên: không nộp tài liệu điều phối hoặc review trùng; thiếu evidence không phải lỗi SUT.</td>
+<td><mark>Dời tài liệu làm việc ra ngoài gói nộp; giữ phân tích và bằng chứng trong report/tests/bugs.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #4: <code>reports/B-FR09-domain.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>ISTQB CTFL v4.0.1, mục4.2.1-4.2.2: lớp và biên phải khớp oracle; kết quả cần traceability.</td>
+<td><mark>Sửa literal discount=-3600000/final=4000000; B-UI-06 PASS tại fixtureused2/limit2, khai rõ hai rows được seed.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #5: <code>reports/B-FR09-review.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INVALID</td>
+<td>Yêu cầu trình bày của sinh viên: không nộp tài liệu điều phối hoặc review trùng; thiếu evidence không phải lỗi SUT.</td>
+<td><mark>Dời tài liệu làm việc ra ngoài gói nộp; giữ phân tích và bằng chứng trong report/tests/bugs.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #6: <code>reports/C-FR17-domain.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>ISTQB CTFL v4.0.1, mục4.2.1-4.2.2: lớp và biên phải khớp oracle; kết quả cần traceability.</td>
+<td><mark>Dùng snake_case, fixed/percent và GET /api/coupons; đảo lại đúng zero/negative IDs; FR-17 chỉ Create/View/Delete.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #7: <code>reports/C-FR17-review.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INVALID</td>
+<td>Yêu cầu trình bày của sinh viên: không nộp tài liệu điều phối hoặc review trùng; thiếu evidence không phải lỗi SUT.</td>
+<td><mark>Dời tài liệu làm việc ra ngoài gói nộp; giữ phân tích và bằng chứng trong report/tests/bugs.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #8: <code>reports/D-mobile-domain.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>ISTQB CTFL v4.0.1, mục4.2.1-4.2.2: lớp và biên phải khớp oracle; kết quả cần traceability.</td>
+<td><mark>D-UI-09 FAIL do thiếu category; D-UI-12 PASS theo ảnh và xác nhận sinh viên; không tự thêm quantityMAX/reset rule.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #9: <code>reports/D-mobile-review.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INVALID</td>
+<td>Yêu cầu trình bày của sinh viên: không nộp tài liệu điều phối hoặc review trùng; thiếu evidence không phải lỗi SUT.</td>
+<td><mark>Dời tài liệu làm việc ra ngoài gói nộp; giữ phân tích và bằng chứng trong report/tests/bugs.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #10: <code>reports/manual-handoff.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INVALID</td>
+<td>Yêu cầu trình bày của sinh viên: không nộp tài liệu điều phối hoặc review trùng; thiếu evidence không phải lỗi SUT.</td>
+<td><mark>Dời tài liệu làm việc ra ngoài gói nộp; giữ phân tích và bằng chứng trong report/tests/bugs.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #11: <code>reports/skill-demonstration.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INVALID</td>
+<td>Yêu cầu trình bày của sinh viên: không nộp tài liệu điều phối hoặc review trùng; thiếu evidence không phải lỗi SUT.</td>
+<td><mark>Dời tài liệu làm việc ra ngoài gói nộp; giữ phân tích và bằng chứng trong report/tests/bugs.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #12: <code>reports/technical-review.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INVALID</td>
+<td>Yêu cầu trình bày của sinh viên: không nộp tài liệu điều phối hoặc review trùng; thiếu evidence không phải lỗi SUT.</td>
+<td><mark>Dời tài liệu làm việc ra ngoài gói nộp; giữ phân tích và bằng chứng trong report/tests/bugs.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #13: <code>reports/test-environment.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>ISTQB CTFL v4.0.1, mục4.2.1-4.2.2: lớp và biên phải khớp oracle; kết quả cần traceability.</td>
+<td><mark>Đối chiếu SRS, raw HTTP và ảnh thật; giữ một tập114TC với53PASS/57FAIL/4OBSERVATION.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #14: <code>reports/test-summary.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>ISTQB CTFL v4.0.1, mục4.2.1-4.2.2: lớp và biên phải khớp oracle; kết quả cần traceability.</td>
+<td><mark>Đối chiếu SRS, raw HTTP và ảnh thật; giữ một tập114TC với53PASS/57FAIL/4OBSERVATION.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #15: <code>scripts/bugs.cjs</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6/12 và yêu cầu thư mục của sinh viên: helper phải resolve đúng workspace, bảo toàn source và xuất lịch sử thật.</td>
+<td><mark>Helpers đã dời sang hw02/scripts; không còn scripts/ trong gói nộp, validator và Git log dùng đường dẫn ngoài repo.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #16: <code>scripts/cases.cjs</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>VALID</td>
+<td>Case catalogue có input/expected tách nhau; kiểm build chỉ được dùng cho môi trường, không thay UI verdict.</td>
+<td><mark>Giữ catalogue và build check trong workspace ngoài repo theo yêu cầu tổ chức.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #17: <code>scripts/check-builds.cjs</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>VALID</td>
+<td>Case catalogue có input/expected tách nhau; kiểm build chỉ được dùng cho môi trường, không thay UI verdict.</td>
+<td><mark>Giữ catalogue và build check trong workspace ngoài repo theo yêu cầu tổ chức.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #18: <code>scripts/export-git-log.cjs</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6/12 và yêu cầu thư mục của sinh viên: helper phải resolve đúng workspace, bảo toàn source và xuất lịch sử thật.</td>
+<td><mark>Helpers đã dời sang hw02/scripts; không còn scripts/ trong gói nộp, validator và Git log dùng đường dẫn ngoài repo.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #19: <code>scripts/manual-runtime.cjs</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6/12 và yêu cầu thư mục của sinh viên: helper phải resolve đúng workspace, bảo toàn source và xuất lịch sử thật.</td>
+<td><mark>Helpers đã dời sang hw02/scripts; không còn scripts/ trong gói nộp, validator và Git log dùng đường dẫn ngoài repo.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #20: <code>scripts/render-cases.cjs</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6/12 và yêu cầu thư mục của sinh viên: helper phải resolve đúng workspace, bảo toàn source và xuất lịch sử thật.</td>
+<td><mark>Helpers đã dời sang hw02/scripts; không còn scripts/ trong gói nộp, validator và Git log dùng đường dẫn ngoài repo.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #21: <code>scripts/run-api.cjs</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6/12 và yêu cầu thư mục của sinh viên: helper phải resolve đúng workspace, bảo toàn source và xuất lịch sử thật.</td>
+<td><mark>Helpers đã dời sang hw02/scripts; không còn scripts/ trong gói nộp, validator và Git log dùng đường dẫn ngoài repo.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #22: <code>scripts/runtime.cjs</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6/12 và yêu cầu thư mục của sinh viên: helper phải resolve đúng workspace, bảo toàn source và xuất lịch sử thật.</td>
+<td><mark>Helpers đã dời sang hw02/scripts; không còn scripts/ trong gói nộp, validator và Git log dùng đường dẫn ngoài repo.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #23: <code>scripts/show-bug.cjs</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6/12 và yêu cầu thư mục của sinh viên: helper phải resolve đúng workspace, bảo toàn source và xuất lịch sử thật.</td>
+<td><mark>Helpers đã dời sang hw02/scripts; không còn scripts/ trong gói nộp, validator và Git log dùng đường dẫn ngoài repo.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #24: <code>scripts/summarize.cjs</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6/12 và yêu cầu thư mục của sinh viên: helper phải resolve đúng workspace, bảo toàn source và xuất lịch sử thật.</td>
+<td><mark>Helpers đã dời sang hw02/scripts; không còn scripts/ trong gói nộp, validator và Git log dùng đường dẫn ngoài repo.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #25: <code>scripts/validate-deliverables.py</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6/12 và yêu cầu thư mục của sinh viên: helper phải resolve đúng workspace, bảo toàn source và xuất lịch sử thật.</td>
+<td><mark>Helpers đã dời sang hw02/scripts; không còn scripts/ trong gói nộp, validator và Git log dùng đường dẫn ngoài repo.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #26: <code>tests/A-FR04-profile.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>ISTQB CTFL v4.0.1, mục4.2.1-4.2.2: lớp và biên phải khớp oracle; kết quả cần traceability.</td>
+<td><mark>Không tự coi Unicode digits là invalid; A-UI-07 FAIL do BUG-A03 với phone0912345678, không suy persistence.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #27: <code>tests/B-FR09-discount-coupons.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>ISTQB CTFL v4.0.1, mục4.2.1-4.2.2: lớp và biên phải khớp oracle; kết quả cần traceability.</td>
+<td><mark>Sửa literal discount=-3600000/final=4000000; B-UI-06 PASS tại fixtureused2/limit2, khai rõ hai rows được seed.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #28: <code>tests/C-FR17-coupon-management.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>ISTQB CTFL v4.0.1, mục4.2.1-4.2.2: lớp và biên phải khớp oracle; kết quả cần traceability.</td>
+<td><mark>Dùng snake_case, fixed/percent và GET /api/coupons; đảo lại đúng zero/negative IDs; FR-17 chỉ Create/View/Delete.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #29: <code>tests/D-mobile-product-detail.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>ISTQB CTFL v4.0.1, mục4.2.1-4.2.2: lớp và biên phải khớp oracle; kết quả cần traceability.</td>
+<td><mark>D-UI-09 FAIL do thiếu category; D-UI-12 PASS theo ảnh và xác nhận sinh viên; không tự thêm quantityMAX/reset rule.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #30: <code>REPORT.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn item20, 19/10/2026 14:50:32 +07:00 (không có timestamp sinh riêng file):<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Bắt đầu làm full đi. Đổi phần ai/ thành ai-audit, xóa interactions/, và các file kia phải giữa nguyên đúng tên của &#91;templates&#93;(templates/). Lưu ý mọi doc bạn viết đều ở dạng markdown hết, còn định dạng cuối ra sao thì tui sẽ tự thực hiện. À có thể tham khảo &#91;https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting&#93;(https://github.com/bingsu1103/23120205-HW02-AI-DomainTesting) để xem họ sắp xếp ra sao? Soạn lại tasks chi tiết hơn để bạn nắm đi</td>
+<td>Appendix B: output snapshot theo đúng tên artifact.</td>
+<td>INCOMPLETE</td>
+<td>ISTQB CTFL v4.0.1, mục4.2.1-4.2.2: lớp và biên phải khớp oracle; kết quả cần traceability.</td>
+<td><mark>Đối chiếu SRS, raw HTTP và ảnh thật; giữ một tập114TC với53PASS/57FAIL/4OBSERVATION.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #31: <code>bugs/BUG-A01.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #32: <code>bugs/BUG-A02.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #33: <code>bugs/BUG-A03.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #34: <code>bugs/BUG-B01.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #35: <code>bugs/BUG-B02.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #36: <code>bugs/BUG-B03.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #37: <code>bugs/BUG-B04.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #38: <code>bugs/BUG-B05.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #39: <code>bugs/BUG-C01.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #40: <code>bugs/BUG-C03.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #41: <code>bugs/BUG-C04.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #42: <code>bugs/BUG-C05.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #43: <code>bugs/BUG-C06.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #44: <code>bugs/BUG-C07.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #45: <code>bugs/BUG-C08.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #46: <code>bugs/BUG-C09.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #47: <code>bugs/BUG-D01.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #48: <code>bugs/BUG-D02.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Giữ actual đã kiểm chứng; đăng Issue theo BugID vàMSSV, ghi URL thật. Ảnh đính kèm và ảnh trang Issue do sinh viên hoàn tất qua UI.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #49: <code>bugs/bug-reports.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Dữ liệu nguồn giữ bản trước cập nhật trong source-records.json; nội dung hiện tại ở file bug tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục6.4/14: bug cần mô tả tái hiện, actual, traceability và Issue nhóm; metadata xuất bản trước đây còn thiếu.</td>
+<td><mark>Đồng bộ18buggroups, sốTC FAIL và18IssueURLs trong bảng tổng hợp; ảnh đính kèm và ảnh trangIssue vẫn chờ sinh viên.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #50: <code>ai-audit/&#91;AI-02&#93; - FIT@HCMUS - AI Audit Report_Vn.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Bản trước sửa template trong source-records.json; bản điền hiện tại ở file tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>Biểu mẫu gốc yêu cầu giữ câu hỏi, hướng dẫn, bảng, cam đoan và chữ ký; bản trước đã thay cấu trúc.</td>
+<td><mark>Khôi phục nguyên cấu trúc template; chỉ điền trường trống/answer area và chuẩn hóa dấu câu theo yêu cầu.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #51: <code>ai-audit/&#91;AI-03&#93; - FIT@HCMUS - AI Disclosure Form_Vn.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Bản trước sửa template trong source-records.json; bản điền hiện tại ở file tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>Biểu mẫu gốc yêu cầu giữ câu hỏi, hướng dẫn, bảng, cam đoan và chữ ký; bản trước đã thay cấu trúc.</td>
+<td><mark>Khôi phục nguyên cấu trúc template; chỉ điền trường trống/answer area và chuẩn hóa dấu câu theo yêu cầu.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #52: <code>ai-audit/&#91;AI-04&#93; - FIT@HCMUS - AI Reflective Statement_Vn.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Bản trước sửa template trong source-records.json; bản điền hiện tại ở file tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>Biểu mẫu gốc yêu cầu giữ câu hỏi, hướng dẫn, bảng, cam đoan và chữ ký; bản trước đã thay cấu trúc.</td>
+<td><mark>Khôi phục nguyên cấu trúc template; chỉ điền trường trống/answer area và chuẩn hóa dấu câu theo yêu cầu.</mark></td>
+</tr>
+<tr class="odd">
+<td>Artifact #53: <code>ai-audit/&#91;AI-05&#93; - FIT@HCMUS - AI Privacy Checklist_Vn.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Bản trước sửa template trong source-records.json; bản điền hiện tại ở file tương ứng.</td>
+<td>INCOMPLETE</td>
+<td>Biểu mẫu gốc yêu cầu giữ câu hỏi, hướng dẫn, bảng, cam đoan và chữ ký; bản trước đã thay cấu trúc.</td>
+<td><mark>Khôi phục nguyên cấu trúc template; chỉ điền trường trống/answer area và chuẩn hóa dấu câu theo yêu cầu.</mark></td>
+</tr>
+<tr class="even">
+<td>Artifact #54: <code>README.md</code><br />Tool: OpenAI Codex<br />Prompt nguồn R015, 20/10/2026 02:48:53 +07:00:<br />&#91;@mattpocock-skills&#93;(plugin://mattpocock-skills@mattpocock) Hãy viết lại thật đầy đủ, chi tiết cho từng loại, bugs có thể chia thành từng id cho từng file luôn hoặc chung 1 file theo domain tùy bạn. Sau khi viết lại toàn bộ thì kiểm tra lại tất cả và so sánh với yêu cầu của đề bài xem còn thiếu sót gì nữa không? Video thì cứ cho link temp vậy đi, vì tôi đang quay, đảm bảo có nên cứ đặt đó và tui sẽ tự đặt link vào sau.</td>
+<td>Bản sửa hiện tại trong README; lịch sử Git truy vết bản trước.</td>
+<td>INCOMPLETE</td>
+<td>HW02 mục14: test summary, self-assessment, bugs và videos phải nhất quán.</td>
+<td><mark>Đồng bộ114TC,18bugs,71ảnh và trạng thái Issue/ảnh/video; không tăng điểm hoặc giả chữ ký.</mark></td>
+</tr>
+</tbody>
+</table>
+
+## 4. Tổng kết Độ chính xác AI
+
+Tổng hợp verdict từ Mục 3 và điền vào bảng dưới.
+
+| Chỉ số                             | Số lượng | Tỉ lệ |
+|------------------------------------|----------|-------|
+| Tổng artifact AI sinh đã audit | 54 | 100.00% |
+| VALID (đúng, dùng nguyên) | 3 | 5.56% |
+| INVALID (sai; loại bỏ) | 7 | 12.96% |
+| INCOMPLETE (chấp nhận sau khi sửa) | 44 | 81.48% |
+
+## 5. Kết luận - Khi nào nên / không nên dùng AI?
+
+Viết 80-150 chữ mô tả pattern quan sát được. AI mạnh ở đâu? AI sai ở đâu? Khuyến nghị của bạn cho việc dùng AI trong loại công việc này?
+
+AI giúp chúng tôi chuyển yêu cầu thành input vector, domain, giá trị biên và bộ test có truy vết. Tuy nhiên, bản đầu có thể dùng sai tên field, suy kết quả lưu dữ liệu từ alert hoặc coi trạng thái coupon nominal là đã hết lượt. Chúng tôi chỉ chấp nhận kết luận sau khi đối chiếu SRS, raw HTTP và ảnh thực tế. Đầu ra không phù hợp cấu trúc bài nộp được loại bỏ; artifact đúng hướng được sửa và ghi rõ thay đổi. AI phù hợp để hỗ trợ tổ chức và kiểm tra tính nhất quán, còn việc xác nhận trải nghiệm cá nhân, chữ ký và bằng chứng thao tác thật cần người thực hiện chịu trách nhiệm.
+
+## 6. Mandatory Disclosure (dán nguyên văn)
+
+> *"\[Test case / script / dataset / báo cáo\] này được sinh phiên bản đầu bởi \[tên công cụ AI\]; tôi đã rà soát và chỉnh sửa \[phần X\], bổ sung \[edge case Y, Z\]; \[phần W\] do tôi tự viết. AI Audit Report chi tiết đính kèm ở Phụ lục A. Tôi cam đoan không dùng AI để sinh bất kỳ artifact nào thuộc danh mục bị cấm."*
+
+
+
+**Khai báo cho HW02:** Tôi sử dụng OpenAI Codex cho phân tích yêu cầu, thiết kế Domain/BVA, script/APIexecution, đối chiếu evidence, bugreport và biên soạnMarkdown. Antigravity IDE / Claude Sonnet được khai theo bản thông tin trước; transcript kèm theo thuộcCodex. ẢnhUI và video do sinh viên thực hiện; việc rà soát bản cuối và ký xác nhận chưa được tự điền. Phạm vi sửa và nguồn bằng chứng nằm trong bảng54artifacts và AppendixA; đoạn mẫu bắt buộc ở trên được giữ để đối chiếu chính sách, không coi các chỗ trống trong câu mẫu là lời cam đoan đã được ký.
+
+
+Thông tin hành chính đã được điền; ngày ký và chữ ký của bản cập nhật này để sinh viên xác nhận sau khi đọc lại. Chữ ký cũ ngày2026-10-19 được bảo toàn trong dữ liệu nguồn, không tự chuyển thành chữ ký mới.
+
+## Chữ ký
+
+| Họ tên sinh viên (in hoa): | TỐNG DƯƠNG THÁI HÒA |
+|----------------------------|----------------------------------------|
+| MSSV:                      | 23120262 |
+| Lớp / Khoá:                | Software Testing - CQ2023/3 |
+| Môn học:                   | CS423 / CSC13003 - Kiểm chứng Phần mềm |
+| Giảng viên:                |                                        |
+| Ngày:                      |                                        |
+| Chữ ký:                    |                                        |
+
+## Tham khảo
+
+- Kharbach, M. (2026). AI Use Policy Templates for Higher Education. CC BY-NC-SA 4.0.
+
+- ISTQB Foundation Level Syllabus (latest version).
+
+- Hardman, P. (2025). A Post-AI Learning Taxonomy.
+
+- Fuster Rabella, M. (2025). OECD Education Working Paper No. 338.
+
+- Perkins, M., Roe, J., & Furze, L. (2025). AI Assessment Scale.
+
+- Anthropic (2025). Building reliable AI test agents - engineering blog.
+
+- DeepEval & Promptfoo documentation - testing frameworks for LLM systems.
+
+## Appendix B - Full artifact output snapshot
+
+Bản hiển thị dưới đây được chuẩn hóa dấu câu. SHA256 ghi trong từngartifact thuộc nội dung nguồn trước chuẩn hóa, có thể khôi phục từ source-records.json; không dùnghash đó để nhận bản trình bày hiện tại là nguyênbytes.
 
 Các source file snapshot dưới đây là output kỹ thuật nguyên văn tại thời điểm export. Student corrections về sau ghi trong Human Review và Git, không tự gán cho snapshot cũ. API raw evidence độc lập nằm trong evidence/execution/.
 
@@ -89,17 +555,17 @@ SHA-256: `57183b9691e86092d25f6b3fef61b52118f2a2cab7e0c411032834353de36d2b`
 <summary>Full output</summary>
 
 ````text
-# A — FR-04: Personal profile management
+# A - FR-04: Personal profile management
 
 ## Requirements and test oracle
 
-SRS FR-04: user đã đăng nhập được cập nhật name, phone, shipping_address của chính mình. Phone bắt đầu `0`, dài 10–11 chữ số. Email không đổi qua UI; role không được tự đổi (SEC-06). Quyền truy cập theo SEC-02. Nguồn: [SRS tại baseline](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md#fr-04-quản-lý-hồ-sơ-cá-nhân).
+SRS FR-04: user đã đăng nhập được cập nhật name, phone, shipping_address của chính mình. Phone bắt đầu `0`, dài 10-11 chữ số. Email không đổi qua UI; role không được tự đổi (SEC-06). Quyền truy cập theo SEC-02. Nguồn: [SRS tại baseline](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md#fr-04-quản-lý-hồ-sơ-cá-nhân).
 
-## Domain Testing — từng bước
+## Domain Testing - từng bước
 
 1. Chọn public interfaces: PUT/GET `/api/users/me`; UI `/profile`. Fixture tạo user 2 và user 3 tách biệt.
 2. Xác định vector input `(JWT, target identity, phone, name, address, role attempt)`. Outputs là chấp nhận/từ chối và trạng thái lưu sau thao tác; chỉ thông báo thành công chưa đủ chứng minh.
-3. Miền hợp lệ của phone: `startsWith0 ∧ digitsOnly ∧ 10 ≤ length ≤ 11`. Miền có thể cập nhật giới hạn bởi `target = authenticated user` và `role unchanged`.
+3. Miền hợp lệ của phone: `startsWith0 ∧ digitsOnly ∧ 10 <= length <= 11`. Miền có thể cập nhật giới hạn bởi `target = authenticated user` và `role unchanged`.
 4. Chia các lớp bên dưới; thay một điều kiện mỗi lần trong khi giữ JWT/name/address hợp lệ để lỗi không bị điều kiện khác che.
 5. Chọn đại diện rồi bổ sung các boundary. So sánh cập nhật qua API với UI riêng để nhận ra backend acceptance không chứng minh frontend acceptance.
 6. Kiểm tra liên kết nhiều chiều: giữ length hợp lệ nhưng đổi prefix; giữ mọi trường hợp lệ nhưng thêm role/id của user khác. Đây là domain constraints, không phải chỉ kiểm tra độ dài.
@@ -111,25 +577,25 @@ SRS FR-04: user đã đăng nhập được cập nhật name, phone, shipping_a
 | A-D2 | Quá ngắn: rỗng, 1, 8, 9 chữ số | Từ chối, dữ liệu cũ giữ nguyên | A-API-03/05/06/07 |
 | A-D3 | Quá dài: 12, 13 chữ số | Từ chối | A-API-04/08 |
 | A-D4 | Prefix khác 0 dù length hợp lệ | Từ chối | A-API-09/10 |
-| A-D5 | Chữ/khoảng trắng/+84/dấu gạch/null | Từ chối phone không hợp lệ | A-API-11–14/16 |
+| A-D5 | Chữ/khoảng trắng/+84/dấu gạch/null | Từ chối phone không hợp lệ | A-API-11-14/16 |
 | A-D6 | Unicode digits | Quan sát riêng vì SRS chưa nói rõ numeral encoding | A-API-15 |
 | A-D7 | Name/address tiếng Việt | Chấp nhận khi phone hợp lệ | A-API-17 |
 | A-D8 | User cố đổi role | Giữ role=user hoặc từ chối | A-API-18 |
 | A-D9 | Body chỉ định user khác | Chỉ sửa user xác thực | A-API-19 |
-| A-D10 | Thiếu/JWT sai | Không đọc/sửa được profile | A-API-20–22 |
+| A-D10 | Thiếu/JWT sai | Không đọc/sửa được profile | A-API-20-22 |
 | A-D11 | Email trên UI | Không chỉnh sửa được | A-UI-06 |
 
 ## BVA
 
 | Biến | Boundary / bước | Giá trị | Cases |
 |---|---|---|---|
-| Phone length | Lower=10, upper=11, delta=1 digit | 9 invalid, 10 valid, 11 valid, 12 invalid | A-API-03/01/02/04; A-UI-01–04 |
+| Phone length | Lower=10, upper=11, delta=1 digit | 9 invalid, 10 valid, 11 valid, 12 invalid | A-API-03/01/02/04; A-UI-01-04 |
 
 Đây là các điểm biên và lân cận theo đơn vị ký tự, không phải BVA trên giá trị số của phone. Kết hợp cả hai biên cho tập `{9,10,11,12}`; 8/13 là điểm sâu trong miền invalid, không tính là biên mới. Prefix và role là lớp rời rạc nên dùng Domain Testing, không bịa min/max số học. Name/address không có giới hạn chiều dài trong SRS; chưa gán max-length bug.
 
 ## Coverage and limitations
 
-Cases và steps: [A-FR04-profile.md](../tests/A-FR04-profile.md). Raw API: [A-api.md](../evidence/execution/A-api.md). UI có ID riêng và chờ chạy. Lecture của môn chưa có trong workspace; phần phương pháp hiện dựa SRS và [ISTQB CTFL v4.0.1 §4.2.1–4.2.2](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf), sinh viên đối chiếu slide khi review. Không nhận 100% coverage của toàn bộ hệ thống.
+Cases và steps: [A-FR04-profile.md](../tests/A-FR04-profile.md). Raw API: [A-api.md](../evidence/execution/A-api.md). UI có ID riêng và chờ chạy. Lecture của môn chưa có trong workspace; phần phương pháp hiện dựa SRS và [ISTQB CTFL v4.0.1 mục 4.2.1-4.2.2](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf), sinh viên đối chiếu slide khi review. Không nhận 100% coverage của toàn bộ hệ thống.
 
 ````
 
@@ -143,7 +609,7 @@ SHA-256: `e5cd76263354d61a0284396164390a8422ff3546fc423c40722be17c68ad50a7`
 <summary>Full output</summary>
 
 ````text
-# FR-04 — Technical review and AI gaps
+# FR-04 - Technical review and AI gaps
 
 ## Actual API result
 
@@ -176,31 +642,31 @@ SHA-256: `b523987f117f1e0310a5184209da9d6fefe4f2aee7e686b42c571a0b5305f6d0`
 <summary>Full output</summary>
 
 ````text
-# B — FR-09: Discount coupons
+# B - FR-09: Discount coupons
 
 ## Requirements and test oracle
 
-[SRS baseline FR-09](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md#fr-09-mã-giảm-giá-coupon): chấp nhận khi C1 coupon tồn tại/active, C2 now < expiry, C3 total ≥ minimum, C4 JWT hợp lệ, C5 lượt dùng của user < limit. Giảm percent = total × value / 100; fixed = value; final = total − discount.
+[SRS baseline FR-09](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md#fr-09-mã-giảm-giá-coupon): chấp nhận khi C1 coupon tồn tại/active, C2 now < expiry, C3 total >= minimum, C4 JWT hợp lệ, C5 lượt dùng của user < limit. Giảm percent = total x value / 100; fixed = value; final = total - discount.
 
-## Domain Testing — từng bước
+## Domain Testing - từng bước
 
 1. Vector input gồm `(code/existence/active, now/expiry, total/minimum, JWT identity, usage/limit, type/value)`; output có reject hoặc discount/final.
 2. Mô tả miền chấp nhận bằng `C1 ∧ C2 ∧ C3 ∧ C4 ∧ C5`. Sử dụng fixed coupon để tách validation khỏi lỗi công thức percent.
 3. Dùng trạng thái hợp lệ nominal: BIGBUY active, expiry 2099, total=600000, user 2 có JWT hợp lệ và chưa dùng; expected discount=50000/final=550000 được tính độc lập từ SRS.
 4. Lần lượt đảo mỗi điều kiện còn giữ bốn điều kiện kia đúng. Tách nonexistent và inactive vì hai nguyên nhân cùng nằm trong C1.
-5. Mở rộng vào boundary ở minimum, expiry, usage; thêm giao điểm total=minimum và used=limit−1. Test nhiều điều kiện sai chỉ kỳ vọng reject, không đặt thứ tự thông báo lỗi vì SRS không yêu cầu.
+5. Mở rộng vào boundary ở minimum, expiry, usage; thêm giao điểm total=minimum và used=limit-1. Test nhiều điều kiện sai chỉ kỳ vọng reject, không đặt thứ tự thông báo lỗi vì SRS không yêu cầu.
 6. Xác minh authenticated identity: user 2 đã hết lượt không được bypass bằng user_id=3 hoặc bỏ user_id. Fixture dùng DB để dựng lượt dùng, còn quan sát qua POST public.
-7. Tính expected bằng literal theo SRS; không sao chép công thức implementation. Đầu vào có phần lẻ được ghi rõ SRS chưa định nghĩa rounding; case 400000×10% cho đáp số nguyên để kết luận lỗi không phụ thuộc rounding.
+7. Tính expected bằng literal theo SRS; không sao chép công thức implementation. Đầu vào có phần lẻ được ghi rõ SRS chưa định nghĩa rounding; case 400000x10% cho đáp số nguyên để kết luận lỗi không phụ thuộc rounding.
 
 | Domain | Đại diện | Kỳ vọng | Cases |
 |---|---|---|---|
 | B-D1 | Fixed hợp lệ BIGBUY/600000 | 50000 / 550000 | B-API-01 |
-| B-D2 | Total dưới/bằng/trên minimum | Reject / accept / accept | B-API-02–07 |
+| B-D2 | Total dưới/bằng/trên minimum | Reject / accept / accept | B-API-02-07 |
 | B-D3 | Percent SAVE10/400000; P100/400000 | 40000/360000; 400000/0 | B-API-08/26 |
-| B-D4 | Mã không có, inactive, missing | Reject | B-API-09–11 |
-| B-D5 | Expiry trước/bằng/sau now | Reject / reject / accept | B-API-12–14 |
-| B-D6 | used 0/1/2/3, limit 2 | Accept / accept / reject / reject | B-API-15–18 |
-| B-D7 | Missing/invalid/expired JWT | 401/403 | B-API-19–21 |
+| B-D4 | Mã không có, inactive, missing | Reject | B-API-09-11 |
+| B-D5 | Expiry trước/bằng/sau now | Reject / reject / accept | B-API-12-14 |
+| B-D6 | used 0/1/2/3, limit 2 | Accept / accept / reject / reject | B-API-15-18 |
+| B-D7 | Missing/invalid/expired JWT | 401/403 | B-API-19-21 |
 | B-D8 | Spoof/omit body user_id khi user xác thực hết lượt | Reject | B-API-22/23 |
 | B-D9 | Total=300000, VIP100 used=1 | Accept final=200000 | B-API-24 |
 | B-D10 | Inactive + insufficient + unauthenticated | Reject; precedence unspecified | B-API-25 |
@@ -209,16 +675,16 @@ SHA-256: `b523987f117f1e0310a5184209da9d6fefe4f2aee7e686b42c571a0b5305f6d0`
 
 | Boundary | ON/OFF và bước | Values | Cases |
 |---|---|---|---|
-| total ≥ M | ON=M, OFF=M−1, IN=M+1; delta=1 VND cho fixture integer | 499999/500000/500001; 299999/300000/300001 | B-API-02–07 |
-| now < expiry | ON=now (invalid), neighbors ±1ms | 2026-10-19T07:59:59.999Z / 08:00:00.000Z / 08:00:00.001Z | B-API-12–14 |
-| used < limit=2 | largest valid 1, first invalid 2 | 0/1/2/3 | B-API-15–18 |
-| Giao hai mặt biên | total=M và used=limit−1 | VIP100, total=300000, used=1 | B-API-24 |
+| total >= M | ON=M, OFF=M-1, IN=M+1; delta=1 VND cho fixture integer | 499999/500000/500001; 299999/300000/300001 | B-API-02-07 |
+| now < expiry | ON=now (invalid), neighbors ±1ms | 2026-10-19T07:59:59.999Z / 08:00:00.000Z / 08:00:00.001Z | B-API-12-14 |
+| used < limit=2 | largest valid 1, first invalid 2 | 0/1/2/3 | B-API-15-18 |
+| Giao hai mặt biên | total=M và used=limit-1 | VIP100, total=300000, used=1 | B-API-24 |
 
 Đồng hồ SUT được cố định tại 2026-10-19T08:00:00.000Z cho boundary expiry; không nhầm thời gian mô phỏng với timestamp thật của execution. Các case là phủ từng boundary đã liệt kê và một giao điểm có ý nghĩa, không phải full Cartesian product. Chưa có rule rounding, max order hoặc discount cap nên không tự đặt thêm giới hạn.
 
 ## Evidence
 
-Cases: [B-FR09-discount-coupons.md](../tests/B-FR09-discount-coupons.md). Raw API: [B-api.md](../evidence/execution/B-api.md). UI: separate pending cases. Phương pháp tham chiếu [ISTQB CTFL §4.2.1–4.2.2](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf); lecture chưa được cung cấp.
+Cases: [B-FR09-discount-coupons.md](../tests/B-FR09-discount-coupons.md). Raw API: [B-api.md](../evidence/execution/B-api.md). UI: separate pending cases. Phương pháp tham chiếu [ISTQB CTFL mục 4.2.1-4.2.2](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf); lecture chưa được cung cấp.
 
 ````
 
@@ -232,7 +698,7 @@ SHA-256: `343c9b053f385ce482cb94e31fd3d28c3c1ada6c64585cfa4cc60c48a7f41e31`
 <summary>Full output</summary>
 
 ````text
-# FR-09 — Technical review and AI gaps
+# FR-09 - Technical review and AI gaps
 
 26 API cases = 14 PASS + 12 FAIL. [Raw evidence](../evidence/execution/B-api.md). Six UI cases remain NOT RUN.
 
@@ -241,7 +707,7 @@ SHA-256: `343c9b053f385ce482cb94e31fd3d28c3c1ada6c64585cfa4cc60c48a7f41e31`
 - BUG-B01: inclusive minimum is rejected (B-API-03/06/24). Fixed coupon exactly at minimum isolates this from percent calculation.
 - BUG-B02: percent discount calculation wrong (B-API-07/08/26). SAVE10 at total=400000 must return 40000/360000; actual negative discount is recorded in raw evidence. This integer example avoids rounding ambiguity.
 - BUG-B03: expiry exactly equal to frozen current time is accepted (B-API-13); C2 requires now strictly before expiry. ±1ms neighbor cases demonstrate the distinction under a deterministic SUT clock.
-- BUG-B04: missing, invalid and expired JWT still permit valid fixed coupon application (B-API-19–21).
+- BUG-B04: missing, invalid and expired JWT still permit valid fixed coupon application (B-API-19-21).
 - BUG-B05: exhausted authenticated user bypasses usage limit by spoofing or omitting body user_id (B-API-22/23). This is distinct from missing JWT: a valid token is supplied but ignored for identity.
 
 ## AI gap analysis / corrections
@@ -262,13 +728,13 @@ SHA-256: `de70fff776e255dfd4b68e6d9eb8f9531f89f9c31e7e4d18b755ca481203f312`
 <summary>Full output</summary>
 
 ````text
-# C — FR-17: Admin coupon management
+# C - FR-17: Admin coupon management
 
 ## Requirements and scope
 
-[SRS baseline FR-17](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md#fr-17-quản-lý-mã-giảm-giá-coupon-crud): Thêm/Xem/Xóa. Required: code unique, type percent/fixed, discount_value > 0, expired_at, min_order_amount ≥ 0, max_uses_per_user ≥ 1. FR-12 yêu cầu JWT hợp lệ và role=admin. Không tự nhận thiếu Update là bug chỉ vì tên “CRUD”.
+[SRS baseline FR-17](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md#fr-17-quản-lý-mã-giảm-giá-coupon-crud): Thêm/Xem/Xóa. Required: code unique, type percent/fixed, discount_value > 0, expired_at, min_order_amount >= 0, max_uses_per_user >= 1. FR-12 yêu cầu JWT hợp lệ và role=admin. Không tự nhận thiếu Update là bug chỉ vì tên "CRUD".
 
-## Domain Testing — từng bước
+## Domain Testing - từng bước
 
 1. Chọn POST `/api/admin/coupons`, GET `/api/coupons`, DELETE `/api/admin/coupons/:id` và form Admin làm public seams.
 2. Dùng nominal vector `{code:HW02_NEW,type:fixed,value:1,min:0,expiry:2099-12-31,maxUses:1}` với admin JWT. Mỗi case bắt đầu từ fixtures sạch; SAVE10 là code đã tồn tại.
@@ -276,34 +742,34 @@ SHA-256: `de70fff776e255dfd4b68e6d9eb8f9531f89f9c31e7e4d18b755ca481203f312`
 4. Dùng một invalid dimension mỗi lần. Với duplicate, xác minh số record không tăng; không tự yêu cầu HTTP 409 khi spec không quy định. HTTP 500 ở duplicate được ghi actual, nhưng unique constraint vẫn có thể đạt.
 5. Với role, thử riêng create/list/delete bằng admin/user/no JWT. Việc token hợp lệ không thay thế yêu cầu role=admin.
 6. Với create hợp lệ, đọc lại qua GET và so sánh đầy đủ giá trị; với delete, kiểm tra coupon mục tiêu biến mất và số lượng giảm đúng một.
-7. Bổ sung giao lower corners `value=1,min=0,max=1` ở nominal; không cần đặt ràng buộc percent ≤100 hoặc mã phân biệt hoa/thường khi SRS chưa nói.
+7. Bổ sung giao lower corners `value=1,min=0,max=1` ở nominal; không cần đặt ràng buộc percent <=100 hoặc mã phân biệt hoa/thường khi SRS chưa nói.
 
 | Domain | Đại diện | Expected | Cases |
 |---|---|---|---|
 | C-D1 | Fixed/percent hợp lệ | Persist đúng fields | C-API-01/02 |
-| C-D2 | Thiếu từng required field; empty code | Reject, không thêm record | C-API-03–09 |
+| C-D2 | Thiếu từng required field; empty code | Reject, không thêm record | C-API-03-09 |
 | C-D3 | SAVE10 đã có | Reject, không nhân bản | C-API-10 |
 | C-D4 | type=other | Reject | C-API-11 |
-| C-D5 | value=-1/0/1 | Reject/reject/accept | C-API-12–14 |
-| C-D6 | min=-1/0/1 | Reject/accept/accept | C-API-15–17 |
-| C-D7 | maxUses=-1/0/1/2 | Reject/reject/accept/accept | C-API-18–21 |
-| C-D8 | Create: none/user/invalid JWT | Deny | C-API-22–24 |
-| C-D9 | List: admin/user/none | Allow/deny/deny | C-API-25–27 |
-| C-D10 | Delete: admin/user/none | Remove/deny/deny | C-API-28–30 |
+| C-D5 | value=-1/0/1 | Reject/reject/accept | C-API-12-14 |
+| C-D6 | min=-1/0/1 | Reject/accept/accept | C-API-15-17 |
+| C-D7 | maxUses=-1/0/1/2 | Reject/reject/accept/accept | C-API-18-21 |
+| C-D8 | Create: none/user/invalid JWT | Deny | C-API-22-24 |
+| C-D9 | List: admin/user/none | Allow/deny/deny | C-API-25-27 |
+| C-D10 | Delete: admin/user/none | Remove/deny/deny | C-API-28-30 |
 
 ## BVA
 
 | Variable | Boundary | Test values | Rationale |
 |---|---|---|---|
-| discount_value | >0 | −1, 0, 1 | integer fixture nearest neighbors; SRS says positive, not max=100 |
-| min_order_amount | ≥0 | −1, 0, 1 | equality is valid |
-| max_uses_per_user | ≥1 | 0, 1, 2; extra −1 | first valid count=1; invalid zero must not silently become default 1 |
+| discount_value | >0 | -1, 0, 1 | integer fixture nearest neighbors; SRS says positive, not max=100 |
+| min_order_amount | >=0 | -1, 0, 1 | equality is valid |
+| max_uses_per_user | >=1 | 0, 1, 2; extra -1 | first valid count=1; invalid zero must not silently become default 1 |
 
 Độ chính xác tiền cho fixtures hiện là integer VND; không nhận exhaustive real-number coverage. Missing expired_at là required-field test, không phải BVA ngày hết hạn của FR-09. Không tự kết luận coupon quá khứ phải bị cấm tạo nếu spec chỉ yêu cầu field tồn tại.
 
 ## Evidence
 
-Cases: [C-FR17-coupon-management.md](../tests/C-FR17-coupon-management.md). Raw: [C-api.md](../evidence/execution/C-api.md). UI thao tác chờ sinh viên. [ISTQB CTFL §4.2.1–4.2.2](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf) là tham chiếu kỹ thuật; lecture chưa có trong workspace.
+Cases: [C-FR17-coupon-management.md](../tests/C-FR17-coupon-management.md). Raw: [C-api.md](../evidence/execution/C-api.md). UI thao tác chờ sinh viên. [ISTQB CTFL mục 4.2.1-4.2.2](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf) là tham chiếu kỹ thuật; lecture chưa có trong workspace.
 
 ````
 
@@ -317,13 +783,13 @@ SHA-256: `08abababa0514ff7b7ce6f833ca6d677175c1fd41ac5eef973a8ec5a63959fe0`
 <summary>Full output</summary>
 
 ````text
-# FR-17 — Technical review and AI gaps
+# FR-17 - Technical review and AI gaps
 
 30 API cases = 14 PASS + 16 FAIL. [Raw execution](../evidence/execution/C-api.md). Six Admin UI cases NOT RUN.
 
 ## Verified API bug groups
 
-- BUG-C01: seven required-field/empty-code cases accepted and create a record (C-API-03–09). Empty string and omitted field are separate domains even when grouped as missing validation.
+- BUG-C01: seven required-field/empty-code cases accepted and create a record (C-API-03-09). Empty string and omitted field are separate domains even when grouped as missing validation.
 - BUG-C03: unknown enum type accepted (C-API-11).
 - BUG-C04: zero/negative discount accepted (C-API-12/13).
 - BUG-C05: negative minimum accepted (C-API-15).
@@ -353,15 +819,15 @@ SHA-256: `0341e8ce8cca309ea4913b2d0a1e4332f57230ec5e985dcf17503226ebaeaffd`
 <summary>Full output</summary>
 
 ````text
-# D — Mobile productDetail
+# D - Mobile productDetail
 
 ## Requirement mapping and evidence boundary
 
-[SRS baseline FR-20](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md#fr-20-tính-năng-mobile) mô tả chức năng mobile ở mức tổng quan. Bộ thiết kế này ánh xạ hành vi xem sản phẩm/giỏ hàng sang FR-06 (chi tiết, quantity nguyên dương ≥1, feedback) và FR-07 (gộp cùng sản phẩm), chờ sinh viên đối chiếu lecture/hướng dẫn áp dụng. Đây không phải FR-06 Web được tính như feature Pool A.
+[SRS baseline FR-20](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md#fr-20-tính-năng-mobile) mô tả chức năng mobile ở mức tổng quan. Bộ thiết kế này ánh xạ hành vi xem sản phẩm/giỏ hàng sang FR-06 (chi tiết, quantity nguyên dương >=1, feedback) và FR-07 (gộp cùng sản phẩm), chờ sinh viên đối chiếu lecture/hướng dẫn áp dụng. Đây không phải FR-06 Web được tính như feature Pool A.
 
 API hỗ trợ GET `/api/products/:id` được chạy bằng script; mọi thao tác React Native giữ NOT RUN cho đến khi có evidence thiết bị/emulator. Không dùng source inspection, build thành công hoặc API PASS để nhận Mobile E2E đã chạy.
 
-## Domain Testing — từng bước
+## Domain Testing - từng bước
 
 1. Tách product-data domain, quantity domain và trạng thái giỏ hàng. Input UI là lựa chọn sản phẩm, chuỗi quantity và số lần bấm; outputs là UI detail, feedback và giỏ hàng thực tế.
 2. Fixture chuẩn: sản phẩm 1 iPhone 15 Pro Max, 30000000₫; sản phẩm 2 Samsung Galaxy S24 Ultra, 28000000₫; mỗi case quantity bắt đầu với giỏ trống.
@@ -375,15 +841,15 @@ API hỗ trợ GET `/api/products/:id` được chạy bằng script; mọi thao
 |---|---|---|
 | D-D1 | Product tồn tại IDs 1/2 | D-API-01/02, D-UI-09/10 |
 | D-D2 | Product không có 999999 | D-API-03 (observation) |
-| D-D3 | Empty/−1/0 quantity | D-UI-01–03 |
+| D-D3 | Empty/-1/0 quantity | D-UI-01-03 |
 | D-D4 | Positive integers 1/2 | D-UI-04/05 |
-| D-D5 | Fraction 1.5, text abc, mixed 1abc | D-UI-06–08 |
+| D-D5 | Fraction 1.5, text abc, mixed 1abc | D-UI-06-08 |
 | D-D6 | Add once / twice | D-UI-11/12 |
 | D-D7 | Switching products, huge quantity | D-UI-13/14 (observations pending run) |
 
 ## BVA
 
-Quantity trên miền số nguyên: minimum=1, OFF=0, ON=1, IN=2; thêm −1 cho invalid interior. Fraction 1.5 nằm ngoài miền integer, là Domain case chứ không phải nearest integer boundary. Không có upper bound/stock constraint trong SRS nên không tự đặt max. Empty input là missing-value domain, không phải số 0.
+Quantity trên miền số nguyên: minimum=1, OFF=0, ON=1, IN=2; thêm -1 cho invalid interior. Fraction 1.5 nằm ngoài miền integer, là Domain case chứ không phải nearest integer boundary. Không có upper bound/stock constraint trong SRS nên không tự đặt max. Empty input là missing-value domain, không phải số 0.
 
 ## Manual execution
 
@@ -401,13 +867,13 @@ SHA-256: `39a3b8871ddbf840c80d8ce76977d88dd38bbae1e5aabeb5fee3ce680edb5f2b`
 <summary>Full output</summary>
 
 ````text
-# Mobile — Technical review and AI gaps
+# Mobile - Technical review and AI gaps
 
 Support API: 2 PASS + 1 OBSERVATION ([raw](../evidence/execution/D-api.md)). All 14 Mobile UI cases NOT RUN. No Mobile UI bugs are reported as verified.
 
 ## AI design corrections
 
-- Empty and fractional inputs were initially tagged BVA too broadly. They are domain/type classes. The lower integer boundary uses −1/0/1/2; fractional 1.5 is not the nearest valid integer neighbor.
+- Empty and fractional inputs were initially tagged BVA too broadly. They are domain/type classes. The lower integer boundary uses -1/0/1/2; fractional 1.5 is not the nearest valid integer neighbor.
 - FR-20 does not detail every screen. FR-06/07 behavior is explicitly marked as a mapping for student review, rather than silently importing Web-specific DOM requirements into React Native.
 - Source `normalizeQuantity` suggests some inputs may be silently coerced. That is only a candidate for D-UI-01/02/03/06/08, not runtime evidence.
 - Product API returns an empty object for a missing ID and a string price for an even ID. No mandatory HTTP schema was specified, so D-API-03 is an observation; even-ID string price is not itself a defect without display/runtime evidence.
@@ -427,7 +893,7 @@ SHA-256: `1f9a47c9ca365ef520d7e399721836913b3a22802b9dab9d4b21b4ff809a611b`
 <summary>Full output</summary>
 
 ````text
-# Manual Handoff — làm sau phần Codex
+# Manual Handoff - làm sau phần Codex
 
 ## 1. Mở môi trường
 
@@ -435,7 +901,7 @@ Runtime là bản copy, dữ liệu thật ở `eshop-sut/` được giữ nguy�
 
 Web: http://localhost:5173 ; Admin: http://localhost:5174 . Expo: terminal in ra `exp://<LAN-IP>:8081`; mở bằng development client tương thích Expo SDK54 trên điện thoại/emulator. Dùng cùng mạng với máy chạy backend; nếu IP khác, dừng runtime rồi đặt `$env:HW02_LAN_IP='<IP LAN thực tế>'` và chạy lại. Đây là hướng dẫn từ cấu hình project, không phải xác nhận thiết bị đã chạy.
 
-Tài khoản riêng mỗi case: thay dấu `-` bằng `_`, chuyển lowercase, thêm `@hw02.invalid`; ví dụ A-UI-01 → `a_ui_01@hw02.invalid`. Demo password mọi account fixture: `Test1234!`. C accounts có quyền admin; A/B/D là user. Đây là dữ liệu giả, không phải thông tin cá nhân. Không chụp mật khẩu/token.
+Tài khoản riêng mỗi case: thay dấu `-` bằng `_`, chuyển lowercase, thêm `@hw02.invalid`; ví dụ A-UI-01 -> `a_ui_01@hw02.invalid`. Demo password mọi account fixture: `Test1234!`. C accounts có quyền admin; A/B/D là user. Đây là dữ liệu giả, không phải thông tin cá nhân. Không chụp mật khẩu/token.
 
 Nếu đăng nhập lỗi/Expo không mở, chụp nguyên lỗi, ghi device/OS và BLOCKED. Không đánh FAIL nghiệp vụ khi môi trường chưa vào được.
 
@@ -449,7 +915,7 @@ Nếu đăng nhập lỗi/Expo không mở, chụp nguyên lỗi, ghi device/OS 
 
 ## 3. Từng test UI
 
-### A-UI-01 — Profile phone 091234567
+### A-UI-01 - Profile phone 091234567
 
 Tài khoản: `a_ui_01@hw02.invalid` / demo password ở mục 1.
 
@@ -465,7 +931,7 @@ Expected: **Reject; saved profile remains unchanged**
 
 Nơi lưu: `evidence/screenshots/A/A-UI-01_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng A-UI-01 trong manual-results.md.
 
-### A-UI-02 — Profile phone 0912345678
+### A-UI-02 - Profile phone 0912345678
 
 Tài khoản: `a_ui_02@hw02.invalid` / demo password ở mục 1.
 
@@ -481,7 +947,7 @@ Expected: **Update succeeds; re-login shows the exact phone**
 
 Nơi lưu: `evidence/screenshots/A/A-UI-02_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng A-UI-02 trong manual-results.md.
 
-### A-UI-03 — Profile phone 09123456789
+### A-UI-03 - Profile phone 09123456789
 
 Tài khoản: `a_ui_03@hw02.invalid` / demo password ở mục 1.
 
@@ -497,7 +963,7 @@ Expected: **Update succeeds; re-login shows the exact phone**
 
 Nơi lưu: `evidence/screenshots/A/A-UI-03_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng A-UI-03 trong manual-results.md.
 
-### A-UI-04 — Profile phone 091234567890
+### A-UI-04 - Profile phone 091234567890
 
 Tài khoản: `a_ui_04@hw02.invalid` / demo password ở mục 1.
 
@@ -513,7 +979,7 @@ Expected: **Reject; saved profile remains unchanged**
 
 Nơi lưu: `evidence/screenshots/A/A-UI-04_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng A-UI-04 trong manual-results.md.
 
-### A-UI-05 — Profile phone 1912345678
+### A-UI-05 - Profile phone 1912345678
 
 Tài khoản: `a_ui_05@hw02.invalid` / demo password ở mục 1.
 
@@ -529,7 +995,7 @@ Expected: **Reject; saved profile remains unchanged**
 
 Nơi lưu: `evidence/screenshots/A/A-UI-05_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng A-UI-05 trong manual-results.md.
 
-### A-UI-06 — Email field cannot be changed
+### A-UI-06 - Email field cannot be changed
 
 Tài khoản: `a_ui_06@hw02.invalid` / demo password ở mục 1.
 
@@ -544,7 +1010,7 @@ Expected: **Email is not editable via UI; original email unchanged**
 
 Nơi lưu: `evidence/screenshots/A/A-UI-06_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng A-UI-06 trong manual-results.md.
 
-### A-UI-07 — Unicode editable profile fields
+### A-UI-07 - Unicode editable profile fields
 
 Tài khoản: `a_ui_07@hw02.invalid` / demo password ở mục 1.
 
@@ -560,7 +1026,7 @@ Expected: **Valid update accepted; name/address persist after fresh login**
 
 Nơi lưu: `evidence/screenshots/A/A-UI-07_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng A-UI-07 trong manual-results.md.
 
-### B-UI-01 — Checkout BIGBUY / 499999
+### B-UI-01 - Checkout BIGBUY / 499999
 
 Tài khoản: `b_ui_01@hw02.invalid` / demo password ở mục 1.
 
@@ -576,7 +1042,7 @@ Expected: **Reject below minimum**
 
 Nơi lưu: `evidence/screenshots/B/B-UI-01_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng B-UI-01 trong manual-results.md.
 
-### B-UI-02 — Checkout BIGBUY / 500000
+### B-UI-02 - Checkout BIGBUY / 500000
 
 Tài khoản: `b_ui_02@hw02.invalid` / demo password ở mục 1.
 
@@ -592,7 +1058,7 @@ Expected: **Discount 50000; final 450000**
 
 Nơi lưu: `evidence/screenshots/B/B-UI-02_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng B-UI-02 trong manual-results.md.
 
-### B-UI-03 — Checkout BIGBUY / 500001
+### B-UI-03 - Checkout BIGBUY / 500001
 
 Tài khoản: `b_ui_03@hw02.invalid` / demo password ở mục 1.
 
@@ -608,7 +1074,7 @@ Expected: **Discount 50000; final 450001**
 
 Nơi lưu: `evidence/screenshots/B/B-UI-03_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng B-UI-03 trong manual-results.md.
 
-### B-UI-04 — Checkout SAVE10 / 400000
+### B-UI-04 - Checkout SAVE10 / 400000
 
 Tài khoản: `b_ui_04@hw02.invalid` / demo password ở mục 1.
 
@@ -624,7 +1090,7 @@ Expected: **Discount 40000; final 360000**
 
 Nơi lưu: `evidence/screenshots/B/B-UI-04_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng B-UI-04 trong manual-results.md.
 
-### B-UI-05 — Checkout EXPIRED / 400000
+### B-UI-05 - Checkout EXPIRED / 400000
 
 Tài khoản: `b_ui_05@hw02.invalid` / demo password ở mục 1.
 
@@ -640,7 +1106,7 @@ Expected: **Reject expired coupon**
 
 Nơi lưu: `evidence/screenshots/B/B-UI-05_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng B-UI-05 trong manual-results.md.
 
-### B-UI-06 — Checkout VIP100 / 400000
+### B-UI-06 - Checkout VIP100 / 400000
 
 Tài khoản: `b_ui_06@hw02.invalid` / demo password ở mục 1.
 
@@ -657,7 +1123,7 @@ Expected: **After exactly 2 completed uses, third attempt rejected**
 
 Nơi lưu: `evidence/screenshots/B/B-UI-06_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng B-UI-06 trong manual-results.md.
 
-### C-UI-01 — Admin coupon form 1
+### C-UI-01 - Admin coupon form 1
 
 Tài khoản: `c_ui_01@hw02.invalid` / demo password ở mục 1.
 
@@ -672,7 +1138,7 @@ Expected: **Reject discount_value=0**
 
 Nơi lưu: `evidence/screenshots/C/C-UI-01_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng C-UI-01 trong manual-results.md.
 
-### C-UI-02 — Admin coupon form 2
+### C-UI-02 - Admin coupon form 2
 
 Tài khoản: `c_ui_02@hw02.invalid` / demo password ở mục 1.
 
@@ -687,7 +1153,7 @@ Expected: **Create coupon; same values visible after reload**
 
 Nơi lưu: `evidence/screenshots/C/C-UI-02_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng C-UI-02 trong manual-results.md.
 
-### C-UI-03 — Admin coupon form 3
+### C-UI-03 - Admin coupon form 3
 
 Tài khoản: `c_ui_03@hw02.invalid` / demo password ở mục 1.
 
@@ -702,7 +1168,7 @@ Expected: **Reject negative minimum**
 
 Nơi lưu: `evidence/screenshots/C/C-UI-03_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng C-UI-03 trong manual-results.md.
 
-### C-UI-04 — Admin coupon form 4
+### C-UI-04 - Admin coupon form 4
 
 Tài khoản: `c_ui_04@hw02.invalid` / demo password ở mục 1.
 
@@ -717,7 +1183,7 @@ Expected: **Reject zero usage limit**
 
 Nơi lưu: `evidence/screenshots/C/C-UI-04_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng C-UI-04 trong manual-results.md.
 
-### C-UI-05 — Admin coupon form 5
+### C-UI-05 - Admin coupon form 5
 
 Tài khoản: `c_ui_05@hw02.invalid` / demo password ở mục 1.
 
@@ -732,7 +1198,7 @@ Expected: **Reject duplicate; original SAVE10 unchanged**
 
 Nơi lưu: `evidence/screenshots/C/C-UI-05_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng C-UI-05 trong manual-results.md.
 
-### C-UI-06 — Admin delete lifecycle
+### C-UI-06 - Admin delete lifecycle
 
 Tài khoản: `c_ui_06@hw02.invalid` / demo password ở mục 1.
 
@@ -748,7 +1214,7 @@ Expected: **Create test coupon, delete it; disappears after reload; SAVE10 uncha
 
 Nơi lưu: `evidence/screenshots/C/C-UI-06_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng C-UI-06 trong manual-results.md.
 
-### D-UI-01 — Mobile quantity ""
+### D-UI-01 - Mobile quantity ""
 
 Tài khoản: `d_ui_01@hw02.invalid` / demo password ở mục 1.
 
@@ -763,7 +1229,7 @@ Expected: **Reject empty quantity; no new cart item**
 
 Nơi lưu: `evidence/screenshots/D/D-UI-01_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-01 trong manual-results.md.
 
-### D-UI-02 — Mobile quantity "-1"
+### D-UI-02 - Mobile quantity "-1"
 
 Tài khoản: `d_ui_02@hw02.invalid` / demo password ở mục 1.
 
@@ -778,7 +1244,7 @@ Expected: **Reject negative; cart unchanged**
 
 Nơi lưu: `evidence/screenshots/D/D-UI-02_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-02 trong manual-results.md.
 
-### D-UI-03 — Mobile quantity "0"
+### D-UI-03 - Mobile quantity "0"
 
 Tài khoản: `d_ui_03@hw02.invalid` / demo password ở mục 1.
 
@@ -793,7 +1259,7 @@ Expected: **Reject zero; cart unchanged**
 
 Nơi lưu: `evidence/screenshots/D/D-UI-03_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-03 trong manual-results.md.
 
-### D-UI-04 — Mobile quantity "1"
+### D-UI-04 - Mobile quantity "1"
 
 Tài khoản: `d_ui_04@hw02.invalid` / demo password ở mục 1.
 
@@ -808,7 +1274,7 @@ Expected: **Cart contains quantity=1, total=30000000**
 
 Nơi lưu: `evidence/screenshots/D/D-UI-04_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-04 trong manual-results.md.
 
-### D-UI-05 — Mobile quantity "2"
+### D-UI-05 - Mobile quantity "2"
 
 Tài khoản: `d_ui_05@hw02.invalid` / demo password ở mục 1.
 
@@ -823,7 +1289,7 @@ Expected: **Cart contains quantity=2, total=60000000**
 
 Nơi lưu: `evidence/screenshots/D/D-UI-05_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-05 trong manual-results.md.
 
-### D-UI-06 — Mobile quantity "1.5"
+### D-UI-06 - Mobile quantity "1.5"
 
 Tài khoản: `d_ui_06@hw02.invalid` / demo password ở mục 1.
 
@@ -838,7 +1304,7 @@ Expected: **Reject fractional; cart unchanged**
 
 Nơi lưu: `evidence/screenshots/D/D-UI-06_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-06 trong manual-results.md.
 
-### D-UI-07 — Mobile quantity "abc"
+### D-UI-07 - Mobile quantity "abc"
 
 Tài khoản: `d_ui_07@hw02.invalid` / demo password ở mục 1.
 
@@ -853,7 +1319,7 @@ Expected: **Reject nonnumeric; cart unchanged**
 
 Nơi lưu: `evidence/screenshots/D/D-UI-07_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-07 trong manual-results.md.
 
-### D-UI-08 — Mobile quantity "1abc"
+### D-UI-08 - Mobile quantity "1abc"
 
 Tài khoản: `d_ui_08@hw02.invalid` / demo password ở mục 1.
 
@@ -868,7 +1334,7 @@ Expected: **Reject mixed text; cart unchanged**
 
 Nơi lưu: `evidence/screenshots/D/D-UI-08_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-08 trong manual-results.md.
 
-### D-UI-09 — Mobile complete product detail
+### D-UI-09 - Mobile complete product detail
 
 Tài khoản: `d_ui_09@hw02.invalid` / demo password ở mục 1.
 
@@ -882,7 +1348,7 @@ Expected: **Image/name/price/description/category visible and correct; mapped FR
 
 Nơi lưu: `evidence/screenshots/D/D-UI-09_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-09 trong manual-results.md.
 
-### D-UI-10 — Mobile even-id price display
+### D-UI-10 - Mobile even-id price display
 
 Tài khoản: `d_ui_10@hw02.invalid` / demo password ở mục 1.
 
@@ -896,7 +1362,7 @@ Expected: **Samsung price displayed as 28,000,000 ₫ using locale separator; no
 
 Nơi lưu: `evidence/screenshots/D/D-UI-10_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-10 trong manual-results.md.
 
-### D-UI-11 — Mobile add feedback
+### D-UI-11 - Mobile add feedback
 
 Tài khoản: `d_ui_11@hw02.invalid` / demo password ở mục 1.
 
@@ -911,7 +1377,7 @@ Expected: **Visible feedback after Add; cart quantity 1**
 
 Nơi lưu: `evidence/screenshots/D/D-UI-11_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-11 trong manual-results.md.
 
-### D-UI-12 — Same product twice
+### D-UI-12 - Same product twice
 
 Tài khoản: `d_ui_12@hw02.invalid` / demo password ở mục 1.
 
@@ -926,7 +1392,7 @@ Expected: **One cart line quantity=2; total=60000000**
 
 Nơi lưu: `evidence/screenshots/D/D-UI-12_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-12 trong manual-results.md.
 
-### D-UI-13 — Detail quantity resets after switching products
+### D-UI-13 - Detail quantity resets after switching products
 
 Tài khoản: `d_ui_13@hw02.invalid` / demo password ở mục 1.
 
@@ -941,7 +1407,7 @@ Expected: **Record selected quantity for product 2; SRS does not specify default
 
 Nơi lưu: `evidence/screenshots/D/D-UI-13_run-01_*.png`. Ghi actual/status/timestamp vào đúng dòng D-UI-13 trong manual-results.md.
 
-### D-UI-14 — Very large quantity exploratory input
+### D-UI-14 - Very large quantity exploratory input
 
 Tài khoản: `d_ui_14@hw02.invalid` / demo password ở mục 1.
 
@@ -960,19 +1426,19 @@ Nơi lưu: `evidence/screenshots/D/D-UI-14_run-01_*.png`. Ghi actual/status/time
 
 Các bug API không nhất thiết có field tương ứng trong UI (ví dụ role tampering). Dùng ảnh terminal của bản ghi HTTP thật, không dựng form UI để giả chứng minh. Chạy `node scripts/show-bug.cjs <BUG-ID>` để hiển thị record đã chạy, có TC-ID/timestamp/request/response/expected; lệnh này hiển thị record, không giả là request mới.
 
-Mỗi bug ở bugs/bug-reports.md: chụp cửa sổ terminal đủ Bug-ID, TC-ID, timestamp, endpoint, input quan trọng, HTTP status, actual readback và expected. Nếu dài, lấy 01-request và 02-response có cùng Bug-ID. Lưu `evidence/screenshots/api/<BUG-ID>_record-01.png` và `...record-02.png` nếu cần. Caption: “Screenshot of recorded API execution”, không gọi là Web/Mobile UI screenshot. Raw Markdown đi kèm để đối chiếu. Nếu giảng viên yêu cầu thêm ảnh UI cho một bug, chỉ bổ sung khi tái hiện được qua UI thật.
+Mỗi bug ở bugs/bug-reports.md: chụp cửa sổ terminal đủ Bug-ID, TC-ID, timestamp, endpoint, input quan trọng, HTTP status, actual readback và expected. Nếu dài, lấy 01-request và 02-response có cùng Bug-ID. Lưu `evidence/screenshots/api/<BUG-ID>_record-01.png` và `...record-02.png` nếu cần. Caption: "Screenshot of recorded API execution", không gọi là Web/Mobile UI screenshot. Raw Markdown đi kèm để đối chiếu. Nếu giảng viên yêu cầu thêm ảnh UI cho một bug, chỉ bổ sung khi tái hiện được qua UI thật.
 
 ## 5. Review cá nhân và video
 
 Review các bảng Domain/BVA, đặc biệt mapping Mobile FR-20/06/07 và lecture chưa có trong workspace. Đọc AI Audit, sửa/đánh giá đầu ra thật, điền họ tên/lớp và xác nhận cá nhân; AI Critique là draft chưa được sinh viên xác nhận. Điền self-assessment theo evidence. Quay demo theo evidence/video-links.md sau phần test.
 
-## 6. Phần nhóm — làm cuối
+## 6. Phần nhóm - làm cuối
 
-Sau test/evidence/review cá nhân, chọn repo Issues nhóm. Mỗi bug Markdown đã có title, steps, expected/actual và raw evidence; có thể dùng làm issue body. Tìm Bug-ID trước để tránh trùng. Đăng/cập nhật đúng repo nhóm, đính kèm ảnh thật ở mục 4 hoặc ảnh UI phù hợp. Mở permalink Issue sau khi submit, kiểm tra ảnh hiển thị. Chụp `<BUG-ID>_issue-header.png` thấy repo/number/title/URL và `<BUG-ID>_issue-body-01.png` thấy steps/actual/screenshots. Lưu vào evidence/github-issues/. Gửi mapping Bug-ID → URL/number → ảnh để cập nhật báo cáo; chưa có URL thì ghi pending.
+Sau test/evidence/review cá nhân, chọn repo Issues nhóm. Mỗi bug Markdown đã có title, steps, expected/actual và raw evidence; có thể dùng làm issue body. Tìm Bug-ID trước để tránh trùng. Đăng/cập nhật đúng repo nhóm, đính kèm ảnh thật ở mục 4 hoặc ảnh UI phù hợp. Mở permalink Issue sau khi submit, kiểm tra ảnh hiển thị. Chụp `<BUG-ID>_issue-header.png` thấy repo/number/title/URL và `<BUG-ID>_issue-body-01.png` thấy steps/actual/screenshots. Lưu vào evidence/github-issues/. Gửi mapping Bug-ID -> URL/number -> ảnh để cập nhật báo cáo; chưa có URL thì ghi pending.
 
 ## 7. Định dạng cuối
 
-Sinh viên tự xuất Markdown sang PDF theo đề/policies, tự đóng ZIP và nộp Moodle. Tên `<StudentID>_HW02_AI_DomainTesting_<SelfAssessedGrade>.zip`, điểm 000–100. Chỉ nộp deliverables, evidence, scripts/skills đã dùng và Git log; TASKS/references/runtime/.git/dependencies ở ngoài. Biên nhận Moodle phát sinh sau nộp lưu ngoài repo, không sửa ZIP chỉ để thêm ảnh đó.
+Sinh viên tự xuất Markdown sang PDF theo đề/policies, tự đóng ZIP và nộp Moodle. Tên `<StudentID>_HW02_AI_DomainTesting_<SelfAssessedGrade>.zip`, điểm 000-100. Chỉ nộp deliverables, evidence, scripts/skills đã dùng và Git log; TASKS/references/runtime/.git/dependencies ở ngoài. Biên nhận Moodle phát sinh sau nộp lưu ngoài repo, không sửa ZIP chỉ để thêm ảnh đó.
 
 ````
 
@@ -986,7 +1452,7 @@ SHA-256: `3af66d61e3d59c5d98471ed5dcecade4aa557c3a56f483c705d80c2015acbde5`
 <summary>Full output</summary>
 
 ````text
-# Agent Skill — FR-17 technical demonstration
+# Agent Skill - FR-17 technical demonstration
 
 ## Scope of evidence
 
@@ -1005,8 +1471,8 @@ Skill: [domain-bva-testing](../.agents/skills/domain-bva-testing/SKILL.md). Code
 |---|---|
 | Oracle | reports/C-FR17-domain.md identifies FR-17 and FR-12; avoids unspecified HTTP409/max-percent/Update rules |
 | Domains | Presence, unique code, enum, numeric and identity classes with representative cases |
-| Boundaries | value−1/0/1, min−1/0/1, usage0/1/2, valid lower-corner vector |
-| Cases | C-API-01–30 plus C-UI-01–06, exact inputs and independent expected results |
+| Boundaries | value-1/0/1, min-1/0/1, usage0/1/2, valid lower-corner vector |
+| Cases | C-API-01-30 plus C-UI-01-06, exact inputs and independent expected results |
 | Review | Readback required; duplicate500 not automatically a unique violation; unique UI codes avoid interference |
 | Execute | 30 API cases rerun, 14 PASS/16 FAIL; original source/database unchanged |
 | Bugs | Eight C groups from actual failures; screenshots/Issues not claimed |
@@ -1028,7 +1494,7 @@ SHA-256: `46daa291d1535a44edfcd16b9e5782685b691a4abf32fda194a18a8fdf071b18`
 <summary>Full output</summary>
 
 ````text
-# Technical Review — Standards and Spec
+# Technical Review - Standards and Spec
 
 ## Review scope
 
@@ -1085,7 +1551,7 @@ SHA-256: `c389bc2d54127b8672590d3922807b53a8294241c0f2a0ce6058f7685d678611`
 - Manual runtime: `node scripts/manual-runtime.cjs`; copied frontend/backend dưới hw02/.hw02-runtime/manual, Web5173/Admin5174/backend3000/Expo8081, real clock. Chỉ thay Mobile API_URL trong bản copy theo IP LAN thực tế; node_modules junction dùng dependencies có sẵn. Không thay implementation validation.
 - APIs và manual runtime dùng hai database khác nhau; rerun API không reset dữ liệu manual.
 - Source SHA-256 và original database trước/sau mỗi API run ở evidence/execution/*-api.md. Raw logs lược password/token/reset_token để không lưu credential thật; test fixture inputs vẫn hiện.
-- Manual devices/OS/browser: Windows 11 (Web/Admin — Chrome); Android (Expo Go trên Samsung). UI screenshots chụp thực tế từ SUT, lưu tại evidence/screenshots/.
+- Manual devices/OS/browser: Windows 11 (Web/Admin - Chrome); Android (Expo Go trên Samsung). UI screenshots chụp thực tế từ SUT, lưu tại evidence/screenshots/.
 
 ## Commands
 
@@ -1136,8 +1602,8 @@ Designed = PASS + FAIL + OBSERVATION + BLOCKED + NOT RUN. Executed = PASS + FAIL
 
 | TC-ID | Status | Bug group |
 |---|---|---|
-| A-API-01 | PASS | — |
-| A-API-02 | PASS | — |
+| A-API-01 | PASS | - |
+| A-API-02 | PASS | - |
 | A-API-03 | FAIL | BUG-A01 |
 | A-API-04 | FAIL | BUG-A01 |
 | A-API-05 | FAIL | BUG-A01 |
@@ -1150,42 +1616,42 @@ Designed = PASS + FAIL + OBSERVATION + BLOCKED + NOT RUN. Executed = PASS + FAIL
 | A-API-12 | FAIL | BUG-A01 |
 | A-API-13 | FAIL | BUG-A01 |
 | A-API-14 | FAIL | BUG-A01 |
-| A-API-15 | OBSERVATION | — |
+| A-API-15 | OBSERVATION | - |
 | A-API-16 | FAIL | BUG-A01 |
-| A-API-17 | PASS | — |
+| A-API-17 | PASS | - |
 | A-API-18 | FAIL | BUG-A02 |
-| A-API-19 | PASS | — |
-| A-API-20 | PASS | — |
-| A-API-21 | PASS | — |
-| A-API-22 | PASS | — |
-| B-API-01 | PASS | — |
-| B-API-02 | PASS | — |
+| A-API-19 | PASS | - |
+| A-API-20 | PASS | - |
+| A-API-21 | PASS | - |
+| A-API-22 | PASS | - |
+| B-API-01 | PASS | - |
+| B-API-02 | PASS | - |
 | B-API-03 | FAIL | BUG-B01 |
-| B-API-04 | PASS | — |
-| B-API-05 | PASS | — |
+| B-API-04 | PASS | - |
+| B-API-05 | PASS | - |
 | B-API-06 | FAIL | BUG-B01 |
 | B-API-07 | FAIL | BUG-B02 |
 | B-API-08 | FAIL | BUG-B02 |
-| B-API-09 | PASS | — |
-| B-API-10 | PASS | — |
-| B-API-11 | PASS | — |
-| B-API-12 | PASS | — |
+| B-API-09 | PASS | - |
+| B-API-10 | PASS | - |
+| B-API-11 | PASS | - |
+| B-API-12 | PASS | - |
 | B-API-13 | FAIL | BUG-B03 |
-| B-API-14 | PASS | — |
-| B-API-15 | PASS | — |
-| B-API-16 | PASS | — |
-| B-API-17 | PASS | — |
-| B-API-18 | PASS | — |
+| B-API-14 | PASS | - |
+| B-API-15 | PASS | - |
+| B-API-16 | PASS | - |
+| B-API-17 | PASS | - |
+| B-API-18 | PASS | - |
 | B-API-19 | FAIL | BUG-B04 |
 | B-API-20 | FAIL | BUG-B04 |
 | B-API-21 | FAIL | BUG-B04 |
 | B-API-22 | FAIL | BUG-B05 |
 | B-API-23 | FAIL | BUG-B05 |
 | B-API-24 | FAIL | BUG-B01 |
-| B-API-25 | PASS | — |
+| B-API-25 | PASS | - |
 | B-API-26 | FAIL | BUG-B02 |
-| C-API-01 | PASS | — |
-| C-API-02 | PASS | — |
+| C-API-01 | PASS | - |
+| C-API-02 | PASS | - |
 | C-API-03 | FAIL | BUG-C01 |
 | C-API-04 | FAIL | BUG-C01 |
 | C-API-05 | FAIL | BUG-C01 |
@@ -1193,63 +1659,63 @@ Designed = PASS + FAIL + OBSERVATION + BLOCKED + NOT RUN. Executed = PASS + FAIL
 | C-API-07 | FAIL | BUG-C01 |
 | C-API-08 | FAIL | BUG-C01 |
 | C-API-09 | FAIL | BUG-C01 |
-| C-API-10 | PASS | — |
+| C-API-10 | PASS | - |
 | C-API-11 | FAIL | BUG-C03 |
 | C-API-12 | FAIL | BUG-C04 |
 | C-API-13 | FAIL | BUG-C04 |
-| C-API-14 | PASS | — |
+| C-API-14 | PASS | - |
 | C-API-15 | FAIL | BUG-C05 |
-| C-API-16 | PASS | — |
-| C-API-17 | PASS | — |
+| C-API-16 | PASS | - |
+| C-API-17 | PASS | - |
 | C-API-18 | FAIL | BUG-C06 |
 | C-API-19 | FAIL | BUG-C06 |
-| C-API-20 | PASS | — |
-| C-API-21 | PASS | — |
-| C-API-22 | PASS | — |
+| C-API-20 | PASS | - |
+| C-API-21 | PASS | - |
+| C-API-22 | PASS | - |
 | C-API-23 | FAIL | BUG-C07 |
-| C-API-24 | PASS | — |
-| C-API-25 | PASS | — |
+| C-API-24 | PASS | - |
+| C-API-25 | PASS | - |
 | C-API-26 | FAIL | BUG-C08 |
-| C-API-27 | PASS | — |
-| C-API-28 | PASS | — |
+| C-API-27 | PASS | - |
+| C-API-28 | PASS | - |
 | C-API-29 | FAIL | BUG-C09 |
-| C-API-30 | PASS | — |
-| D-API-01 | PASS | — |
-| D-API-02 | PASS | — |
-| D-API-03 | OBSERVATION | — |
-| A-UI-01 | NOT RUN | — |
-| A-UI-02 | NOT RUN | — |
-| A-UI-03 | NOT RUN | — |
-| A-UI-04 | NOT RUN | — |
-| A-UI-05 | NOT RUN | — |
-| A-UI-06 | NOT RUN | — |
-| A-UI-07 | NOT RUN | — |
-| B-UI-01 | NOT RUN | — |
-| B-UI-02 | NOT RUN | — |
-| B-UI-03 | NOT RUN | — |
-| B-UI-04 | NOT RUN | — |
-| B-UI-05 | NOT RUN | — |
-| B-UI-06 | NOT RUN | — |
-| C-UI-01 | NOT RUN | — |
-| C-UI-02 | NOT RUN | — |
-| C-UI-03 | NOT RUN | — |
-| C-UI-04 | NOT RUN | — |
-| C-UI-05 | NOT RUN | — |
-| C-UI-06 | NOT RUN | — |
-| D-UI-01 | NOT RUN | — |
-| D-UI-02 | NOT RUN | — |
-| D-UI-03 | NOT RUN | — |
-| D-UI-04 | NOT RUN | — |
-| D-UI-05 | NOT RUN | — |
-| D-UI-06 | NOT RUN | — |
-| D-UI-07 | NOT RUN | — |
-| D-UI-08 | NOT RUN | — |
-| D-UI-09 | NOT RUN | — |
-| D-UI-10 | NOT RUN | — |
-| D-UI-11 | NOT RUN | — |
-| D-UI-12 | NOT RUN | — |
-| D-UI-13 | NOT RUN | — |
-| D-UI-14 | NOT RUN | — |
+| C-API-30 | PASS | - |
+| D-API-01 | PASS | - |
+| D-API-02 | PASS | - |
+| D-API-03 | OBSERVATION | - |
+| A-UI-01 | NOT RUN | - |
+| A-UI-02 | NOT RUN | - |
+| A-UI-03 | NOT RUN | - |
+| A-UI-04 | NOT RUN | - |
+| A-UI-05 | NOT RUN | - |
+| A-UI-06 | NOT RUN | - |
+| A-UI-07 | NOT RUN | - |
+| B-UI-01 | NOT RUN | - |
+| B-UI-02 | NOT RUN | - |
+| B-UI-03 | NOT RUN | - |
+| B-UI-04 | NOT RUN | - |
+| B-UI-05 | NOT RUN | - |
+| B-UI-06 | NOT RUN | - |
+| C-UI-01 | NOT RUN | - |
+| C-UI-02 | NOT RUN | - |
+| C-UI-03 | NOT RUN | - |
+| C-UI-04 | NOT RUN | - |
+| C-UI-05 | NOT RUN | - |
+| C-UI-06 | NOT RUN | - |
+| D-UI-01 | NOT RUN | - |
+| D-UI-02 | NOT RUN | - |
+| D-UI-03 | NOT RUN | - |
+| D-UI-04 | NOT RUN | - |
+| D-UI-05 | NOT RUN | - |
+| D-UI-06 | NOT RUN | - |
+| D-UI-07 | NOT RUN | - |
+| D-UI-08 | NOT RUN | - |
+| D-UI-09 | NOT RUN | - |
+| D-UI-10 | NOT RUN | - |
+| D-UI-11 | NOT RUN | - |
+| D-UI-12 | NOT RUN | - |
+| D-UI-13 | NOT RUN | - |
+| D-UI-14 | NOT RUN | - |
 
 ````
 
@@ -1308,7 +1774,7 @@ function render(){
  for(const bug of summary.bugs){
   const [title,example,severity]=definitions[bug];const all=summary.rows.filter(c=>c.bug===bug&&c.status==='FAIL');
   const r=compact(example);
-  let md=`# ${bug} — ${title}\n\nStatus: API verified; screenshot pending; Issue URL pending; student review pending.\n\nSeverity (proposed): ${severity}\n\nFeature: ${r.c.feature}; oracle: ${r.c.rule}.\n\nAffected TC IDs: ${all.map(c=>c.id).join(', ')}.\n\n## Environment and preconditions\n\nSUT SHA 85af3ba875c88283615e22cb108f13e2fccaf0e9; Node24.16.0; isolated source copy; API port3100; frozen SUT time2026-10-19T08:00:00.000Z. Timestamp of representative execution (real UTC): ${r.at}. Each case resets users/coupons/usage fixtures. Authentication user/admin labels describe test accounts; actual tokens are not stored.\n\n## Steps to reproduce\n\n1. From the homework repository run \`node scripts/run-api.cjs ${r.c.feature}\` against the isolated copy; script owns the server and fixtures.\n2. Locate ${example}; request/readback sequence below is the exact captured public HTTP trace, reduced only to relevant list rows for readability.\n3. Compare status/body/persisted fields with the expected behavior. Full raw evidence retains every returned list row.\n\nInput:\n\n\`\`\`json\n${JSON.stringify(r.c.input,null,2)}\n\`\`\`\n\n## Expected\n\n${r.c.expected}\n\n## Actual\n\n\`\`\`json\n${JSON.stringify(r.trace,null,2)}\n\`\`\`\n\n[Full raw record](../evidence/execution/${r.c.feature}-api.md#${example.toLowerCase()}).\n\n## Screenshots and GitHub Issue\n\nPending real screenshot of this API execution record (terminal via \`node scripts/show-bug.cjs ${bug}\`) or an actual UI reproduction if possible. Do not present an API record screenshot as Web/Mobile interaction. Target image path: \`evidence/screenshots/api/${bug}_record-01.png\`. Group Issue publication happens after individual evidence/review; Issue URL/number and page screenshots are pending. This Markdown may be used as the issue body once the screenshot is attached.\n`;
+  let md=`# ${bug} - ${title}\n\nStatus: API verified; screenshot pending; Issue URL pending; student review pending.\n\nSeverity (proposed): ${severity}\n\nFeature: ${r.c.feature}; oracle: ${r.c.rule}.\n\nAffected TC IDs: ${all.map(c=>c.id).join(', ')}.\n\n## Environment and preconditions\n\nSUT SHA 85af3ba875c88283615e22cb108f13e2fccaf0e9; Node24.16.0; isolated source copy; API port3100; frozen SUT time2026-10-19T08:00:00.000Z. Timestamp of representative execution (real UTC): ${r.at}. Each case resets users/coupons/usage fixtures. Authentication user/admin labels describe test accounts; actual tokens are not stored.\n\n## Steps to reproduce\n\n1. From the homework repository run \`node scripts/run-api.cjs ${r.c.feature}\` against the isolated copy; script owns the server and fixtures.\n2. Locate ${example}; request/readback sequence below is the exact captured public HTTP trace, reduced only to relevant list rows for readability.\n3. Compare status/body/persisted fields with the expected behavior. Full raw evidence retains every returned list row.\n\nInput:\n\n\`\`\`json\n${JSON.stringify(r.c.input,null,2)}\n\`\`\`\n\n## Expected\n\n${r.c.expected}\n\n## Actual\n\n\`\`\`json\n${JSON.stringify(r.trace,null,2)}\n\`\`\`\n\n[Full raw record](../evidence/execution/${r.c.feature}-api.md#${example.toLowerCase()}).\n\n## Screenshots and GitHub Issue\n\nPending real screenshot of this API execution record (terminal via \`node scripts/show-bug.cjs ${bug}\`) or an actual UI reproduction if possible. Do not present an API record screenshot as Web/Mobile interaction. Target image path: \`evidence/screenshots/api/${bug}_record-01.png\`. Group Issue publication happens after individual evidence/review; Issue URL/number and page screenshots are pending. This Markdown may be used as the issue body once the screenshot is attached.\n`;
   fs.mkdirSync(path.join(root,'bugs'),{recursive:true});fs.writeFileSync(path.join(root,'bugs',bug+'.md'),md);
   index+=`| [${bug}](${bug}.md) | ${title} | ${r.c.feature} | ${all.length} | API verified / manual evidence pending |\n`;
  }
@@ -1333,7 +1799,7 @@ SHA-256: `0626739a5b68050b64a4bcdcd5341d60f2a3790ee985ca817b62d386038f0a93`
 // Fixtures arrange state; public HTTP/UI observations determine outcomes.
 const cases=[];
 function add(feature,id,title,technique,rule,kind,input,expected,extra={}){cases.push({feature,id,title,technique,rule,kind,input,expected,...extra});}
-function a(n,title,phone,valid,technique='Domain',extra={}){add('A',`A-API-${String(n).padStart(2,'0')}`,title,technique,'FR-04 phone: starts 0, 10–11 ASCII digits','profile',{name:'HW02 User',shipping_address:'1 Test Street',phone},valid?'Accept and persist the exact valid phone':'Reject; stored phone stays 0912345678',{valid,bug:'BUG-A01',...extra});}
+function a(n,title,phone,valid,technique='Domain',extra={}){add('A',`A-API-${String(n).padStart(2,'0')}`,title,technique,'FR-04 phone: starts 0, 10-11 ASCII digits','profile',{name:'HW02 User',shipping_address:'1 Test Street',phone},valid?'Accept and persist the exact valid phone':'Reject; stored phone stays 0912345678',{valid,bug:'BUG-A01',...extra});}
 a(1,'10 digits: lower ON boundary','0912345678',true,'Domain+BVA');
 a(2,'11 digits: upper ON boundary','09123456789',true,'Domain+BVA');
 a(3,'9 digits: lower OFF boundary','091234567',false,'Domain+BVA');
@@ -1353,7 +1819,7 @@ add('A','A-API-19','Body user id cannot redirect update','Domain','FR-04 own pro
 for(const [id,auth] of [[20,'none'],[21,'invalid']]) add('A',`A-API-${id}`,'Profile update: '+auth+' token','Domain','FR-04 + SEC-02','profile-auth',{phone:'0912345678'},'Reject unauthenticated update (401/403); profile unchanged',{auth});
 add('A','A-API-22','Profile read needs authentication','Domain','SEC-02','profile-read',{},'GET profile without JWT returns 401/403',{auth:'none'});
 
-function b(n,title,input,expected,extra={}){add('B',`B-API-${String(n).padStart(2,'0')}`,title,extra.technique||'Domain','FR-09 C1–C5 + discount formula','coupon',input,expected,{auth:'user',...extra});}
+function b(n,title,input,expected,extra={}){add('B',`B-API-${String(n).padStart(2,'0')}`,title,extra.technique||'Domain','FR-09 C1-C5 + discount formula','coupon',input,expected,{auth:'user',...extra});}
 b(1,'Fixed discount nominal',{code:'BIGBUY',total_amount:600000,user_id:2},'discount=50000; final=550000',{money:[50000,550000]});
 b(2,'Below fixed minimum',{code:'BIGBUY',total_amount:499999,user_id:2},'Reject insufficient total',{reject:true,technique:'Domain+BVA'});
 b(3,'Exactly fixed minimum',{code:'BIGBUY',total_amount:500000,user_id:2},'discount=50000; final=450000',{money:[50000,450000],bug:'BUG-B01',technique:'Domain+BVA'});
@@ -1580,9 +2046,9 @@ function steps(tc){
 }
 for(const feature of process.argv[2]?[process.argv[2]]:['A','B','C','D']){
  const selected=cases.filter(c=>c.feature===feature);
- let md=`# ${names[feature]} — Test Cases\n\nDesign source: scripts/cases.cjs. Expected is frozen from SRS before execution. Techniques may overlap; each TC-ID counts once. API and UI have separate IDs and observations.\n\nPreconditions: isolated copied SUT; fixtures reset per API case; user 2/admin 1/other 3 tokens; SUT test clock 2026-10-19T08:00:00.000Z. Manual runtime uses the real clock and dedicated fixtures.\n\n| ID | Technique | Title | Seam |\n|---|---|---|---|\n`;
+ let md=`# ${names[feature]} - Test Cases\n\nDesign source: scripts/cases.cjs. Expected is frozen from SRS before execution. Techniques may overlap; each TC-ID counts once. API and UI have separate IDs and observations.\n\nPreconditions: isolated copied SUT; fixtures reset per API case; user 2/admin 1/other 3 tokens; SUT test clock 2026-10-19T08:00:00.000Z. Manual runtime uses the real clock and dedicated fixtures.\n\n| ID | Technique | Title | Seam |\n|---|---|---|---|\n`;
  for(const tc of selected)md+=`| ${tc.id} | ${tc.technique} | ${tc.title.replaceAll('|','/')} | ${tc.kind==='manual'?'UI pending':'HTTP API'} |\n`;
- for(const tc of selected)md+=`\n## ${tc.id} — ${tc.title}\n\nTechnique: ${tc.technique}\n\nOracle: ${tc.rule}${tc.mapping?' ('+tc.mapping+')':''}\n\nSteps: ${steps(tc)}\n\nInput:\n\n\`\`\`json\n${JSON.stringify(tc.input,null,2)}\n\`\`\`\n\nExpected: ${tc.expected}\n\nExecution: ${tc.kind==='manual'?'NOT RUN; complete manual-results.md with actual screenshots.':'See evidence/execution/'+feature+'-api.md; current summary is generated separately.'}\n`;
+ for(const tc of selected)md+=`\n## ${tc.id} - ${tc.title}\n\nTechnique: ${tc.technique}\n\nOracle: ${tc.rule}${tc.mapping?' ('+tc.mapping+')':''}\n\nSteps: ${steps(tc)}\n\nInput:\n\n\`\`\`json\n${JSON.stringify(tc.input,null,2)}\n\`\`\`\n\nExpected: ${tc.expected}\n\nExecution: ${tc.kind==='manual'?'NOT RUN; complete manual-results.md with actual screenshots.':'See evidence/execution/'+feature+'-api.md; current summary is generated separately.'}\n`;
  fs.mkdirSync(path.join(root,'tests'),{recursive:true});fs.writeFileSync(path.join(root,'tests',names[feature]+'.md'),md);
 }
 
@@ -1721,10 +2187,10 @@ async function execute(tc){
   }
   const unchanged=Object.entries(hashes).every(([f,h])=>rt.hash(path.join(rt.sut,f))===h);
   const count={};for(const r of results)count[r.status]=(count[r.status]||0)+1;
-  let md=`# ${feature} — Raw API execution\n\nStarted (UTC): ${started}\n\nFinished (UTC): ${new Date().toISOString()}\n\nHost timezone labels use UTC explicitly; add 07:00 for Asia/Saigon. SUT clock frozen at ${rt.fixed}; runner timestamp uses real clock.\n\nOrigin: ${origin}. Byte-identical copied backend source; HTTP listen port and global Date adapter only. SQLite fixtures are test setup; assertions observe public API. Password/token fields are omitted from evidence.\n\nOriginal SUT files unchanged after run: **${unchanged?'PASS':'FAIL'}**.\n\n## Source hashes\n\n| File | SHA-256 before (= after when PASS) |\n|---|---|\n`;
+  let md=`# ${feature} - Raw API execution\n\nStarted (UTC): ${started}\n\nFinished (UTC): ${new Date().toISOString()}\n\nHost timezone labels use UTC explicitly; add 07:00 for Asia/Saigon. SUT clock frozen at ${rt.fixed}; runner timestamp uses real clock.\n\nOrigin: ${origin}. Byte-identical copied backend source; HTTP listen port and global Date adapter only. SQLite fixtures are test setup; assertions observe public API. Password/token fields are omitted from evidence.\n\nOriginal SUT files unchanged after run: **${unchanged?'PASS':'FAIL'}**.\n\n## Source hashes\n\n| File | SHA-256 before (= after when PASS) |\n|---|---|\n`;
   for(const[f,h]of Object.entries(hashes))md+=`| ${f} | ${h} |\n`;
   md+=`\n## Results\n\n| ID | Status | Bug group |\n|---|---|---|\n`;
-  for(const r of results)md+=`| ${r.id} | ${r.status} | ${r.bug||'—'} |\n`;
+  for(const r of results)md+=`| ${r.id} | ${r.status} | ${r.bug||'-'} |\n`;
   for(const r of results)md+=`\n## ${r.id}\n\nStatus: ${r.status}\n\nTimestamp (UTC): ${r.at}\n\nExpected: ${r.expected}\n\n${r.reason?'Blocker: '+r.reason+'\n\n':''}Requests/responses (sanitized):\n\n\`\`\`json\n${JSON.stringify(r.trace,null,2)}\n\`\`\`\n`;
   fs.mkdirSync(path.join(rt.repo,'evidence','execution'),{recursive:true});
   fs.writeFileSync(path.join(rt.repo,'evidence','execution',`${feature}-api.md`),md);
@@ -1837,21 +2303,21 @@ function load(){
  const manual=path.join(root,'evidence','manual-results.md');
  if(fs.existsSync(manual))for(const m of fs.readFileSync(manual,'utf8').matchAll(/^\| ([A-D]-UI-\d+) \| (PASS|FAIL|BLOCKED|NOT RUN|OBSERVATION) \| ([^|]*) \| ([^|]*) \| ([^|]*) \|$/gm)){
   if(statuses.has(m[1]))throw Error('Duplicate manual '+m[1]);
-  if(['PASS','FAIL','OBSERVATION'].includes(m[2])&&(!m[3].trim()||!m[4].trim()||m[5].trim()==='—'||!m[5].trim()))throw Error('Executed manual row needs actual timestamp/result/evidence: '+m[1]);
-  statuses.set(m[1],{status:m[2],bug:'—'});
+  if(['PASS','FAIL','OBSERVATION'].includes(m[2])&&(!m[3].trim()||!m[4].trim()||m[5].trim()==='-'||!m[5].trim()))throw Error('Executed manual row needs actual timestamp/result/evidence: '+m[1]);
+  statuses.set(m[1],{status:m[2],bug:'-'});
  }
  for(const id of statuses.keys())if(!cases.some(c=>c.id===id))throw Error('Unknown result ID '+id);
- const rows=cases.map(c=>({...c,...(statuses.get(c.id)||{status:'NOT RUN',bug:'—'})}));
+ const rows=cases.map(c=>({...c,...(statuses.get(c.id)||{status:'NOT RUN',bug:'-'})}));
  const count=selected=>{const out={designed:selected.length,executed:0,PASS:0,FAIL:0,BLOCKED:0,'NOT RUN':0,OBSERVATION:0};for(const r of selected){out[r.status]++;if(['PASS','FAIL','OBSERVATION'].includes(r.status))out.executed++;}return out;};
- return {rows,count,totals:count(rows),bugs:[...new Set(rows.filter(r=>r.status==='FAIL'&&r.bug!=='—'&&r.bug).map(r=>r.bug))].sort()};
+ return {rows,count,totals:count(rows),bugs:[...new Set(rows.filter(r=>r.status==='FAIL'&&r.bug!=='-'&&r.bug).map(r=>r.bug))].sort()};
 }
 function render(){
  const {rows,count,totals,bugs}=load();
  let table='| Scope | Designed | Executed | PASS | FAIL | OBSERVATION | BLOCKED | NOT RUN |\n|---|---:|---:|---:|---:|---:|---:|---:|\n';
  for(const label of ['A','B','C','D','API','UI','Total']){const group=label==='Total'?rows:label==='API'?rows.filter(r=>r.kind!=='manual'):label==='UI'?rows.filter(r=>r.kind==='manual'):rows.filter(r=>r.feature===label);const c=count(group);table+=`| ${label} | ${c.designed} | ${c.executed} | ${c.PASS} | ${c.FAIL} | ${c.OBSERVATION} | ${c.BLOCKED} | ${c['NOT RUN']} |\n`;}
- const text='# Test Summary\n\n'+table+`\nAPI verified bug groups: ${bugs.length}. Mobile UI execution is pending; product API support is counted separately. Observations have no definitive requirement oracle and are not counted as bugs.\n\nDesigned = PASS + FAIL + OBSERVATION + BLOCKED + NOT RUN. Executed = PASS + FAIL + OBSERVATION. Cases covering Domain and BVA count once by TC-ID.\n\n## All TC results\n\n| TC-ID | Status | Bug group |\n|---|---|---|\n`+rows.map(r=>`| ${r.id} | ${r.status} | ${r.bug||'—'} |`).join('\n')+'\n';
+ const text='# Test Summary\n\n'+table+`\nAPI verified bug groups: ${bugs.length}. Mobile UI execution is pending; product API support is counted separately. Observations have no definitive requirement oracle and are not counted as bugs.\n\nDesigned = PASS + FAIL + OBSERVATION + BLOCKED + NOT RUN. Executed = PASS + FAIL + OBSERVATION. Cases covering Domain and BVA count once by TC-ID.\n\n## All TC results\n\n| TC-ID | Status | Bug group |\n|---|---|---|\n`+rows.map(r=>`| ${r.id} | ${r.status} | ${r.bug||'-'} |`).join('\n')+'\n';
  fs.mkdirSync(path.join(root,'reports'),{recursive:true});fs.writeFileSync(path.join(root,'reports','test-summary.md'),text);
- const readme=`# HW02 — Domain Testing on EShop\n\n## Student\n\n- Student ID: 23120262 (from the initial repository README).\n- Name / class: sinh viên điền và xác nhận.\n- Status: Codex API/design work prepared; UI screenshots, native interaction, human review, video and group Issues pending.\n\n## Confirmed Feature Scope\n\n| Pool | Feature |\n|---|---|\n| A | FR-04 Personal profile management |\n| B | FR-09 Discount coupons |\n| C | FR-17 Admin coupon management (Create/View/Delete) |\n| D | Mobile productDetail |\n\nNgười dùng xác nhận feature đã chia và không trùng nhóm.\n\n## Current Test Summary\n\n${table}\nAPI verified bug groups: **${bugs.length}**. GitHub Issues published: **0**. Actual screenshots/video: **pending**. UI results are not inferred from API results or source inspection.\n\n## Required Final Assessment Table\n\n| No. | Criteria | Maximum grade | Self-assessed grade |\n|---|---|---:|---|\n| 1 | Feature A (Domain + Boundary) | 25 | Chờ sinh viên |\n| 2 | Feature B (Domain + Boundary) | 25 | Chờ sinh viên |\n| 3 | Feature C (Domain + Boundary) | 25 | Chờ sinh viên |\n| 4 | Feature D (Mobile, Domain + Boundary) | 15 | Chờ sinh viên |\n| 5 | Agent Skills | 10 | Chờ demo video / sinh viên |\n| | Total | 100 | Chưa chốt |\n\n## Main Deliverables\n\n- [Main report](REPORT.md), [test summary](reports/test-summary.md), [environment](reports/test-environment.md).\n- [Test cases](tests/), [API execution evidence](evidence/execution/), [bug reports](bugs/bug-reports.md).\n- [AI audit forms](ai-audit/) (filenames match source templates exactly).\n- [Manual handoff](reports/manual-handoff.md) and [manual results](evidence/manual-results.md).\n- [Reusable skill](.agents/skills/domain-bva-testing/SKILL.md), [skill demonstration](reports/skill-demonstration.md).\n- [Git commit log](git-commit-log.md).\n\n## Demonstration Video\n\n[Recording instructions and pending link](evidence/video-links.md). No video has been recorded/uploaded by Codex.\n\n## GitHub Issues\n\nGroup repository/publication handled after individual work. Draft-ready bug bodies are in bugs/; all Issue URLs remain pending.\n\n## Strict Submission Gates\n\n1. Execute pending UI/Mobile cases; attach real screenshots and review requirement mapping.\n2. Sinh viên review AI outputs/Critique, complete disclosure/signatures and self-assessment.\n3. Record the end-to-end skill demonstration and supply a working YouTube URL.\n4. Publish bugs with screenshots to the group Issues repository; retain page screenshots and URLs.\n5. Sinh viên tự xuất PDF/định dạng cuối, đóng ZIP đúng tên và nộp Moodle trước hạn. Codex chỉ viết tài liệu Markdown.\n\n## Source Documents\n\nAssignment and policies are supplied outside this repository; the work plan also stays outside. SUT baseline: 85af3ba875c88283615e22cb108f13e2fccaf0e9. Source links and assumptions are recorded in the feature reports.\n\nThis work used OpenAI Codex to draft design, scripts and reports. Technical review by Codex is recorded separately from the student's pending human review in ai-audit/.\n`;
+ const readme=`# HW02 - Domain Testing on EShop\n\n## Student\n\n- Student ID: 23120262 (from the initial repository README).\n- Name / class: sinh viên điền và xác nhận.\n- Status: Codex API/design work prepared; UI screenshots, native interaction, human review, video and group Issues pending.\n\n## Confirmed Feature Scope\n\n| Pool | Feature |\n|---|---|\n| A | FR-04 Personal profile management |\n| B | FR-09 Discount coupons |\n| C | FR-17 Admin coupon management (Create/View/Delete) |\n| D | Mobile productDetail |\n\nNgười dùng xác nhận feature đã chia và không trùng nhóm.\n\n## Current Test Summary\n\n${table}\nAPI verified bug groups: **${bugs.length}**. GitHub Issues published: **0**. Actual screenshots/video: **pending**. UI results are not inferred from API results or source inspection.\n\n## Required Final Assessment Table\n\n| No. | Criteria | Maximum grade | Self-assessed grade |\n|---|---|---:|---|\n| 1 | Feature A (Domain + Boundary) | 25 | Chờ sinh viên |\n| 2 | Feature B (Domain + Boundary) | 25 | Chờ sinh viên |\n| 3 | Feature C (Domain + Boundary) | 25 | Chờ sinh viên |\n| 4 | Feature D (Mobile, Domain + Boundary) | 15 | Chờ sinh viên |\n| 5 | Agent Skills | 10 | Chờ demo video / sinh viên |\n| | Total | 100 | Chưa chốt |\n\n## Main Deliverables\n\n- [Main report](REPORT.md), [test summary](reports/test-summary.md), [environment](reports/test-environment.md).\n- [Test cases](tests/), [API execution evidence](evidence/execution/), [bug reports](bugs/bug-reports.md).\n- [AI audit forms](ai-audit/) (filenames match source templates exactly).\n- [Manual handoff](reports/manual-handoff.md) and [manual results](evidence/manual-results.md).\n- [Reusable skill](.agents/skills/domain-bva-testing/SKILL.md), [skill demonstration](reports/skill-demonstration.md).\n- [Git commit log](git-commit-log.md).\n\n## Demonstration Video\n\n[Recording instructions and pending link](evidence/video-links.md). No video has been recorded/uploaded by Codex.\n\n## GitHub Issues\n\nGroup repository/publication handled after individual work. Draft-ready bug bodies are in bugs/; all Issue URLs remain pending.\n\n## Strict Submission Gates\n\n1. Execute pending UI/Mobile cases; attach real screenshots and review requirement mapping.\n2. Sinh viên review AI outputs/Critique, complete disclosure/signatures and self-assessment.\n3. Record the end-to-end skill demonstration and supply a working YouTube URL.\n4. Publish bugs with screenshots to the group Issues repository; retain page screenshots and URLs.\n5. Sinh viên tự xuất PDF/định dạng cuối, đóng ZIP đúng tên và nộp Moodle trước hạn. Codex chỉ viết tài liệu Markdown.\n\n## Source Documents\n\nAssignment and policies are supplied outside this repository; the work plan also stays outside. SUT baseline: 85af3ba875c88283615e22cb108f13e2fccaf0e9. Source links and assumptions are recorded in the feature reports.\n\nThis work used OpenAI Codex to draft design, scripts and reports. Technical review by Codex is recorded separately from the student's pending human review in ai-audit/.\n`;
  fs.writeFileSync(path.join(root,'README.md'),readme);console.log(JSON.stringify({totals,verifiedBugs:bugs.length}));
 }
 if(require.main===module)render();else module.exports={load};
@@ -1892,8 +2358,8 @@ check(not(repo/'ai').exists()and not list(repo.rglob('interactions')),'ai-audit 
 check(not(repo/'TASKS.md').exists()and not(repo/'references').exists(),'Plan and reference copies stay outside submission repo')
 check(not [p for p in repo.rglob('*')if '.git'not in p.parts and p.is_file()and p.suffix.lower()in ('.pdf','.docx','.xlsx','.zip','.txt','.json','.log')],'Authored docs are Markdown; final formats not generated in repo')
 crit=(repo/'ai-audit'/'[AI-04] - FIT@HCMUS - AI Reflective Statement_Vn.md').read_text(encoding='utf-8')
-body=crit.split('### AI Critique — ',1)[1].split('\n\n',1)[1].split('\n## 3.',1)[0]
-check(200<=len(body.split())<=300,f'Critique word count {len(body.split())} in 200–300')
+body=crit.split('### AI Critique - ',1)[1].split('\n\n',1)[1].split('\n## 3.',1)[0]
+check(200<=len(body.split())<=300,f'Critique word count {len(body.split())} in 200-300')
 broken=[];unbalanced=[]
 for file in repo.rglob('*.md'):
     if '.git'in file.parts:continue
@@ -1934,7 +2400,7 @@ SHA-256: `3d676ab93a56699f02db0e47394fda94a925bcf5e6b988c0f0265a06b9c10749`
 <summary>Full output</summary>
 
 ````text
-# A-FR04-profile — Test Cases
+# A-FR04-profile - Test Cases
 
 Design source: scripts/cases.cjs. Expected is frozen from SRS before execution. Techniques may overlap; each TC-ID counts once. API and UI have separate IDs and observations.
 
@@ -1972,11 +2438,11 @@ Preconditions: isolated copied SUT; fixtures reset per API case; user 2/admin 1/
 | A-UI-06 | Domain | Email field cannot be changed | UI pending |
 | A-UI-07 | Domain | Unicode editable profile fields | UI pending |
 
-## A-API-01 — 10 digits: lower ON boundary
+## A-API-01 - 10 digits: lower ON boundary
 
 Technique: Domain+BVA
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -1994,11 +2460,11 @@ Expected: Accept and persist the exact valid phone
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-02 — 11 digits: upper ON boundary
+## A-API-02 - 11 digits: upper ON boundary
 
 Technique: Domain+BVA
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2016,11 +2482,11 @@ Expected: Accept and persist the exact valid phone
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-03 — 9 digits: lower OFF boundary
+## A-API-03 - 9 digits: lower OFF boundary
 
 Technique: Domain+BVA
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2038,11 +2504,11 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-04 — 12 digits: upper OFF boundary
+## A-API-04 - 12 digits: upper OFF boundary
 
 Technique: Domain+BVA
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2060,11 +2526,11 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-05 — Empty phone
+## A-API-05 - Empty phone
 
 Technique: Domain
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2082,11 +2548,11 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-06 — One digit
+## A-API-06 - One digit
 
 Technique: Domain
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2104,11 +2570,11 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-07 — 8 digits: invalid IN point
+## A-API-07 - 8 digits: invalid IN point
 
 Technique: Domain
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2126,11 +2592,11 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-08 — 13 digits: invalid IN point
+## A-API-08 - 13 digits: invalid IN point
 
 Technique: Domain
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2148,11 +2614,11 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-09 — Wrong leading digit, length 10
+## A-API-09 - Wrong leading digit, length 10
 
 Technique: Domain
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2170,11 +2636,11 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-10 — Wrong leading digit, length 11
+## A-API-10 - Wrong leading digit, length 11
 
 Technique: Domain
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2192,11 +2658,11 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-11 — Alphabetic character
+## A-API-11 - Alphabetic character
 
 Technique: Domain
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2214,11 +2680,11 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-12 — Embedded space
+## A-API-12 - Embedded space
 
 Technique: Domain
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2236,11 +2702,11 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-13 — Country prefix instead of 0
+## A-API-13 - Country prefix instead of 0
 
 Technique: Domain
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2258,11 +2724,11 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-14 — Hyphenated digits
+## A-API-14 - Hyphenated digits
 
 Technique: Domain
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2280,11 +2746,11 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-15 — Unicode fullwidth digits
+## A-API-15 - Unicode fullwidth digits
 
 Technique: Domain
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2302,11 +2768,11 @@ Expected: Record Unicode numeral acceptance; SRS does not explicitly specify num
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-16 — Null phone
+## A-API-16 - Null phone
 
 Technique: Domain
 
-Oracle: FR-04 phone: starts 0, 10–11 ASCII digits
+Oracle: FR-04 phone: starts 0, 10-11 ASCII digits
 
 Steps: Reset fixtures; keep non-target fields valid. Use user 2 JWT unless auth is specified. PUT /api/users/me (GET only for profile-read); GET /api/users/me as needed to verify persistence/ownership. Auth cases use missing or invalid JWT. Other-user check logs in user 3.
 
@@ -2324,7 +2790,7 @@ Expected: Reject; stored phone stays 0912345678
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-17 — Unicode name and address
+## A-API-17 - Unicode name and address
 
 Technique: Domain
 
@@ -2346,7 +2812,7 @@ Expected: Persist Unicode name and address exactly
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-18 — Client role escalation
+## A-API-18 - Client role escalation
 
 Technique: Domain
 
@@ -2369,7 +2835,7 @@ Expected: Reject or ignore role; GET /users/me remains role=user
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-19 — Body user id cannot redirect update
+## A-API-19 - Body user id cannot redirect update
 
 Technique: Domain
 
@@ -2393,7 +2859,7 @@ Expected: Update authenticated user 2; user 3 unchanged
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-20 — Profile update: none token
+## A-API-20 - Profile update: none token
 
 Technique: Domain
 
@@ -2413,7 +2879,7 @@ Expected: Reject unauthenticated update (401/403); profile unchanged
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-21 — Profile update: invalid token
+## A-API-21 - Profile update: invalid token
 
 Technique: Domain
 
@@ -2433,7 +2899,7 @@ Expected: Reject unauthenticated update (401/403); profile unchanged
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-API-22 — Profile read needs authentication
+## A-API-22 - Profile read needs authentication
 
 Technique: Domain
 
@@ -2451,7 +2917,7 @@ Expected: GET profile without JWT returns 401/403
 
 Execution: See evidence/execution/A-api.md; current summary is generated separately.
 
-## A-UI-01 — Profile phone 091234567
+## A-UI-01 - Profile phone 091234567
 
 Technique: Domain+BVA
 
@@ -2471,7 +2937,7 @@ Expected: Reject; saved profile remains unchanged
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## A-UI-02 — Profile phone 0912345678
+## A-UI-02 - Profile phone 0912345678
 
 Technique: Domain+BVA
 
@@ -2491,7 +2957,7 @@ Expected: Update succeeds; re-login shows the exact phone
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## A-UI-03 — Profile phone 09123456789
+## A-UI-03 - Profile phone 09123456789
 
 Technique: Domain+BVA
 
@@ -2511,7 +2977,7 @@ Expected: Update succeeds; re-login shows the exact phone
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## A-UI-04 — Profile phone 091234567890
+## A-UI-04 - Profile phone 091234567890
 
 Technique: Domain+BVA
 
@@ -2531,7 +2997,7 @@ Expected: Reject; saved profile remains unchanged
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## A-UI-05 — Profile phone 1912345678
+## A-UI-05 - Profile phone 1912345678
 
 Technique: Domain+BVA
 
@@ -2551,7 +3017,7 @@ Expected: Reject; saved profile remains unchanged
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## A-UI-06 — Email field cannot be changed
+## A-UI-06 - Email field cannot be changed
 
 Technique: Domain
 
@@ -2571,7 +3037,7 @@ Expected: Email is not editable via UI; original email unchanged
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## A-UI-07 — Unicode editable profile fields
+## A-UI-07 - Unicode editable profile fields
 
 Technique: Domain
 
@@ -2605,7 +3071,7 @@ SHA-256: `5b599feea9754a74c5e7d47f90116a171a5993c20400522cd1f6818287dd7262`
 <summary>Full output</summary>
 
 ````text
-# B-FR09-discount-coupons — Test Cases
+# B-FR09-discount-coupons - Test Cases
 
 Design source: scripts/cases.cjs. Expected is frozen from SRS before execution. Techniques may overlap; each TC-ID counts once. API and UI have separate IDs and observations.
 
@@ -2646,11 +3112,11 @@ Preconditions: isolated copied SUT; fixtures reset per API case; user 2/admin 1/
 | B-UI-05 | Domain | Checkout EXPIRED / 400000 | UI pending |
 | B-UI-06 | Domain | Checkout VIP100 / 400000 | UI pending |
 
-## B-API-01 — Fixed discount nominal
+## B-API-01 - Fixed discount nominal
 
 Technique: Domain
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2668,11 +3134,11 @@ Expected: discount=50000; final=550000
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-02 — Below fixed minimum
+## B-API-02 - Below fixed minimum
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2690,11 +3156,11 @@ Expected: Reject insufficient total
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-03 — Exactly fixed minimum
+## B-API-03 - Exactly fixed minimum
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2712,11 +3178,11 @@ Expected: discount=50000; final=450000
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-04 — Above fixed minimum
+## B-API-04 - Above fixed minimum
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2734,11 +3200,11 @@ Expected: discount=50000; final=450001
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-05 — Below percent minimum
+## B-API-05 - Below percent minimum
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2756,11 +3222,11 @@ Expected: Reject insufficient total
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-06 — Exactly percent minimum
+## B-API-06 - Exactly percent minimum
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2778,11 +3244,11 @@ Expected: discount=30000; final=270000
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-07 — Above percent minimum
+## B-API-07 - Above percent minimum
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2800,11 +3266,11 @@ Expected: discount=30000.1; final=270000.9 (SRS has no rounding rule)
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-08 — Percent formula with integer result
+## B-API-08 - Percent formula with integer result
 
 Technique: Domain
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2822,11 +3288,11 @@ Expected: discount=40000; final=360000
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-09 — Nonexistent code
+## B-API-09 - Nonexistent code
 
 Technique: Domain
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2844,11 +3310,11 @@ Expected: Reject nonexistent code
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-10 — Inactive code
+## B-API-10 - Inactive code
 
 Technique: Domain
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2866,11 +3332,11 @@ Expected: Reject inactive code
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-11 — Missing code
+## B-API-11 - Missing code
 
 Technique: Domain
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2887,11 +3353,11 @@ Expected: Reject missing code
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-12 — Expired before current time by 1 ms
+## B-API-12 - Expired before current time by 1 ms
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; TIME expiry offset -1 ms from fixed clock. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2909,11 +3375,11 @@ Expected: Reject expired coupon
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-13 — Expiry exactly equals current time
+## B-API-13 - Expiry exactly equals current time
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; TIME expiry offset 0 ms from fixed clock. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2931,11 +3397,11 @@ Expected: Reject: current time must be strictly before expiry
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-14 — Expiry after current time by 1 ms
+## B-API-14 - Expiry after current time by 1 ms
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; TIME expiry offset 1 ms from fixed clock. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2953,11 +3419,11 @@ Expected: discount=10000; final=390000
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-15 — VIP100 used=0, limit=2
+## B-API-15 - VIP100 used=0, limit=2
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2975,11 +3441,11 @@ Expected: discount=100000; final=300000
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-16 — VIP100 used=1, limit=2
+## B-API-16 - VIP100 used=1, limit=2
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=1; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -2997,11 +3463,11 @@ Expected: discount=100000; final=300000
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-17 — VIP100 used=2, limit=2
+## B-API-17 - VIP100 used=2, limit=2
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=2; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -3019,11 +3485,11 @@ Expected: Reject exhausted coupon
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-18 — VIP100 used=3, limit=2
+## B-API-18 - VIP100 used=3, limit=2
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=3; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -3041,11 +3507,11 @@ Expected: Reject exhausted coupon
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-19 — Coupon with none JWT
+## B-API-19 - Coupon with none JWT
 
 Technique: Domain
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=none; compare rejection or discount/final literals.
 
@@ -3063,11 +3529,11 @@ Expected: Reject invalid/missing authentication (401/403)
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-20 — Coupon with invalid JWT
+## B-API-20 - Coupon with invalid JWT
 
 Technique: Domain
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=invalid; compare rejection or discount/final literals.
 
@@ -3085,11 +3551,11 @@ Expected: Reject invalid/missing authentication (401/403)
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-21 — Coupon with expired JWT
+## B-API-21 - Coupon with expired JWT
 
 Technique: Domain
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=expired; compare rejection or discount/final literals.
 
@@ -3107,11 +3573,11 @@ Expected: Reject invalid/missing authentication (401/403)
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-22 — Exhausted authenticated user spoofs user_id=3
+## B-API-22 - Exhausted authenticated user spoofs user_id=3
 
 Technique: Domain
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=2; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -3129,11 +3595,11 @@ Expected: Reject: user 2 already used limit; client user_id is not identity
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-23 — Exhausted authenticated user omits user_id
+## B-API-23 - Exhausted authenticated user omits user_id
 
 Technique: Domain
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=2; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -3150,11 +3616,11 @@ Expected: Reject: authenticated user 2 already used limit
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-24 — Intersection: minimum equality and last eligible use
+## B-API-24 - Intersection: minimum equality and last eligible use
 
 Technique: Domain+BVA
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=1; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -3172,11 +3638,11 @@ Expected: discount=100000; final=200000
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-25 — Multiple invalid conditions
+## B-API-25 - Multiple invalid conditions
 
 Technique: Domain
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=none; compare rejection or discount/final literals.
 
@@ -3193,11 +3659,11 @@ Expected: Reject; no error precedence is specified
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-API-26 — Percent 100 formula
+## B-API-26 - Percent 100 formula
 
 Technique: Domain
 
-Oracle: FR-09 C1–C5 + discount formula
+Oracle: FR-09 C1-C5 + discount formula
 
 Steps: Reset fixtures; keep non-target fields valid. Arrange VIP100 used=0; future expiry. POST /api/apply-coupon with authentication=user; compare rejection or discount/final literals.
 
@@ -3215,7 +3681,7 @@ Expected: discount=400000; final=0
 
 Execution: See evidence/execution/B-api.md; current summary is generated separately.
 
-## B-UI-01 — Checkout BIGBUY / 499999
+## B-UI-01 - Checkout BIGBUY / 499999
 
 Technique: Domain+BVA
 
@@ -3236,7 +3702,7 @@ Expected: Reject below minimum
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## B-UI-02 — Checkout BIGBUY / 500000
+## B-UI-02 - Checkout BIGBUY / 500000
 
 Technique: Domain+BVA
 
@@ -3257,7 +3723,7 @@ Expected: Discount 50000; final 450000
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## B-UI-03 — Checkout BIGBUY / 500001
+## B-UI-03 - Checkout BIGBUY / 500001
 
 Technique: Domain+BVA
 
@@ -3278,7 +3744,7 @@ Expected: Discount 50000; final 450001
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## B-UI-04 — Checkout SAVE10 / 400000
+## B-UI-04 - Checkout SAVE10 / 400000
 
 Technique: Domain
 
@@ -3299,7 +3765,7 @@ Expected: Discount 40000; final 360000
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## B-UI-05 — Checkout EXPIRED / 400000
+## B-UI-05 - Checkout EXPIRED / 400000
 
 Technique: Domain
 
@@ -3320,7 +3786,7 @@ Expected: Reject expired coupon
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## B-UI-06 — Checkout VIP100 / 400000
+## B-UI-06 - Checkout VIP100 / 400000
 
 Technique: Domain
 
@@ -3353,7 +3819,7 @@ SHA-256: `4ce016a75ac476a847034c44fe6b83893b2944f8f71353af50ea65a8e3b7577d`
 <summary>Full output</summary>
 
 ````text
-# C-FR17-coupon-management — Test Cases
+# C-FR17-coupon-management - Test Cases
 
 Design source: scripts/cases.cjs. Expected is frozen from SRS before execution. Techniques may overlap; each TC-ID counts once. API and UI have separate IDs and observations.
 
@@ -3398,7 +3864,7 @@ Preconditions: isolated copied SUT; fixtures reset per API case; user 2/admin 1/
 | C-UI-05 | Domain | Admin coupon form 5 | UI pending |
 | C-UI-06 | Domain | Admin delete lifecycle | UI pending |
 
-## C-API-01 — Nominal fixed coupon
+## C-API-01 - Nominal fixed coupon
 
 Technique: Domain
 
@@ -3423,7 +3889,7 @@ Expected: Admin creates coupon and list contains exact supplied values
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-02 — Nominal percent coupon
+## C-API-02 - Nominal percent coupon
 
 Technique: Domain
 
@@ -3448,7 +3914,7 @@ Expected: Admin creates coupon and list contains exact supplied values
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-03 — Missing mandatory code
+## C-API-03 - Missing mandatory code
 
 Technique: Domain
 
@@ -3472,7 +3938,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-04 — Missing mandatory type
+## C-API-04 - Missing mandatory type
 
 Technique: Domain
 
@@ -3496,7 +3962,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-05 — Missing mandatory discount_value
+## C-API-05 - Missing mandatory discount_value
 
 Technique: Domain
 
@@ -3520,7 +3986,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-06 — Missing mandatory min_order_amount
+## C-API-06 - Missing mandatory min_order_amount
 
 Technique: Domain
 
@@ -3544,7 +4010,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-07 — Missing mandatory expired_at
+## C-API-07 - Missing mandatory expired_at
 
 Technique: Domain
 
@@ -3568,7 +4034,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-08 — Missing mandatory max_uses_per_user
+## C-API-08 - Missing mandatory max_uses_per_user
 
 Technique: Domain
 
@@ -3592,7 +4058,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-09 — Empty code
+## C-API-09 - Empty code
 
 Technique: Domain
 
@@ -3617,7 +4083,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-10 — Duplicate code
+## C-API-10 - Duplicate code
 
 Technique: Domain
 
@@ -3642,7 +4108,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-11 — Unknown type
+## C-API-11 - Unknown type
 
 Technique: Domain
 
@@ -3667,7 +4133,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-12 — discount_value=-1
+## C-API-12 - discount_value=-1
 
 Technique: Domain+BVA
 
@@ -3692,7 +4158,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-13 — discount_value=0
+## C-API-13 - discount_value=0
 
 Technique: Domain+BVA
 
@@ -3717,7 +4183,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-14 — discount_value=1
+## C-API-14 - discount_value=1
 
 Technique: Domain+BVA
 
@@ -3742,7 +4208,7 @@ Expected: Admin creates coupon and list contains exact supplied values
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-15 — min_order_amount=-1
+## C-API-15 - min_order_amount=-1
 
 Technique: Domain+BVA
 
@@ -3767,7 +4233,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-16 — min_order_amount=0
+## C-API-16 - min_order_amount=0
 
 Technique: Domain+BVA
 
@@ -3792,7 +4258,7 @@ Expected: Admin creates coupon and list contains exact supplied values
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-17 — min_order_amount=1
+## C-API-17 - min_order_amount=1
 
 Technique: Domain+BVA
 
@@ -3817,7 +4283,7 @@ Expected: Admin creates coupon and list contains exact supplied values
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-18 — max_uses_per_user=-1
+## C-API-18 - max_uses_per_user=-1
 
 Technique: Domain+BVA
 
@@ -3842,7 +4308,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-19 — max_uses_per_user=0
+## C-API-19 - max_uses_per_user=0
 
 Technique: Domain+BVA
 
@@ -3867,7 +4333,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-20 — max_uses_per_user=1
+## C-API-20 - max_uses_per_user=1
 
 Technique: Domain+BVA
 
@@ -3892,7 +4358,7 @@ Expected: Admin creates coupon and list contains exact supplied values
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-21 — max_uses_per_user=2
+## C-API-21 - max_uses_per_user=2
 
 Technique: Domain+BVA
 
@@ -3917,7 +4383,7 @@ Expected: Admin creates coupon and list contains exact supplied values
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-22 — No JWT creates coupon
+## C-API-22 - No JWT creates coupon
 
 Technique: Domain
 
@@ -3942,7 +4408,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-23 — User role creates coupon
+## C-API-23 - User role creates coupon
 
 Technique: Domain
 
@@ -3967,7 +4433,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-24 — Invalid JWT creates coupon
+## C-API-24 - Invalid JWT creates coupon
 
 Technique: Domain
 
@@ -3992,7 +4458,7 @@ Expected: Reject invalid coupon; list has no newly created record
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-25 — List coupons as admin
+## C-API-25 - List coupons as admin
 
 Technique: Domain
 
@@ -4010,7 +4476,7 @@ Expected: Return coupon list
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-26 — List coupons as user
+## C-API-26 - List coupons as user
 
 Technique: Domain
 
@@ -4028,7 +4494,7 @@ Expected: Reject non-admin access (401/403)
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-27 — List coupons as none
+## C-API-27 - List coupons as none
 
 Technique: Domain
 
@@ -4046,7 +4512,7 @@ Expected: Reject non-admin access (401/403)
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-28 — Delete coupon as admin
+## C-API-28 - Delete coupon as admin
 
 Technique: Domain
 
@@ -4066,7 +4532,7 @@ Expected: Coupon removed; other coupons unchanged
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-29 — Delete coupon as user
+## C-API-29 - Delete coupon as user
 
 Technique: Domain
 
@@ -4086,7 +4552,7 @@ Expected: Reject non-admin delete; coupon remains
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-API-30 — Delete coupon as none
+## C-API-30 - Delete coupon as none
 
 Technique: Domain
 
@@ -4106,7 +4572,7 @@ Expected: Reject non-admin delete; coupon remains
 
 Execution: See evidence/execution/C-api.md; current summary is generated separately.
 
-## C-UI-01 — Admin coupon form 1
+## C-UI-01 - Admin coupon form 1
 
 Technique: Domain+BVA
 
@@ -4131,7 +4597,7 @@ Expected: Reject discount_value=0
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## C-UI-02 — Admin coupon form 2
+## C-UI-02 - Admin coupon form 2
 
 Technique: Domain+BVA
 
@@ -4156,7 +4622,7 @@ Expected: Create coupon; same values visible after reload
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## C-UI-03 — Admin coupon form 3
+## C-UI-03 - Admin coupon form 3
 
 Technique: Domain+BVA
 
@@ -4181,7 +4647,7 @@ Expected: Reject negative minimum
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## C-UI-04 — Admin coupon form 4
+## C-UI-04 - Admin coupon form 4
 
 Technique: Domain+BVA
 
@@ -4206,7 +4672,7 @@ Expected: Reject zero usage limit
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## C-UI-05 — Admin coupon form 5
+## C-UI-05 - Admin coupon form 5
 
 Technique: Domain
 
@@ -4231,7 +4697,7 @@ Expected: Reject duplicate; original SAVE10 unchanged
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## C-UI-06 — Admin delete lifecycle
+## C-UI-06 - Admin delete lifecycle
 
 Technique: Domain
 
@@ -4263,7 +4729,7 @@ SHA-256: `25a4f1ce2bfa819939fda6086e8692dd2bc5ed35baee9fcb7612044011b09993`
 <summary>Full output</summary>
 
 ````text
-# D-mobile-product-detail — Test Cases
+# D-mobile-product-detail - Test Cases
 
 Design source: scripts/cases.cjs. Expected is frozen from SRS before execution. Techniques may overlap; each TC-ID counts once. API and UI have separate IDs and observations.
 
@@ -4289,7 +4755,7 @@ Preconditions: isolated copied SUT; fixtures reset per API case; user 2/admin 1/
 | D-UI-13 | Domain | Detail quantity resets after switching products | UI pending |
 | D-UI-14 | Domain | Very large quantity exploratory input | UI pending |
 
-## D-API-01 — Product 1 support API
+## D-API-01 - Product 1 support API
 
 Technique: Domain
 
@@ -4309,7 +4775,7 @@ Expected: Product 1 name/price/description/image/category ID match fixture
 
 Execution: See evidence/execution/D-api.md; current summary is generated separately.
 
-## D-API-02 — Product 2 support API
+## D-API-02 - Product 2 support API
 
 Technique: Domain
 
@@ -4329,7 +4795,7 @@ Expected: Product 2 data usable; price numerically 28000000 (JSON type not speci
 
 Execution: See evidence/execution/D-api.md; current summary is generated separately.
 
-## D-API-03 — Missing product support API observation
+## D-API-03 - Missing product support API observation
 
 Technique: Domain
 
@@ -4349,7 +4815,7 @@ Expected: Record HTTP/body; no mandated status code in SRS
 
 Execution: See evidence/execution/D-api.md; current summary is generated separately.
 
-## D-UI-01 — Mobile quantity ""
+## D-UI-01 - Mobile quantity ""
 
 Technique: Domain
 
@@ -4370,7 +4836,7 @@ Expected: Reject empty quantity; no new cart item
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-02 — Mobile quantity "-1"
+## D-UI-02 - Mobile quantity "-1"
 
 Technique: Domain+BVA
 
@@ -4391,7 +4857,7 @@ Expected: Reject negative; cart unchanged
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-03 — Mobile quantity "0"
+## D-UI-03 - Mobile quantity "0"
 
 Technique: Domain+BVA
 
@@ -4412,7 +4878,7 @@ Expected: Reject zero; cart unchanged
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-04 — Mobile quantity "1"
+## D-UI-04 - Mobile quantity "1"
 
 Technique: Domain+BVA
 
@@ -4433,7 +4899,7 @@ Expected: Cart contains quantity=1, total=30000000
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-05 — Mobile quantity "2"
+## D-UI-05 - Mobile quantity "2"
 
 Technique: Domain+BVA
 
@@ -4454,7 +4920,7 @@ Expected: Cart contains quantity=2, total=60000000
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-06 — Mobile quantity "1.5"
+## D-UI-06 - Mobile quantity "1.5"
 
 Technique: Domain
 
@@ -4475,7 +4941,7 @@ Expected: Reject fractional; cart unchanged
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-07 — Mobile quantity "abc"
+## D-UI-07 - Mobile quantity "abc"
 
 Technique: Domain
 
@@ -4496,7 +4962,7 @@ Expected: Reject nonnumeric; cart unchanged
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-08 — Mobile quantity "1abc"
+## D-UI-08 - Mobile quantity "1abc"
 
 Technique: Domain
 
@@ -4517,7 +4983,7 @@ Expected: Reject mixed text; cart unchanged
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-09 — Mobile complete product detail
+## D-UI-09 - Mobile complete product detail
 
 Technique: Domain
 
@@ -4537,7 +5003,7 @@ Expected: Image/name/price/description/category visible and correct; mapped FR-0
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-10 — Mobile even-id price display
+## D-UI-10 - Mobile even-id price display
 
 Technique: Domain
 
@@ -4557,7 +5023,7 @@ Expected: Samsung price displayed as 28,000,000 ₫ using locale separator; no c
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-11 — Mobile add feedback
+## D-UI-11 - Mobile add feedback
 
 Technique: Domain
 
@@ -4578,7 +5044,7 @@ Expected: Visible feedback after Add; cart quantity 1
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-12 — Same product twice
+## D-UI-12 - Same product twice
 
 Technique: Domain
 
@@ -4600,7 +5066,7 @@ Expected: One cart line quantity=2; total=60000000
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-13 — Detail quantity resets after switching products
+## D-UI-13 - Detail quantity resets after switching products
 
 Technique: Domain
 
@@ -4624,7 +5090,7 @@ Expected: Record selected quantity for product 2; SRS does not specify default r
 
 Execution: NOT RUN; complete manual-results.md with actual screenshots.
 
-## D-UI-14 — Very large quantity exploratory input
+## D-UI-14 - Very large quantity exploratory input
 
 Technique: Domain
 
@@ -4657,7 +5123,7 @@ SHA-256: `c450dd49e6b301fa8fc7656e12a0b0ece5356d223fd075f205d444af596cbef0`
 <summary>Full output</summary>
 
 ````text
-# HW02 — Domain Testing on EShop
+# HW02 - Domain Testing on EShop
 
 ## Student and scope
 
@@ -4665,35 +5131,35 @@ MSSV: 23120262. Họ tên/lớp: sinh viên xác nhận. Bài cá nhân, bốn f
 
 ## Method
 
-Quy trình áp dụng cho từng feature: xác định SRS/oracle và vector input/output → chia miền valid/invalid → ghi ràng buộc/giao miền → chọn đại diện → xác định boundary và lân cận → hướng dẫn AI sinh cases theo từng bước → review → thực thi public API → đọc lại hậu điều kiện → group bugs → phân tích gaps. Không coi một prompt “generate all tests” là toàn bộ phương pháp.
+Quy trình áp dụng cho từng feature: xác định SRS/oracle và vector input/output -> chia miền valid/invalid -> ghi ràng buộc/giao miền -> chọn đại diện -> xác định boundary và lân cận -> hướng dẫn AI sinh cases theo từng bước -> review -> thực thi public API -> đọc lại hậu điều kiện -> group bugs -> phân tích gaps. Không coi một prompt "generate all tests" là toàn bộ phương pháp.
 
 Domain Testing xem xét cả partitions và ràng buộc nhiều chiều; BVA nhắm các mặt biên được chỉ rõ, không gán min/max cho enum hoặc rule không có giới hạn. Các cases thuộc cả hai kỹ thuật vẫn đếm một TC-ID. Fixture SQL dùng để dựng trạng thái; kết quả được quan sát qua HTTP/API hoặc UI thật khi sinh viên chạy sau.
 
-Tham chiếu kỹ thuật: [ISTQB CTFL v4.0.1 §4.2.1–4.2.2](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf). Lecture môn chưa có trong workspace; chưa nhận đã đối chiếu lecture. [Environment](reports/test-environment.md) ghi baseline, clocks và adapters.
+Tham chiếu kỹ thuật: [ISTQB CTFL v4.0.1 mục 4.2.1-4.2.2](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf). Lecture môn chưa có trong workspace; chưa nhận đã đối chiếu lecture. [Environment](reports/test-environment.md) ghi baseline, clocks và adapters.
 
-## A — Personal profile
+## A - Personal profile
 
 [Domain/BVA analysis](reports/A-FR04-domain.md), [detailed test cases](tests/A-FR04-profile.md), [raw API evidence](evidence/execution/A-api.md), [technical review and AI gaps](reports/A-FR04-review.md).
 
-Miền phone hợp lệ có length10–11, prefix0, digits; boundary9/10/11/12. Tách user ownership, JWT và role tampering để valid phone không che lỗi authorization. API có 7 PASS/14 FAIL/1 OBSERVATION; 7 UI cases chờ chạy. Hai bug groups: invalid phone validation và role escalation.
+Miền phone hợp lệ có length10-11, prefix0, digits; boundary9/10/11/12. Tách user ownership, JWT và role tampering để valid phone không che lỗi authorization. API có 7 PASS/14 FAIL/1 OBSERVATION; 7 UI cases chờ chạy. Hai bug groups: invalid phone validation và role escalation.
 
-## B — Discount coupons
+## B - Discount coupons
 
 [Domain/BVA analysis](reports/B-FR09-domain.md), [test cases](tests/B-FR09-discount-coupons.md), [raw evidence](evidence/execution/B-api.md), [review/gaps](reports/B-FR09-review.md).
 
-Miền hợp lệ là giao C1–C5. Boundary total=minimum inclusive, now=expiry exclusive, used=limit exclusive. Nominal fixed tách validation khỏi percent formula; thêm corner total=minimum/used=limit−1 và identity spoof. API14 PASS/12 FAIL; 6 UI cases chưa chạy. Năm bug groups: equality minimum, percent formula, equality expiry, JWT missing/invalid/expired và client identity bypass.
+Miền hợp lệ là giao C1-C5. Boundary total=minimum inclusive, now=expiry exclusive, used=limit exclusive. Nominal fixed tách validation khỏi percent formula; thêm corner total=minimum/used=limit-1 và identity spoof. API14 PASS/12 FAIL; 6 UI cases chưa chạy. Năm bug groups: equality minimum, percent formula, equality expiry, JWT missing/invalid/expired và client identity bypass.
 
-## C — Admin coupon management
+## C - Admin coupon management
 
 [Domain/BVA analysis](reports/C-FR17-domain.md), [test cases](tests/C-FR17-coupon-management.md), [raw evidence](evidence/execution/C-api.md), [review/gaps](reports/C-FR17-review.md).
 
 Presence/uniqueness/enum/numeric/auth domains; boundary value0, minimum0, usage1 và lân cận. Scope create/view/delete; không tự gọi thiếu Update là bug. API14 PASS/16 FAIL; 6 UI cases chưa chạy. Tám bug groups: mandatory, enum, discount, minimum, usage và create/list/delete role control. Duplicate returns500 nhưng uniqueness vẫn đạt; không biến unspecified HTTP status thành bug.
 
-## D — Mobile productDetail
+## D - Mobile productDetail
 
 [Domain/BVA analysis](reports/D-mobile-domain.md), [test cases](tests/D-mobile-product-detail.md), [support API evidence](evidence/execution/D-api.md), [review/gaps](reports/D-mobile-review.md).
 
-Quantity integer≥1: boundary0/1/2; missing/fraction/text là domain riêng. Data display và Add feedback/cart postcondition kiểm tra bằng UI. Mapping FR-20 với FR-06/07 được ghi rõ để review. Chỉ2 API PASS và1 API OBSERVATION; cả14 Mobile cases NOT RUN. Chưa xác minh bug Mobile.
+Quantity integer>=1: boundary0/1/2; missing/fraction/text là domain riêng. Data display và Add feedback/cart postcondition kiểm tra bằng UI. Mapping FR-20 với FR-06/07 được ghi rõ để review. Chỉ2 API PASS và1 API OBSERVATION; cả14 Mobile cases NOT RUN. Chưa xác minh bug Mobile.
 
 ## Results and bug reports
 
@@ -4701,7 +5167,7 @@ Snapshot ban đầu: 114 designed; 81 executed = 37 PASS + 42 FAIL + 2 OBSERVATI
 
 ## AI usage and critique
 
-OpenAI Codex hỗ trợ phân tích, thiết kế, scripts và báo cáo. [AI Audit](ai-audit/) giữ tên template; transcript snapshot và technical review tách khỏi human review chưa có. AI Critique200–300 từ nằm trong AI-04, là draft chờ sinh viên sửa/xác nhận; không coi model tự review là đã hoàn tất yêu cầu human review.
+OpenAI Codex hỗ trợ phân tích, thiết kế, scripts và báo cáo. [AI Audit](ai-audit/) giữ tên template; transcript snapshot và technical review tách khỏi human review chưa có. AI Critique200-300 từ nằm trong AI-04, là draft chờ sinh viên sửa/xác nhận; không coi model tự review là đã hoàn tất yêu cầu human review.
 
 ## Agent Skill
 
@@ -4720,12 +5186,12 @@ Phiên bản đầu của các bảng test, scripts và báo cáo được soạ
 </details>
 
 
-## Appendix C — Historical rewrite output manifest
+## Appendix C - Historical rewrite output manifest
 
 Manifest dưới đây ghi snapshot trước khi dời scripts. Đường dẫn/hash trong snapshot là dữ liệu lịch sử, không phải danh mục file đang có trong submission.
 
 ````text
-## Appendix C — Current rewrite output manifest
+## Appendix C - Current rewrite output manifest
 
 Snapshot UTC: `2026-10-19T20:10:22.349219+00:00`. Git revision trước khi commit audit này: `575a342c51bc3446e36c26a7a3887fe5f3319641`. Các file hiện tại là output của lượt rewrite; Git giữ bản cụ thể để phân biệt chỉnh sửa về sau. Prompt/output messages được liên kết trong Appendix A; không tạo output hoặc timestamp model giả.
 
@@ -4775,15 +5241,15 @@ Snapshot UTC: `2026-10-19T20:10:22.349219+00:00`. Git revision trước khi comm
 | [Video_Links.md](../Video_Links.md) | a368e67977bf5f9f007527e82caf453f04ecc6a2c8d284ee8cba395fb1b8cd84 |
 ````
 
-## Appendix D — Correction: submission boundary
+## Appendix D - Correction: submission boundary
 
 Theo yêu cầu tiếp theo của sinh viên, sáu helper scripts đã được dời ra khỏi repository nộp bài và giữ trong workspace `hw02/scripts/`. Các phiên bản cũ ở đích được lưu bản sao riêng trước khi thay. README, case/bug reports và skill không còn yêu cầu script bên trong gói nộp. Original prompts/output snapshots được giữ nguyên; thay đổi này không tạo lần thực thi SUT mới hoặc thay verdict.
 
-## Appendix E — Student clarification of shared UI screenshots
+## Appendix E - Student clarification of shared UI screenshots
 
 Ngày2026-10-20, sinh viên xác nhận một ảnh Admin dùng chung cho C-UI-02/C-UI-06 và ảnh cart iPhone quantity2 cho D-UI-12. Chúng tôi đối chiếu nội dung ảnh và ghi riêng student attestation về thao tác; không giả có ảnh trước/sau đầy đủ hoặc timestamp UI chưa được cung cấp. Outcomes tại thời điểm xác nhận C/D:52PASS/56FAIL/4OBSERVATION/2INCOMPLETE. Khi đó A-UI-07/B-UI-06 vẫn chờ ảnh mới; helper Web-only chuẩn bị fixture riêng, không biến terminal/API thành UI evidence.
 
-## Appendix F — Final A/B UI evidence correction — 2026-10-20
+## Appendix F - Final A/B UI evidence correction - 2026-10-20
 
 Sinh viên cung cấp hai ảnh Profile A-UI-07 và một ảnh Checkout B-UI-06. Chúng tôi đối chiếu account, input, response và lưu SHA-256 trong [Evidence Register](../evidence/README.md), giữ nguyên các original output snapshots trong fenced blocks.
 
@@ -4792,3 +5258,7 @@ Sinh viên cung cấp hai ảnh Profile A-UI-07 và một ảnh Checkout B-UI-06
 - Summary hiện tại:114designed/114executed đủ evidence;53PASS/57FAIL/4OBSERVATION/0INCOMPLETE/0NOT RUN;18buggroups;71ảnh. API81cases không đổi và không chạy lại chỉ vì cập nhật ảnh UI.
 
 Không tự ký human review hoặc nâng điểm tự đánh giá; Video/Issues/API-only bug screenshots/PDF/ZIP vẫn theo pending đã công khai.
+
+## Appendix G - Trạng thái bản hiện tại
+
+114TC có kết luận:53PASS/57FAIL/4OBSERVATION;18buggroups và71ảnhUI. Đã đăng18Issues #31-#48 bằngCLI; [Issue Evidence](../evidence/github-issues/README.md) có readback thật. Không tạo nhánh hoặc commit/push evidence lên repo nhóm. Ảnh đính kèm và ảnh trang Issue do sinh viên tự bổ sung theo lựa chọn chỉ dùngterminal.

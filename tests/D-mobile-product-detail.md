@@ -1,6 +1,6 @@
-# D — Test Case Report: Mobile productDetail — Chi tiết sản phẩm và quantity
+# D - Test Case Report: Mobile productDetail - Chi tiết sản phẩm và quantity
 
-**Sinh viên:** Tống Dương Thái Hòa — 23120262.
+**Sinh viên:** Tống Dương Thái Hòa - 23120262.
 
 ## 1. Phạm vi, quy ước và fixture
 
@@ -8,11 +8,11 @@ Chúng tôi lấy SRS làm oracle, sau đó dùng source để xây dựng giả
 
 Với từng input/state, chúng tôi xác định miền hợp lệ, phần bù không hợp lệ, precision và các ràng buộc giữa các chiều. Các lớp trong cùng một chiều được chọn để phân biệt hành vi; bảng nhiều chiều không có nghĩa mọi hàng đều là các tập rời nhau của toàn bộ vector. Test invalid giữ các chiều khác nominal; interaction nhiều lỗi có chủ đích được ghi riêng. Chúng tôi dùng readback public HTTP sau thay đổi để kiểm tra hậu điều kiện.
 
-BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu ≥ hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
+BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu >= hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
 
 API execution dùng backend copy, clock cố định và fixture reset mỗi TC. UI evidence là ảnh thật đã cung cấp; không suy timestamp chạy từ ngày sửa file, không dùng ảnh vẽ hoặc build output làm bằng chứng UI. PASS/FAIL chỉ kết luận theo criterion có evidence; OBSERVATION dành cho oracle chưa quy định; INCOMPLETE dành cho TC còn thiếu bước/precondition/evidence. Một TC INCOMPLETE có thể đã được thao tác một phần, nhưng không được cộng vào executed đủ bằng chứng.
 
-Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL §4.2.1–4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
+Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL mục 4.2.1-4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
 
 ### API fixture và môi trường tái hiện
 
@@ -36,23 +36,23 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 
 | TC-ID | Technique | Mục tiêu | Status | Domain | Bug |
 |---|---|---|---|---|---|
-| [D-API-01](#d-api-01) | Domain | Product 1 support API | PASS | D-D1 | — |
-| [D-API-02](#d-api-02) | Domain | Product 2 support API | PASS | D-D1 | — |
-| [D-API-03](#d-api-03) | Domain | Missing product support API observation | OBSERVATION | D-D2 | — |
+| [D-API-01](#d-api-01) | Domain | Product 1 support API | PASS | D-D1 | - |
+| [D-API-02](#d-api-02) | Domain | Product 2 support API | PASS | D-D1 | - |
+| [D-API-03](#d-api-03) | Domain | Missing product support API observation | OBSERVATION | D-D2 | - |
 | [D-UI-01](#d-ui-01) | Domain | Mobile quantity "" | FAIL | D-D3 | BUG-D01 |
 | [D-UI-02](#d-ui-02) | Domain | Mobile quantity "-1" | FAIL | D-D3 | BUG-D01 |
 | [D-UI-03](#d-ui-03) | Domain+BVA | Mobile quantity "0" | FAIL | D-D3 | BUG-D01 |
-| [D-UI-04](#d-ui-04) | Domain+BVA | Mobile quantity "1" | PASS | D-D4 | — |
-| [D-UI-05](#d-ui-05) | Domain+BVA | Mobile quantity "2" | PASS | D-D4 | — |
+| [D-UI-04](#d-ui-04) | Domain+BVA | Mobile quantity "1" | PASS | D-D4 | - |
+| [D-UI-05](#d-ui-05) | Domain+BVA | Mobile quantity "2" | PASS | D-D4 | - |
 | [D-UI-06](#d-ui-06) | Domain | Mobile quantity "1.5" | FAIL | D-D5 | BUG-D01 |
 | [D-UI-07](#d-ui-07) | Domain | Mobile quantity "abc" | FAIL | D-D5 | BUG-D01 |
 | [D-UI-08](#d-ui-08) | Domain | Mobile quantity "1abc" | FAIL | D-D5 | BUG-D01 |
 | [D-UI-09](#d-ui-09) | Domain | Mobile complete product detail | FAIL | D-D1 | BUG-D02 |
-| [D-UI-10](#d-ui-10) | Domain | Mobile even-id price display | PASS | D-D1 | — |
-| [D-UI-11](#d-ui-11) | Domain | Mobile add feedback | PASS | D-D6 | — |
-| [D-UI-12](#d-ui-12) | Domain | Same product twice | PASS | D-D6 | — |
-| [D-UI-13](#d-ui-13) | Domain | Detail quantity resets after switching products | OBSERVATION | D-D7 | — |
-| [D-UI-14](#d-ui-14) | Domain | Very large quantity exploratory input | OBSERVATION | D-D7 | — |
+| [D-UI-10](#d-ui-10) | Domain | Mobile even-id price display | PASS | D-D1 | - |
+| [D-UI-11](#d-ui-11) | Domain | Mobile add feedback | PASS | D-D6 | - |
+| [D-UI-12](#d-ui-12) | Domain | Same product twice | PASS | D-D6 | - |
+| [D-UI-13](#d-ui-13) | Domain | Detail quantity resets after switching products | OBSERVATION | D-D7 | - |
+| [D-UI-14](#d-ui-14) | Domain | Very large quantity exploratory input | OBSERVATION | D-D7 | - |
 
 <a id="d-api-01"></a>
 
@@ -67,14 +67,14 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 | Domains | D-D1 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Product1=iPhone 15 Pro Max/30000000, product2=Samsung Galaxy S24 Ultra/28000000, category_id=1. Đây là API support, không chứng minh Mobile UI đã chạy.
 - Authentication request mục tiêu: `none`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -119,7 +119,7 @@ Timestamp UTC thực tế: `2026-10-19T19:51:00.970Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="d-api-02"></a>
 
@@ -134,14 +134,14 @@ Timestamp UTC thực tế: `2026-10-19T19:51:00.970Z`. Với list dài, phần d
 | Domains | D-D1 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Product1=iPhone 15 Pro Max/30000000, product2=Samsung Galaxy S24 Ultra/28000000, category_id=1. Đây là API support, không chứng minh Mobile UI đã chạy.
 - Authentication request mục tiêu: `none`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -186,7 +186,7 @@ Timestamp UTC thực tế: `2026-10-19T19:51:00.997Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="d-api-03"></a>
 
@@ -201,14 +201,14 @@ Timestamp UTC thực tế: `2026-10-19T19:51:00.997Z`. Với list dài, phần d
 | Domains | D-D2 |
 | Seam | HTTP API |
 | Status | OBSERVATION |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Product1=iPhone 15 Pro Max/30000000, product2=Samsung Galaxy S24 Ultra/28000000, category_id=1. Đây là API support, không chứng minh Mobile UI đã chạy.
 - Authentication request mục tiêu: `none`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -246,7 +246,7 @@ Timestamp UTC thực tế: `2026-10-19T19:51:01.017Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**OBSERVATION** — Ghi nhận hành vi trong vùng SRS chưa có oracle chi tiết; không cộng vào PASS/FAIL hoặc bug.
+**OBSERVATION** - Ghi nhận hành vi trong vùng SRS chưa có oracle chi tiết; không cộng vào PASS/FAIL hoặc bug.
 
 <a id="d-ui-01"></a>
 
@@ -267,7 +267,7 @@ Timestamp UTC thực tế: `2026-10-19T19:51:01.017Z`. Với list dài, phần d
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -281,7 +281,7 @@ Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải 
 1. Mở Expo Go/Android, ghi account thực tế; xóa giỏ trước TC làm thay đổi giỏ. Mở detail đúng product ID; ghi đơn giá.
 2. Thay toàn bộ quantity bằng literal thiết kế; không để ký tự cũ; chụp màn hình trước Add.
 3. Bấm Thêm vào giỏ hàng; chụp alert/feedback.
-4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giá×quantity. Với invalid, expected là cart không thay đổi.
+4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giáxquantity. Với invalid, expected là cart không thay đổi.
 
 ### Expected
 
@@ -305,7 +305,7 @@ Nhập quantity="" vẫn nhận alert thêm thành công; ảnh cart cho thấy 
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="d-ui-02"></a>
 
@@ -326,7 +326,7 @@ Nhập quantity="" vẫn nhận alert thêm thành công; ảnh cart cho thấy 
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -340,7 +340,7 @@ Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải 
 1. Mở Expo Go/Android, ghi account thực tế; xóa giỏ trước TC làm thay đổi giỏ. Mở detail đúng product ID; ghi đơn giá.
 2. Thay toàn bộ quantity bằng literal thiết kế; không để ký tự cũ; chụp màn hình trước Add.
 3. Bấm Thêm vào giỏ hàng; chụp alert/feedback.
-4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giá×quantity. Với invalid, expected là cart không thay đổi.
+4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giáxquantity. Với invalid, expected là cart không thay đổi.
 
 ### Expected
 
@@ -364,7 +364,7 @@ Nhập quantity="-1" vẫn nhận alert thêm thành công; ảnh cart cho thấ
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="d-ui-03"></a>
 
@@ -385,7 +385,7 @@ Nhập quantity="-1" vẫn nhận alert thêm thành công; ảnh cart cho thấ
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -399,7 +399,7 @@ Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải 
 1. Mở Expo Go/Android, ghi account thực tế; xóa giỏ trước TC làm thay đổi giỏ. Mở detail đúng product ID; ghi đơn giá.
 2. Thay toàn bộ quantity bằng literal thiết kế; không để ký tự cũ; chụp màn hình trước Add.
 3. Bấm Thêm vào giỏ hàng; chụp alert/feedback.
-4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giá×quantity. Với invalid, expected là cart không thay đổi.
+4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giáxquantity. Với invalid, expected là cart không thay đổi.
 
 ### Expected
 
@@ -423,7 +423,7 @@ Nhập quantity="0" vẫn nhận alert thêm thành công; ảnh cart cho thấy
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="d-ui-04"></a>
 
@@ -438,13 +438,13 @@ Nhập quantity="0" vẫn nhận alert thêm thành công; ảnh cart cho thấy
 | Domains | D-D4 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -458,7 +458,7 @@ Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải 
 1. Mở Expo Go/Android, ghi account thực tế; xóa giỏ trước TC làm thay đổi giỏ. Mở detail đúng product ID; ghi đơn giá.
 2. Thay toàn bộ quantity bằng literal thiết kế; không để ký tự cũ; chụp màn hình trước Add.
 3. Bấm Thêm vào giỏ hàng; chụp alert/feedback.
-4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giá×quantity. Với invalid, expected là cart không thay đổi.
+4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giáxquantity. Với invalid, expected là cart không thay đổi.
 
 ### Expected
 
@@ -468,7 +468,7 @@ Cart contains quantity=1, total=30000000.
 
 Cart Samsung Galaxy S24 Ultra có quantity=1, đơn giá 28000000, thành tiền 28000000.
 
-**Variant / giới hạn:** Product 2 Samsung thay product 1 iPhone; expected được tính lại 28000000×1. Đây vẫn là đại diện quantity=1.
+**Variant / giới hạn:** Product 2 Samsung thay product 1 iPhone; expected được tính lại 28000000x1. Đây vẫn là đại diện quantity=1.
 
 **Timestamp UI:** không có log chính xác từng lượt; không tự dựng thời gian từ tên ảnh.
 
@@ -478,7 +478,7 @@ Cart Samsung Galaxy S24 Ultra có quantity=1, đơn giá 28000000, thành tiền
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="d-ui-05"></a>
 
@@ -493,13 +493,13 @@ Cart Samsung Galaxy S24 Ultra có quantity=1, đơn giá 28000000, thành tiền
 | Domains | D-D4 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -513,7 +513,7 @@ Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải 
 1. Mở Expo Go/Android, ghi account thực tế; xóa giỏ trước TC làm thay đổi giỏ. Mở detail đúng product ID; ghi đơn giá.
 2. Thay toàn bộ quantity bằng literal thiết kế; không để ký tự cũ; chụp màn hình trước Add.
 3. Bấm Thêm vào giỏ hàng; chụp alert/feedback.
-4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giá×quantity. Với invalid, expected là cart không thay đổi.
+4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giáxquantity. Với invalid, expected là cart không thay đổi.
 
 ### Expected
 
@@ -521,9 +521,9 @@ Cart contains quantity=2, total=60000000.
 
 ### Actual và Evidence
 
-Samsung quantity=2, thành tiền 56000000; khớp 28000000×2.
+Samsung quantity=2, thành tiền 56000000; khớp 28000000x2.
 
-**Variant / giới hạn:** Product 2 Samsung thay iPhone; expected được tính lại 28000000×2.
+**Variant / giới hạn:** Product 2 Samsung thay iPhone; expected được tính lại 28000000x2.
 
 **Timestamp UI:** không có log chính xác từng lượt; không tự dựng thời gian từ tên ảnh.
 
@@ -537,7 +537,7 @@ Samsung quantity=2, thành tiền 56000000; khớp 28000000×2.
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="d-ui-06"></a>
 
@@ -558,7 +558,7 @@ Samsung quantity=2, thành tiền 56000000; khớp 28000000×2.
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -572,7 +572,7 @@ Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải 
 1. Mở Expo Go/Android, ghi account thực tế; xóa giỏ trước TC làm thay đổi giỏ. Mở detail đúng product ID; ghi đơn giá.
 2. Thay toàn bộ quantity bằng literal thiết kế; không để ký tự cũ; chụp màn hình trước Add.
 3. Bấm Thêm vào giỏ hàng; chụp alert/feedback.
-4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giá×quantity. Với invalid, expected là cart không thay đổi.
+4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giáxquantity. Với invalid, expected là cart không thay đổi.
 
 ### Expected
 
@@ -596,7 +596,7 @@ Nhập quantity="1.5" vẫn nhận alert thêm thành công; ảnh cart cho th�
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="d-ui-07"></a>
 
@@ -617,7 +617,7 @@ Nhập quantity="1.5" vẫn nhận alert thêm thành công; ảnh cart cho th�
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -631,7 +631,7 @@ Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải 
 1. Mở Expo Go/Android, ghi account thực tế; xóa giỏ trước TC làm thay đổi giỏ. Mở detail đúng product ID; ghi đơn giá.
 2. Thay toàn bộ quantity bằng literal thiết kế; không để ký tự cũ; chụp màn hình trước Add.
 3. Bấm Thêm vào giỏ hàng; chụp alert/feedback.
-4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giá×quantity. Với invalid, expected là cart không thay đổi.
+4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giáxquantity. Với invalid, expected là cart không thay đổi.
 
 ### Expected
 
@@ -655,7 +655,7 @@ Nhập quantity="abc" vẫn nhận alert thêm thành công; ảnh cart cho th�
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="d-ui-08"></a>
 
@@ -676,7 +676,7 @@ Nhập quantity="abc" vẫn nhận alert thêm thành công; ảnh cart cho th�
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -690,7 +690,7 @@ Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải 
 1. Mở Expo Go/Android, ghi account thực tế; xóa giỏ trước TC làm thay đổi giỏ. Mở detail đúng product ID; ghi đơn giá.
 2. Thay toàn bộ quantity bằng literal thiết kế; không để ký tự cũ; chụp màn hình trước Add.
 3. Bấm Thêm vào giỏ hàng; chụp alert/feedback.
-4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giá×quantity. Với invalid, expected là cart không thay đổi.
+4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giáxquantity. Với invalid, expected là cart không thay đổi.
 
 ### Expected
 
@@ -712,7 +712,7 @@ Input 1abc vẫn nhận alert thêm thành công. Chỉ điều kiện phải t�
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="d-ui-09"></a>
 
@@ -733,7 +733,7 @@ Input 1abc vẫn nhận alert thêm thành công. Chỉ điều kiện phải t�
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -755,7 +755,7 @@ Image/name/price/description/category visible and correct; mapped FR-06.
 
 Detail Samsung có ảnh, tên, giá, mô tả và quantity nhưng không có danh mục. Source renderProductDetail cũng không render category.
 
-**Variant / giới hạn:** Samsung thay iPhone. Kết luận dùng mapping chức năng Mobile FR-20 → FR-06 được trình bày trong báo cáo; không áp các ràng buộc HTML của Web cho React Native.
+**Variant / giới hạn:** Samsung thay iPhone. Kết luận dùng mapping chức năng Mobile FR-20 -> FR-06 được trình bày trong báo cáo; không áp các ràng buộc HTML của Web cho React Native.
 
 **Timestamp UI:** không có log chính xác từng lượt; không tự dựng thời gian từ tên ảnh.
 
@@ -765,7 +765,7 @@ Detail Samsung có ảnh, tên, giá, mô tả và quantity nhưng không có da
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="d-ui-10"></a>
 
@@ -780,13 +780,13 @@ Detail Samsung có ảnh, tên, giá, mô tả và quantity nhưng không có da
 | Domains | D-D1 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -817,7 +817,7 @@ Giá Samsung hiển thị 28.000.000 ₫ dù API product 2 trả price dạng ch
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="d-ui-11"></a>
 
@@ -832,13 +832,13 @@ Giá Samsung hiển thị 28.000.000 ₫ dù API product 2 trả price dạng ch
 | Domains | D-D6 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -872,7 +872,7 @@ Sau Add, Mobile hiển thị Alert Thành công/Đã thêm vào giỏ hàng. M�
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="d-ui-12"></a>
 
@@ -887,13 +887,13 @@ Sau Add, Mobile hiển thị Alert Thành công/Đã thêm vào giỏ hàng. M�
 | Domains | D-D6 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -908,7 +908,7 @@ Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải 
 1. Mở Expo Go/Android, ghi account thực tế; xóa giỏ trước TC làm thay đổi giỏ. Mở detail đúng product ID; ghi đơn giá.
 2. Đặt quantity=1 và Add lần1; chụp cart quantity1.
 3. Trở lại cùng product, quantity=1; Add lần2.
-4. Chụp cart: một dòng quantity2, total bằng 2×đơn giá; giữ evidence cả hai lần.
+4. Chụp cart: một dòng quantity2, total bằng 2xđơn giá; giữ evidence cả hai lần.
 
 ### Expected
 
@@ -928,7 +928,7 @@ Cart có đúng một dòng iPhone 15 Pro Max, quantity=2, đơn giá30000000 v�
 
 ### Verdict và rationale
 
-**PASS** — Hậu điều kiện khớp expected; mapping/thao tác đã được sinh viên xác nhận. Phần ảnh và phần xác nhận được ghi riêng theo provenance.
+**PASS** - Hậu điều kiện khớp expected; mapping/thao tác đã được sinh viên xác nhận. Phần ảnh và phần xác nhận được ghi riêng theo provenance.
 
 <a id="d-ui-13"></a>
 
@@ -943,13 +943,13 @@ Cart có đúng một dòng iPhone 15 Pro Max, quantity=2, đơn giá30000000 v�
 | Domains | D-D7 |
 | Seam | UI thật |
 | Status | OBSERVATION |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -987,7 +987,7 @@ Record selected quantity for product 2; SRS does not specify default reset polic
 
 ### Verdict và rationale
 
-**OBSERVATION** — Ghi nhận hành vi trong vùng SRS chưa có oracle chi tiết; không cộng vào PASS/FAIL hoặc bug.
+**OBSERVATION** - Ghi nhận hành vi trong vùng SRS chưa có oracle chi tiết; không cộng vào PASS/FAIL hoặc bug.
 
 <a id="d-ui-14"></a>
 
@@ -1002,13 +1002,13 @@ Record selected quantity for product 2; SRS does not specify default reset polic
 | Domains | D-D7 |
 | Seam | UI thật |
 | Status | OBSERVATION |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1045,20 +1045,20 @@ Có input số dài, alert thành công và cart. Ô input có thể cuộn ngan
 
 ### Verdict và rationale
 
-**OBSERVATION** — Ghi nhận hành vi trong vùng SRS chưa có oracle chi tiết; không cộng vào PASS/FAIL hoặc bug.
+**OBSERVATION** - Ghi nhận hành vi trong vùng SRS chưa có oracle chi tiết; không cộng vào PASS/FAIL hoặc bug.
 
 ## 3. Test Summary
 
 | Scope | Designed | Executed đủ bằng chứng | PASS | FAIL | OBSERVATION | INCOMPLETE | NOT RUN |
 |---|---|---|---|---|---|---|---|
-| A — API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
-| A — UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
-| B — API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
-| B — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| C — API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
-| C — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| D — API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
-| D — UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
+| A - API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
+| A - UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
+| B - API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
+| B - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
+| C - API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
+| C - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
+| D - API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
+| D - UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
 | **Tổng** | 114 | 114 | 53 | 57 | 4 | 0 | 0 |
 
 Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.

@@ -1,6 +1,6 @@
-# A — Test Case Report: FR-04 — Quản lý hồ sơ cá nhân
+# A - Test Case Report: FR-04 - Quản lý hồ sơ cá nhân
 
-**Sinh viên:** Tống Dương Thái Hòa — 23120262.
+**Sinh viên:** Tống Dương Thái Hòa - 23120262.
 
 ## 1. Phạm vi, quy ước và fixture
 
@@ -8,11 +8,11 @@ Chúng tôi lấy SRS làm oracle, sau đó dùng source để xây dựng giả
 
 Với từng input/state, chúng tôi xác định miền hợp lệ, phần bù không hợp lệ, precision và các ràng buộc giữa các chiều. Các lớp trong cùng một chiều được chọn để phân biệt hành vi; bảng nhiều chiều không có nghĩa mọi hàng đều là các tập rời nhau của toàn bộ vector. Test invalid giữ các chiều khác nominal; interaction nhiều lỗi có chủ đích được ghi riêng. Chúng tôi dùng readback public HTTP sau thay đổi để kiểm tra hậu điều kiện.
 
-BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu ≥ hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
+BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu >= hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
 
 API execution dùng backend copy, clock cố định và fixture reset mỗi TC. UI evidence là ảnh thật đã cung cấp; không suy timestamp chạy từ ngày sửa file, không dùng ảnh vẽ hoặc build output làm bằng chứng UI. PASS/FAIL chỉ kết luận theo criterion có evidence; OBSERVATION dành cho oracle chưa quy định; INCOMPLETE dành cho TC còn thiếu bước/precondition/evidence. Một TC INCOMPLETE có thể đã được thao tác một phần, nhưng không được cộng vào executed đủ bằng chứng.
 
-Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL §4.2.1–4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
+Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL mục 4.2.1-4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
 
 ### API fixture và môi trường tái hiện
 
@@ -36,8 +36,8 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 
 | TC-ID | Technique | Mục tiêu | Status | Domain | Bug |
 |---|---|---|---|---|---|
-| [A-API-01](#a-api-01) | Domain+BVA | 10 digits: lower ON boundary | PASS | A-D1 | — |
-| [A-API-02](#a-api-02) | Domain+BVA | 11 digits: upper ON boundary | PASS | A-D1 | — |
+| [A-API-01](#a-api-01) | Domain+BVA | 10 digits: lower ON boundary | PASS | A-D1 | - |
+| [A-API-02](#a-api-02) | Domain+BVA | 11 digits: upper ON boundary | PASS | A-D1 | - |
 | [A-API-03](#a-api-03) | Domain+BVA | 9 digits: lower OFF boundary | FAIL | A-D2 | BUG-A01 |
 | [A-API-04](#a-api-04) | Domain+BVA | 12 digits: upper OFF boundary | FAIL | A-D3 | BUG-A01 |
 | [A-API-05](#a-api-05) | Domain | Empty phone | FAIL | A-D2 | BUG-A01 |
@@ -50,20 +50,20 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 | [A-API-12](#a-api-12) | Domain | Embedded space | FAIL | A-D5 | BUG-A01 |
 | [A-API-13](#a-api-13) | Domain | Country prefix instead of 0 | FAIL | A-D5 | BUG-A01 |
 | [A-API-14](#a-api-14) | Domain | Hyphenated digits | FAIL | A-D5 | BUG-A01 |
-| [A-API-15](#a-api-15) | Domain | Unicode fullwidth digits | OBSERVATION | A-D6 | — |
+| [A-API-15](#a-api-15) | Domain | Unicode fullwidth digits | OBSERVATION | A-D6 | - |
 | [A-API-16](#a-api-16) | Domain | Null phone | FAIL | A-D5 | BUG-A01 |
-| [A-API-17](#a-api-17) | Domain | Unicode name and address | PASS | A-D7 | — |
+| [A-API-17](#a-api-17) | Domain | Unicode name and address | PASS | A-D7 | - |
 | [A-API-18](#a-api-18) | Domain | Client role escalation | FAIL | A-D8 | BUG-A02 |
-| [A-API-19](#a-api-19) | Domain | Body user id cannot redirect update | PASS | A-D9 | — |
-| [A-API-20](#a-api-20) | Domain | Profile update: none token | PASS | A-D10 | — |
-| [A-API-21](#a-api-21) | Domain | Profile update: invalid token | PASS | A-D10 | — |
-| [A-API-22](#a-api-22) | Domain | Profile read needs authentication | PASS | A-D10 | — |
-| [A-UI-01](#a-ui-01) | Domain+BVA | Profile phone 091234567 | PASS | A-D2 | — |
+| [A-API-19](#a-api-19) | Domain | Body user id cannot redirect update | PASS | A-D9 | - |
+| [A-API-20](#a-api-20) | Domain | Profile update: none token | PASS | A-D10 | - |
+| [A-API-21](#a-api-21) | Domain | Profile update: invalid token | PASS | A-D10 | - |
+| [A-API-22](#a-api-22) | Domain | Profile read needs authentication | PASS | A-D10 | - |
+| [A-UI-01](#a-ui-01) | Domain+BVA | Profile phone 091234567 | PASS | A-D2 | - |
 | [A-UI-02](#a-ui-02) | Domain+BVA | Profile phone 0912345678 | FAIL | A-D1 | BUG-A03 |
 | [A-UI-03](#a-ui-03) | Domain+BVA | Profile phone 09123456789 | FAIL | A-D1 | BUG-A03 |
-| [A-UI-04](#a-ui-04) | Domain+BVA | Profile phone 091234567890 | PASS | A-D3 | — |
+| [A-UI-04](#a-ui-04) | Domain+BVA | Profile phone 091234567890 | PASS | A-D3 | - |
 | [A-UI-05](#a-ui-05) | Domain | Profile phone 1912345678 | FAIL | A-D4 | BUG-A03 |
-| [A-UI-06](#a-ui-06) | Domain | Email field cannot be changed | PASS | A-D11 | — |
+| [A-UI-06](#a-ui-06) | Domain | Email field cannot be changed | PASS | A-D11 | - |
 | [A-UI-07](#a-ui-07) | Domain | Unicode editable profile fields | FAIL | A-D7 | BUG-A03 |
 
 <a id="a-api-01"></a>
@@ -75,18 +75,18 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D1 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -150,7 +150,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.739Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="a-api-02"></a>
 
@@ -161,18 +161,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.739Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D1 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -236,7 +236,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.771Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="a-api-03"></a>
 
@@ -247,7 +247,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.771Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -258,7 +258,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.771Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -322,7 +322,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.797Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-04"></a>
 
@@ -333,7 +333,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.797Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D3 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -344,7 +344,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.797Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -408,7 +408,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.825Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-05"></a>
 
@@ -419,7 +419,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.825Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -430,7 +430,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.825Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -494,7 +494,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.860Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-06"></a>
 
@@ -505,7 +505,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.860Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -516,7 +516,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.860Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -580,7 +580,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.895Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-07"></a>
 
@@ -591,7 +591,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.895Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -602,7 +602,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.895Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -666,7 +666,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.922Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-08"></a>
 
@@ -677,7 +677,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.922Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D3 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -688,7 +688,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.922Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -752,7 +752,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.955Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-09"></a>
 
@@ -763,7 +763,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.955Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D4 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -774,7 +774,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.955Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -838,7 +838,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.984Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-10"></a>
 
@@ -849,7 +849,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.984Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D4 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -860,7 +860,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:57.984Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -924,7 +924,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.013Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-11"></a>
 
@@ -935,7 +935,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.013Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -946,7 +946,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.013Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1010,7 +1010,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.041Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-12"></a>
 
@@ -1021,7 +1021,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.041Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -1032,7 +1032,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.041Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1096,7 +1096,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.073Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-13"></a>
 
@@ -1107,7 +1107,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.073Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -1119,7 +1119,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.073Z`. Với list dài, phần d
 - Biến thể +84 cố ý kiểm format quốc tế; nó đồng thời khác prefix và charset. A-API-09/10 cô lập prefix, A-API-11/12/14 cô lập charset; không dùng riêng +84 để kết luận điều kiện nào bị thiếu.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1183,7 +1183,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.103Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-14"></a>
 
@@ -1194,7 +1194,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.103Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -1205,7 +1205,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.103Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1269,7 +1269,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.132Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-15"></a>
 
@@ -1280,18 +1280,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.132Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D6 |
 | Seam | HTTP API |
 | Status | OBSERVATION |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1355,7 +1355,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.161Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**OBSERVATION** — Ghi nhận hành vi trong vùng SRS chưa có oracle chi tiết; không cộng vào PASS/FAIL hoặc bug.
+**OBSERVATION** - Ghi nhận hành vi trong vùng SRS chưa có oracle chi tiết; không cộng vào PASS/FAIL hoặc bug.
 
 <a id="a-api-16"></a>
 
@@ -1366,7 +1366,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.161Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-04 phone: starts 0, 10–11 digits; numeral encoding unspecified |
+| Oracle | FR-04 phone: starts 0, 10-11 digits; numeral encoding unspecified |
 | Domains | A-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -1377,7 +1377,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.161Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1441,7 +1441,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.195Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-17"></a>
 
@@ -1456,14 +1456,14 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.195Z`. Với list dài, phần d
 | Domains | A-D7 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1527,7 +1527,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.231Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="a-api-18"></a>
 
@@ -1549,7 +1549,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.231Z`. Với list dài, phần d
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1615,7 +1615,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.262Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-api-19"></a>
 
@@ -1630,14 +1630,14 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.262Z`. Với list dài, phần d
 | Domains | A-D9 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1723,7 +1723,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.297Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="a-api-20"></a>
 
@@ -1738,14 +1738,14 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.297Z`. Với list dài, phần d
 | Domains | A-D10 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `none`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1805,7 +1805,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.332Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="a-api-21"></a>
 
@@ -1820,14 +1820,14 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.332Z`. Với list dài, phần d
 | Domains | A-D10 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `invalid`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1887,7 +1887,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.357Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="a-api-22"></a>
 
@@ -1902,14 +1902,14 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.357Z`. Với list dài, phần d
 | Domains | A-D10 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Khôi phục profile user2/user3 như fixture chung; JWT user2 trừ TC auth. Giữ name/address và các field không phải mục tiêu hợp lệ.
 - Authentication request mục tiêu: `none`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {}
@@ -1947,7 +1947,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.383Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="a-ui-01"></a>
 
@@ -1962,13 +1962,13 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.383Z`. Với list dài, phần d
 | Domains | A-D2 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2001,7 +2001,7 @@ Phone 091234567 bị từ chối bằng cảnh báo validation. Ảnh xác nhậ
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="a-ui-02"></a>
 
@@ -2022,7 +2022,7 @@ Phone 091234567 bị từ chối bằng cảnh báo validation. Ảnh xác nhậ
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2061,7 +2061,7 @@ Phone hợp lệ 0912345678 bị cảnh báo không hợp lệ; thao tác cập 
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-ui-03"></a>
 
@@ -2082,7 +2082,7 @@ Phone hợp lệ 0912345678 bị cảnh báo không hợp lệ; thao tác cập 
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2103,7 +2103,7 @@ Update succeeds; re-login shows the exact phone.
 
 ### Actual và Evidence
 
-Phone hợp lệ 09123456789 bị từ chối. Thông báo nói 9–10 chữ số, khác yêu cầu 10–11 chữ số bắt đầu bằng 0.
+Phone hợp lệ 09123456789 bị từ chối. Thông báo nói 9-10 chữ số, khác yêu cầu 10-11 chữ số bắt đầu bằng 0.
 
 **Variant / giới hạn:** Không đổi dữ liệu thiết kế.
 
@@ -2117,7 +2117,7 @@ Phone hợp lệ 09123456789 bị từ chối. Thông báo nói 9–10 chữ s�
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-ui-04"></a>
 
@@ -2132,13 +2132,13 @@ Phone hợp lệ 09123456789 bị từ chối. Thông báo nói 9–10 chữ s�
 | Domains | A-D3 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2173,7 +2173,7 @@ Phone 091234567890 bị frontend từ chối. Kết quả từ chối đạt m�
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="a-ui-05"></a>
 
@@ -2194,7 +2194,7 @@ Phone 091234567890 bị frontend từ chối. Kết quả từ chối đạt m�
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2229,7 +2229,7 @@ Phone 1912345678 có prefix sai nhưng UI báo cập nhật thành công. API A-
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="a-ui-06"></a>
 
@@ -2244,13 +2244,13 @@ Phone 1912345678 có prefix sai nhưng UI báo cập nhật thành công. API A-
 | Domains | A-D11 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2282,7 +2282,7 @@ Email hiển thị ở field disabled. Source Profile.jsx dùng disabled cho inp
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="a-ui-07"></a>
 
@@ -2303,7 +2303,7 @@ Email hiển thị ở field disabled. Source Profile.jsx dùng disabled cho inp
 
 Web runtime riêng tại 127.0.0.1:5173, account A-UI-07 (a_ui_07@hw02.invalid), mở /profile. Name/address có dấu và phone 0912345678 đều hợp lệ theo thiết kế; SUT chưa sửa BUG-A03.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2340,20 +2340,20 @@ Valid update accepted; name/address persist after fresh login.
 
 ### Verdict và rationale
 
-**FAIL** — Criterion đầu tiên là chấp nhận cập nhật hợp lệ đã bị vi phạm. Gắn vào BUG-A03 vì cùng lỗi frontend từ chối phone đúng SRS; không tạo bug Unicode mới. Persistence sau sửa vẫn cần regression riêng.
+**FAIL** - Criterion đầu tiên là chấp nhận cập nhật hợp lệ đã bị vi phạm. Gắn vào BUG-A03 vì cùng lỗi frontend từ chối phone đúng SRS; không tạo bug Unicode mới. Persistence sau sửa vẫn cần regression riêng.
 
 ## 3. Test Summary
 
 | Scope | Designed | Executed đủ bằng chứng | PASS | FAIL | OBSERVATION | INCOMPLETE | NOT RUN |
 |---|---|---|---|---|---|---|---|
-| A — API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
-| A — UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
-| B — API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
-| B — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| C — API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
-| C — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| D — API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
-| D — UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
+| A - API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
+| A - UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
+| B - API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
+| B - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
+| C - API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
+| C - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
+| D - API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
+| D - UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
 | **Tổng** | 114 | 114 | 53 | 57 | 4 | 0 | 0 |
 
 Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.

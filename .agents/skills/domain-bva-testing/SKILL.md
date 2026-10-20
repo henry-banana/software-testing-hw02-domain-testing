@@ -20,13 +20,13 @@ Read the supplied feature ID/pool, versioned specification, API contract and ava
 7. **Bugs:** group behavior across failed TCs. Include reproducible input/state, expected/actual, precise evidence, source-supported cause or explicit hypothesis, impact limitations and regression checklist. Completion: every failed TC maps to a bug, every counted bug has its file. Publish Issues only in the designated group stage.
 8. **Audit:** reconcile unique ID counts across README/report/cases/raw evidence. Record actual tool, timestamp, prompt, output, correction and human review status. Completion: broken links, placeholders and remaining required actions are listed honestly.
 
-## Worked feature — FR-17
+## Worked feature - FR-17
 
-- Specification: six required fields; code unique; type percent/fixed; discount_value>0; min_order_amount≥0; max_uses_per_user≥1; admin-only Create/View/Delete.
+- Specification: six required fields; code unique; type percent/fixed; discount_value>0; min_order_amount>=0; max_uses_per_user>=1; admin-only Create/View/Delete.
 - [Analysis](../../../reports/C-FR17-domain.md): presence/enum/numeric/role classes, integer fixture neighbors and traceability.
 - [Cases](../../../tests/C-FR17-coupon-management.md):30 API+6 UI IDs; [raw execution](../../../evidence/execution/C-api.md).
 - Reproduce API using the exact HTTP steps, fixture and authentication in the linked case report; the recorded run used port3100 and a copied database. Execution helpers are maintained outside the submission repository. Preserve the original SUT.
-- [BUG-C04](../../../bugs/BUG-C04.md): C-API-12/13 are −1/0; [BUG-C06](../../../bugs/BUG-C06.md): C-API-18/19 are −1/0, with zero silently becoming1.
+- [BUG-C04](../../../bugs/BUG-C04.md): C-API-12/13 are -1/0; [BUG-C06](../../../bugs/BUG-C06.md): C-API-18/19 are -1/0, with zero silently becoming1.
 - UI browser rejection of maxUses0 is separate from backend acceptance. C-UI-06 is supported by the shared after-delete list screenshot and the student clarification. Do not infer an action sequence from a final screenshot alone.
 - [Video link](../../../Video_Links.md); do not describe an existing output as a fresh invocation.
 

@@ -1,4 +1,4 @@
-# D — Raw API execution
+# D - Raw API execution
 
 Started (UTC): 2026-10-19T19:51:00.621Z
 
@@ -26,9 +26,9 @@ Original SUT files unchanged after run: **PASS**.
 
 | ID | Status | Bug group |
 |---|---|---|
-| D-API-01 | PASS | — |
-| D-API-02 | PASS | — |
-| D-API-03 | OBSERVATION | — |
+| D-API-01 | PASS | - |
+| D-API-02 | PASS | - |
+| D-API-03 | OBSERVATION | - |
 
 ## D-API-01
 

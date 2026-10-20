@@ -1,4 +1,4 @@
-# C — Raw API execution
+# C - Raw API execution
 
 Started (UTC): 2026-10-19T20:08:00.378Z
 
@@ -26,8 +26,8 @@ Original SUT files unchanged after run: **PASS**.
 
 | ID | Status | Bug group |
 |---|---|---|
-| C-API-01 | PASS | — |
-| C-API-02 | PASS | — |
+| C-API-01 | PASS | - |
+| C-API-02 | PASS | - |
 | C-API-03 | FAIL | BUG-C01 |
 | C-API-04 | FAIL | BUG-C01 |
 | C-API-05 | FAIL | BUG-C01 |
@@ -35,27 +35,27 @@ Original SUT files unchanged after run: **PASS**.
 | C-API-07 | FAIL | BUG-C01 |
 | C-API-08 | FAIL | BUG-C01 |
 | C-API-09 | FAIL | BUG-C01 |
-| C-API-10 | PASS | — |
+| C-API-10 | PASS | - |
 | C-API-11 | FAIL | BUG-C03 |
 | C-API-12 | FAIL | BUG-C04 |
 | C-API-13 | FAIL | BUG-C04 |
-| C-API-14 | PASS | — |
+| C-API-14 | PASS | - |
 | C-API-15 | FAIL | BUG-C05 |
-| C-API-16 | PASS | — |
-| C-API-17 | PASS | — |
+| C-API-16 | PASS | - |
+| C-API-17 | PASS | - |
 | C-API-18 | FAIL | BUG-C06 |
 | C-API-19 | FAIL | BUG-C06 |
-| C-API-20 | PASS | — |
-| C-API-21 | PASS | — |
-| C-API-22 | PASS | — |
+| C-API-20 | PASS | - |
+| C-API-21 | PASS | - |
+| C-API-22 | PASS | - |
 | C-API-23 | FAIL | BUG-C07 |
-| C-API-24 | PASS | — |
-| C-API-25 | PASS | — |
+| C-API-24 | PASS | - |
+| C-API-25 | PASS | - |
 | C-API-26 | FAIL | BUG-C08 |
-| C-API-27 | PASS | — |
-| C-API-28 | PASS | — |
+| C-API-27 | PASS | - |
+| C-API-28 | PASS | - |
 | C-API-29 | FAIL | BUG-C09 |
-| C-API-30 | PASS | — |
+| C-API-30 | PASS | - |
 
 ## C-API-01
 

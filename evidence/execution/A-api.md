@@ -1,4 +1,4 @@
-# A — Raw API execution
+# A - Raw API execution
 
 Started (UTC): 2026-10-19T19:50:52.465Z
 
@@ -26,8 +26,8 @@ Original SUT files unchanged after run: **PASS**.
 
 | ID | Status | Bug group |
 |---|---|---|
-| A-API-01 | PASS | — |
-| A-API-02 | PASS | — |
+| A-API-01 | PASS | - |
+| A-API-02 | PASS | - |
 | A-API-03 | FAIL | BUG-A01 |
 | A-API-04 | FAIL | BUG-A01 |
 | A-API-05 | FAIL | BUG-A01 |
@@ -40,14 +40,14 @@ Original SUT files unchanged after run: **PASS**.
 | A-API-12 | FAIL | BUG-A01 |
 | A-API-13 | FAIL | BUG-A01 |
 | A-API-14 | FAIL | BUG-A01 |
-| A-API-15 | OBSERVATION | — |
+| A-API-15 | OBSERVATION | - |
 | A-API-16 | FAIL | BUG-A01 |
-| A-API-17 | PASS | — |
+| A-API-17 | PASS | - |
 | A-API-18 | FAIL | BUG-A02 |
-| A-API-19 | PASS | — |
-| A-API-20 | PASS | — |
-| A-API-21 | PASS | — |
-| A-API-22 | PASS | — |
+| A-API-19 | PASS | - |
+| A-API-20 | PASS | - |
+| A-API-21 | PASS | - |
+| A-API-22 | PASS | - |
 
 ## A-API-01
 

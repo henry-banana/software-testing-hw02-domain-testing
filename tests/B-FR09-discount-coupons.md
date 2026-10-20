@@ -1,6 +1,6 @@
-# B — Test Case Report: FR-09 — Áp dụng mã giảm giá
+# B - Test Case Report: FR-09 - Áp dụng mã giảm giá
 
-**Sinh viên:** Tống Dương Thái Hòa — 23120262.
+**Sinh viên:** Tống Dương Thái Hòa - 23120262.
 
 ## 1. Phạm vi, quy ước và fixture
 
@@ -8,11 +8,11 @@ Chúng tôi lấy SRS làm oracle, sau đó dùng source để xây dựng giả
 
 Với từng input/state, chúng tôi xác định miền hợp lệ, phần bù không hợp lệ, precision và các ràng buộc giữa các chiều. Các lớp trong cùng một chiều được chọn để phân biệt hành vi; bảng nhiều chiều không có nghĩa mọi hàng đều là các tập rời nhau của toàn bộ vector. Test invalid giữ các chiều khác nominal; interaction nhiều lỗi có chủ đích được ghi riêng. Chúng tôi dùng readback public HTTP sau thay đổi để kiểm tra hậu điều kiện.
 
-BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu ≥ hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
+BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu >= hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
 
 API execution dùng backend copy, clock cố định và fixture reset mỗi TC. UI evidence là ảnh thật đã cung cấp; không suy timestamp chạy từ ngày sửa file, không dùng ảnh vẽ hoặc build output làm bằng chứng UI. PASS/FAIL chỉ kết luận theo criterion có evidence; OBSERVATION dành cho oracle chưa quy định; INCOMPLETE dành cho TC còn thiếu bước/precondition/evidence. Một TC INCOMPLETE có thể đã được thao tác một phần, nhưng không được cộng vào executed đủ bằng chứng.
 
-Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL §4.2.1–4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
+Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL mục 4.2.1-4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
 
 ### API fixture và môi trường tái hiện
 
@@ -36,38 +36,38 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 
 | TC-ID | Technique | Mục tiêu | Status | Domain | Bug |
 |---|---|---|---|---|---|
-| [B-API-01](#b-api-01) | Domain | Fixed discount nominal | PASS | B-D1 | — |
-| [B-API-02](#b-api-02) | Domain+BVA | Below fixed minimum | PASS | B-D2 | — |
+| [B-API-01](#b-api-01) | Domain | Fixed discount nominal | PASS | B-D1 | - |
+| [B-API-02](#b-api-02) | Domain+BVA | Below fixed minimum | PASS | B-D2 | - |
 | [B-API-03](#b-api-03) | Domain+BVA | Exactly fixed minimum | FAIL | B-D2 | BUG-B01 |
-| [B-API-04](#b-api-04) | Domain+BVA | Above fixed minimum | PASS | B-D2 | — |
-| [B-API-05](#b-api-05) | Domain+BVA | Below percent minimum | PASS | B-D2 | — |
+| [B-API-04](#b-api-04) | Domain+BVA | Above fixed minimum | PASS | B-D2 | - |
+| [B-API-05](#b-api-05) | Domain+BVA | Below percent minimum | PASS | B-D2 | - |
 | [B-API-06](#b-api-06) | Domain+BVA | Exactly percent minimum | FAIL | B-D2 | BUG-B01 |
 | [B-API-07](#b-api-07) | Domain+BVA | Above percent minimum | FAIL | B-D2 | BUG-B02 |
 | [B-API-08](#b-api-08) | Domain | Percent formula with integer result | FAIL | B-D3 | BUG-B02 |
-| [B-API-09](#b-api-09) | Domain | Nonexistent code | PASS | B-D4 | — |
-| [B-API-10](#b-api-10) | Domain | Inactive code | PASS | B-D4 | — |
-| [B-API-11](#b-api-11) | Domain | Missing code | PASS | B-D4 | — |
-| [B-API-12](#b-api-12) | Domain+BVA | Expired before current time by 1 ms | PASS | B-D5 | — |
+| [B-API-09](#b-api-09) | Domain | Nonexistent code | PASS | B-D4 | - |
+| [B-API-10](#b-api-10) | Domain | Inactive code | PASS | B-D4 | - |
+| [B-API-11](#b-api-11) | Domain | Missing code | PASS | B-D4 | - |
+| [B-API-12](#b-api-12) | Domain+BVA | Expired before current time by 1 ms | PASS | B-D5 | - |
 | [B-API-13](#b-api-13) | Domain+BVA | Expiry exactly equals current time | FAIL | B-D5 | BUG-B03 |
-| [B-API-14](#b-api-14) | Domain+BVA | Expiry after current time by 1 ms | PASS | B-D5 | — |
-| [B-API-15](#b-api-15) | Domain+BVA | VIP100 used=0, limit=2 | PASS | B-D6 | — |
-| [B-API-16](#b-api-16) | Domain+BVA | VIP100 used=1, limit=2 | PASS | B-D6 | — |
-| [B-API-17](#b-api-17) | Domain+BVA | VIP100 used=2, limit=2 | PASS | B-D6 | — |
-| [B-API-18](#b-api-18) | Domain+BVA | VIP100 used=3, limit=2 | PASS | B-D6 | — |
+| [B-API-14](#b-api-14) | Domain+BVA | Expiry after current time by 1 ms | PASS | B-D5 | - |
+| [B-API-15](#b-api-15) | Domain+BVA | VIP100 used=0, limit=2 | PASS | B-D6 | - |
+| [B-API-16](#b-api-16) | Domain+BVA | VIP100 used=1, limit=2 | PASS | B-D6 | - |
+| [B-API-17](#b-api-17) | Domain+BVA | VIP100 used=2, limit=2 | PASS | B-D6 | - |
+| [B-API-18](#b-api-18) | Domain+BVA | VIP100 used=3, limit=2 | PASS | B-D6 | - |
 | [B-API-19](#b-api-19) | Domain | Coupon with none JWT | FAIL | B-D7 | BUG-B04 |
 | [B-API-20](#b-api-20) | Domain | Coupon with invalid JWT | FAIL | B-D7 | BUG-B04 |
 | [B-API-21](#b-api-21) | Domain | Coupon with expired JWT | FAIL | B-D7 | BUG-B04 |
 | [B-API-22](#b-api-22) | Domain | Exhausted authenticated user spoofs user_id=3 | FAIL | B-D8 | BUG-B05 |
 | [B-API-23](#b-api-23) | Domain | Exhausted authenticated user omits user_id | FAIL | B-D8 | BUG-B05 |
 | [B-API-24](#b-api-24) | Domain+BVA | Intersection: minimum equality and last eligible use | FAIL | B-D9 | BUG-B01 |
-| [B-API-25](#b-api-25) | Domain | Multiple invalid conditions | PASS | B-D10 | — |
+| [B-API-25](#b-api-25) | Domain | Multiple invalid conditions | PASS | B-D10 | - |
 | [B-API-26](#b-api-26) | Domain | Percent 100 formula | FAIL | B-D3 | BUG-B02 |
-| [B-UI-01](#b-ui-01) | Domain+BVA | Checkout BIGBUY / 499999 | PASS | B-D2 | — |
+| [B-UI-01](#b-ui-01) | Domain+BVA | Checkout BIGBUY / 499999 | PASS | B-D2 | - |
 | [B-UI-02](#b-ui-02) | Domain+BVA | Checkout BIGBUY / 500000 | FAIL | B-D2 | BUG-B01 |
-| [B-UI-03](#b-ui-03) | Domain+BVA | Checkout BIGBUY / 500001 | PASS | B-D2 | — |
+| [B-UI-03](#b-ui-03) | Domain+BVA | Checkout BIGBUY / 500001 | PASS | B-D2 | - |
 | [B-UI-04](#b-ui-04) | Domain | Checkout SAVE10 / 400000 | FAIL | B-D3 | BUG-B02 |
-| [B-UI-05](#b-ui-05) | Domain | Checkout EXPIRED / 400000 | PASS | B-D5 | — |
-| [B-UI-06](#b-ui-06) | Domain | Checkout VIP100 / 400000 | PASS | B-D6 | — |
+| [B-UI-05](#b-ui-05) | Domain | Checkout EXPIRED / 400000 | PASS | B-D5 | - |
+| [B-UI-06](#b-ui-06) | Domain | Checkout VIP100 / 400000 | PASS | B-D6 | - |
 
 <a id="b-api-01"></a>
 
@@ -78,18 +78,18 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D1 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -139,7 +139,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.838Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-02"></a>
 
@@ -150,18 +150,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.838Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D2 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -207,7 +207,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.875Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-03"></a>
 
@@ -218,7 +218,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.875Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -229,7 +229,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.875Z`. Với list dài, phần d
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -275,7 +275,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.904Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-api-04"></a>
 
@@ -286,18 +286,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.904Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D2 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -347,7 +347,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.931Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-05"></a>
 
@@ -358,18 +358,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.931Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D2 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -415,7 +415,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.958Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-06"></a>
 
@@ -426,7 +426,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.958Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -437,7 +437,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.958Z`. Với list dài, phần d
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -483,7 +483,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.983Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-api-07"></a>
 
@@ -494,7 +494,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.983Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -505,7 +505,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.983Z`. Với list dài, phần d
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -557,7 +557,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.010Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-api-08"></a>
 
@@ -568,7 +568,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.010Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D3 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -579,7 +579,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.010Z`. Với list dài, phần d
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -629,7 +629,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.040Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-api-09"></a>
 
@@ -640,18 +640,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.040Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D4 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -697,7 +697,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.064Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-10"></a>
 
@@ -708,18 +708,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.064Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D4 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -765,7 +765,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.090Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-11"></a>
 
@@ -776,18 +776,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.090Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D4 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -831,7 +831,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.111Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-12"></a>
 
@@ -842,11 +842,11 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.111Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D5 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
@@ -854,7 +854,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.111Z`. Với list dài, phần d
 - TIME.expired_at = clock + (-1) ms; clock=2026-10-19T08:00:00+00:00. Giữ total=400000, fixed discount10000 và JWT hợp lệ để cô lập expiry.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -900,7 +900,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.130Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-13"></a>
 
@@ -911,7 +911,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.130Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -923,7 +923,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.130Z`. Với list dài, phần d
 - TIME.expired_at = clock + (0) ms; clock=2026-10-19T08:00:00+00:00. Giữ total=400000, fixed discount10000 và JWT hợp lệ để cô lập expiry.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -973,7 +973,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.150Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-api-14"></a>
 
@@ -984,11 +984,11 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.150Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D5 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
@@ -996,7 +996,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.150Z`. Với list dài, phần d
 - TIME.expired_at = clock + (1) ms; clock=2026-10-19T08:00:00+00:00. Giữ total=400000, fixed discount10000 và JWT hợp lệ để cô lập expiry.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1046,7 +1046,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.170Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-15"></a>
 
@@ -1057,18 +1057,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.170Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D6 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1118,7 +1118,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.189Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-16"></a>
 
@@ -1129,18 +1129,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.189Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D6 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset tám coupon; user2/VIP100 used=1, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1190,7 +1190,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.208Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-17"></a>
 
@@ -1201,18 +1201,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.208Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D6 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset tám coupon; user2/VIP100 used=2, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1258,7 +1258,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.229Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-18"></a>
 
@@ -1269,18 +1269,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.229Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D6 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset tám coupon; user2/VIP100 used=3, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1326,7 +1326,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.252Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-19"></a>
 
@@ -1337,7 +1337,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.252Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D7 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -1348,7 +1348,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.252Z`. Với list dài, phần d
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `none`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1398,7 +1398,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.280Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-api-20"></a>
 
@@ -1409,7 +1409,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.280Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D7 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -1420,7 +1420,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.280Z`. Với list dài, phần d
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `invalid`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1470,7 +1470,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.302Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-api-21"></a>
 
@@ -1481,7 +1481,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.302Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D7 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -1492,7 +1492,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.302Z`. Với list dài, phần d
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `expired`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1542,7 +1542,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.322Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-api-22"></a>
 
@@ -1553,7 +1553,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.322Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D8 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -1564,7 +1564,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.322Z`. Với list dài, phần d
 - Reset tám coupon; user2/VIP100 used=2, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1614,7 +1614,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.342Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-api-23"></a>
 
@@ -1625,7 +1625,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.342Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D8 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -1636,7 +1636,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.342Z`. Với list dài, phần d
 - Reset tám coupon; user2/VIP100 used=2, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1684,7 +1684,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.365Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-api-24"></a>
 
@@ -1695,7 +1695,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.365Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain+BVA |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D9 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -1706,7 +1706,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.365Z`. Với list dài, phần d
 - Reset tám coupon; user2/VIP100 used=1, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1752,7 +1752,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.388Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-api-25"></a>
 
@@ -1763,18 +1763,18 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.388Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D10 |
 | Seam | HTTP API |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `none`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1818,7 +1818,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.414Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-api-26"></a>
 
@@ -1829,7 +1829,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.414Z`. Với list dài, phần d
 | Thuộc tính | Giá trị |
 |---|---|
 | Technique | Domain |
-| Oracle | FR-09 C1–C5 + discount formula |
+| Oracle | FR-09 C1-C5 + discount formula |
 | Domains | B-D3 |
 | Seam | HTTP API |
 | Status | FAIL |
@@ -1840,7 +1840,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.414Z`. Với list dài, phần d
 - Reset tám coupon; user2/VIP100 used=0, limit=2; user3 used=0. Coupon trong request phải có đúng type/value/minimum của fixture.
 - Authentication request mục tiêu: `user`.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1890,7 +1890,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.437Z`. Với list dài, phần d
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-ui-01"></a>
 
@@ -1905,13 +1905,13 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.437Z`. Với list dài, phần d
 | Domains | B-D2 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -1953,7 +1953,7 @@ BIGBUY với total 499999 bị từ chối vì chưa đủ ngưỡng.
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-ui-02"></a>
 
@@ -1974,7 +1974,7 @@ BIGBUY với total 499999 bị từ chối vì chưa đủ ngưỡng.
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2010,7 +2010,7 @@ BIGBUY tại total=500000 bị từ chối dù đạt ngưỡng inclusive.
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-ui-03"></a>
 
@@ -2025,13 +2025,13 @@ BIGBUY tại total=500000 bị từ chối dù đạt ngưỡng inclusive.
 | Domains | B-D2 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2067,7 +2067,7 @@ Discount 50000; final 450001.
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-ui-04"></a>
 
@@ -2088,7 +2088,7 @@ Discount 50000; final 450001.
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2110,7 +2110,7 @@ Discount 40000; final 360000.
 
 ### Actual và Evidence
 
-SAVE10/400000 hiển thị tiền giảm −3600000 và thành tiền 4000000, thay vì 40000/360000.
+SAVE10/400000 hiển thị tiền giảm -3600000 và thành tiền 4000000, thay vì 40000/360000.
 
 **Variant / giới hạn:** Không đổi dữ liệu thiết kế.
 
@@ -2124,7 +2124,7 @@ SAVE10/400000 hiển thị tiền giảm −3600000 và thành tiền 4000000, t
 
 ### Verdict và rationale
 
-**FAIL** — Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
+**FAIL** - Có ít nhất một hành vi quan sát trái oracle; bug được nhóm theo behavior, không nhân số bug theo số TC.
 
 <a id="b-ui-05"></a>
 
@@ -2139,13 +2139,13 @@ SAVE10/400000 hiển thị tiền giảm −3600000 và thành tiền 4000000, t
 | Domains | B-D5 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2179,7 +2179,7 @@ Coupon EXPIRED bị từ chối với thông báo hết hạn.
 
 ### Verdict và rationale
 
-**PASS** — Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
+**PASS** - Tiêu chí thuộc phạm vi đã ghi khớp expected với evidence nêu trên.
 
 <a id="b-ui-06"></a>
 
@@ -2194,13 +2194,13 @@ Coupon EXPIRED bị từ chối với thông báo hết hạn.
 | Domains | B-D6 |
 | Seam | UI thật |
 | Status | PASS |
-| Bug | — |
+| Bug | - |
 
 ### Preconditions
 
 Web runtime riêng tại 127.0.0.1:5173, account B-UI-06 (b_ui_06@hw02.invalid). Fixture VIP100 có max_uses_per_user=2 và đúng hai coupon_usage cho user này; xem [read-only fixture readback](../evidence/execution/B-ui-fixture.md). Hai dòng được seed trực tiếp, không phải hai đơn mới được sinh viên thực hiện. Giỏ có HW02 Total400000, quantity1; coupon active, chưa hết hạn, minimum300000 nên total 400000 đủ ngưỡng.
 
-### Input — thiết kế
+### Input - thiết kế
 
 ```json
 {
@@ -2235,20 +2235,20 @@ Với VIP100 đã có used=2 bằng max_uses_per_user=2 dưới cùng user, lầ
 
 ### Verdict và rationale
 
-**PASS** — UI từ chối VIP100 tại used=limit=2 cho đúng account và giữ tổng 400000. Không đổi mục tiêu thành nominal apply; không gán bug hoặc suy luận về checkout tạo usage end-to-end.
+**PASS** - UI từ chối VIP100 tại used=limit=2 cho đúng account và giữ tổng 400000. Không đổi mục tiêu thành nominal apply; không gán bug hoặc suy luận về checkout tạo usage end-to-end.
 
 ## 3. Test Summary
 
 | Scope | Designed | Executed đủ bằng chứng | PASS | FAIL | OBSERVATION | INCOMPLETE | NOT RUN |
 |---|---|---|---|---|---|---|---|
-| A — API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
-| A — UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
-| B — API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
-| B — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| C — API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
-| C — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| D — API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
-| D — UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
+| A - API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
+| A - UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
+| B - API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
+| B - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
+| C - API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
+| C - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
+| D - API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
+| D - UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
 | **Tổng** | 114 | 114 | 53 | 57 | 4 | 0 | 0 |
 
 Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.
