@@ -22,7 +22,7 @@
 - [x] AI Critique giữ nguyên245từ, trong khoảng200–300.
 - [x] Có skill, 18bug files, testcase report và Git log actual.
 - [ ] Sinh viên đọc lại verdicts, disclosure, critique và self-assessment sau rewrite.
-- [ ] Bổ sung evidence cho5TC incomplete nếu muốn kết luận đầy đủ.
+- [ ] Bổ sung evidence cho A-UI-07 và B-UI-06; C-UI-02/C-UI-06/D-UI-12 đã được sinh viên làm rõ.
 - [ ] Đính kèm ảnh API-only bugs và ảnh/URL GitHub Issues ở giai đoạn nhóm cuối.
 - [ ] Thay link video tạm bằng URL thật khi quay/upload xong.
 - [ ] Xuất PDF/ZIP và kiểm tra quy cách Moodle; đây là bước sinh viên tự thực hiện.

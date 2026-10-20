@@ -50,7 +50,7 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 | [D-UI-09](#d-ui-09) | Domain | Mobile complete product detail | FAIL | D-D1 | BUG-D02 |
 | [D-UI-10](#d-ui-10) | Domain | Mobile even-id price display | PASS | D-D1 | — |
 | [D-UI-11](#d-ui-11) | Domain | Mobile add feedback | PASS | D-D6 | — |
-| [D-UI-12](#d-ui-12) | Domain | Same product twice | INCOMPLETE | D-D6 | — |
+| [D-UI-12](#d-ui-12) | Domain | Same product twice | PASS | D-D6 | — |
 | [D-UI-13](#d-ui-13) | Domain | Detail quantity resets after switching products | OBSERVATION | D-D7 | — |
 | [D-UI-14](#d-ui-14) | Domain | Very large quantity exploratory input | OBSERVATION | D-D7 | — |
 
@@ -886,7 +886,7 @@ Sau Add, Mobile hiển thị Alert Thành công/Đã thêm vào giỏ hàng. M�
 | Oracle | UI FR-20 with mapped FR-06/07 |
 | Domains | D-D6 |
 | Seam | UI thật |
-| Status | INCOMPLETE |
+| Status | PASS |
 | Bug | — |
 
 ### Preconditions
@@ -916,21 +916,19 @@ One cart line quantity=2; total=60000000.
 
 ### Actual và Evidence
 
-Cart có một dòng quantity=2 và có ảnh phản hồi, nhưng ảnh không xác nhận hai lần Add với quantity=1 từ giỏ trống.
+Cart có đúng một dòng iPhone 15 Pro Max, quantity=2, đơn giá30000000 và thành tiền60000000. Sinh viên xác nhận ảnh này thuộc D-UI-12; nó ghi hậu điều kiện của việc thêm cùng sản phẩm hai lần. Ảnh cuối không tự thể hiện toàn bộ chuỗi Add; xác nhận case/thao tác đến từ sinh viên.
 
-**Variant / giới hạn:** Không đổi dữ liệu thiết kế.
-
-**Timestamp UI:** không có log chính xác từng lượt; không tự dựng thời gian từ tên ảnh.
+**Provenance:** Ảnh thật đã cung cấp; sinh viên làm rõ mapping/case trong hội thoại ngày2026-10-20. Không tạo timestamp thực thi hoặc giả một lần chạy mới.
 
 ![D-UI-12_candidate_response](../evidence/screenshots/D/D-UI-12_candidate_response.jpg)
 
-![D-UI-12_candidate_cart](../evidence/screenshots/D/D-UI-12_candidate_cart.jpg)
+![D-UI-12_final-cart](../evidence/screenshots/D/D-UI-12_final-cart.jpg)
 
-**Evidence còn thiếu:** Giỏ trống → detail quantity=1 → Add lần 1 → cart quantity=1 → Add cùng SP lần 2 → cart một dòng quantity=2. Chụp hoặc quay đủ chuỗi, giữ product ID nhất quán.
+**Evidence còn thiếu cho criterion hiện tại:** không còn; ảnh hậu điều kiện được dùng cùng xác nhận thao tác của sinh viên. Không coi ảnh cuối là video ghi toàn bộ sequence.
 
 ### Verdict và rationale
 
-**INCOMPLETE** — Chưa đủ bằng chứng/precondition cho toàn bộ mục tiêu; không suy từ kết quả khác và không tính là executed hoàn chỉnh.
+**PASS** — Hậu điều kiện khớp expected; mapping/thao tác đã được sinh viên xác nhận. Phần ảnh và phần xác nhận được ghi riêng theo provenance.
 
 <a id="d-ui-13"></a>
 
@@ -1058,9 +1056,9 @@ Có input số dài, alert thành công và cart. Ô input có thể cuộn ngan
 | B — API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
 | B — UI | 6 | 5 | 3 | 2 | 0 | 1 | 0 |
 | C — API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
-| C — UI | 6 | 4 | 2 | 2 | 0 | 2 | 0 |
+| C — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | D — API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
-| D — UI | 14 | 13 | 4 | 7 | 2 | 1 | 0 |
-| **Tổng** | 114 | 109 | 49 | 56 | 4 | 5 | 0 |
+| D — UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
+| **Tổng** | 114 | 112 | 52 | 56 | 4 | 2 | 0 |
 
 Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.

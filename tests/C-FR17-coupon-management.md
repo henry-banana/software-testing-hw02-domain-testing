@@ -67,11 +67,11 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 | [C-API-29](#c-api-29) | Domain | Delete coupon as user | FAIL | C-D10 | BUG-C09 |
 | [C-API-30](#c-api-30) | Domain | Delete coupon as none | PASS | C-D10 | — |
 | [C-UI-01](#c-ui-01) | Domain+BVA | Admin coupon form 1 | FAIL | C-D5 | BUG-C04 |
-| [C-UI-02](#c-ui-02) | Domain | Admin coupon form 2 | INCOMPLETE | C-D1 | — |
+| [C-UI-02](#c-ui-02) | Domain | Admin coupon form 2 | PASS | C-D1 | — |
 | [C-UI-03](#c-ui-03) | Domain+BVA | Admin coupon form 3 | FAIL | C-D6 | BUG-C05 |
 | [C-UI-04](#c-ui-04) | Domain+BVA | Admin coupon form 4 | PASS | C-D7 | — |
 | [C-UI-05](#c-ui-05) | Domain | Admin coupon form 5 | PASS | C-D3 | — |
-| [C-UI-06](#c-ui-06) | Domain | Admin delete lifecycle | INCOMPLETE | C-D10 | — |
+| [C-UI-06](#c-ui-06) | Domain | Admin delete lifecycle | PASS | C-D10 | — |
 
 <a id="c-api-01"></a>
 
@@ -4315,7 +4315,7 @@ Coupon có discount_value=0 được tạo và xuất hiện trong danh sách.
 | Oracle | UI FR-17/FR-12 |
 | Domains | C-D1 |
 | Seam | UI thật |
-| Status | INCOMPLETE |
+| Status | PASS |
 | Bug | — |
 
 ### Preconditions
@@ -4348,21 +4348,21 @@ Create coupon; same values visible after reload.
 
 ### Actual và Evidence
 
-Coupon với dữ liệu nominal được tạo; hàng mới hiển thị các giá trị đã nhập.
+Sau reload, ảnh danh sách vẫn có HW02_C_UI_02: fixed, discount_value=1, min_order_amount=0, expired_at=2099-12-31, max_uses_per_user=1. Sinh viên xác nhận ảnh danh sách dùng chung này là evidence cho C-UI-02 và C-UI-06.
 
-**Variant / giới hạn:** Đã chứng minh create và view ngay sau create. Persistence qua reload được API C-API-01 kiểm tra riêng, không thay bước reload của UI TC.
-
-**Timestamp UI:** không có log chính xác từng lượt; không tự dựng thời gian từ tên ảnh.
+**Provenance:** Ảnh thật đã cung cấp; sinh viên làm rõ mapping/case trong hội thoại ngày2026-10-20. Không tạo timestamp thực thi hoặc giả một lần chạy mới.
 
 ![C-UI-02_01-input](../evidence/screenshots/C/C-UI-02_01-input.png)
 
 ![C-UI-02_02-created](../evidence/screenshots/C/C-UI-02_02-created.png)
 
-**Evidence còn thiếu:** Reload danh sách sau khi tạo; chụp lại cùng code và các field. Ảnh hiện có đã chứng minh create/view tức thời, chưa chứng minh toàn bộ bước reload của TC.
+![C-shared_coupon-list](../evidence/screenshots/C/C-shared_coupon-list.png)
+
+**Evidence còn thiếu cho criterion hiện tại:** không còn; ảnh hậu điều kiện được dùng cùng xác nhận thao tác của sinh viên. Không coi ảnh cuối là video ghi toàn bộ sequence.
 
 ### Verdict và rationale
 
-**INCOMPLETE** — Chưa đủ bằng chứng/precondition cho toàn bộ mục tiêu; không suy từ kết quả khác và không tính là executed hoàn chỉnh.
+**PASS** — Hậu điều kiện khớp expected; mapping/thao tác đã được sinh viên xác nhận. Phần ảnh và phần xác nhận được ghi riêng theo provenance.
 
 <a id="c-ui-03"></a>
 
@@ -4417,7 +4417,7 @@ Coupon với min_order_amount=−1 được tạo và hiển thị ngưỡng âm
 
 ![C-UI-03_01-input](../evidence/screenshots/C/C-UI-03_01-input.png)
 
-![C-UI-03_02-created](../evidence/screenshots/C/C-UI-03_02-created.png)
+![C-UI-03_02-created](../evidence/screenshots/C/C-shared_coupon-list.png)
 
 **Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
@@ -4559,7 +4559,7 @@ Tạo trùng SAVE10 trả lỗi UNIQUE. Source/schema và C-API-10 xác nhận k
 | Oracle | UI FR-17/FR-12 |
 | Domains | C-D10 |
 | Seam | UI thật |
-| Status | INCOMPLETE |
+| Status | PASS |
 | Bug | — |
 
 ### Preconditions
@@ -4587,21 +4587,21 @@ Create test coupon, delete it; disappears after reload; SAVE10 unchanged.
 
 ### Actual và Evidence
 
-Có ảnh nhập và tạo coupon HW02_DELETE_UI; chưa có evidence thao tác xóa và danh sách sau reload.
+Ảnh trước đó có HW02_DELETE_UI; ảnh danh sách dùng chung không còn coupon này, vẫn còn HW02_C_UI_02 và SAVE10. Sinh viên xác nhận ảnh chung được dùng cho bước sau xóa/reload của C-UI-06.
 
-**Variant / giới hạn:** Không đổi dữ liệu thiết kế.
-
-**Timestamp UI:** không có log chính xác từng lượt; không tự dựng thời gian từ tên ảnh.
+**Provenance:** Ảnh thật đã cung cấp; sinh viên làm rõ mapping/case trong hội thoại ngày2026-10-20. Không tạo timestamp thực thi hoặc giả một lần chạy mới.
 
 ![C-UI-06_01-create-input](../evidence/screenshots/C/C-UI-06_01-create-input.png)
 
 ![C-UI-06_02-created](../evidence/screenshots/C/C-UI-06_02-created.png)
 
-**Evidence còn thiếu:** Chụp hàng coupon trước xóa (kèm code/ID); thực hiện Delete; reload và chụp danh sách hoặc tìm kiếm không còn coupon; đối chiếu SAVE10 vẫn còn. Không chấm FAIL chỉ vì thiếu ảnh.
+![C-shared_coupon-list](../evidence/screenshots/C/C-shared_coupon-list.png)
+
+**Evidence còn thiếu cho criterion hiện tại:** không còn; ảnh hậu điều kiện được dùng cùng xác nhận thao tác của sinh viên. Không coi ảnh cuối là video ghi toàn bộ sequence.
 
 ### Verdict và rationale
 
-**INCOMPLETE** — Chưa đủ bằng chứng/precondition cho toàn bộ mục tiêu; không suy từ kết quả khác và không tính là executed hoàn chỉnh.
+**PASS** — Hậu điều kiện khớp expected; mapping/thao tác đã được sinh viên xác nhận. Phần ảnh và phần xác nhận được ghi riêng theo provenance.
 
 ## 3. Test Summary
 
@@ -4612,9 +4612,9 @@ Có ảnh nhập và tạo coupon HW02_DELETE_UI; chưa có evidence thao tác x
 | B — API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
 | B — UI | 6 | 5 | 3 | 2 | 0 | 1 | 0 |
 | C — API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
-| C — UI | 6 | 4 | 2 | 2 | 0 | 2 | 0 |
+| C — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | D — API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
-| D — UI | 14 | 13 | 4 | 7 | 2 | 1 | 0 |
-| **Tổng** | 114 | 109 | 49 | 56 | 4 | 5 | 0 |
+| D — UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
+| **Tổng** | 114 | 112 | 52 | 56 | 4 | 2 | 0 |
 
 Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.

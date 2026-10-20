@@ -187,7 +187,7 @@ Reject minimum<0; vẫn chấp nhận đúng minimum=0.
 
 ![C-UI-03_01-input](../evidence/screenshots/C/C-UI-03_01-input.png)
 
-![C-UI-03_02-created](../evidence/screenshots/C/C-UI-03_02-created.png)
+![C-UI-03_02-created](../evidence/screenshots/C/C-shared_coupon-list.png)
 
 Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
 

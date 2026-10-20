@@ -15,9 +15,9 @@ Tống Dương Thái Hòa — MSSV23120262 — Software Testing CQ2023/3. Bài H
 | A | Unicode ASCII assumption; UI/API khác nhau; A-UI-07 thiếu persistence | Oracle metadata sửa; A03 riêng; giữ incomplete |
 | B | Sai tiền trong draft; nominal VIP100 bị thay thành exhausted test | Dùng raw literals; B-UI-06 incomplete; giữ original target |
 | C | CamelCase/enum/endpoint sai; zero/negative đảo ID | Snake_case; fixed/percent; GET /api/coupons; map12/13,18/19 đúng |
-| D | Detail category bị false PASS; cart suy từ alert; thiếu two-add sequence | D02 theo mapping; giới hạn kết luận1abc; D12 incomplete |
+| D | Detail category bị false PASS; cart suy từ alert; thiếu two-add sequence | D02 theo mapping; giới hạn kết luận1abc; D12 cập nhật PASS sau xác nhận ảnh của sinh viên |
 | Harness | Lượt rewrite trước đưa helper scripts vào submission | Đã tái chạy81HTTP cases; sau đó dời toàn bộ helpers ra ngoài theo cấu trúc sinh viên yêu cầu; hashes SUT giữ nguyên |
-| Summary | 114executed và counts không khớp | 114designed;109executed đủ evidence;49P/56F/4OBS/5incomplete |
+| Summary | 114executed và counts không khớp | 114designed;112executed đủ evidence;52P/56F/4OBS/2incomplete sau xác nhận ảnh C/D |
 | Video/Issues | Link video thật chưa có, nhóm chưa đăng Issues | Một link tạm thống nhất; group stage giữ cuối |
 | AI provenance | Header Claude nhưng transcript Codex; human review lẫn version | Phân biệt tool theo record; student confirmation cũ không tự áp bản mới |
 
@@ -4778,3 +4778,7 @@ Snapshot UTC: `2026-10-19T20:10:22.349219+00:00`. Git revision trước khi comm
 ## Appendix D — Correction: submission boundary
 
 Theo yêu cầu tiếp theo của sinh viên, sáu helper scripts đã được dời ra khỏi repository nộp bài và giữ trong workspace `hw02/scripts/`. Các phiên bản cũ ở đích được lưu bản sao riêng trước khi thay. README, case/bug reports và skill không còn yêu cầu script bên trong gói nộp. Original prompts/output snapshots được giữ nguyên; thay đổi này không tạo lần thực thi SUT mới hoặc thay verdict.
+
+## Appendix E — Student clarification of shared UI screenshots
+
+Ngày2026-10-20, sinh viên xác nhận một ảnh Admin dùng chung cho C-UI-02/C-UI-06 và ảnh cart iPhone quantity2 cho D-UI-12. Chúng tôi đối chiếu nội dung ảnh và ghi riêng student attestation về thao tác; không giả có ảnh trước/sau đầy đủ hoặc timestamp UI chưa được cung cấp. Current outcomes:52PASS/56FAIL/4OBSERVATION/2INCOMPLETE. A-UI-07/B-UI-06 vẫn chờ ảnh mới; helper Web-only chuẩn bị fixture riêng, không biến terminal/API thành UI evidence.

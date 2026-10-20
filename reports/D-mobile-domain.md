@@ -105,7 +105,7 @@ Kiểm domain→TC→actual→bug; sửa metadata/expected sai. Giữ các vùng
 | [D-UI-09](../tests/D-mobile-product-detail.md#d-ui-09) | FAIL | Detail Samsung có ảnh, tên, giá, mô tả và quantity nhưng không có danh mục. Source renderProductDetail cũng không render category. | BUG-D02 |
 | [D-UI-10](../tests/D-mobile-product-detail.md#d-ui-10) | PASS | Giá Samsung hiển thị 28.000.000 ₫ dù API product 2 trả price dạng chuỗi số; không có lỗi hiển thị trong ảnh. | — |
 | [D-UI-11](../tests/D-mobile-product-detail.md#d-ui-11) | PASS | Sau Add, Mobile hiển thị Alert Thành công/Đã thêm vào giỏ hàng. Mục tiêu feedback đạt. | — |
-| [D-UI-12](../tests/D-mobile-product-detail.md#d-ui-12) | INCOMPLETE | Cart có một dòng quantity=2 và có ảnh phản hồi, nhưng ảnh không xác nhận hai lần Add với quantity=1 từ giỏ trống. | — |
+| [D-UI-12](../tests/D-mobile-product-detail.md#d-ui-12) | PASS | Cart có đúng một dòng iPhone 15 Pro Max, quantity=2, đơn giá30000000 và thành tiền60000000. Sinh viên xác nhận ảnh này thuộc D-UI-12; nó ghi hậu điều kiện của việc thêm cùng sản phẩm hai lần. Ảnh cuối không tự thể hiện toàn bộ chuỗi Add; xác nhận case/thao tác đến từ sinh viên. | — |
 | [D-UI-13](../tests/D-mobile-product-detail.md#d-ui-13) | OBSERVATION | Ảnh MacBook có cart quantity=2 và phản hồi Add. Không có chuỗi chuyển product đủ rõ để kết luận reset quantity. | — |
 | [D-UI-14](../tests/D-mobile-product-detail.md#d-ui-14) | OBSERVATION | Có input số dài, alert thành công và cart. Ô input có thể cuộn ngang; không đồng nhất literal trong ảnh với 9007199254740992 của thiết kế. | — |
 
@@ -125,7 +125,7 @@ Các mục dưới đây là technical corrections có evidence của quá trìn
 | Sai nhãn BVA | Prompt/assumption | Rỗng/fraction từng bị coi như nearest integer boundary | Biên integer chỉ 0/1/2; giữ type classes riêng |
 | False PASS đầy đủ detail | Giới hạn đọc evidence | D-UI-09 expected có category nhưng ảnh/source không render | FAIL theo mapping công khai; lập BUG-D02 |
 | Suy diễn cart từ alert | Giới hạn công cụ | D-UI-08 có success nhưng thiếu cart | FAIL chỉ cho chấp nhận mixed input; không khẳng định cart=1 của lượt đó |
-| Sequence bị suy từ ảnh cuối | Độ phức tạp trạng thái | Cart quantity2 không chứng minh hai lần Add quantity1 | D-UI-12 INCOMPLETE; switch/large giữ observation |
+| Sequence bị suy từ ảnh cuối | Độ phức tạp trạng thái | Cart quantity2 không chứng minh hai lần Add quantity1 | Bản đầu giữ D-UI-12 incomplete; sau xác nhận của sinh viên và đối chiếu ảnh, cập nhật PASS; switch/large giữ observation |
 
 ## 8. Coverage và giới hạn
 

@@ -127,11 +127,11 @@ Kiểm domain→TC→actual→bug; sửa metadata/expected sai. Giữ các vùng
 | [C-API-29](../tests/C-FR17-coupon-management.md#c-api-29) | FAIL | GET /api/coupons → HTTP 200: array 8 rows<br>DELETE /api/admin/coupons/257 → HTTP 200: {"message":"Coupon deleted"}<br>GET /api/coupons → HTTP 200: array 7 rows | BUG-C09 |
 | [C-API-30](../tests/C-FR17-coupon-management.md#c-api-30) | PASS | GET /api/coupons → HTTP 200: array 8 rows<br>DELETE /api/admin/coupons/265 → HTTP 401: {"error":"Unauthorized"}<br>GET /api/coupons → HTTP 200: array 8 rows | — |
 | [C-UI-01](../tests/C-FR17-coupon-management.md#c-ui-01) | FAIL | Coupon có discount_value=0 được tạo và xuất hiện trong danh sách. | BUG-C04 |
-| [C-UI-02](../tests/C-FR17-coupon-management.md#c-ui-02) | INCOMPLETE | Coupon với dữ liệu nominal được tạo; hàng mới hiển thị các giá trị đã nhập. | — |
+| [C-UI-02](../tests/C-FR17-coupon-management.md#c-ui-02) | PASS | Sau reload, ảnh danh sách vẫn có HW02_C_UI_02: fixed, discount_value=1, min_order_amount=0, expired_at=2099-12-31, max_uses_per_user=1. Sinh viên xác nhận ảnh danh sách dùng chung này là evidence cho C-UI-02 và C-UI-06. | — |
 | [C-UI-03](../tests/C-FR17-coupon-management.md#c-ui-03) | FAIL | Coupon với min_order_amount=−1 được tạo và hiển thị ngưỡng âm. | BUG-C05 |
 | [C-UI-04](../tests/C-FR17-coupon-management.md#c-ui-04) | PASS | Browser native validation chặn max_uses_per_user=0 ở bước submit. Đây là PASS của frontend rejection; C-API-19 vẫn FAIL ở backend. | — |
 | [C-UI-05](../tests/C-FR17-coupon-management.md#c-ui-05) | PASS | Tạo trùng SAVE10 trả lỗi UNIQUE. Source/schema và C-API-10 xác nhận không có bản ghi trùng; không tự đặt HTTP 409 làm oracle. | — |
-| [C-UI-06](../tests/C-FR17-coupon-management.md#c-ui-06) | INCOMPLETE | Có ảnh nhập và tạo coupon HW02_DELETE_UI; chưa có evidence thao tác xóa và danh sách sau reload. | — |
+| [C-UI-06](../tests/C-FR17-coupon-management.md#c-ui-06) | PASS | Ảnh trước đó có HW02_DELETE_UI; ảnh danh sách dùng chung không còn coupon này, vẫn còn HW02_C_UI_02 và SAVE10. Sinh viên xác nhận ảnh chung được dùng cho bước sau xóa/reload của C-UI-06. | — |
 
 ## 6. Spec vs Code và bug groups
 

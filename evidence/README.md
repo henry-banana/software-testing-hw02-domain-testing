@@ -49,7 +49,7 @@ Raw reports ghi thời gian UTC thật, clock SUT mô phỏng, HTTP request/resp
 | [C-UI-02_01-input.png](screenshots/C/C-UI-02_01-input.png) | Screenshot 2026-10-19 153646.png | 241b56e1735ef21b7a376590af21c1f12d13d097147699539f952420739dd4b7 | C-UI-02 |
 | [C-UI-02_02-created.png](screenshots/C/C-UI-02_02-created.png) | Screenshot 2026-10-19 153651.png | b908d5358ace52aa05835a3ea700a67bb65f35dd13553f9af77ab149faf3ac16 | C-UI-02 |
 | [C-UI-03_01-input.png](screenshots/C/C-UI-03_01-input.png) | Screenshot 2026-10-19 153714.png | c9becdc2df7209c2b3e25066adb4c0fc1f0ff8b61dbcfdb75cfb291db0a8e4d6 | C-UI-03 |
-| [C-UI-03_02-created.png](screenshots/C/C-UI-03_02-created.png) | Screenshot 2026-10-19 153726.png | 579e2d285b9d4743bf5df1e87d5fda26cbfefcf1976fa65b39fb3b1aa6f0068c | C-UI-03 |
+| [C-shared_coupon-list.png](screenshots/C/C-shared_coupon-list.png) | Screenshot 2026-10-19 153726.png | 579e2d285b9d4743bf5df1e87d5fda26cbfefcf1976fa65b39fb3b1aa6f0068c | C-UI-02, C-UI-03, C-UI-06 |
 | [C-UI-04_01-input.png](screenshots/C/C-UI-04_01-input.png) | Screenshot 2026-10-19 153755.png | 381440aed704cc3845b9ab60fd232f1fde2d184d11d6329426108454f7b28b96 | C-UI-04 |
 | [C-UI-04_02-browser-validation.png](screenshots/C/C-UI-04_02-browser-validation.png) | Screenshot 2026-10-19 153759.png | 7bc5c7c54a6c3b6db9f5847669c6aea08cf732582be85971305a4687ee2918f9 | C-UI-04 |
 | [C-UI-05_01-input.png](screenshots/C/C-UI-05_01-input.png) | Screenshot 2026-10-19 153821.png | 86bcc67de6f727337f7998dea790b9f77079033681c865e34854a54358de0ff3 | C-UI-05 |
@@ -80,7 +80,7 @@ Raw reports ghi thời gian UTC thật, clock SUT mô phỏng, HTTP request/resp
 | [D-UI-08_01-input.jpg](screenshots/D/D-UI-08_01-input.jpg) | Screenshot_2026-10-19-15-57-20-725_host.exp.exponent.jpg | 6c5d8d9e9380e7a751e8603470ea929a4e42740d0e95e91ebecc6dcb8cd683df | D-UI-08 |
 | [D-UI-08_02-response.jpg](screenshots/D/D-UI-08_02-response.jpg) | Screenshot_2026-10-19-15-57-24-923_host.exp.exponent.jpg | 1107ef17d8641d171f59b894ae88fc63a4af6fe5cc64fad8ecd4d6098f1a67a8 | D-UI-08 |
 | [D-UI-10_product-2_detail.jpg](screenshots/D/D-UI-10_product-2_detail.jpg) | Screenshot_2026-10-19-15-55-27-567_host.exp.exponent.jpg | 893dcd1b1a44abd6d536b716c6172ca5c2248e455b83c95a53bcca9537d6cb7e | D-UI-09, D-UI-10 |
-| [D-UI-12_candidate_cart.jpg](screenshots/D/D-UI-12_candidate_cart.jpg) | Screenshot_2026-10-19-16-00-02-871_host.exp.exponent.jpg | 4ce0f45a6aec6a872606238f576cd36fd235e1ce3c514413209ca62d55fd7e8f | D-UI-12 |
+| [D-UI-12_final-cart.jpg](screenshots/D/D-UI-12_final-cart.jpg) | Screenshot_2026-10-19-16-00-02-871_host.exp.exponent.jpg | 4ce0f45a6aec6a872606238f576cd36fd235e1ce3c514413209ca62d55fd7e8f | D-UI-12 |
 | [D-UI-12_candidate_response.jpg](screenshots/D/D-UI-12_candidate_response.jpg) | Screenshot_2026-10-19-15-59-56-567_host.exp.exponent.jpg | 1f005b911566e623bda61886a1cde132d666d23efafa56b9e915d092bef90ccc | D-UI-12 |
 | [D-UI-14_variant-cart.jpg](screenshots/D/D-UI-14_variant-cart.jpg) | Screenshot_2026-10-19-16-00-40-975_host.exp.exponent.jpg | 216375f3c2b533affdd77635ac712e9e50104d9693e80eea84d5d00c3835bd6c | D-UI-14 |
 | [D-UI-14_variant-input.jpg](screenshots/D/D-UI-14_variant-input.jpg) | Screenshot_2026-10-19-16-00-29-868_host.exp.exponent.jpg | a8d07271a6f869924f39b844713ab1fd4edb114c44f77bca3718c0e5f9fed735 | D-UI-14 |
@@ -89,3 +89,7 @@ Raw reports ghi thời gian UTC thật, clock SUT mô phỏng, HTTP request/resp
 ## 3. GitHub Issue evidence
 
 Chưa có ảnh trang Issue trong bộ hiện tại. Khi hoàn thành giai đoạn nhóm, lưu ảnh có số Issue, title, nội dung và ảnh bug đính kèm; cập nhật URL trong đúng file bugs/BUG-*.md.
+
+## 4. Student clarification — 2026-10-20
+
+Sinh viên xác nhận ảnh Screenshot 2026-10-19 153726.png dùng chung cho C-UI-02/C-UI-06; ảnh vẫn thấy coupon valid và không còn HW02_DELETE_UI. Nó cũng giữ evidence giá trị minimum âm của C-UI-03. Ảnh Screenshot_2026-10-19-16-00-02-871_host.exp.exponent.jpg được xác nhận cho D-UI-12 và thấy một dòng quantity2/total60000000. Ba verdict được cập nhật PASS dựa ảnh cùng xác nhận của sinh viên; không nhận là replay độc lập hoặc thêm ảnh/TC mới.

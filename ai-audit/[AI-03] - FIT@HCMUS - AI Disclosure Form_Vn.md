@@ -13,7 +13,7 @@ Tống Dương Thái Hòa — 23120262 — Software Testing CQ2023/3. Môn CSC13
 
 ## 3. Prompt, output và phần AI sinh
 
-[Prompt/output log](../Appendix_A_Prompt_Log.md) ghi ngày giờ thật theo nguồn; AI-02 giữ original output snapshot. AI đã soạn report, reports/tests/bugs, scripts và skill. 81 API TC được chạy bằng HTTP thật trên backend copy; source/database gốc được đối chiếu hash. 33 UI TC dùng ảnh thật sinh viên cung cấp; verdict mới giữ rõ 5 TC INCOMPLETE thay vì claim hoàn thành mọi case.
+[Prompt/output log](../Appendix_A_Prompt_Log.md) ghi ngày giờ thật theo nguồn; AI-02 giữ original output snapshot. AI đã soạn report, reports/tests/bugs, scripts và skill. 81 API TC được chạy bằng HTTP thật trên backend copy; source/database gốc được đối chiếu hash. 33 UI TC dùng ảnh thật sinh viên cung cấp; verdict mới giữ rõ 2 TC INCOMPLETE (A-UI-07/B-UI-06); ba case C/D được sinh viên xác nhận bằng ảnh.
 
 ## 4. Kiểm tra và sửa đầu ra
 

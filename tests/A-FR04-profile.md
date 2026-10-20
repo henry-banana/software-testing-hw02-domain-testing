@@ -2349,9 +2349,9 @@ Valid update accepted; name/address persist after fresh login.
 | B — API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
 | B — UI | 6 | 5 | 3 | 2 | 0 | 1 | 0 |
 | C — API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
-| C — UI | 6 | 4 | 2 | 2 | 0 | 2 | 0 |
+| C — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | D — API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
-| D — UI | 14 | 13 | 4 | 7 | 2 | 1 | 0 |
-| **Tổng** | 114 | 109 | 49 | 56 | 4 | 5 | 0 |
+| D — UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
+| **Tổng** | 114 | 112 | 52 | 56 | 4 | 2 | 0 |
 
 Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.
