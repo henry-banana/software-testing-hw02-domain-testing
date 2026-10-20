@@ -1,9 +1,63 @@
 Git Commit Log - HW02
 
-Snapshot HEAD: 2812f866f54da53b4985f69157908ff53f149c44
-Exported at UTC: 2026-10-20T05:31:18.956Z
+Snapshot HEAD: 0c6bb6f2ab8bc8971b1010adce38eed08135acb2
+Exported at UTC: 2026-10-20T08:25:43.314Z
 Scope: complete reachable history through Snapshot HEAD. The later commit recording this export itself is outside that boundary.
 Dates are actual Git dates; no historical steps were recreated from the old standalone log.
+
+commit 0c6bb6f2ab8bc8971b1010adce38eed08135acb2
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T15:25:43+07:00
+
+    docs(hw02): finalize report and signed AI audit exports
+
+commit 6eca14c5e5219456b445f08e473097af32f716b9
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T15:25:42+07:00
+
+    docs(hw02): record FR-based GitHub issues and page evidence
+
+commit 7e6aa35b97df145488aec15f205f44b64cedaf13
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T15:25:41+07:00
+
+    test(hw02): align FR20 mobile findings and native evidence
+
+commit b7f3f3b1475636a4b00a61d8fb0d08bd4df7a904
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T15:25:41+07:00
+
+    test(hw02): detail FR17 coupon validation and access findings
+
+commit 5c9eaf8ceeaa2d02a4ef211906b2f07538925cf0
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T15:25:41+07:00
+
+    test(hw02): complete FR09 coupon boundary and state evidence
+
+commit 0d486d6db97800773c2e1fa0d967d1a4dd46c273
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T15:25:40+07:00
+
+    test(hw02): expand FR04 profile coverage and split findings
+
+commit 989201d2bec15b3dbc5cb53492872a7a13b18427
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T13:41:36+07:00
+
+    docs: Add student's signed
+
+commit f7dd4e9ebda93278f03884765a724e0cba958da7
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T13:12:43+07:00
+
+    docs: update link Youtube
+
+commit 93e82d47f4aa6464a265bc90513ce5e668628b9b
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T12:31:20+07:00
+
+    docs(hw02): record Git history after portable skill package
 
 commit 2812f866f54da53b4985f69157908ff53f149c44
 Author: Duong Thai Hoa Tong
