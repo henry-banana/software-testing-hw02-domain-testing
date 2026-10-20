@@ -67,7 +67,7 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 | [B-UI-03](#b-ui-03) | Domain+BVA | Checkout BIGBUY / 500001 | PASS | B-D2 | — |
 | [B-UI-04](#b-ui-04) | Domain | Checkout SAVE10 / 400000 | FAIL | B-D3 | BUG-B02 |
 | [B-UI-05](#b-ui-05) | Domain | Checkout EXPIRED / 400000 | PASS | B-D5 | — |
-| [B-UI-06](#b-ui-06) | Domain | Checkout VIP100 / 400000 | INCOMPLETE | B-D6 | — |
+| [B-UI-06](#b-ui-06) | Domain | Checkout VIP100 / 400000 | PASS | B-D6 | — |
 
 <a id="b-api-01"></a>
 
@@ -2193,12 +2193,12 @@ Coupon EXPIRED bị từ chối với thông báo hết hạn.
 | Oracle | UI FR-09 |
 | Domains | B-D6 |
 | Seam | UI thật |
-| Status | INCOMPLETE |
+| Status | PASS |
 | Bug | — |
 
 ### Preconditions
 
-Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
+Web runtime riêng tại 127.0.0.1:5173, account B-UI-06 (b_ui_06@hw02.invalid). Fixture VIP100 có max_uses_per_user=2 và đúng hai coupon_usage cho user này; xem [read-only fixture readback](../evidence/execution/B-ui-fixture.md). Hai dòng được seed trực tiếp, không phải hai đơn mới được sinh viên thực hiện. Giỏ có HW02 Total400000, quantity1; coupon active, chưa hết hạn, minimum300000 nên total 400000 đủ ngưỡng.
 
 ### Input — thiết kế
 
@@ -2212,43 +2212,43 @@ Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải 
 ### Steps
 
 1. Đăng nhập Web; chuẩn bị giỏ/ô total đúng giá trị thiết kế; ghi account thực tế và coupon state.
-2. Với VIP100, hoàn tất hai đơn dưới cùng user để tạo đúng hai usage rows; kiểm tra limit=2. Không dùng hai lần bấm Apply thay cho hai completed uses.
+2. Chuẩn bị state used=2/limit=2 cho VIP100 dưới đúng user: lượt này dùng hai coupon_usage fixture rows. Kiểm tra readback email/code/count/limit; không dùng hai lần bấm Apply thay usage, không tính đây là kiểm thử tạo hai đơn end-to-end.
 3. Mở Checkout; nhập code và total của TC; giữ các điều kiện expiry/active/auth/usage khác đúng.
 4. Bấm Áp dụng; chụp code, total và message; nếu accept, kiểm tra riêng discount và final.
 5. Không bấm xác nhận thanh toán trong các TC chỉ kiểm tra apply. Ghi total editable nếu khác tổng dòng hàng.
 
 ### Expected
 
-After exactly 2 completed uses, third attempt rejected.
+Với VIP100 đã có used=2 bằng max_uses_per_user=2 dưới cùng user, lần apply tiếp theo bị từ chối và tổng tiền giữ 400000. Oracle kiểm tra giới hạn sử dụng; lượt này thiết lập state bằng fixture, không kiểm quy trình hoàn tất hai đơn.
 
 ### Actual và Evidence
 
-VIP100 được áp thành công dưới account B-UI-01. Ảnh không chứng minh account này đã hoàn tất hai lần dùng trước đó.
+Ảnh mới tại /checkout hiển thị account B-UI-06, sản phẩm `HW02 Total 400000 x 1`, total 400000, code `VIP100` và thông báo `Bạn đã sử dụng mã này 2 lần (đã đạt giới hạn)`. Tổng thanh toán vẫn400000, coupon không được áp dụng. Account/code khớp fixture used2/limit2; [read-only query](../evidence/execution/B-ui-fixture.md) lưu precondition cùng giới hạn thời điểm readback.
 
-**Variant / giới hạn:** Chỉ có nominal application, khác mục tiêu exhausted-usage của TC.
+![B-UI-06 limit rejected](../evidence/screenshots/B/B-UI-06_01-limit-rejected.png)
 
-**Timestamp UI:** không có log chính xác từng lượt; không tự dựng thời gian từ tên ảnh.
+**Variant / giới hạn:** Ảnh cũ dưới đây thuộc account B-UI-01 và nominal usage; chỉ giữ lịch sử, không dùng chứng minh exhausted state. PASS của lượt mới dựa trên fixture đúng user và thông báo từ chối trên UI; không tuyên bố hai đơn thật đã được tạo.
 
-![B-VIP100_nominal_response](../evidence/screenshots/B/B-VIP100_nominal_response.png)
+![B historical nominal response](../evidence/screenshots/B/B-VIP100_nominal_response.png)
 
-**Evidence còn thiếu:** Dùng một account riêng; hoàn tất hai đơn dùng VIP100, lưu bằng chứng hai lượt usage; chụp lần áp thứ ba bị từ chối. Chỉ bấm Apply nhiều lần không tạo coupon_usage trong baseline này.
+**Timestamp UI:** không có timestamp chụp chính xác được cung cấp; ảnh được nhận trong hội thoại cập nhật ngày2026-10-20, không dùng thời điểm query làm giờ chạy UI.
 
 ### Verdict và rationale
 
-**INCOMPLETE** — Chưa đủ bằng chứng/precondition cho toàn bộ mục tiêu; không suy từ kết quả khác và không tính là executed hoàn chỉnh.
+**PASS** — UI từ chối VIP100 tại used=limit=2 cho đúng account và giữ tổng 400000. Không đổi mục tiêu thành nominal apply; không gán bug hoặc suy luận về checkout tạo usage end-to-end.
 
 ## 3. Test Summary
 
 | Scope | Designed | Executed đủ bằng chứng | PASS | FAIL | OBSERVATION | INCOMPLETE | NOT RUN |
 |---|---|---|---|---|---|---|---|
 | A — API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
-| A — UI | 7 | 6 | 3 | 3 | 0 | 1 | 0 |
+| A — UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
 | B — API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
-| B — UI | 6 | 5 | 3 | 2 | 0 | 1 | 0 |
+| B — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | C — API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
 | C — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | D — API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
 | D — UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
-| **Tổng** | 114 | 112 | 52 | 56 | 4 | 2 | 0 |
+| **Tổng** | 114 | 114 | 53 | 57 | 4 | 0 | 0 |
 
 Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.

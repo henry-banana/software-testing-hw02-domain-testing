@@ -141,7 +141,7 @@ T/F là giá trị điều kiện thiết kế, không phải verdict thực t�
 | [B-UI-03](../tests/B-FR09-discount-coupons.md#b-ui-03) | PASS | Ô tổng tiền là 500001; BIGBUY giảm 50000 và thành tiền hiển thị 450001. | — |
 | [B-UI-04](../tests/B-FR09-discount-coupons.md#b-ui-04) | FAIL | SAVE10/400000 hiển thị tiền giảm −3600000 và thành tiền 4000000, thay vì 40000/360000. | BUG-B02 |
 | [B-UI-05](../tests/B-FR09-discount-coupons.md#b-ui-05) | PASS | Coupon EXPIRED bị từ chối với thông báo hết hạn. | — |
-| [B-UI-06](../tests/B-FR09-discount-coupons.md#b-ui-06) | INCOMPLETE | VIP100 được áp thành công dưới account B-UI-01. Ảnh không chứng minh account này đã hoàn tất hai lần dùng trước đó. | — |
+| [B-UI-06](../tests/B-FR09-discount-coupons.md#b-ui-06) | PASS | Account B-UI-06, total 400000, VIP100: UI báo đã sử dụng 2 lần và đạt giới hạn; tổng giữ 400000. Precondition used=2/limit=2 được seed trực tiếp; không tuyên bố hai đơn mới. | — |
 
 ## 6. Spec vs Code và bug groups
 
@@ -160,7 +160,7 @@ Các mục dưới đây là technical corrections có evidence của quá trìn
 | Gap | Nhóm nguyên nhân | Evidence/điều sai | Cách sửa |
 |---|---|---|---|
 | Sai literal khi viết báo cáo | Giới hạn công cụ | Draft BUG-B02 ghi 4360000; raw/ảnh đều 4000000 | Dùng literal discount_amount=−3600000/final_amount=4000000 |
-| Bỏ qua precondition usage | Độ phức tạp trạng thái | Ảnh VIP100 nominal không chứng minh user đã có hai coupon_usage | Giữ B-UI-06 INCOMPLETE; Apply không đồng nghĩa completed use |
+| Bỏ qua precondition usage | Độ phức tạp trạng thái | Ảnh cũ nominal không đủ; ảnh mới đúng B-UI-06 khớp fixture hai coupon_usage | Chốt PASS tại used2/limit2; khai rõ seed trực tiếp, không suy hai đơn mới |
 | Nhầm arithmetic với rounding | Prompt/assumption | Case total=300001 có phần lẻ, spec im lặng về rounding | Dùng B-API-08 số nguyên làm evidence quyết định; không thêm Math.floor vào expected |
 | Auth vs identity | Độ phức tạp feature | Thiếu token khác valid token nhưng body user_id giả | Tách BUG-B04 và BUG-B05; dùng VIP100 và fixture đúng |
 

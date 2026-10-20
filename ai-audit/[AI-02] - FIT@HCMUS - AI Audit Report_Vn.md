@@ -12,12 +12,12 @@ Tống Dương Thái Hòa — MSSV23120262 — Software Testing CQ2023/3. Bài H
 
 | Artifact | Vấn đề có evidence | Correction |
 |---|---|---|
-| A | Unicode ASCII assumption; UI/API khác nhau; A-UI-07 thiếu persistence | Oracle metadata sửa; A03 riêng; giữ incomplete |
-| B | Sai tiền trong draft; nominal VIP100 bị thay thành exhausted test | Dùng raw literals; B-UI-06 incomplete; giữ original target |
+| A | Unicode ASCII assumption; UI/API khác nhau; ảnh cũ A-UI-07 chưa đủ | Oracle metadata sửa; A03 riêng; ảnh mới valid input bị chặn xác nhận A-UI-07 FAIL |
+| B | Sai tiền trong draft; nominal VIP100 bị thay thành exhausted test | Dùng raw literals; ảnh mới đúng user và fixtureused2/limit2 xác nhận B-UI-06 PASS |
 | C | CamelCase/enum/endpoint sai; zero/negative đảo ID | Snake_case; fixed/percent; GET /api/coupons; map12/13,18/19 đúng |
 | D | Detail category bị false PASS; cart suy từ alert; thiếu two-add sequence | D02 theo mapping; giới hạn kết luận1abc; D12 cập nhật PASS sau xác nhận ảnh của sinh viên |
 | Harness | Lượt rewrite trước đưa helper scripts vào submission | Đã tái chạy81HTTP cases; sau đó dời toàn bộ helpers ra ngoài theo cấu trúc sinh viên yêu cầu; hashes SUT giữ nguyên |
-| Summary | 114executed và counts không khớp | 114designed;112executed đủ evidence;52P/56F/4OBS/2incomplete sau xác nhận ảnh C/D |
+| Summary | 114executed và counts không khớp | 114designed;114executed đủ evidence;53P/57F/4OBS/0incomplete sau bổ sung ảnh A/B |
 | Video/Issues | Link video thật chưa có, nhóm chưa đăng Issues | Một link tạm thống nhất; group stage giữ cuối |
 | AI provenance | Header Claude nhưng transcript Codex; human review lẫn version | Phân biệt tool theo record; student confirmation cũ không tự áp bản mới |
 
@@ -4781,4 +4781,14 @@ Theo yêu cầu tiếp theo của sinh viên, sáu helper scripts đã được 
 
 ## Appendix E — Student clarification of shared UI screenshots
 
-Ngày2026-10-20, sinh viên xác nhận một ảnh Admin dùng chung cho C-UI-02/C-UI-06 và ảnh cart iPhone quantity2 cho D-UI-12. Chúng tôi đối chiếu nội dung ảnh và ghi riêng student attestation về thao tác; không giả có ảnh trước/sau đầy đủ hoặc timestamp UI chưa được cung cấp. Current outcomes:52PASS/56FAIL/4OBSERVATION/2INCOMPLETE. A-UI-07/B-UI-06 vẫn chờ ảnh mới; helper Web-only chuẩn bị fixture riêng, không biến terminal/API thành UI evidence.
+Ngày2026-10-20, sinh viên xác nhận một ảnh Admin dùng chung cho C-UI-02/C-UI-06 và ảnh cart iPhone quantity2 cho D-UI-12. Chúng tôi đối chiếu nội dung ảnh và ghi riêng student attestation về thao tác; không giả có ảnh trước/sau đầy đủ hoặc timestamp UI chưa được cung cấp. Outcomes tại thời điểm xác nhận C/D:52PASS/56FAIL/4OBSERVATION/2INCOMPLETE. Khi đó A-UI-07/B-UI-06 vẫn chờ ảnh mới; helper Web-only chuẩn bị fixture riêng, không biến terminal/API thành UI evidence.
+
+## Appendix F — Final A/B UI evidence correction — 2026-10-20
+
+Sinh viên cung cấp hai ảnh Profile A-UI-07 và một ảnh Checkout B-UI-06. Chúng tôi đối chiếu account, input, response và lưu SHA-256 trong [Evidence Register](../evidence/README.md), giữ nguyên các original output snapshots trong fenced blocks.
+
+- A-UI-07: name/address Unicode và phone0912345678 hợp lệ nhưng frontend báo phone không hợp lệ. Chốt FAIL và mở rộng traceability BUG-A03 từ3 lên4failingTC; không tạo bug Unicode mới, không claim persistence/readback chưa đạt tới.
+- B-UI-06: đúng account, VIP100, total400000; UI báo đã dùng2lần và đạt giới hạn. Chốt PASS tại controlled fixtureused2/limit2. [Read-only fixture readback](../evidence/execution/B-ui-fixture.md) xác nhận đúng state hiện tại; hai rows seed bằng SQL, không suy sinh viên hoàn tất hai đơn mới hay query cùng thời điểm chụp.
+- Summary hiện tại:114designed/114executed đủ evidence;53PASS/57FAIL/4OBSERVATION/0INCOMPLETE/0NOT RUN;18buggroups;71ảnh. API81cases không đổi và không chạy lại chỉ vì cập nhật ảnh UI.
+
+Không tự ký human review hoặc nâng điểm tự đánh giá; Video/Issues/API-only bug screenshots/PDF/ZIP vẫn theo pending đã công khai.

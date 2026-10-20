@@ -13,7 +13,7 @@ Raw reports ghi thời gian UTC thật, clock SUT mô phỏng, HTTP request/resp
 
 ## 2. UI screenshot provenance
 
-68 ảnh sử dụng giữ nguyên SHA-256 từ bộ ảnh được cung cấp; tên mới gắn TC/variant. Một ảnh PNG 5×63px bị loại khỏi submission vì không đọc được nội dung. Nhiều ảnh hoặc dùng lại một ảnh không tạo TC mới.
+71 ảnh sử dụng giữ nguyên SHA-256 từ bộ ảnh được cung cấp; tên mới gắn TC/variant. Một ảnh PNG 5×63px bị loại khỏi submission vì không đọc được nội dung. Nhiều ảnh hoặc dùng lại một ảnh không tạo TC mới.
 
 | File hiện tại | Tên nguồn | SHA-256 | TC dùng evidence |
 |---|---|---|---|
@@ -85,6 +85,9 @@ Raw reports ghi thời gian UTC thật, clock SUT mô phỏng, HTTP request/resp
 | [D-UI-14_variant-cart.jpg](screenshots/D/D-UI-14_variant-cart.jpg) | Screenshot_2026-10-19-16-00-40-975_host.exp.exponent.jpg | 216375f3c2b533affdd77635ac712e9e50104d9693e80eea84d5d00c3835bd6c | D-UI-14 |
 | [D-UI-14_variant-input.jpg](screenshots/D/D-UI-14_variant-input.jpg) | Screenshot_2026-10-19-16-00-29-868_host.exp.exponent.jpg | a8d07271a6f869924f39b844713ab1fd4edb114c44f77bca3718c0e5f9fed735 | D-UI-14 |
 | [D-UI-14_variant-response.jpg](screenshots/D/D-UI-14_variant-response.jpg) | Screenshot_2026-10-19-16-00-34-090_host.exp.exponent.jpg | e5745cc93240260473f9404d904ca2abf2d57cd60f2ab3dc51f502908104c5aa | D-UI-14 |
+| [A-UI-07_01-valid-input.png](screenshots/A/A-UI-07_01-valid-input.png) | codex-clipboard-5db8bff6-8dbc-497e-9f91-ebdfc1c26244.png | 0c70e541472142584c211f4cc78a6362c7e58fe1628bc9e12f9cf81ad6c2706e | A-UI-07 |
+| [A-UI-07_02-validation-error.png](screenshots/A/A-UI-07_02-validation-error.png) | codex-clipboard-d0bf2597-89a0-4ea9-9b32-d3f672bcc6c4.png | 99c90d4d44b2613a79968d476a1e09f0928e8f9f50845b36dd309b03d8bbacc4 | A-UI-07 |
+| [B-UI-06_01-limit-rejected.png](screenshots/B/B-UI-06_01-limit-rejected.png) | codex-clipboard-0d378fb8-0d60-494a-978e-cd4e980704fe.png | 7bd40d70e92c6c107bc210f04c7071e661921c88807e70892e69ac7b7e38a608 | B-UI-06 |
 
 ## 3. GitHub Issue evidence
 
@@ -93,3 +96,7 @@ Chưa có ảnh trang Issue trong bộ hiện tại. Khi hoàn thành giai đo�
 ## 4. Student clarification — 2026-10-20
 
 Sinh viên xác nhận ảnh Screenshot 2026-10-19 153726.png dùng chung cho C-UI-02/C-UI-06; ảnh vẫn thấy coupon valid và không còn HW02_DELETE_UI. Nó cũng giữ evidence giá trị minimum âm của C-UI-03. Ảnh Screenshot_2026-10-19-16-00-02-871_host.exp.exponent.jpg được xác nhận cho D-UI-12 và thấy một dòng quantity2/total60000000. Ba verdict được cập nhật PASS dựa ảnh cùng xác nhận của sinh viên; không nhận là replay độc lập hoặc thêm ảnh/TC mới.
+
+## 5. Bổ sung A/B — 2026-10-20
+
+Ba ảnh clipboard do sinh viên cung cấp được sao chép nguyên bytes và đặt tên theo TC; không có timestamp chụp chính xác, không suy từ tên/metadata. A-UI-07 có input hợp lệ và alert từ chối: FAIL do BUG-A03, chưa kết luận persistence. B-UI-06 đúng account/code/total và thông báo đạt giới hạn: PASS tại fixture used=2/limit=2. [Read-only query](execution/B-ui-fixture.md) lưu state hiện tại và giới hạn việc đọc sau khi nhận ảnh; hai usage rows được seed trực tiếp, không phải bằng chứng hai đơn mới. Ảnh nominal/phone sai cũ giữ làm historical variants trong cases, không thay evidence mới.

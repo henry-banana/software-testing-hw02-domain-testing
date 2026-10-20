@@ -9,7 +9,7 @@
 | Seam | Web UI |
 | Oracle | FR-04.2 |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
-| Affected TCs | [A-UI-02](../tests/A-FR04-profile.md#a-ui-02), [A-UI-03](../tests/A-FR04-profile.md#a-ui-03), [A-UI-05](../tests/A-FR04-profile.md#a-ui-05) |
+| Affected TCs | [A-UI-02](../tests/A-FR04-profile.md#a-ui-02), [A-UI-03](../tests/A-FR04-profile.md#a-ui-03), [A-UI-05](../tests/A-FR04-profile.md#a-ui-05), [A-UI-07](../tests/A-FR04-profile.md#a-ui-07) |
 | GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
 | Screenshot coverage | Có ảnh UI cụ thể dưới đây |
 
@@ -21,7 +21,7 @@ Lỗi được nhóm theo behavior; các giá trị biên/biến thể cùng ngu
 
 ## 2. Environment và preconditions
 
-Ảnh thực tế từ Web localhost:5173; profile account A-UI-01. Dùng baseline và mapping đã ghi. Giữ nguyên bytes ảnh; không có video/HTTP trace UI tự động của lượt chụp.
+Ảnh trước từ Web localhost:5173, account A-UI-01; lượt bổ sung A-UI-07 từ 127.0.0.1:5173/profile, account a_ui_07@hw02.invalid trong runtime Web riêng. Dùng baseline và mapping đã ghi. Giữ nguyên bytes ảnh; không có video/HTTP trace UI tự động của lượt chụp.
 
 ## 3. Steps to Reproduce
 
@@ -48,7 +48,7 @@ Expected bắt buộc ở mức hành vi của SRS/mapping. HTTP status hoặc c
 
 ## 5. Actual Result và hậu điều kiện
 
-Phone hợp lệ 0912345678 bị cảnh báo không hợp lệ; thao tác cập nhật bị chặn ngay ở frontend.
+Phone hợp lệ 0912345678 bị cảnh báo không hợp lệ; thao tác cập nhật bị chặn ngay ở frontend. A-UI-07 bổ sung cả name `Người Dùng HW02` và address `Đường Thử Nghiệm` với cùng phone hợp lệ; alert `Số điện thoại không hợp lệ. Vui lòng nhập đúng 9-10 chữ số.` tiếp tục chặn valid update. Chưa đạt tới fresh-login/readback, nên không kết luận Unicode bị hỏng hoặc được lưu.
 
 ## 6. Các biến thể và traceability
 
@@ -57,10 +57,11 @@ Phone hợp lệ 0912345678 bị cảnh báo không hợp lệ; thao tác cập 
 | A-UI-02 | {"phone": "0912345678"} | FAIL | [UI case](../tests/A-FR04-profile.md#a-ui-02) |
 | A-UI-03 | {"phone": "09123456789"} | FAIL | [UI case](../tests/A-FR04-profile.md#a-ui-03) |
 | A-UI-05 | {"phone": "1912345678"} | FAIL | [UI case](../tests/A-FR04-profile.md#a-ui-05) |
+| A-UI-07 | {"name":"Người Dùng HW02","shipping_address":"Đường Thử Nghiệm","phone":"0912345678"} | FAIL | [UI case](../tests/A-FR04-profile.md#a-ui-07) |
 
 ## 7. Impact và severity rationale
 
-Người dùng không cập nhật được phone đúng SRS qua UI; phone sai prefix lại đi qua frontend.
+Người dùng không cập nhật được phone đúng SRS qua UI; phone sai prefix lại đi qua frontend. Việc sửa name/address hợp lệ có dấu cũng bị chặn khi gửi kèm phone hợp lệ như A-UI-07, ảnh hưởng toàn thao tác cập nhật hồ sơ.
 
 Severity High được đề xuất theo ảnh hưởng tới tính đúng đắn dữ liệu, quyền truy cập hoặc phép tính tiền của behavior này; chưa phải mức do giảng viên duyệt. Bug không đồng nghĩa một sự cố production đã xảy ra.
 
@@ -91,6 +92,10 @@ Thống nhất validation frontend/backend theo rule SRS; regression đủ 9/10/
 ![A-UI-05_01-input](../evidence/screenshots/A/A-UI-05_01-input.png)
 
 ![A-UI-05_02-response](../evidence/screenshots/A/A-UI-05_02-response.png)
+
+![A-UI-07 valid input](../evidence/screenshots/A/A-UI-07_01-valid-input.png)
+
+![A-UI-07 valid phone rejected](../evidence/screenshots/A/A-UI-07_02-validation-error.png)
 
 Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
 

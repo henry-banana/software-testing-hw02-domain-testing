@@ -64,7 +64,7 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 | [A-UI-04](#a-ui-04) | Domain+BVA | Profile phone 091234567890 | PASS | A-D3 | — |
 | [A-UI-05](#a-ui-05) | Domain | Profile phone 1912345678 | FAIL | A-D4 | BUG-A03 |
 | [A-UI-06](#a-ui-06) | Domain | Email field cannot be changed | PASS | A-D11 | — |
-| [A-UI-07](#a-ui-07) | Domain | Unicode editable profile fields | INCOMPLETE | A-D7 | — |
+| [A-UI-07](#a-ui-07) | Domain | Unicode editable profile fields | FAIL | A-D7 | BUG-A03 |
 
 <a id="a-api-01"></a>
 
@@ -2296,12 +2296,12 @@ Email hiển thị ở field disabled. Source Profile.jsx dùng disabled cho inp
 | Oracle | UI FR-04 |
 | Domains | A-D7 |
 | Seam | UI thật |
-| Status | INCOMPLETE |
-| Bug | — |
+| Status | FAIL |
+| Bug | BUG-A03 |
 
 ### Preconditions
 
-Dùng môi trường UI/fixtures chung. Giữ các điều kiện không phải mục tiêu hợp lệ; các khác biệt của lượt ảnh hiện có được ghi riêng dưới Actual.
+Web runtime riêng tại 127.0.0.1:5173, account A-UI-07 (a_ui_07@hw02.invalid), mở /profile. Name/address có dấu và phone 0912345678 đều hợp lệ theo thiết kế; SUT chưa sửa BUG-A03.
 
 ### Input — thiết kế
 
@@ -2326,32 +2326,34 @@ Valid update accepted; name/address persist after fresh login.
 
 ### Actual và Evidence
 
-Ảnh hiển thị name Người Dùng HW02, address Đường Thử Nghiệm và alert thành công, nhưng phone là 1912345678; chưa có ảnh sau đăng nhập lại.
+Ảnh input hiển thị account A-UI-07, email a_ui_07@hw02.invalid, name `Người Dùng HW02`, address `Đường Thử Nghiệm` và phone `0912345678`. Sau bấm Cập nhật, alert báo `Số điện thoại không hợp lệ. Vui lòng nhập đúng 9-10 chữ số.` trong khi input hợp lệ vẫn hiện phía sau.
 
-**Variant / giới hạn:** Phone sai prefix thay cho fixture hợp lệ 0912345678. Không đổi mục tiêu thành test Unicode phone.
+![A-UI-07 valid input](../evidence/screenshots/A/A-UI-07_01-valid-input.png)
 
-**Timestamp UI:** không có log chính xác từng lượt; không tự dựng thời gian từ tên ảnh.
+![A-UI-07 validation error](../evidence/screenshots/A/A-UI-07_02-validation-error.png)
 
-![A-UI-07_variant-01_response](../evidence/screenshots/A/A-UI-07_variant-01_response.png)
+**Variant / giới hạn:** Ảnh cũ dưới đây dùng phone sai prefix 1912345678 và chỉ có alert thành công; giữ để truy vết lịch sử, không dùng để chứng minh persistence hay PASS. Ảnh mới đủ chứng minh valid update bị chặn bởi BUG-A03. Bước fresh login/readback chưa đạt tới do validation chặn; không kết luận dữ liệu Unicode bị hỏng hoặc lưu thành công.
 
-**Evidence còn thiếu:** Giữ nguyên TC; bổ sung bằng chứng lưu name/address sau fresh login. Với phone hợp lệ, frontend hiện bị BUG-A03 chặn; ghi ảnh chặn nếu tái hiện, không bỏ qua bằng một phone sai rồi chấm PASS.
+![A-UI-07 historical variant](../evidence/screenshots/A/A-UI-07_variant-01_response.png)
+
+**Timestamp UI:** không có timestamp chụp chính xác được cung cấp; ba ảnh mới được nhận trong hội thoại cập nhật ngày2026-10-20, không suy giờ thực thi từ file metadata.
 
 ### Verdict và rationale
 
-**INCOMPLETE** — Chưa đủ bằng chứng/precondition cho toàn bộ mục tiêu; không suy từ kết quả khác và không tính là executed hoàn chỉnh.
+**FAIL** — Criterion đầu tiên là chấp nhận cập nhật hợp lệ đã bị vi phạm. Gắn vào BUG-A03 vì cùng lỗi frontend từ chối phone đúng SRS; không tạo bug Unicode mới. Persistence sau sửa vẫn cần regression riêng.
 
 ## 3. Test Summary
 
 | Scope | Designed | Executed đủ bằng chứng | PASS | FAIL | OBSERVATION | INCOMPLETE | NOT RUN |
 |---|---|---|---|---|---|---|---|
 | A — API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
-| A — UI | 7 | 6 | 3 | 3 | 0 | 1 | 0 |
+| A — UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
 | B — API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
-| B — UI | 6 | 5 | 3 | 2 | 0 | 1 | 0 |
+| B — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | C — API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
 | C — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | D — API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
 | D — UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
-| **Tổng** | 114 | 112 | 52 | 56 | 4 | 2 | 0 |
+| **Tổng** | 114 | 114 | 53 | 57 | 4 | 0 | 0 |
 
 Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.

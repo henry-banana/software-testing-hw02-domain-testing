@@ -121,7 +121,7 @@ Kiểm domain→TC→actual→bug; sửa metadata/expected sai. Giữ các vùng
 | [A-UI-04](../tests/A-FR04-profile.md#a-ui-04) | PASS | Phone 091234567890 bị frontend từ chối. Kết quả từ chối đạt mục tiêu validation của UI, không chứng minh backend có validation. | — |
 | [A-UI-05](../tests/A-FR04-profile.md#a-ui-05) | FAIL | Phone 1912345678 có prefix sai nhưng UI báo cập nhật thành công. API A-API-09 xác nhận riêng việc backend có thể lưu prefix sai. | BUG-A03 |
 | [A-UI-06](../tests/A-FR04-profile.md#a-ui-06) | PASS | Email hiển thị ở field disabled. Source Profile.jsx dùng disabled cho input email; đây là kiểm tra thuộc tính không cho chỉnh sửa qua UI, không phải kiểm thử API đổi email. | — |
-| [A-UI-07](../tests/A-FR04-profile.md#a-ui-07) | INCOMPLETE | Ảnh hiển thị name Người Dùng HW02, address Đường Thử Nghiệm và alert thành công, nhưng phone là 1912345678; chưa có ảnh sau đăng nhập lại. | — |
+| [A-UI-07](../tests/A-FR04-profile.md#a-ui-07) | FAIL | Account A-UI-07 nhập name/address Unicode và phone hợp lệ 0912345678; UI báo phone không hợp lệ và chặn cập nhật. Persistence chưa đạt tới vì BUG-A03. | BUG-A03 |
 
 ## 6. Spec vs Code và bug groups
 
@@ -139,7 +139,7 @@ Các mục dưới đây là technical corrections có evidence của quá trìn
 |---|---|---|---|
 | Encoding bị áp thêm | Prompt/assumption | Metadata cũ ghi ASCII nhưng SRS chỉ nói chữ số | Giữ A-API-15 OBSERVATION; sửa oracle, không thêm bug Unicode |
 | API và UI bị đồng nhất | Giới hạn suy luận | A-API-01/02 PASS trong khi A-UI-02/03 FAIL | Tách seam; tạo BUG-A03 từ ảnh UI thật |
-| Persistence bị kết luận từ alert | Độ phức tạp trạng thái | A-UI-07 chỉ có alert, phone fixture sai, thiếu fresh login | Giữ INCOMPLETE; không biến thành test Unicode phone |
+| Persistence bị kết luận từ alert | Độ phức tạp trạng thái | Ảnh cũ sai phone; ảnh mới với phone hợp lệ bị BUG-A03 chặn | Chốt FAIL theo valid update; không suy persistence hoặc lỗi Unicode |
 
 ## 8. Coverage và giới hạn
 

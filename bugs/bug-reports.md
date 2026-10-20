@@ -8,7 +8,7 @@
 |---|---|---|---|---|---|
 | [BUG-A01](BUG-A01.md) | A | API chấp nhận và lưu phone không hợp lệ | High | 13 | API screenshot còn thiếu |
 | [BUG-A02](BUG-A02.md) | A | User tự ghi role=admin qua cập nhật hồ sơ | Critical | 1 | API screenshot còn thiếu |
-| [BUG-A03](BUG-A03.md) | A | Frontend từ chối phone hợp lệ và chấp nhận prefix sai | High | 3 | Có UI evidence |
+| [BUG-A03](BUG-A03.md) | A | Frontend từ chối phone hợp lệ và chấp nhận prefix sai | High | 4 | Có UI evidence |
 | [BUG-B01](BUG-B01.md) | B | Coupon bị từ chối khi tổng tiền bằng đúng ngưỡng | High | 4 | Có UI evidence |
 | [BUG-B02](BUG-B02.md) | B | Coupon percent trả tiền giảm âm và tăng thành tiền | Critical | 4 | Có UI evidence |
 | [BUG-B03](BUG-B03.md) | B | Coupon còn được dùng tại đúng thời điểm hết hạn | Medium | 1 | API screenshot còn thiếu |

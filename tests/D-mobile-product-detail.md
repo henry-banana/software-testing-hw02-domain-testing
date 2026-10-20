@@ -1052,13 +1052,13 @@ Có input số dài, alert thành công và cart. Ô input có thể cuộn ngan
 | Scope | Designed | Executed đủ bằng chứng | PASS | FAIL | OBSERVATION | INCOMPLETE | NOT RUN |
 |---|---|---|---|---|---|---|---|
 | A — API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
-| A — UI | 7 | 6 | 3 | 3 | 0 | 1 | 0 |
+| A — UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
 | B — API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
-| B — UI | 6 | 5 | 3 | 2 | 0 | 1 | 0 |
+| B — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | C — API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
 | C — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | D — API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
 | D — UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
-| **Tổng** | 114 | 112 | 52 | 56 | 4 | 2 | 0 |
+| **Tổng** | 114 | 114 | 53 | 57 | 4 | 0 | 0 |
 
 Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.

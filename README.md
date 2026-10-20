@@ -15,16 +15,16 @@ Repository chứa báo cáo cá nhân, phân tích Domain/BVA, test cases, bug r
 | Scope | Designed | Executed đủ bằng chứng | PASS | FAIL | OBSERVATION | INCOMPLETE | NOT RUN |
 |---|---|---|---|---|---|---|---|
 | A — API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
-| A — UI | 7 | 6 | 3 | 3 | 0 | 1 | 0 |
+| A — UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
 | B — API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
-| B — UI | 6 | 5 | 3 | 2 | 0 | 1 | 0 |
+| B — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | C — API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
 | C — UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | D — API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
 | D — UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
-| **Tổng** | 114 | 112 | 52 | 56 | 4 | 2 | 0 |
+| **Tổng** | 114 | 114 | 53 | 57 | 4 | 0 | 0 |
 
-18 bug groups, 68 ảnh. 15 API bug groups; 3 UI-only groups. Observations không phải bugs; INCOMPLETE không được cộng executed đủ bằng chứng. Group Issues chưa đăng; phần nhóm thực hiện cuối.
+18 bug groups, 71 ảnh. 15 API bug groups; 3 UI-only groups. Observations không phải bugs; INCOMPLETE không được cộng executed đủ bằng chứng. Group Issues chưa đăng; phần nhóm thực hiện cuối.
 
 ## Danh mục artifact
 
@@ -34,7 +34,7 @@ Repository chứa báo cáo cá nhân, phân tích Domain/BVA, test cases, bug r
 | [reports/](reports/) | Bốn phân tích feature có domain/biên/traceability và kết quả. |
 | [tests/](tests/) | 114 TC chi tiết: fixture, input, steps, expected, actual, evidence, verdict. |
 | [Bug Report](bugs/bug-reports.md) | 18 bug files riêng, mỗi bug có exact reproduction, impact và screenshot status. |
-| [Evidence Register](evidence/README.md) | Raw HTTP, source checksums và68ảnh có provenance. |
+| [Evidence Register](evidence/README.md) | Raw HTTP, source checksums và71ảnh có provenance. |
 | [Prompt Log](Appendix_A_Prompt_Log.md) | Prompt/output messages nguyên văn với timestamp nguồn. |
 | [AI Audit](<ai-audit/[AI-02] - FIT@HCMUS - AI Audit Report_Vn.md>) | Technical verdict, corrections và original AI artifact snapshots. |
 | [AI Disclosure](<ai-audit/[AI-03] - FIT@HCMUS - AI Disclosure Form_Vn.md>) | Công cụ, phạm vi đóng góp và xác nhận do sinh viên cung cấp. |
@@ -56,8 +56,8 @@ Các script hỗ trợ thực thi/kiểm tra được quản lý trong workspace
 
 | No. | Criteria | Maximum | Self-Assessed Grade (draft) | Giải trình |
 |---|---|---|---|---|
-| 1 | Feature A — Domain + Boundary | 25 | 22 | 11 domain groups; đủ biên9/10/11/12 và role/ownership; A-UI-07 còn thiếu persistence evidence. |
-| 2 | Feature B — Domain + Boundary | 25 | 22 | Decision table C1–C5; money/expiry/usage boundaries; B-UI-06 chưa chứng minh exhausted usage. |
+| 1 | Feature A — Domain + Boundary | 25 | 22 | 11 domain groups; đủ biên9/10/11/12 và role/ownership; A-UI-07 đã có input hợp lệ và lỗi chặn BUG-A03; persistence cần regression sau sửa. |
+| 2 | Feature B — Domain + Boundary | 25 | 22 | Decision table C1–C5; money/expiry/usage boundaries; B-UI-06 đã có UI từ chối đúng user tại fixture used=2/limit=2. |
 | 3 | Feature C — Domain + Boundary | 25 | 22 | Required/enum/numeric và từng operation role; C-UI-02/C-UI-06 đã có ảnh dùng chung và xác nhận của sinh viên. |
 | 4 | Feature D — Mobile, Domain + Boundary | 15 | 12 | Có ảnh native quantity/detail/feedback; mapping được công khai; D-UI-12 có ảnh hậu điều kiện và xác nhận case; exploratory limits giữ rõ. |
 | 5 | Agent Skills | 10 | 8 | Có skill và ví dụ xuyên suốt; video đang quay, link tạm chưa được xác nhận truy cập. |
@@ -74,7 +74,7 @@ Các script hỗ trợ thực thi/kiểm tra được quản lý trong workspace
 | §5: 4 features, 1/pool, không trùng | Scope A/B/C/D; phân công đã được xác nhận | Đạt phạm vi đã chọn |
 | §6.1: Domain Testing từng bước | Main report §3–6 + reports/*-domain.md | Có vector/partition/representatives/cross-constraints/TC mapping |
 | §6.2: BVA từng bước | Bảng biến/rule/delta/biên/neighbors cho cả4 feature | Có; lecture chưa có để đối chiếu quy ước lớp |
-| §6: Comprehensive execution/evidence | 114 designed; 81 API tái chạy; 33 UI IDs gắn ảnh | Còn2 TC INCOMPLETE: A-UI-07/B-UI-06; không claim114 executed |
+| §6: Comprehensive execution/evidence | 114 designed; 81 API tái chạy; 33 UI IDs gắn ảnh | 114 executed đủ evidence: 53 PASS / 57 FAIL / 4 OBSERVATION; 0 INCOMPLETE |
 | §6.3: AI gap analysis và nguyên nhân | Mỗi feature có gap/evidence/cause/correction | Có technical review; sinh viên đọc lại bản viết mới |
 | §6.4/§14: Markdown bugs + group Issues + screenshot | 18 files bugs/; raw API và ảnh UI | Markdown có; chưa đăng Issue/ảnh trang Issue; API-only bugs thiếu ảnh terminal |
 | §7: Skill + video end-to-end | .agents/skills/domain-bva-testing/SKILL.md; Video_Links.md | Skill có; video đang quay, link tạm theo yêu cầu |

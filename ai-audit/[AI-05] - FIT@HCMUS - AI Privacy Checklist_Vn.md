@@ -13,7 +13,7 @@
 
 - [x] API fixture là dữ liệu demo; runtime/database tách SUT gốc.
 - [x] Raw HTTP loại password/token/reset_token; không ghi JWT thật trong case/bug.
-- [x] 68 ảnh dùng nguyên bytes, có SHA-256 và mapping tên nguồn.
+- [x] 71 ảnh dùng nguyên bytes, có SHA-256 và mapping tên nguồn.
 - [x] PASS/FAIL/OBSERVATION/INCOMPLETE được tách theo bằng chứng; không dùng build/API thay native UI.
 - [x] Không tạo screenshots/video/chữ ký mới thay sinh viên.
 
@@ -22,7 +22,7 @@
 - [x] AI Critique giữ nguyên245từ, trong khoảng200–300.
 - [x] Có skill, 18bug files, testcase report và Git log actual.
 - [ ] Sinh viên đọc lại verdicts, disclosure, critique và self-assessment sau rewrite.
-- [ ] Bổ sung evidence cho A-UI-07 và B-UI-06; C-UI-02/C-UI-06/D-UI-12 đã được sinh viên làm rõ.
+- [x] Đã bổ sung3ảnh cho A-UI-07/B-UI-06 và read-only fixture readback; C-UI-02/C-UI-06/D-UI-12 đã được sinh viên làm rõ.
 - [ ] Đính kèm ảnh API-only bugs và ảnh/URL GitHub Issues ở giai đoạn nhóm cuối.
 - [ ] Thay link video tạm bằng URL thật khi quay/upload xong.
 - [ ] Xuất PDF/ZIP và kiểm tra quy cách Moodle; đây là bước sinh viên tự thực hiện.
