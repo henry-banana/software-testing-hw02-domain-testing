@@ -1,16 +1,16 @@
-# BUG-D02 — Mobile productDetail thiếu hiển thị danh mục
+# BUG-D02 - Mobile productDetail thiếu hiển thị danh mục
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-D02 |
-| Feature | Mobile productDetail — Chi tiết sản phẩm và quantity |
-| Severity | Medium — đề xuất kỹ thuật, xem Impact |
+| Feature | Mobile productDetail - Chi tiết sản phẩm và quantity |
+| Severity | Medium - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | Mobile UI |
-| Oracle | FR-20 → FR-06 detail mapping |
+| Oracle | FR-20 -> FR-06 detail mapping |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [D-UI-09](../tests/D-mobile-product-detail.md#d-ui-09) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#48](https://github.com/tkob-team/eshop-sut/issues/48) - OPEN |
 | Screenshot coverage | Có ảnh UI cụ thể dưới đây |
 
 ## 1. Mô tả và điều kiện kích hoạt
@@ -37,7 +37,7 @@ Lỗi được nhóm theo behavior; các giá trị biên/biến thể cùng ngu
 }
 ```
 
-**Variant thực tế:** Samsung thay iPhone. Kết luận dùng mapping chức năng Mobile FR-20 → FR-06 được trình bày trong báo cáo; không áp các ràng buộc HTML của Web cho React Native.
+**Variant thực tế:** Samsung thay iPhone. Kết luận dùng mapping chức năng Mobile FR-20 -> FR-06 được trình bày trong báo cáo; không áp các ràng buộc HTML của Web cho React Native.
 
 ## 4. Expected Result
 
@@ -75,7 +75,7 @@ Tra cứu/render category label đúng sản phẩm; regression kiểm tra đủ
 
 ![D-UI-10_product-2_detail](../evidence/screenshots/D/D-UI-10_product-2_detail.jpg)
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#48](https://github.com/tkob-team/eshop-sut/issues/48). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 

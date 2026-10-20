@@ -1,16 +1,16 @@
-# BUG-B01 — Coupon bị từ chối khi tổng tiền bằng đúng ngưỡng
+# BUG-B01 - Coupon bị từ chối khi tổng tiền bằng đúng ngưỡng
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-B01 |
-| Feature | FR-09 — Áp dụng mã giảm giá |
-| Severity | High — đề xuất kỹ thuật, xem Impact |
+| Feature | FR-09 - Áp dụng mã giảm giá |
+| Severity | High - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | API + UI |
 | Oracle | FR-09 C3 |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [B-API-03](../tests/B-FR09-discount-coupons.md#b-api-03), [B-API-06](../tests/B-FR09-discount-coupons.md#b-api-06), [B-API-24](../tests/B-FR09-discount-coupons.md#b-api-24), [B-UI-02](../tests/B-FR09-discount-coupons.md#b-ui-02) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#34](https://github.com/tkob-team/eshop-sut/issues/34) - OPEN |
 | Screenshot coverage | Có ảnh UI cụ thể dưới đây |
 
 ## 1. Mô tả và điều kiện kích hoạt
@@ -88,7 +88,7 @@ Timestamp UTC: `2026-10-19T19:50:58.904Z`. Trace sau giữ nguyên request/statu
 
 ## 7. Impact và severity rationale
 
-Đơn vừa đạt ngưỡng bị từ chối mã dù điều kiện total≥minimum đã thỏa.
+Đơn vừa đạt ngưỡng bị từ chối mã dù điều kiện total>=minimum đã thỏa.
 
 Severity High được đề xuất theo ảnh hưởng tới tính đúng đắn dữ liệu, quyền truy cập hoặc phép tính tiền của behavior này; chưa phải mức do giảng viên duyệt. Bug không đồng nghĩa một sự cố production đã xảy ra.
 
@@ -98,7 +98,7 @@ Nhánh accept dùng total_amount > coupon.min_order_amount, bỏ equality.
 
 [Source baseline](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/backend/server.js). Source giải thích cơ chế; xác nhận runtime dựa trên evidence ở trên.
 
-Dùng total_amount >= minimum ở nhánh accept; giữ test M−1/M/M+1.
+Dùng total_amount >= minimum ở nhánh accept; giữ test M-1/M/M+1.
 
 Đây là đề xuất, chưa sửa SUT và chưa chạy retest sau fix.
 
@@ -108,7 +108,7 @@ Dùng total_amount >= minimum ở nhánh accept; giữ test M−1/M/M+1.
 
 ![B-UI-02_02-response](../evidence/screenshots/B/B-UI-02_02-response.png)
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#34](https://github.com/tkob-team/eshop-sut/issues/34). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 

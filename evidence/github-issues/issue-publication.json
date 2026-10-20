@@ -1,0 +1,350 @@
+{
+  "repository": "tkob-team/eshop-sut",
+  "verified_utc": "2026-10-20T04:39:58.710315+00:00",
+  "method": "GitHub CLI authenticated API readback; no browser or computer use",
+  "group_repository_file_changes": false,
+  "issues": [
+    {
+      "bug_id": "BUG-A01",
+      "number": 31,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/31",
+      "title": "[23120262][BUG-A01] API ch\u1ea5p nh\u1eadn v\u00e0 l\u01b0u phone kh\u00f4ng h\u1ee3p l\u1ec7",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:37:32Z",
+      "body_sha256_utf8_lf": "fc9a61f11435927ef3cf9c3ee6faf6203b8ea81be1379e8d5e73595180661e07",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-A02",
+      "number": 32,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/32",
+      "title": "[23120262][BUG-A02] User t\u1ef1 ghi role=admin qua c\u1eadp nh\u1eadt h\u1ed3 s\u01a1",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:37:36Z",
+      "body_sha256_utf8_lf": "ea475ce33e164455d6417f3e930dbbedf8c504d71818d9d74a6df1bde3182b0f",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-A03",
+      "number": 33,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/33",
+      "title": "[23120262][BUG-A03] Frontend t\u1eeb ch\u1ed1i phone h\u1ee3p l\u1ec7 v\u00e0 ch\u1ea5p nh\u1eadn prefix sai",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:37:40Z",
+      "body_sha256_utf8_lf": "56e66ed4380920e23c21f0442c73bff7f272b242c2290cff476d86af6665c644",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-B01",
+      "number": 34,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/34",
+      "title": "[23120262][BUG-B01] Coupon b\u1ecb t\u1eeb ch\u1ed1i khi t\u1ed5ng ti\u1ec1n b\u1eb1ng \u0111\u00fang ng\u01b0\u1ee1ng",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:37:44Z",
+      "body_sha256_utf8_lf": "b91e6dd1977b5a4cec59ca44d985e295b63d22abd115d0c1218247d00850c10c",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-B02",
+      "number": 35,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/35",
+      "title": "[23120262][BUG-B02] Coupon percent tr\u1ea3 ti\u1ec1n gi\u1ea3m \u00e2m v\u00e0 t\u0103ng th\u00e0nh ti\u1ec1n",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:37:50Z",
+      "body_sha256_utf8_lf": "4a24d4bb40c5cba8fab5319c970db2bb372a630a607c8cd9beef8fb94ace4b9c",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-B03",
+      "number": 36,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/36",
+      "title": "[23120262][BUG-B03] Coupon c\u00f2n \u0111\u01b0\u1ee3c d\u00f9ng t\u1ea1i \u0111\u00fang th\u1eddi \u0111i\u1ec3m h\u1ebft h\u1ea1n",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:37:54Z",
+      "body_sha256_utf8_lf": "947e0dc01a09c4b9f03454ae444b76ca4ef5772c0404bf7e87ffc6b28c9641d1",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-B04",
+      "number": 37,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/37",
+      "title": "[23120262][BUG-B04] Apply coupon b\u1ecf qua JWT thi\u1ebfu, sai v\u00e0 h\u1ebft h\u1ea1n",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:37:58Z",
+      "body_sha256_utf8_lf": "709928a9577e65a4692986fba6abd3c543d86b053cbab3b1607323df0c738bf7",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-B05",
+      "number": 38,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/38",
+      "title": "[23120262][BUG-B05] Body user_id cho ph\u00e9p bypass l\u01b0\u1ee3t d\u00f9ng c\u1ee7a user x\u00e1c th\u1ef1c",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:38:02Z",
+      "body_sha256_utf8_lf": "e093c37a7bc17227443f2e1ddfb2ec246461c6a417f3354a83914bef9221f982",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-C01",
+      "number": 39,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/39",
+      "title": "[23120262][BUG-C01] Thi\u1ebfu required fields ho\u1eb7c code r\u1ed7ng v\u1eabn t\u1ea1o coupon",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:38:06Z",
+      "body_sha256_utf8_lf": "9653002ecd082d60b4ebf9be31df66514e4d57e731909291ab9f0f244232d6f0",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-C03",
+      "number": 40,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/40",
+      "title": "[23120262][BUG-C03] Type ngo\u00e0i enum percent/fixed v\u1eabn \u0111\u01b0\u1ee3c l\u01b0u",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:38:11Z",
+      "body_sha256_utf8_lf": "ebc9d9d24dab9623741c916a6d8b2769e7719e73a2d0083a83bc7007c1fc164a",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-C04",
+      "number": 41,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/41",
+      "title": "[23120262][BUG-C04] discount_value b\u1eb1ng 0 ho\u1eb7c \u00e2m v\u1eabn t\u1ea1o coupon",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:38:15Z",
+      "body_sha256_utf8_lf": "cfcf2ddbf544e08de06c8f788e58b4daa5fce52e027ec7c7b7e9850160755116",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-C05",
+      "number": 42,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/42",
+      "title": "[23120262][BUG-C05] min_order_amount \u00e2m v\u1eabn \u0111\u01b0\u1ee3c l\u01b0u",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:38:19Z",
+      "body_sha256_utf8_lf": "63a11f5cedc4c0153e475a2554bcb5c7fd306753b58d69ac7734bf87cabb4865",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-C06",
+      "number": 43,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/43",
+      "title": "[23120262][BUG-C06] Usage limit \u00e2m \u0111\u01b0\u1ee3c l\u01b0u, zero b\u1ecb \u0111\u1ed5i ng\u1ea7m th\u00e0nh 1",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:38:23Z",
+      "body_sha256_utf8_lf": "dd7dc95b2ae2fe2348fe7e8f577c77b609455f73cd64085a82b8757d6b8bc538",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-C07",
+      "number": 44,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/44",
+      "title": "[23120262][BUG-C07] User th\u01b0\u1eddng t\u1ea1o \u0111\u01b0\u1ee3c coupon c\u1ee7a Admin",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:38:27Z",
+      "body_sha256_utf8_lf": "27889baf7672c5642ce6acfcb9bca79a2305cbfce3b553abc29367b5d81716c5",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-C08",
+      "number": 45,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/45",
+      "title": "[23120262][BUG-C08] User th\u01b0\u1eddng \u0111\u1ecdc \u0111\u01b0\u1ee3c danh s\u00e1ch coupon qu\u1ea3n tr\u1ecb",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:38:30Z",
+      "body_sha256_utf8_lf": "88cdf7ce16ef9150ccd8d80fcdd39d1a81067d35707586ac44d26e43554b95de",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-C09",
+      "number": 46,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/46",
+      "title": "[23120262][BUG-C09] User th\u01b0\u1eddng x\u00f3a \u0111\u01b0\u1ee3c coupon c\u1ee7a Admin",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:38:34Z",
+      "body_sha256_utf8_lf": "04c55f86e97ea5134458cd9fd66e0f337a63da07a88ad27f414fbd64492beb51",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-D01",
+      "number": 47,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/47",
+      "title": "[23120262][BUG-D01] Mobile ch\u1ea5p nh\u1eadn quantity kh\u00f4ng h\u1ee3p l\u1ec7 khi Add",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:38:38Z",
+      "body_sha256_utf8_lf": "7da1cbcad1e75bd2a0d6498e0a42a577112ec2beef35b36aae1ed12268aca90b",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    },
+    {
+      "bug_id": "BUG-D02",
+      "number": 48,
+      "url": "https://github.com/tkob-team/eshop-sut/issues/48",
+      "title": "[23120262][BUG-D02] Mobile productDetail thi\u1ebfu hi\u1ec3n th\u1ecb danh m\u1ee5c",
+      "state": "OPEN",
+      "author": "henry-banana",
+      "assignees": [
+        "henry-banana"
+      ],
+      "labels": [
+        "bug"
+      ],
+      "created_at": "2026-10-20T04:38:42Z",
+      "body_sha256_utf8_lf": "92c39553405e8cfc52237dae92fceda34217debb77f90b32ec34d82bc9ea84b8",
+      "body_verified_against_prepared_markdown": true,
+      "bug_screenshot_attached": false,
+      "issue_page_screenshot_captured": false
+    }
+  ]
+}

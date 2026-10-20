@@ -1,16 +1,16 @@
-# BUG-B04 — Apply coupon bỏ qua JWT thiếu, sai và hết hạn
+# BUG-B04 - Apply coupon bỏ qua JWT thiếu, sai và hết hạn
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-B04 |
-| Feature | FR-09 — Áp dụng mã giảm giá |
-| Severity | High — đề xuất kỹ thuật, xem Impact |
+| Feature | FR-09 - Áp dụng mã giảm giá |
+| Severity | High - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | API |
 | Oracle | FR-09 C4 |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [B-API-19](../tests/B-FR09-discount-coupons.md#b-api-19), [B-API-20](../tests/B-FR09-discount-coupons.md#b-api-20), [B-API-21](../tests/B-FR09-discount-coupons.md#b-api-21) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#37](https://github.com/tkob-team/eshop-sut/issues/37) - OPEN |
 | Screenshot coverage | Có raw API trace; còn thiếu ảnh terminal/API cho Issue |
 
 ## 1. Mô tả và điều kiện kích hoạt
@@ -109,7 +109,7 @@ Xác thực token trước xử lý coupon; kết hợp lấy identity từ JWT.
 
 Raw HTTP record là evidence của run đã thực hiện. Chưa có screenshot API thật cho bug này; không dùng ảnh một UI khác làm chứng cứ thay thế.
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#37](https://github.com/tkob-team/eshop-sut/issues/37). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 

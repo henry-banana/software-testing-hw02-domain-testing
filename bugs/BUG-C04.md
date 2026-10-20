@@ -1,21 +1,21 @@
-# BUG-C04 — discount_value bằng 0 hoặc âm vẫn tạo coupon
+# BUG-C04 - discount_value bằng 0 hoặc âm vẫn tạo coupon
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-C04 |
-| Feature | FR-17 — Quản lý mã giảm giá |
-| Severity | High — đề xuất kỹ thuật, xem Impact |
+| Feature | FR-17 - Quản lý mã giảm giá |
+| Severity | High - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | API + UI |
 | Oracle | FR-17 discount_value>0 |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [C-API-12](../tests/C-FR17-coupon-management.md#c-api-12), [C-API-13](../tests/C-FR17-coupon-management.md#c-api-13), [C-UI-01](../tests/C-FR17-coupon-management.md#c-ui-01) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#41](https://github.com/tkob-team/eshop-sut/issues/41) - OPEN |
 | Screenshot coverage | Có ảnh UI cụ thể dưới đây |
 
 ## 1. Mô tả và điều kiện kích hoạt
 
-discount_value bằng 0 hoặc âm vẫn tạo coupon. Route không kiểm tra giá trị dương; C-API-12 là −1, C-API-13 là 0.
+discount_value bằng 0 hoặc âm vẫn tạo coupon. Route không kiểm tra giá trị dương; C-API-12 là -1, C-API-13 là 0.
 
 Lỗi được nhóm theo behavior; các giá trị biên/biến thể cùng nguyên nhân không tạo một bug mới cho mỗi TC FAIL.
 
@@ -176,7 +176,7 @@ Severity High được đề xuất theo ảnh hưởng tới tính đúng đắ
 
 ## 8. Root Cause và hướng khắc phục đề xuất
 
-Route không kiểm tra giá trị dương; C-API-12 là −1, C-API-13 là 0.
+Route không kiểm tra giá trị dương; C-API-12 là -1, C-API-13 là 0.
 
 [Source baseline](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/backend/server.js). Source giải thích cơ chế; xác nhận runtime dựa trên evidence ở trên.
 
@@ -190,7 +190,7 @@ Reject discount_value<=0 trước INSERT; kiểm tra type/precision theo contrac
 
 ![C-UI-01_02-created](../evidence/screenshots/C/C-UI-01_02-created.png)
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#41](https://github.com/tkob-team/eshop-sut/issues/41). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 

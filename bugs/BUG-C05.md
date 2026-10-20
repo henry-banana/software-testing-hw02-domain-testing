@@ -1,16 +1,16 @@
-# BUG-C05 — min_order_amount âm vẫn được lưu
+# BUG-C05 - min_order_amount âm vẫn được lưu
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-C05 |
-| Feature | FR-17 — Quản lý mã giảm giá |
-| Severity | Medium — đề xuất kỹ thuật, xem Impact |
+| Feature | FR-17 - Quản lý mã giảm giá |
+| Severity | Medium - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | API + UI |
-| Oracle | FR-17 min_order_amount≥0 |
+| Oracle | FR-17 min_order_amount>=0 |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [C-API-15](../tests/C-FR17-coupon-management.md#c-api-15), [C-UI-03](../tests/C-FR17-coupon-management.md#c-ui-03) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#42](https://github.com/tkob-team/eshop-sut/issues/42) - OPEN |
 | Screenshot coverage | Có ảnh UI cụ thể dưới đây |
 
 ## 1. Mô tả và điều kiện kích hoạt
@@ -169,7 +169,7 @@ Timestamp UTC: `2026-10-19T20:08:01.153Z`. Trace sau giữ nguyên request/statu
 
 ## 7. Impact và severity rationale
 
-Coupon được tạo với minimum −1. Không gọi đây là lỗi gây mất toàn bộ ngưỡng vì minimum=0 vốn được SRS cho phép.
+Coupon được tạo với minimum -1. Không gọi đây là lỗi gây mất toàn bộ ngưỡng vì minimum=0 vốn được SRS cho phép.
 
 Severity Medium được đề xuất theo ảnh hưởng tới tính đúng đắn dữ liệu, quyền truy cập hoặc phép tính tiền của behavior này; chưa phải mức do giảng viên duyệt. Bug không đồng nghĩa một sự cố production đã xảy ra.
 
@@ -189,7 +189,7 @@ Reject minimum<0; vẫn chấp nhận đúng minimum=0.
 
 ![C-UI-03_02-created](../evidence/screenshots/C/C-shared_coupon-list.png)
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#42](https://github.com/tkob-team/eshop-sut/issues/42). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 

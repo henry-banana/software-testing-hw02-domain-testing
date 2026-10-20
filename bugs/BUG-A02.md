@@ -1,16 +1,16 @@
-# BUG-A02 — User tự ghi role=admin qua cập nhật hồ sơ
+# BUG-A02 - User tự ghi role=admin qua cập nhật hồ sơ
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-A02 |
-| Feature | FR-04 — Quản lý hồ sơ cá nhân |
-| Severity | Critical — đề xuất kỹ thuật, xem Impact |
+| Feature | FR-04 - Quản lý hồ sơ cá nhân |
+| Severity | Critical - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | API |
 | Oracle | FR-04.4 / SEC-06 |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [A-API-18](../tests/A-FR04-profile.md#a-api-18) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#32](https://github.com/tkob-team/eshop-sut/issues/32) - OPEN |
 | Screenshot coverage | Có raw API trace; còn thiếu ảnh terminal/API cho Issue |
 
 ## 1. Mô tả và điều kiện kích hoạt
@@ -123,7 +123,7 @@ Whitelist name/phone/shipping_address; loại role khỏi dữ liệu client đ�
 
 Raw HTTP record là evidence của run đã thực hiện. Chưa có screenshot API thật cho bug này; không dùng ảnh một UI khác làm chứng cứ thay thế.
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#32](https://github.com/tkob-team/eshop-sut/issues/32). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 

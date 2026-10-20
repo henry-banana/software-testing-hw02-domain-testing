@@ -1,16 +1,16 @@
-# BUG-C01 — Thiếu required fields hoặc code rỗng vẫn tạo coupon
+# BUG-C01 - Thiếu required fields hoặc code rỗng vẫn tạo coupon
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-C01 |
-| Feature | FR-17 — Quản lý mã giảm giá |
-| Severity | High — đề xuất kỹ thuật, xem Impact |
+| Feature | FR-17 - Quản lý mã giảm giá |
+| Severity | High - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | API |
 | Oracle | FR-17 required fields |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [C-API-03](../tests/C-FR17-coupon-management.md#c-api-03), [C-API-04](../tests/C-FR17-coupon-management.md#c-api-04), [C-API-05](../tests/C-FR17-coupon-management.md#c-api-05), [C-API-06](../tests/C-FR17-coupon-management.md#c-api-06), [C-API-07](../tests/C-FR17-coupon-management.md#c-api-07), [C-API-08](../tests/C-FR17-coupon-management.md#c-api-08), [C-API-09](../tests/C-FR17-coupon-management.md#c-api-09) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#39](https://github.com/tkob-team/eshop-sut/issues/39) - OPEN |
 | Screenshot coverage | Có raw API trace; còn thiếu ảnh terminal/API cho Issue |
 
 ## 1. Mô tả và điều kiện kích hoạt
@@ -190,7 +190,7 @@ Validate sáu required fields trước INSERT; phân biệt missing/null/empty v
 
 Raw HTTP record là evidence của run đã thực hiện. Chưa có screenshot API thật cho bug này; không dùng ảnh một UI khác làm chứng cứ thay thế.
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#39](https://github.com/tkob-team/eshop-sut/issues/39). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 

@@ -13,7 +13,7 @@ Raw reports ghi thời gian UTC thật, clock SUT mô phỏng, HTTP request/resp
 
 ## 2. UI screenshot provenance
 
-71 ảnh sử dụng giữ nguyên SHA-256 từ bộ ảnh được cung cấp; tên mới gắn TC/variant. Một ảnh PNG 5×63px bị loại khỏi submission vì không đọc được nội dung. Nhiều ảnh hoặc dùng lại một ảnh không tạo TC mới.
+71 ảnh sử dụng giữ nguyên SHA-256 từ bộ ảnh được cung cấp; tên mới gắn TC/variant. Một ảnh PNG 5x63px bị loại khỏi submission vì không đọc được nội dung. Nhiều ảnh hoặc dùng lại một ảnh không tạo TC mới.
 
 | File hiện tại | Tên nguồn | SHA-256 | TC dùng evidence |
 |---|---|---|---|
@@ -91,12 +91,6 @@ Raw reports ghi thời gian UTC thật, clock SUT mô phỏng, HTTP request/resp
 
 ## 3. GitHub Issue evidence
 
-Chưa có ảnh trang Issue trong bộ hiện tại. Khi hoàn thành giai đoạn nhóm, lưu ảnh có số Issue, title, nội dung và ảnh bug đính kèm; cập nhật URL trong đúng file bugs/BUG-*.md.
+Đã đăng18Issues cá nhân: [Issue Evidence](github-issues/README.md), gồm URL/number và trạng thái ảnh. [Readback record](github-issues/issue-publication.json) được đối chiếu body bằng CLI; không có ảnh trang Issue tự sinh. Sinh viên sẽ đính kèm ảnh trực tiếp lên Issues và lưu ảnh trang Issue vào evidence/github-issues/.
 
-## 4. Student clarification — 2026-10-20
-
-Sinh viên xác nhận ảnh Screenshot 2026-10-19 153726.png dùng chung cho C-UI-02/C-UI-06; ảnh vẫn thấy coupon valid và không còn HW02_DELETE_UI. Nó cũng giữ evidence giá trị minimum âm của C-UI-03. Ảnh Screenshot_2026-10-19-16-00-02-871_host.exp.exponent.jpg được xác nhận cho D-UI-12 và thấy một dòng quantity2/total60000000. Ba verdict được cập nhật PASS dựa ảnh cùng xác nhận của sinh viên; không nhận là replay độc lập hoặc thêm ảnh/TC mới.
-
-## 5. Bổ sung A/B — 2026-10-20
-
-Ba ảnh clipboard do sinh viên cung cấp được sao chép nguyên bytes và đặt tên theo TC; không có timestamp chụp chính xác, không suy từ tên/metadata. A-UI-07 có input hợp lệ và alert từ chối: FAIL do BUG-A03, chưa kết luận persistence. B-UI-06 đúng account/code/total và thông báo đạt giới hạn: PASS tại fixture used=2/limit=2. [Read-only query](execution/B-ui-fixture.md) lưu state hiện tại và giới hạn việc đọc sau khi nhận ảnh; hai usage rows được seed trực tiếp, không phải bằng chứng hai đơn mới. Ảnh nominal/phone sai cũ giữ làm historical variants trong cases, không thay evidence mới.
+Bản hiển thị prompt/output đã chuẩn hóa dấu câu; [source-records.json](ai-originals/source-records.json) giữ nội dung gốc vàSHA256, bao gồm rawAPI trước đổi dấu tiêu đề. PayloadJSON/rawactual không bị sửa bởi chuẩn hóa trình bày.

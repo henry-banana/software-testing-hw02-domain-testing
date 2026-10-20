@@ -1,21 +1,21 @@
-# BUG-C06 — Usage limit âm được lưu, zero bị đổi ngầm thành 1
+# BUG-C06 - Usage limit âm được lưu, zero bị đổi ngầm thành 1
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-C06 |
-| Feature | FR-17 — Quản lý mã giảm giá |
-| Severity | Medium — đề xuất kỹ thuật, xem Impact |
+| Feature | FR-17 - Quản lý mã giảm giá |
+| Severity | Medium - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | API |
-| Oracle | FR-17 max_uses_per_user≥1 |
+| Oracle | FR-17 max_uses_per_user>=1 |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [C-API-18](../tests/C-FR17-coupon-management.md#c-api-18), [C-API-19](../tests/C-FR17-coupon-management.md#c-api-19) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#43](https://github.com/tkob-team/eshop-sut/issues/43) - OPEN |
 | Screenshot coverage | Có raw API trace; còn thiếu ảnh terminal/API cho Issue |
 
 ## 1. Mô tả và điều kiện kích hoạt
 
-Usage limit âm được lưu, zero bị đổi ngầm thành 1. Source dùng max_uses_per_user || 1: 0 trở thành1, −1 truthy nên giữ nguyên. Không phải Math.max.
+Usage limit âm được lưu, zero bị đổi ngầm thành 1. Source dùng max_uses_per_user || 1: 0 trở thành1, -1 truthy nên giữ nguyên. Không phải Math.max.
 
 Lỗi được nhóm theo behavior; các giá trị biên/biến thể cùng nguyên nhân không tạo một bug mới cho mỗi TC FAIL.
 
@@ -160,7 +160,7 @@ Timestamp UTC: `2026-10-19T20:08:01.248Z`. Trace sau giữ nguyên request/statu
 
 [Full record C-API-19](../evidence/execution/C-api.md#c-api-19).
 
-C-API-18 gửi −1 và lưu −1; C-API-19 gửi0 nhưng lưu1. Đây là hai biến thể không đáp ứng reject input invalid; không đảo TC-ID.
+C-API-18 gửi -1 và lưu -1; C-API-19 gửi0 nhưng lưu1. Đây là hai biến thể không đáp ứng reject input invalid; không đảo TC-ID.
 
 ## 6. Các biến thể và traceability
 
@@ -177,7 +177,7 @@ Severity Medium được đề xuất theo ảnh hưởng tới tính đúng đ�
 
 ## 8. Root Cause và hướng khắc phục đề xuất
 
-Source dùng max_uses_per_user || 1: 0 trở thành1, −1 truthy nên giữ nguyên. Không phải Math.max.
+Source dùng max_uses_per_user || 1: 0 trở thành1, -1 truthy nên giữ nguyên. Không phải Math.max.
 
 [Source baseline](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/backend/server.js). Source giải thích cơ chế; xác nhận runtime dựa trên evidence ở trên.
 
@@ -189,7 +189,7 @@ Validate số lượt >=1 trước default/INSERT; chỉ default khi spec cho ph
 
 Raw HTTP record là evidence của run đã thực hiện. Chưa có screenshot API thật cho bug này; không dùng ảnh một UI khác làm chứng cứ thay thế.
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#43](https://github.com/tkob-team/eshop-sut/issues/43). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 

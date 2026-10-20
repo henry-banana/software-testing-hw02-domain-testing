@@ -1,21 +1,21 @@
-# BUG-A03 — Frontend từ chối phone hợp lệ và chấp nhận prefix sai
+# BUG-A03 - Frontend từ chối phone hợp lệ và chấp nhận prefix sai
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-A03 |
-| Feature | FR-04 — Quản lý hồ sơ cá nhân |
-| Severity | High — đề xuất kỹ thuật, xem Impact |
+| Feature | FR-04 - Quản lý hồ sơ cá nhân |
+| Severity | High - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | Web UI |
 | Oracle | FR-04.2 |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [A-UI-02](../tests/A-FR04-profile.md#a-ui-02), [A-UI-03](../tests/A-FR04-profile.md#a-ui-03), [A-UI-05](../tests/A-FR04-profile.md#a-ui-05), [A-UI-07](../tests/A-FR04-profile.md#a-ui-07) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#33](https://github.com/tkob-team/eshop-sut/issues/33) - OPEN |
 | Screenshot coverage | Có ảnh UI cụ thể dưới đây |
 
 ## 1. Mô tả và điều kiện kích hoạt
 
-Frontend từ chối phone hợp lệ và chấp nhận prefix sai. Profile.jsx dùng /^[1-9][0-9]{8,9}$/ và thông báo 9–10 chữ số; khác starts0/10–11digits.
+Frontend từ chối phone hợp lệ và chấp nhận prefix sai. Profile.jsx dùng /^[1-9][0-9]{8,9}$/ và thông báo 9-10 chữ số; khác starts0/10-11digits.
 
 Lỗi được nhóm theo behavior; các giá trị biên/biến thể cùng nguyên nhân không tạo một bug mới cho mỗi TC FAIL.
 
@@ -67,7 +67,7 @@ Severity High được đề xuất theo ảnh hưởng tới tính đúng đắ
 
 ## 8. Root Cause và hướng khắc phục đề xuất
 
-Profile.jsx dùng /^[1-9][0-9]{8,9}$/ và thông báo 9–10 chữ số; khác starts0/10–11digits.
+Profile.jsx dùng /^[1-9][0-9]{8,9}$/ và thông báo 9-10 chữ số; khác starts0/10-11digits.
 
 [Source baseline](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/frontend-web/src/pages/Profile.jsx). Source giải thích cơ chế; xác nhận runtime dựa trên evidence ở trên.
 
@@ -97,7 +97,7 @@ Thống nhất validation frontend/backend theo rule SRS; regression đủ 9/10/
 
 ![A-UI-07 valid phone rejected](../evidence/screenshots/A/A-UI-07_02-validation-error.png)
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#33](https://github.com/tkob-team/eshop-sut/issues/33). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 

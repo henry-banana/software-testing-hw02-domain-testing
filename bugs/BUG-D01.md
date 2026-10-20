@@ -1,16 +1,16 @@
-# BUG-D01 — Mobile chấp nhận quantity không hợp lệ khi Add
+# BUG-D01 - Mobile chấp nhận quantity không hợp lệ khi Add
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-D01 |
-| Feature | Mobile productDetail — Chi tiết sản phẩm và quantity |
-| Severity | High — đề xuất kỹ thuật, xem Impact |
+| Feature | Mobile productDetail - Chi tiết sản phẩm và quantity |
+| Severity | High - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | Mobile UI |
-| Oracle | FR-20 → FR-06 quantity mapping |
+| Oracle | FR-20 -> FR-06 quantity mapping |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [D-UI-01](../tests/D-mobile-product-detail.md#d-ui-01), [D-UI-02](../tests/D-mobile-product-detail.md#d-ui-02), [D-UI-03](../tests/D-mobile-product-detail.md#d-ui-03), [D-UI-06](../tests/D-mobile-product-detail.md#d-ui-06), [D-UI-07](../tests/D-mobile-product-detail.md#d-ui-07), [D-UI-08](../tests/D-mobile-product-detail.md#d-ui-08) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#47](https://github.com/tkob-team/eshop-sut/issues/47) - OPEN |
 | Screenshot coverage | Có ảnh UI cụ thể dưới đây |
 
 ## 1. Mô tả và điều kiện kích hoạt
@@ -28,7 +28,7 @@ Lỗi được nhóm theo behavior; các giá trị biên/biến thể cùng ngu
 1. Mở Expo Go/Android, ghi account thực tế; xóa giỏ trước TC làm thay đổi giỏ. Mở detail đúng product ID; ghi đơn giá.
 2. Thay toàn bộ quantity bằng literal thiết kế; không để ký tự cũ; chụp màn hình trước Add.
 3. Bấm Thêm vào giỏ hàng; chụp alert/feedback.
-4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giá×quantity. Với invalid, expected là cart không thay đổi.
+4. Mở cart, không chỉnh quantity trong cart; chụp cùng product và tính đơn giáxquantity. Với invalid, expected là cart không thay đổi.
 
 ### Input thiết kế
 
@@ -64,7 +64,7 @@ Nhập quantity="" vẫn nhận alert thêm thành công; ảnh cart cho thấy 
 
 ## 7. Impact và severity rationale
 
-Có ảnh cart=1 cho empty/−1/0/1.5/abc. Riêng 1abc chỉ xác nhận alert thêm thành công; không có ảnh cart riêng.
+Có ảnh cart=1 cho empty/-1/0/1.5/abc. Riêng 1abc chỉ xác nhận alert thêm thành công; không có ảnh cart riêng.
 
 Severity High được đề xuất theo ảnh hưởng tới tính đúng đắn dữ liệu, quyền truy cập hoặc phép tính tiền của behavior này; chưa phải mức do giảng viên duyệt. Bug không đồng nghĩa một sự cố production đã xảy ra.
 
@@ -114,7 +114,7 @@ Validate toàn bộ input là số nguyên dương trước Add; invalid không 
 
 ![D-UI-08_02-response](../evidence/screenshots/D/D-UI-08_02-response.jpg)
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#47](https://github.com/tkob-team/eshop-sut/issues/47). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 

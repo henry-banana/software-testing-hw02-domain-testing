@@ -1,16 +1,16 @@
-# BUG-B02 — Coupon percent trả tiền giảm âm và tăng thành tiền
+# BUG-B02 - Coupon percent trả tiền giảm âm và tăng thành tiền
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-B02 |
-| Feature | FR-09 — Áp dụng mã giảm giá |
-| Severity | Critical — đề xuất kỹ thuật, xem Impact |
+| Feature | FR-09 - Áp dụng mã giảm giá |
+| Severity | Critical - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | API + UI |
 | Oracle | FR-09 Formula |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [B-API-07](../tests/B-FR09-discount-coupons.md#b-api-07), [B-API-08](../tests/B-FR09-discount-coupons.md#b-api-08), [B-API-26](../tests/B-FR09-discount-coupons.md#b-api-26), [B-UI-04](../tests/B-FR09-discount-coupons.md#b-ui-04) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#35](https://github.com/tkob-team/eshop-sut/issues/35) - OPEN |
 | Screenshot coverage | Có ảnh UI cụ thể dưới đây |
 
 ## 1. Mô tả và điều kiện kích hoạt
@@ -81,7 +81,7 @@ Timestamp UTC: `2026-10-19T19:50:59.040Z`. Trace sau giữ nguyên request/statu
 
 [Full record B-API-08](../evidence/execution/B-api.md#b-api-08).
 
-Tính tay: expected `400000×10/100=40000`, `400000−40000=360000`; actual `discount_amount=−3600000`, `final_amount=4000000`. P100/400000 ở B-API-26 trả `−39600000/40000000`; không nhầm P100 với VIP100 fixed100000.
+Tính tay: expected `400000x10/100=40000`, `400000-40000=360000`; actual `discount_amount=-3600000`, `final_amount=4000000`. P100/400000 ở B-API-26 trả `-39600000/40000000`; không nhầm P100 với VIP100 fixed100000.
 
 ## 6. Các biến thể và traceability
 
@@ -104,7 +104,7 @@ Source tính Math.floor(total_amount * (1 - coupon.discount_value)) thành disco
 
 [Source baseline](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/backend/server.js). Source giải thích cơ chế; xác nhận runtime dựa trên evidence ở trên.
 
-discount=T×value/100; final=T−discount. Chính sách rounding cần được đặc tả riêng, không tự áp Math.floor vào oracle.
+discount=Txvalue/100; final=T-discount. Chính sách rounding cần được đặc tả riêng, không tự áp Math.floor vào oracle.
 
 Đây là đề xuất, chưa sửa SUT và chưa chạy retest sau fix.
 
@@ -114,7 +114,7 @@ discount=T×value/100; final=T−discount. Chính sách rounding cần được 
 
 ![B-UI-04_02-response](../evidence/screenshots/B/B-UI-04_02-response.png)
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#35](https://github.com/tkob-team/eshop-sut/issues/35). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 

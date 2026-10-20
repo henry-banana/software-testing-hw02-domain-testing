@@ -1,16 +1,16 @@
-# BUG-B03 — Coupon còn được dùng tại đúng thời điểm hết hạn
+# BUG-B03 - Coupon còn được dùng tại đúng thời điểm hết hạn
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-B03 |
-| Feature | FR-09 — Áp dụng mã giảm giá |
-| Severity | Medium — đề xuất kỹ thuật, xem Impact |
+| Feature | FR-09 - Áp dụng mã giảm giá |
+| Severity | Medium - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | API |
 | Oracle | FR-09 C2 |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [B-API-13](../tests/B-FR09-discount-coupons.md#b-api-13) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#36](https://github.com/tkob-team/eshop-sut/issues/36) - OPEN |
 | Screenshot coverage | Có raw API trace; còn thiếu ảnh terminal/API cho Issue |
 
 ## 1. Mô tả và điều kiện kích hoạt
@@ -102,7 +102,7 @@ Source chỉ reject khi expiry < now; equality không bị reject.
 
 [Source baseline](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/backend/server.js). Source giải thích cơ chế; xác nhận runtime dựa trên evidence ở trên.
 
-Reject khi now>=expiry; tái kiểm tra ba điểm expiry−now=−1/0/+1ms bằng controlled clock.
+Reject khi now>=expiry; tái kiểm tra ba điểm expiry-now=-1/0/+1ms bằng controlled clock.
 
 Đây là đề xuất, chưa sửa SUT và chưa chạy retest sau fix.
 
@@ -110,7 +110,7 @@ Reject khi now>=expiry; tái kiểm tra ba điểm expiry−now=−1/0/+1ms bằ
 
 Raw HTTP record là evidence của run đã thực hiện. Chưa có screenshot API thật cho bug này; không dùng ảnh một UI khác làm chứng cứ thay thế.
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#36](https://github.com/tkob-team/eshop-sut/issues/36). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 

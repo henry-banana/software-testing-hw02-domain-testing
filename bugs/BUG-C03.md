@@ -1,16 +1,16 @@
-# BUG-C03 — Type ngoài enum percent/fixed vẫn được lưu
+# BUG-C03 - Type ngoài enum percent/fixed vẫn được lưu
 
 | Field | Value |
 |---|---|
 | Bug ID | BUG-C03 |
-| Feature | FR-17 — Quản lý mã giảm giá |
-| Severity | Medium — đề xuất kỹ thuật, xem Impact |
+| Feature | FR-17 - Quản lý mã giảm giá |
+| Severity | Medium - đề xuất kỹ thuật, xem Impact |
 | Status | Reproduced; SUT chưa được sửa |
 | Seam | API |
 | Oracle | FR-17 type enum |
 | SUT baseline | 85af3ba875c88283615e22cb108f13e2fccaf0e9 |
 | Affected TCs | [C-API-11](../tests/C-FR17-coupon-management.md#c-api-11) |
-| GitHub Issue | Chưa đăng; cập nhật URL/number sau giai đoạn nhóm |
+| GitHub Issue | [#40](https://github.com/tkob-team/eshop-sut/issues/40) - OPEN |
 | Screenshot coverage | Có raw API trace; còn thiếu ảnh terminal/API cho Issue |
 
 ## 1. Mô tả và điều kiện kích hoạt
@@ -186,7 +186,7 @@ Chỉ nhận literal percent/fixed; bổ sung constraint/validation tương ứn
 
 Raw HTTP record là evidence của run đã thực hiện. Chưa có screenshot API thật cho bug này; không dùng ảnh một UI khác làm chứng cứ thay thế.
 
-Issue URL/number: **chờ cập nhật sau phần cá nhân**. Nội dung file này có thể dùng làm Issue body; cần đính kèm ảnh thật của đúng bug và lưu ảnh trang Issue vào `evidence/github-issues/` khi đăng. Không coi placeholder là Issue đã tồn tại.
+Issue URL/number: [#40](https://github.com/tkob-team/eshop-sut/issues/40). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
 
 ## 10. Regression checklist
 
