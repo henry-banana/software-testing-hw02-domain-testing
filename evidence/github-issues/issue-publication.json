@@ -21,7 +21,14 @@
       "body_sha256_utf8_lf": "fc9a61f11435927ef3cf9c3ee6faf6203b8ea81be1379e8d5e73595180661e07",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114356.png",
+        "filename": "BUG-A01_issue-01.png",
+        "sha256": "178e413bbc74b2d8ea6c8b19b2c800d1e77fc883724adda7c7a3534b76c59bf7",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/31",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-A02",
@@ -40,7 +47,14 @@
       "body_sha256_utf8_lf": "ea475ce33e164455d6417f3e930dbbedf8c504d71818d9d74a6df1bde3182b0f",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114359.png",
+        "filename": "BUG-A02_issue-01.png",
+        "sha256": "547e4cb500ffb2d2e9c409a2313f05e45b9c5ea3c1d2ef4dccbfce2348c9adb8",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/32",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-A03",
@@ -59,7 +73,14 @@
       "body_sha256_utf8_lf": "56e66ed4380920e23c21f0442c73bff7f272b242c2290cff476d86af6665c644",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114402.png",
+        "filename": "BUG-A03_issue-01.png",
+        "sha256": "dfe1b1051037040b18d536ed5f4282afb247f84390b1cad774471421dc781e52",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/33",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-B01",
@@ -78,7 +99,14 @@
       "body_sha256_utf8_lf": "b91e6dd1977b5a4cec59ca44d985e295b63d22abd115d0c1218247d00850c10c",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114404.png",
+        "filename": "BUG-B01_issue-01.png",
+        "sha256": "2a35a8f0f13f847d2c8bac33c3c9729563bf4944be9f67c807c32c2c2fe8419e",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/34",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-B02",
@@ -97,7 +125,14 @@
       "body_sha256_utf8_lf": "4a24d4bb40c5cba8fab5319c970db2bb372a630a607c8cd9beef8fb94ace4b9c",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114407.png",
+        "filename": "BUG-B02_issue-01.png",
+        "sha256": "7e9d2e9345234b735d82e0e9f2c1b2de7ca36493a8ce59588a3a404075afcd6b",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/35",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-B03",
@@ -116,7 +151,14 @@
       "body_sha256_utf8_lf": "947e0dc01a09c4b9f03454ae444b76ca4ef5772c0404bf7e87ffc6b28c9641d1",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114409.png",
+        "filename": "BUG-B03_issue-01.png",
+        "sha256": "2b5c2cb53e3cdf7b9e78a19a223856e3844c3509a7495ddcfbcfbcef4186dcf7",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/36",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-B04",
@@ -135,7 +177,14 @@
       "body_sha256_utf8_lf": "709928a9577e65a4692986fba6abd3c543d86b053cbab3b1607323df0c738bf7",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114412.png",
+        "filename": "BUG-B04_issue-01.png",
+        "sha256": "8ab6b59b30e9b5f113fc52e1f38b07232e7d961308ceb2d971752c6515707d61",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/37",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-B05",
@@ -154,7 +203,14 @@
       "body_sha256_utf8_lf": "e093c37a7bc17227443f2e1ddfb2ec246461c6a417f3354a83914bef9221f982",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114415.png",
+        "filename": "BUG-B05_issue-01.png",
+        "sha256": "e39a0e33c846ec3894a2fae67adbcda30eeb3720049c47b8eb9d150b0cb3e5d0",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/38",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-C01",
@@ -173,7 +229,14 @@
       "body_sha256_utf8_lf": "9653002ecd082d60b4ebf9be31df66514e4d57e731909291ab9f0f244232d6f0",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114418.png",
+        "filename": "BUG-C01_issue-01.png",
+        "sha256": "93e6e5a109af7c6e0a2cffc31ba70ab5efa5d3790e499056a33640451a0af20d",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/39",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-C03",
@@ -192,7 +255,14 @@
       "body_sha256_utf8_lf": "ebc9d9d24dab9623741c916a6d8b2769e7719e73a2d0083a83bc7007c1fc164a",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114421.png",
+        "filename": "BUG-C03_issue-01.png",
+        "sha256": "9b171bd9d0376e2a96fe4242896d19e992f1d529e46d2bb2f85660154c8df8b5",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/40",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-C04",
@@ -211,7 +281,14 @@
       "body_sha256_utf8_lf": "cfcf2ddbf544e08de06c8f788e58b4daa5fce52e027ec7c7b7e9850160755116",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114423.png",
+        "filename": "BUG-C04_issue-01.png",
+        "sha256": "9060b2af5daf58c0eb0b07d7fdec0737c52a2d9079e4430ca5e985b8728dae70",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/41",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-C05",
@@ -230,7 +307,14 @@
       "body_sha256_utf8_lf": "63a11f5cedc4c0153e475a2554bcb5c7fd306753b58d69ac7734bf87cabb4865",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114430.png",
+        "filename": "BUG-C05_issue-01.png",
+        "sha256": "40bad762b91ba48fbe673b581c8a43b8f0ab61f96ae4f3a162c97bc4511f2634",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/42",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-C06",
@@ -249,7 +333,14 @@
       "body_sha256_utf8_lf": "dd7dc95b2ae2fe2348fe7e8f577c77b609455f73cd64085a82b8757d6b8bc538",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114433.png",
+        "filename": "BUG-C06_issue-01.png",
+        "sha256": "4f8451634d56ebdf94db50181501512ecaf0d17ebe49cb7d9343aaf4bc8c7aeb",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/43",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-C07",
@@ -268,7 +359,14 @@
       "body_sha256_utf8_lf": "27889baf7672c5642ce6acfcb9bca79a2305cbfce3b553abc29367b5d81716c5",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114436.png",
+        "filename": "BUG-C07_issue-01.png",
+        "sha256": "25b373f676c1d6741b2af04b48ca00d43445319e3f71152aa45c7dcd0c5e34b2",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/44",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-C08",
@@ -287,7 +385,14 @@
       "body_sha256_utf8_lf": "88cdf7ce16ef9150ccd8d80fcdd39d1a81067d35707586ac44d26e43554b95de",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114438.png",
+        "filename": "BUG-C08_issue-01.png",
+        "sha256": "036b73fb30aa9139c27bc9a1cd1ee7e8035ab61f2c5e06bfc7dd85ce6f4859e4",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/45",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-C09",
@@ -306,7 +411,14 @@
       "body_sha256_utf8_lf": "04c55f86e97ea5134458cd9fd66e0f337a63da07a88ad27f414fbd64492beb51",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114441.png",
+        "filename": "BUG-C09_issue-01.png",
+        "sha256": "5228dcc784b9492126b371537a59679e2dfef73ead2cd66e7f181b4b5c46e037",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/46",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-D01",
@@ -325,7 +437,14 @@
       "body_sha256_utf8_lf": "7da1cbcad1e75bd2a0d6498e0a42a577112ec2beef35b36aae1ed12268aca90b",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114444.png",
+        "filename": "BUG-D01_issue-01.png",
+        "sha256": "402062cee44d71570cbc7a18b3464805d6d9b5e1ac891a19b91445886978a702",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/47",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     },
     {
       "bug_id": "BUG-D02",
@@ -344,7 +463,20 @@
       "body_sha256_utf8_lf": "92c39553405e8cfc52237dae92fceda34217debb77f90b32ec34d82bc9ea84b8",
       "body_verified_against_prepared_markdown": true,
       "bug_screenshot_attached": false,
-      "issue_page_screenshot_captured": false
+      "issue_page_screenshot_captured": false,
+      "local_issue_page_screenshot": {
+        "original_filename": "Screenshot 2026-10-20 114447.png",
+        "filename": "BUG-D02_issue-01.png",
+        "sha256": "6b5cf02409631d9359ff1df890af72965930740943f8e4dd3132e4df2fbdcd8e",
+        "visible_url": "https://github.com/tkob-team/eshop-sut/issues/48",
+        "coverage": "Issue page header, title, Bug ID, OPEN status and metadata; lower sections/attachments not shown"
+      }
     }
-  ]
+  ],
+  "local_screenshot_review": {
+    "reviewed_utc": "2026-10-20T04:47:27.129702+00:00",
+    "source": "18 screenshots supplied by student; inspected as static local images, no browser/computer use",
+    "count": 18,
+    "note": "No exact capture timestamps asserted. Earlier bug_screenshot_attached flags are from the original API publication readback; new images do not establish current attachment coverage."
+  }
 }

@@ -149,7 +149,11 @@ Thêm role guard trước DELETE; khi deny, target và row count phải giữ ng
 
 Raw HTTP record là evidence của run đã thực hiện. Chưa có screenshot API thật cho bug này; không dùng ảnh một UI khác làm chứng cứ thay thế.
 
-Issue URL/number: [#46](https://github.com/tkob-team/eshop-sut/issues/46). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
+Issue URL/number: [#46](https://github.com/tkob-team/eshop-sut/issues/46). Đã đăng và đọc lại bằng GitHub CLI. Đã có ảnh phần đầu trang Issue; ảnh bug đính kèm và phần nội dung phía dưới chưa được xác minh lại; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
+
+### Ảnh trang Issue
+
+![BUG-C09 Issue #46 - phần đầu trang](../evidence/github-issues/BUG-C09_issue-01.png)
 
 ## 10. Regression checklist
 

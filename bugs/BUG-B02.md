@@ -114,7 +114,11 @@ discount=Txvalue/100; final=T-discount. Chính sách rounding cần được đ�
 
 ![B-UI-04_02-response](../evidence/screenshots/B/B-UI-04_02-response.png)
 
-Issue URL/number: [#35](https://github.com/tkob-team/eshop-sut/issues/35). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
+Issue URL/number: [#35](https://github.com/tkob-team/eshop-sut/issues/35). Đã đăng và đọc lại bằng GitHub CLI. Đã có ảnh phần đầu trang Issue; ảnh bug đính kèm và phần nội dung phía dưới chưa được xác minh lại; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
+
+### Ảnh trang Issue
+
+![BUG-B02 Issue #35 - phần đầu trang](../evidence/github-issues/BUG-B02_issue-01.png)
 
 ## 10. Regression checklist
 

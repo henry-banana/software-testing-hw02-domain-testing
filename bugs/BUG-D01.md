@@ -114,7 +114,11 @@ Validate toàn bộ input là số nguyên dương trước Add; invalid không 
 
 ![D-UI-08_02-response](../evidence/screenshots/D/D-UI-08_02-response.jpg)
 
-Issue URL/number: [#47](https://github.com/tkob-team/eshop-sut/issues/47). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
+Issue URL/number: [#47](https://github.com/tkob-team/eshop-sut/issues/47). Đã đăng và đọc lại bằng GitHub CLI. Đã có ảnh phần đầu trang Issue; ảnh bug đính kèm và phần nội dung phía dưới chưa được xác minh lại; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
+
+### Ảnh trang Issue
+
+![BUG-D01 Issue #47 - phần đầu trang](../evidence/github-issues/BUG-D01_issue-01.png)
 
 ## 10. Regression checklist
 

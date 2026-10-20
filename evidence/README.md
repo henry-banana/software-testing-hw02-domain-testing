@@ -94,3 +94,7 @@ Raw reports ghi thời gian UTC thật, clock SUT mô phỏng, HTTP request/resp
 Đã đăng18Issues cá nhân: [Issue Evidence](github-issues/README.md), gồm URL/number và trạng thái ảnh. [Readback record](github-issues/issue-publication.json) được đối chiếu body bằng CLI; không có ảnh trang Issue tự sinh. Sinh viên sẽ đính kèm ảnh trực tiếp lên Issues và lưu ảnh trang Issue vào evidence/github-issues/.
 
 Bản hiển thị prompt/output đã chuẩn hóa dấu câu; [source-records.json](ai-originals/source-records.json) giữ nội dung gốc vàSHA256, bao gồm rawAPI trước đổi dấu tiêu đề. PayloadJSON/rawactual không bị sửa bởi chuẩn hóa trình bày.
+
+## 4. Ảnh trang GitHub Issues
+
+Đã nhận18ảnh do sinh viên chụp, đổi tên theoBug ID và kiểmSHA256 nguyênbytes. [Danh sách ảnh](github-issues/README.md) và [provenance/hash](github-issues/issue-publication.json) ánh xạ đầy đủ Issues #31-#48. Các ảnh hiện thấy phần đầu trang Issue; không thay ảnh actual của lỗi hoặc xác nhận nội dung đính kèm bên dưới.

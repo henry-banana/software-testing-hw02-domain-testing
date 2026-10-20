@@ -75,7 +75,11 @@ Tra cứu/render category label đúng sản phẩm; regression kiểm tra đủ
 
 ![D-UI-10_product-2_detail](../evidence/screenshots/D/D-UI-10_product-2_detail.jpg)
 
-Issue URL/number: [#48](https://github.com/tkob-team/eshop-sut/issues/48). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
+Issue URL/number: [#48](https://github.com/tkob-team/eshop-sut/issues/48). Đã đăng và đọc lại bằng GitHub CLI. Đã có ảnh phần đầu trang Issue; ảnh bug đính kèm và phần nội dung phía dưới chưa được xác minh lại; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
+
+### Ảnh trang Issue
+
+![BUG-D02 Issue #48 - phần đầu trang](../evidence/github-issues/BUG-D02_issue-01.png)
 
 ## 10. Regression checklist
 

@@ -108,7 +108,11 @@ Dùng total_amount >= minimum ở nhánh accept; giữ test M-1/M/M+1.
 
 ![B-UI-02_02-response](../evidence/screenshots/B/B-UI-02_02-response.png)
 
-Issue URL/number: [#34](https://github.com/tkob-team/eshop-sut/issues/34). Đã đăng và đọc lại bằng GitHub CLI. Ảnh bug đính kèm và ảnh trang Issue còn chờ sinh viên bổ sung; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
+Issue URL/number: [#34](https://github.com/tkob-team/eshop-sut/issues/34). Đã đăng và đọc lại bằng GitHub CLI. Đã có ảnh phần đầu trang Issue; ảnh bug đính kèm và phần nội dung phía dưới chưa được xác minh lại; [trạng thái evidence](../evidence/github-issues/README.md). Không coi việc tạo Issue là đã có screenshot.
+
+### Ảnh trang Issue
+
+![BUG-B01 Issue #34 - phần đầu trang](../evidence/github-issues/BUG-B01_issue-01.png)
 
 ## 10. Regression checklist
 
