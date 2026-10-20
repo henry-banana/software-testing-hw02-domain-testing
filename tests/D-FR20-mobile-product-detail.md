@@ -4,15 +4,7 @@
 
 ## 1. Phạm vi, quy ước và fixture
 
-Chúng tôi lấy SRS làm oracle, sau đó dùng source để xây dựng giả thuyết và giải thích nguyên nhân. Source không thay thế yêu cầu. Mỗi TC có ID ổn định; một TC có thể phủ cả Domain Testing và BVA nhưng chỉ được tính một lần. Chúng tôi tách API với Web/Admin/Mobile UI vì validation ở một lớp không chứng minh lớp còn lại đạt.
-
-Với từng input/state, chúng tôi xác định miền hợp lệ, phần bù không hợp lệ, precision và các ràng buộc giữa các chiều. Các lớp trong cùng một chiều được chọn để phân biệt hành vi; bảng nhiều chiều không có nghĩa mọi hàng đều là các tập rời nhau của toàn bộ vector. Test invalid giữ các chiều khác nominal; interaction nhiều lỗi có chủ đích được ghi riêng. Chúng tôi dùng readback public HTTP sau thay đổi để kiểm tra hậu điều kiện.
-
-BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu >= hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
-
-API execution dùng backend copy, clock cố định và fixture reset mỗi TC. UI evidence là ảnh thật đã cung cấp; không suy timestamp chạy từ ngày sửa file, không dùng ảnh vẽ hoặc build output làm bằng chứng UI. PASS/FAIL chỉ kết luận theo criterion có evidence; OBSERVATION dành cho oracle chưa quy định; INCOMPLETE dành cho TC còn thiếu bước/precondition/evidence. Một TC INCOMPLETE có thể đã được thao tác một phần, nhưng không được cộng vào executed đủ bằng chứng.
-
-Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL mục 4.2.1-4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
+SRS supplies expected behavior; source inspection explains hypotheses and causes. Each ID is counted once. API, browser UI and Mobile source-handler execution are distinct evidence seams. Invalid cases hold other relevant inputs nominal unless an interaction is explicitly declared. The final extension and its evidence limits are recorded in [Execution records](../evidence/execution/D-execution.md).
 
 ### API fixture và môi trường tái hiện
 
@@ -28,7 +20,7 @@ Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có b�
 
 ### UI fixture và bằng chứng
 
-Ảnh ghi Web ở `localhost:5173`, Admin ở `localhost:5174`, và Expo Go/Android trên Samsung. Account hiển thị trong ảnh có thể được tái sử dụng (A-UI-01, B-UI-01, D-UI-01); tên file TC không chứng minh đã login account cùng tên. Chúng tôi ghi rõ variant và trạng thái dữ liệu có thể chứng minh. Không có nhật ký runtime UI đầy đủ về phiên bản OS/Expo hoặc timestamp từng lượt; không tự bổ sung các thông số đó. UI clock dùng thời gian thật của lần chụp, khác clock API.
+Ảnh ghi Web ở `localhost:5173`, Admin ở `localhost:5174`, và Expo Go/Android trên Samsung. Account hiển thị trong ảnh có thể được tái sử dụng (A-UI-01, B-UI-01, D-UI-01); tên file TC không chứng minh đã login account cùng tên. Quy trình ghi rõ variant và trạng thái dữ liệu có thể chứng minh. Không có nhật ký runtime UI đầy đủ về phiên bản OS/Expo hoặc timestamp từng lượt; không tự bổ sung các thông số đó. UI clock dùng thời gian thật của lần chụp, khác clock API.
 
 Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-10-19; trường timestamp thực thi UI không đủ log để khẳng định chính xác. File raw API giữ timestamp thật độc lập. Ảnh vẫn giữ nguyên bytes; đổi tên ảnh không tạo lần thực thi mới.
 
@@ -39,15 +31,15 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 | [D-API-01](#d-api-01) | Domain | Product 1 support API | PASS | D-D1 | - |
 | [D-API-02](#d-api-02) | Domain | Product 2 support API | PASS | D-D1 | - |
 | [D-API-03](#d-api-03) | Domain | Missing product support API observation | OBSERVATION | D-D2 | - |
-| [D-UI-01](#d-ui-01) | Domain | Mobile quantity "" | FAIL | D-D3 | BUG-D01 |
-| [D-UI-02](#d-ui-02) | Domain | Mobile quantity "-1" | FAIL | D-D3 | BUG-D01 |
-| [D-UI-03](#d-ui-03) | Domain+BVA | Mobile quantity "0" | FAIL | D-D3 | BUG-D01 |
+| [D-UI-01](#d-ui-01) | Domain | Mobile quantity "" | FAIL | D-D3 | FR20-01, FR20-02, FR20-03, FR20-04, FR20-05, FR20-06 |
+| [D-UI-02](#d-ui-02) | Domain | Mobile quantity "-1" | FAIL | D-D3 | FR20-01, FR20-02, FR20-03, FR20-04, FR20-05, FR20-06 |
+| [D-UI-03](#d-ui-03) | Domain+BVA | Mobile quantity "0" | FAIL | D-D3 | FR20-01, FR20-02, FR20-03, FR20-04, FR20-05, FR20-06 |
 | [D-UI-04](#d-ui-04) | Domain+BVA | Mobile quantity "1" | PASS | D-D4 | - |
 | [D-UI-05](#d-ui-05) | Domain+BVA | Mobile quantity "2" | PASS | D-D4 | - |
-| [D-UI-06](#d-ui-06) | Domain | Mobile quantity "1.5" | FAIL | D-D5 | BUG-D01 |
-| [D-UI-07](#d-ui-07) | Domain | Mobile quantity "abc" | FAIL | D-D5 | BUG-D01 |
-| [D-UI-08](#d-ui-08) | Domain | Mobile quantity "1abc" | FAIL | D-D5 | BUG-D01 |
-| [D-UI-09](#d-ui-09) | Domain | Mobile complete product detail | FAIL | D-D1 | BUG-D02 |
+| [D-UI-06](#d-ui-06) | Domain | Mobile quantity "1.5" | FAIL | D-D5 | FR20-01, FR20-02, FR20-03, FR20-04, FR20-05, FR20-06 |
+| [D-UI-07](#d-ui-07) | Domain | Mobile quantity "abc" | FAIL | D-D5 | FR20-01, FR20-02, FR20-03, FR20-04, FR20-05, FR20-06 |
+| [D-UI-08](#d-ui-08) | Domain | Mobile quantity "1abc" | FAIL | D-D5 | FR20-01, FR20-02, FR20-03, FR20-04, FR20-05, FR20-06 |
+| [D-UI-09](#d-ui-09) | Domain | Mobile complete product detail | FAIL | D-D1 | FR20-07 |
 | [D-UI-10](#d-ui-10) | Domain | Mobile even-id price display | PASS | D-D1 | - |
 | [D-UI-11](#d-ui-11) | Domain | Mobile add feedback | PASS | D-D6 | - |
 | [D-UI-12](#d-ui-12) | Domain | Same product twice | PASS | D-D6 | - |
@@ -261,7 +253,7 @@ Timestamp UTC thực tế: `2026-10-19T19:51:01.017Z`. Với list dài, phần d
 | Domains | D-D3 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-D01 |
+| Bug | FR20-01 |
 
 ### Preconditions
 
@@ -301,7 +293,6 @@ Nhập quantity="" vẫn nhận alert thêm thành công; ảnh cart cho thấy 
 
 ![D-UI-01_03-cart](../evidence/screenshots/D/D-UI-01_03-cart.jpg)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -320,7 +311,7 @@ Nhập quantity="" vẫn nhận alert thêm thành công; ảnh cart cho thấy 
 | Domains | D-D3 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-D01 |
+| Bug | FR20-02 |
 
 ### Preconditions
 
@@ -360,7 +351,6 @@ Nhập quantity="-1" vẫn nhận alert thêm thành công; ảnh cart cho thấ
 
 ![D-UI-02_03-cart](../evidence/screenshots/D/D-UI-02_03-cart.jpg)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -379,7 +369,7 @@ Nhập quantity="-1" vẫn nhận alert thêm thành công; ảnh cart cho thấ
 | Domains | D-D3 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-D01 |
+| Bug | FR20-03 |
 
 ### Preconditions
 
@@ -419,7 +409,6 @@ Nhập quantity="0" vẫn nhận alert thêm thành công; ảnh cart cho thấy
 
 ![D-UI-03_03-cart](../evidence/screenshots/D/D-UI-03_03-cart.jpg)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -474,7 +463,6 @@ Cart Samsung Galaxy S24 Ultra có quantity=1, đơn giá 28000000, thành tiền
 
 ![D-UI-04_product-2_cart](../evidence/screenshots/D/D-UI-04_product-2_cart.jpg)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -533,7 +521,6 @@ Samsung quantity=2, thành tiền 56000000; khớp 28000000x2.
 
 ![D-UI-05_product-2_cart](../evidence/screenshots/D/D-UI-05_product-2_cart.jpg)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -552,7 +539,7 @@ Samsung quantity=2, thành tiền 56000000; khớp 28000000x2.
 | Domains | D-D5 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-D01 |
+| Bug | FR20-04 |
 
 ### Preconditions
 
@@ -592,7 +579,6 @@ Nhập quantity="1.5" vẫn nhận alert thêm thành công; ảnh cart cho th�
 
 ![D-UI-06_03-cart](../evidence/screenshots/D/D-UI-06_03-cart.jpg)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -611,7 +597,7 @@ Nhập quantity="1.5" vẫn nhận alert thêm thành công; ảnh cart cho th�
 | Domains | D-D5 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-D01 |
+| Bug | FR20-05 |
 
 ### Preconditions
 
@@ -651,7 +637,6 @@ Nhập quantity="abc" vẫn nhận alert thêm thành công; ảnh cart cho th�
 
 ![D-UI-07_03-cart](../evidence/screenshots/D/D-UI-07_03-cart.jpg)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -670,7 +655,7 @@ Nhập quantity="abc" vẫn nhận alert thêm thành công; ảnh cart cho th�
 | Domains | D-D5 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-D01 |
+| Bug | FR20-06 |
 
 ### Preconditions
 
@@ -708,7 +693,6 @@ Input 1abc vẫn nhận alert thêm thành công. Chỉ điều kiện phải t�
 
 ![D-UI-08_02-response](../evidence/screenshots/D/D-UI-08_02-response.jpg)
 
-**Evidence còn thiếu:** Ảnh cart là bằng chứng bổ sung cho hậu điều kiện; không bắt buộc để xác nhận lỗi đã chấp nhận input không hợp lệ.
 
 ### Verdict và rationale
 
@@ -727,7 +711,7 @@ Input 1abc vẫn nhận alert thêm thành công. Chỉ điều kiện phải t�
 | Domains | D-D1 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-D02 |
+| Bug | FR20-07 |
 
 ### Preconditions
 
@@ -761,7 +745,6 @@ Detail Samsung có ảnh, tên, giá, mô tả và quantity nhưng không có da
 
 ![D-UI-10_product-2_detail](../evidence/screenshots/D/D-UI-10_product-2_detail.jpg)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -813,7 +796,6 @@ Giá Samsung hiển thị 28.000.000 ₫ dù API product 2 trả price dạng ch
 
 ![D-UI-10_product-2_detail](../evidence/screenshots/D/D-UI-10_product-2_detail.jpg)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -868,7 +850,6 @@ Sau Add, Mobile hiển thị Alert Thành công/Đã thêm vào giỏ hàng. M�
 
 ![D-UI-05_product-2_cart](../evidence/screenshots/D/D-UI-05_product-2_cart.jpg)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -983,7 +964,6 @@ Record selected quantity for product 2; SRS does not specify default reset polic
 
 ![D-extra_product-3_cart](../evidence/screenshots/D/D-extra_product-3_cart.jpg)
 
-**Evidence còn thiếu:** Nếu bổ sung: chụp quantity trước/sau chuyển từ SP1 sang SP2; chỉ mô tả hành vi, không gọi bug vì SRS không nêu default reset policy.
 
 ### Verdict và rationale
 
@@ -1041,7 +1021,6 @@ Có input số dài, alert thành công và cart. Ô input có thể cuộn ngan
 
 ![D-UI-14_variant-cart](../evidence/screenshots/D/D-UI-14_variant-cart.jpg)
 
-**Evidence còn thiếu:** Nếu phân tích precision: lưu literal đầy đủ bằng bản text kèm quay input/cart. Không đặt stock/MAX_SAFE_INTEGER thành giới hạn nghiệp vụ khi SRS không quy định.
 
 ### Verdict và rationale
 
@@ -1051,14 +1030,79 @@ Có input số dài, alert thành công và cart. Ô input có thể cuộn ngan
 
 | Scope | Designed | Executed đủ bằng chứng | PASS | FAIL | OBSERVATION | INCOMPLETE | NOT RUN |
 |---|---|---|---|---|---|---|---|
-| A - API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
-| A - UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
-| B - API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
-| B - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| C - API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
-| C - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
 | D - API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
-| D - UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
-| **Tổng** | 114 | 114 | 53 | 57 | 4 | 0 | 0 |
+| D - UI | 15 | 15 | 5 | 8 | 2 | 0 | 0 |
+| **Tổng feature D** | 18 | 18 | 7 | 8 | 3 | 0 | 0 |
 
-Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.
+Tổng hợp riêng feature; số liệu toàn bài nằm trong README/report. Handler và native-image review được khai rõ ở từng case.
+
+## Additional case index
+
+| Case | Seam | Status | Bug |
+|---|---|---|---|
+| [D-UI-15](#d-ui-15) | Native screenshot review plus unchanged source inspection | FAIL | FR20-08 |
+
+
+<a id="d-ui-15"></a>
+
+## D-UI-15
+
+**Objective:** Product-detail positive action follows the blue-button rule
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | FR-21 positive action colors |
+| Domains | D-D8 |
+| Seam | Native screenshot review plus unchanged source inspection |
+| Status | FAIL |
+| Bug | FR20-08 |
+
+### Preconditions
+
+Existing genuine Android screenshot D-UI-10_product-2_detail.jpg; this is a new criterion review of the same capture, not a fresh native interaction.
+
+### Input
+
+```json
+{
+  "button": "Thêm vào giỏ hàng",
+  "visible_color": "green",
+  "source_style": "styles.greenButton",
+  "source_backgroundColor": "#16a34a",
+  "scope": "The original native screenshot proves visible color; source confirms the configured style."
+}
+```
+
+### Steps
+
+1. Establish the documented isolated fixture and target evidence seam.
+2. Inspect the genuine Android product-detail capture and the unchanged Add-to-Cart style mapping.
+3. Compare the observed response/state with the sourced expected criterion.
+
+### Expected
+
+FR-21 requires positive actions to use blue; Add to Cart is a positive action.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:21:52.538Z",
+  "precondition": "Existing genuine Android screenshot D-UI-10_product-2_detail.jpg; this is a new criterion review of the same capture, not a fresh native interaction.",
+  "observed": {
+    "button": "Thêm vào giỏ hàng",
+    "visible_color": "green",
+    "source_style": "styles.greenButton",
+    "source_backgroundColor": "#16a34a",
+    "scope": "The original native screenshot proves visible color; source confirms the configured style."
+  },
+  "expected": "FR-21 requires positive actions to use blue; Add to Cart is a positive action."
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/D-execution.md#d-ui-15).
+
+![D-UI-15](../evidence/screenshots/D/D-UI-10_product-2_detail.jpg)
