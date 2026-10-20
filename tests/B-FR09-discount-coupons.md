@@ -4,15 +4,7 @@
 
 ## 1. Phạm vi, quy ước và fixture
 
-Chúng tôi lấy SRS làm oracle, sau đó dùng source để xây dựng giả thuyết và giải thích nguyên nhân. Source không thay thế yêu cầu. Mỗi TC có ID ổn định; một TC có thể phủ cả Domain Testing và BVA nhưng chỉ được tính một lần. Chúng tôi tách API với Web/Admin/Mobile UI vì validation ở một lớp không chứng minh lớp còn lại đạt.
-
-Với từng input/state, chúng tôi xác định miền hợp lệ, phần bù không hợp lệ, precision và các ràng buộc giữa các chiều. Các lớp trong cùng một chiều được chọn để phân biệt hành vi; bảng nhiều chiều không có nghĩa mọi hàng đều là các tập rời nhau của toàn bộ vector. Test invalid giữ các chiều khác nominal; interaction nhiều lỗi có chủ đích được ghi riêng. Chúng tôi dùng readback public HTTP sau thay đổi để kiểm tra hậu điều kiện.
-
-BVA được áp dụng cho miền có thứ tự, kể cả độ dài chuỗi và số lượt nguyên. Điểm ON nằm trên mặt biên; giá trị ON có thể hợp lệ hoặc không tùy dấu >= hay >. Các điểm lân cận được ghi bằng số và trạng thái valid/invalid để tránh nhập nhằng thuật ngữ. Các label OFF/IN không thay thế tập giá trị cụ thể. Rỗng, enum, charset và identity là Domain classes; không tự đặt một maximum mà SRS không quy định.
-
-API execution dùng backend copy, clock cố định và fixture reset mỗi TC. UI evidence là ảnh thật đã cung cấp; không suy timestamp chạy từ ngày sửa file, không dùng ảnh vẽ hoặc build output làm bằng chứng UI. PASS/FAIL chỉ kết luận theo criterion có evidence; OBSERVATION dành cho oracle chưa quy định; INCOMPLETE dành cho TC còn thiếu bước/precondition/evidence. Một TC INCOMPLETE có thể đã được thao tác một phần, nhưng không được cộng vào executed đủ bằng chứng.
-
-Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có bản lecture của môn trong workspace để xác nhận đã đối chiếu mọi quy ước của giảng viên. Nguồn phương pháp bổ trợ là ISTQB CTFL mục 4.2.1-4.2.2. Các giới hạn này được giữ rõ trong phần coverage, không tuyên bố exhaustive coverage toàn hệ thống.
+SRS supplies expected behavior; source inspection explains hypotheses and causes. Each ID is counted once. API, browser UI and Mobile source-handler execution are distinct evidence seams. Invalid cases hold other relevant inputs nominal unless an interaction is explicitly declared. The final extension and its evidence limits are recorded in [Execution records](../evidence/execution/B-execution.md).
 
 ### API fixture và môi trường tái hiện
 
@@ -28,7 +20,7 @@ Chúng tôi kiểm tra kỹ thuật theo Domain/Boundary đã nêu; chưa có b�
 
 ### UI fixture và bằng chứng
 
-Ảnh ghi Web ở `localhost:5173`, Admin ở `localhost:5174`, và Expo Go/Android trên Samsung. Account hiển thị trong ảnh có thể được tái sử dụng (A-UI-01, B-UI-01, D-UI-01); tên file TC không chứng minh đã login account cùng tên. Chúng tôi ghi rõ variant và trạng thái dữ liệu có thể chứng minh. Không có nhật ký runtime UI đầy đủ về phiên bản OS/Expo hoặc timestamp từng lượt; không tự bổ sung các thông số đó. UI clock dùng thời gian thật của lần chụp, khác clock API.
+Ảnh ghi Web ở `localhost:5173`, Admin ở `localhost:5174`, và Expo Go/Android trên Samsung. Account hiển thị trong ảnh có thể được tái sử dụng (A-UI-01, B-UI-01, D-UI-01); tên file TC không chứng minh đã login account cùng tên. Quy trình ghi rõ variant và trạng thái dữ liệu có thể chứng minh. Không có nhật ký runtime UI đầy đủ về phiên bản OS/Expo hoặc timestamp từng lượt; không tự bổ sung các thông số đó. UI clock dùng thời gian thật của lần chụp, khác clock API.
 
 Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-10-19; trường timestamp thực thi UI không đủ log để khẳng định chính xác. File raw API giữ timestamp thật độc lập. Ảnh vẫn giữ nguyên bytes; đổi tên ảnh không tạo lần thực thi mới.
 
@@ -38,34 +30,34 @@ Các ảnh trong bộ cung cấp thuộc ngày chụp được đặt tên 2026-
 |---|---|---|---|---|---|
 | [B-API-01](#b-api-01) | Domain | Fixed discount nominal | PASS | B-D1 | - |
 | [B-API-02](#b-api-02) | Domain+BVA | Below fixed minimum | PASS | B-D2 | - |
-| [B-API-03](#b-api-03) | Domain+BVA | Exactly fixed minimum | FAIL | B-D2 | BUG-B01 |
+| [B-API-03](#b-api-03) | Domain+BVA | Exactly fixed minimum | FAIL | B-D2 | FR09-01, FR09-02, FR09-10 |
 | [B-API-04](#b-api-04) | Domain+BVA | Above fixed minimum | PASS | B-D2 | - |
 | [B-API-05](#b-api-05) | Domain+BVA | Below percent minimum | PASS | B-D2 | - |
-| [B-API-06](#b-api-06) | Domain+BVA | Exactly percent minimum | FAIL | B-D2 | BUG-B01 |
-| [B-API-07](#b-api-07) | Domain+BVA | Above percent minimum | FAIL | B-D2 | BUG-B02 |
-| [B-API-08](#b-api-08) | Domain | Percent formula with integer result | FAIL | B-D3 | BUG-B02 |
+| [B-API-06](#b-api-06) | Domain+BVA | Exactly percent minimum | FAIL | B-D2 | FR09-01, FR09-02, FR09-10 |
+| [B-API-07](#b-api-07) | Domain+BVA | Above percent minimum | FAIL | B-D2 | FR09-03, FR09-11 |
+| [B-API-08](#b-api-08) | Domain | Percent formula with integer result | FAIL | B-D3 | FR09-03, FR09-11 |
 | [B-API-09](#b-api-09) | Domain | Nonexistent code | PASS | B-D4 | - |
 | [B-API-10](#b-api-10) | Domain | Inactive code | PASS | B-D4 | - |
 | [B-API-11](#b-api-11) | Domain | Missing code | PASS | B-D4 | - |
 | [B-API-12](#b-api-12) | Domain+BVA | Expired before current time by 1 ms | PASS | B-D5 | - |
-| [B-API-13](#b-api-13) | Domain+BVA | Expiry exactly equals current time | FAIL | B-D5 | BUG-B03 |
+| [B-API-13](#b-api-13) | Domain+BVA | Expiry exactly equals current time | FAIL | B-D5 | FR09-04 |
 | [B-API-14](#b-api-14) | Domain+BVA | Expiry after current time by 1 ms | PASS | B-D5 | - |
 | [B-API-15](#b-api-15) | Domain+BVA | VIP100 used=0, limit=2 | PASS | B-D6 | - |
 | [B-API-16](#b-api-16) | Domain+BVA | VIP100 used=1, limit=2 | PASS | B-D6 | - |
 | [B-API-17](#b-api-17) | Domain+BVA | VIP100 used=2, limit=2 | PASS | B-D6 | - |
 | [B-API-18](#b-api-18) | Domain+BVA | VIP100 used=3, limit=2 | PASS | B-D6 | - |
-| [B-API-19](#b-api-19) | Domain | Coupon with none JWT | FAIL | B-D7 | BUG-B04 |
-| [B-API-20](#b-api-20) | Domain | Coupon with invalid JWT | FAIL | B-D7 | BUG-B04 |
-| [B-API-21](#b-api-21) | Domain | Coupon with expired JWT | FAIL | B-D7 | BUG-B04 |
-| [B-API-22](#b-api-22) | Domain | Exhausted authenticated user spoofs user_id=3 | FAIL | B-D8 | BUG-B05 |
-| [B-API-23](#b-api-23) | Domain | Exhausted authenticated user omits user_id | FAIL | B-D8 | BUG-B05 |
-| [B-API-24](#b-api-24) | Domain+BVA | Intersection: minimum equality and last eligible use | FAIL | B-D9 | BUG-B01 |
+| [B-API-19](#b-api-19) | Domain | Coupon with none JWT | FAIL | B-D7 | FR09-05, FR09-06, FR09-07 |
+| [B-API-20](#b-api-20) | Domain | Coupon with invalid JWT | FAIL | B-D7 | FR09-05, FR09-06, FR09-07 |
+| [B-API-21](#b-api-21) | Domain | Coupon with expired JWT | FAIL | B-D7 | FR09-05, FR09-06, FR09-07 |
+| [B-API-22](#b-api-22) | Domain | Exhausted authenticated user spoofs user_id=3 | FAIL | B-D8 | FR09-08, FR09-09 |
+| [B-API-23](#b-api-23) | Domain | Exhausted authenticated user omits user_id | FAIL | B-D8 | FR09-08, FR09-09 |
+| [B-API-24](#b-api-24) | Domain+BVA | Intersection: minimum equality and last eligible use | FAIL | B-D9 | FR09-01, FR09-02, FR09-10 |
 | [B-API-25](#b-api-25) | Domain | Multiple invalid conditions | PASS | B-D10 | - |
-| [B-API-26](#b-api-26) | Domain | Percent 100 formula | FAIL | B-D3 | BUG-B02 |
+| [B-API-26](#b-api-26) | Domain | Percent 100 formula | FAIL | B-D3 | FR09-03, FR09-11 |
 | [B-UI-01](#b-ui-01) | Domain+BVA | Checkout BIGBUY / 499999 | PASS | B-D2 | - |
-| [B-UI-02](#b-ui-02) | Domain+BVA | Checkout BIGBUY / 500000 | FAIL | B-D2 | BUG-B01 |
+| [B-UI-02](#b-ui-02) | Domain+BVA | Checkout BIGBUY / 500000 | FAIL | B-D2 | FR09-01, FR09-02, FR09-10 |
 | [B-UI-03](#b-ui-03) | Domain+BVA | Checkout BIGBUY / 500001 | PASS | B-D2 | - |
-| [B-UI-04](#b-ui-04) | Domain | Checkout SAVE10 / 400000 | FAIL | B-D3 | BUG-B02 |
+| [B-UI-04](#b-ui-04) | Domain | Checkout SAVE10 / 400000 | FAIL | B-D3 | FR09-03, FR09-11 |
 | [B-UI-05](#b-ui-05) | Domain | Checkout EXPIRED / 400000 | PASS | B-D5 | - |
 | [B-UI-06](#b-ui-06) | Domain | Checkout VIP100 / 400000 | PASS | B-D6 | - |
 
@@ -222,7 +214,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.875Z`. Với list dài, phần d
 | Domains | B-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-B01 |
+| Bug | FR09-01 |
 
 ### Preconditions
 
@@ -430,7 +422,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.958Z`. Với list dài, phần d
 | Domains | B-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-B01 |
+| Bug | FR09-02 |
 
 ### Preconditions
 
@@ -498,7 +490,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:58.983Z`. Với list dài, phần d
 | Domains | B-D2 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-B02 |
+| Bug | FR09-03 |
 
 ### Preconditions
 
@@ -572,7 +564,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.010Z`. Với list dài, phần d
 | Domains | B-D3 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-B02 |
+| Bug | FR09-03 |
 
 ### Preconditions
 
@@ -915,7 +907,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.130Z`. Với list dài, phần d
 | Domains | B-D5 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-B03 |
+| Bug | FR09-04 |
 
 ### Preconditions
 
@@ -1341,7 +1333,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.252Z`. Với list dài, phần d
 | Domains | B-D7 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-B04 |
+| Bug | FR09-05 |
 
 ### Preconditions
 
@@ -1413,7 +1405,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.280Z`. Với list dài, phần d
 | Domains | B-D7 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-B04 |
+| Bug | FR09-06 |
 
 ### Preconditions
 
@@ -1485,7 +1477,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.302Z`. Với list dài, phần d
 | Domains | B-D7 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-B04 |
+| Bug | FR09-07 |
 
 ### Preconditions
 
@@ -1557,7 +1549,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.322Z`. Với list dài, phần d
 | Domains | B-D8 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-B05 |
+| Bug | FR09-08 |
 
 ### Preconditions
 
@@ -1629,7 +1621,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.342Z`. Với list dài, phần d
 | Domains | B-D8 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-B05 |
+| Bug | FR09-09 |
 
 ### Preconditions
 
@@ -1699,7 +1691,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.365Z`. Với list dài, phần d
 | Domains | B-D9 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-B01 |
+| Bug | FR09-10 |
 
 ### Preconditions
 
@@ -1833,7 +1825,7 @@ Timestamp UTC thực tế: `2026-10-19T19:50:59.414Z`. Với list dài, phần d
 | Domains | B-D3 |
 | Seam | HTTP API |
 | Status | FAIL |
-| Bug | BUG-B02 |
+| Bug | FR09-11 |
 
 ### Preconditions
 
@@ -1949,7 +1941,6 @@ BIGBUY với total 499999 bị từ chối vì chưa đủ ngưỡng.
 
 ![B-UI-01_02-response](../evidence/screenshots/B/B-UI-01_02-response.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -1968,7 +1959,7 @@ BIGBUY với total 499999 bị từ chối vì chưa đủ ngưỡng.
 | Domains | B-D2 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-B01 |
+| Bug | FR09-01 |
 
 ### Preconditions
 
@@ -2006,7 +1997,6 @@ BIGBUY tại total=500000 bị từ chối dù đạt ngưỡng inclusive.
 
 ![B-UI-02_02-response](../evidence/screenshots/B/B-UI-02_02-response.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -2063,7 +2053,6 @@ Discount 50000; final 450001.
 
 ![B-UI-03_variant-01_response](../evidence/screenshots/B/B-UI-03_variant-01_response.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -2082,7 +2071,7 @@ Discount 50000; final 450001.
 | Domains | B-D3 |
 | Seam | UI thật |
 | Status | FAIL |
-| Bug | BUG-B02 |
+| Bug | FR09-03 |
 
 ### Preconditions
 
@@ -2120,7 +2109,6 @@ SAVE10/400000 hiển thị tiền giảm -3600000 và thành tiền 4000000, tha
 
 ![B-UI-04_02-response](../evidence/screenshots/B/B-UI-04_02-response.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -2175,7 +2163,6 @@ Coupon EXPIRED bị từ chối với thông báo hết hạn.
 
 ![B-UI-05_02-response](../evidence/screenshots/B/B-UI-05_02-response.png)
 
-**Evidence còn thiếu:** Không có bước bổ sung bắt buộc cho verdict hiện tại.
 
 ### Verdict và rationale
 
@@ -2198,7 +2185,7 @@ Coupon EXPIRED bị từ chối với thông báo hết hạn.
 
 ### Preconditions
 
-Web runtime riêng tại 127.0.0.1:5173, account B-UI-06 (b_ui_06@hw02.invalid). Fixture VIP100 có max_uses_per_user=2 và đúng hai coupon_usage cho user này; xem [read-only fixture readback](../evidence/execution/B-ui-fixture.md). Hai dòng được seed trực tiếp, không phải hai đơn mới được sinh viên thực hiện. Giỏ có HW02 Total400000, quantity1; coupon active, chưa hết hạn, minimum300000 nên total 400000 đủ ngưỡng.
+Web runtime riêng tại 127.0.0.1:5173, account B-UI-06 (b_ui_06@hw02.invalid). Fixture VIP100 có max_uses_per_user=2 và đúng hai coupon_usage cho user này; xem [read-only fixture readback](../evidence/README.md#b-ui-06-fixture). Hai dòng được seed trực tiếp, không phải hai đơn mới được sinh viên thực hiện. Giỏ có HW02 Total400000, quantity1; coupon active, chưa hết hạn, minimum300000 nên total 400000 đủ ngưỡng.
 
 ### Input - thiết kế
 
@@ -2223,7 +2210,7 @@ Với VIP100 đã có used=2 bằng max_uses_per_user=2 dưới cùng user, lầ
 
 ### Actual và Evidence
 
-Ảnh mới tại /checkout hiển thị account B-UI-06, sản phẩm `HW02 Total 400000 x 1`, total 400000, code `VIP100` và thông báo `Bạn đã sử dụng mã này 2 lần (đã đạt giới hạn)`. Tổng thanh toán vẫn400000, coupon không được áp dụng. Account/code khớp fixture used2/limit2; [read-only query](../evidence/execution/B-ui-fixture.md) lưu precondition cùng giới hạn thời điểm readback.
+Ảnh mới tại /checkout hiển thị account B-UI-06, sản phẩm `HW02 Total 400000 x 1`, total 400000, code `VIP100` và thông báo `Bạn đã sử dụng mã này 2 lần (đã đạt giới hạn)`. Tổng thanh toán vẫn400000, coupon không được áp dụng. Account/code khớp fixture used2/limit2; [read-only query](../evidence/README.md#b-ui-06-fixture) lưu precondition cùng giới hạn thời điểm readback.
 
 ![B-UI-06 limit rejected](../evidence/screenshots/B/B-UI-06_01-limit-rejected.png)
 
@@ -2241,14 +2228,77 @@ Với VIP100 đã có used=2 bằng max_uses_per_user=2 dưới cùng user, lầ
 
 | Scope | Designed | Executed đủ bằng chứng | PASS | FAIL | OBSERVATION | INCOMPLETE | NOT RUN |
 |---|---|---|---|---|---|---|---|
-| A - API | 22 | 22 | 7 | 14 | 1 | 0 | 0 |
-| A - UI | 7 | 7 | 3 | 4 | 0 | 0 | 0 |
 | B - API | 26 | 26 | 14 | 12 | 0 | 0 | 0 |
-| B - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| C - API | 30 | 30 | 14 | 16 | 0 | 0 | 0 |
-| C - UI | 6 | 6 | 4 | 2 | 0 | 0 | 0 |
-| D - API | 3 | 3 | 2 | 0 | 1 | 0 | 0 |
-| D - UI | 14 | 14 | 5 | 7 | 2 | 0 | 0 |
-| **Tổng** | 114 | 114 | 53 | 57 | 4 | 0 | 0 |
+| B - UI | 7 | 7 | 4 | 3 | 0 | 0 | 0 |
+| **Tổng feature B** | 33 | 33 | 18 | 15 | 0 | 0 | 0 |
 
-Các số liệu toàn bài dùng chung với README/report; phần INCOMPLETE là test đã có evidence một phần, khác NOT RUN.
+Tổng hợp riêng feature; số liệu toàn bài nằm trong README/report. Handler và native-image review được khai rõ ở từng case.
+
+## Additional case index
+
+| Case | Seam | Status | Bug |
+|---|---|---|---|
+| [B-UI-07](#b-ui-07) | Browser UI via Playwright | FAIL | FR09-12 |
+
+
+<a id="b-ui-07"></a>
+
+## B-UI-07
+
+**Objective:** Coupon results are bound to the current input revision
+
+| Property | Value |
+|---|---|
+| Technique | Domain / contract or state constraint |
+| Oracle | FR-09 current coupon eligibility and UI/result consistency |
+| Domains | B-D11 |
+| Seam | Browser UI via Playwright |
+| Status | FAIL |
+| Bug | FR09-12 |
+
+### Preconditions
+
+Authenticated user, fixed total 600000, active BIGBUY and VIP100, zero prior usage.
+
+### Input
+
+```json
+{
+  "current_code": "VIP100",
+  "main_text": "Xác Nhận Đơn Hàng\nSản phẩm:\niPhone 15 Pro Max x 1 - 30.000.000 ₫\nTổng tiền thanh toán (VND):\nMã Giảm Giá\nÁp dụng\n\n✅ Áp dụng thành công! Giảm 50,000 ₫\n\nTiết kiệm: 50.000 ₫\n\nThành tiền: 550.000 ₫\n\nTổng thanh toán: 550.000 ₫\nXác Nhận Thanh Toán",
+  "stale_bigbuy_result": true,
+  "network": "Real BIGBUY request; edit to VIP100 before completion; no response body modified."
+}
+```
+
+### Steps
+
+1. Establish the documented isolated fixture and target evidence seam.
+2. At total 600000, apply BIGBUY; hold only its network delivery, edit the field to VIP100, then release the unmodified BIGBUY response.
+3. Compare the observed response/state with the sourced expected criterion.
+
+### Expected
+
+Editing the coupon code invalidates pending results; a response for BIGBUY must not be displayed for VIP100.
+
+### Actual and postcondition
+
+```json
+{
+  "at": "2026-10-20T07:43:54.337567+00:00",
+  "observed": {
+    "current_code": "VIP100",
+    "main_text": "Xác Nhận Đơn Hàng\nSản phẩm:\niPhone 15 Pro Max x 1 - 30.000.000 ₫\nTổng tiền thanh toán (VND):\nMã Giảm Giá\nÁp dụng\n\n✅ Áp dụng thành công! Giảm 50,000 ₫\n\nTiết kiệm: 50.000 ₫\n\nThành tiền: 550.000 ₫\n\nTổng thanh toán: 550.000 ₫\nXác Nhận Thanh Toán",
+    "stale_bigbuy_result": true,
+    "network": "Real BIGBUY request; edit to VIP100 before completion; no response body modified."
+  },
+  "expected": "Editing the coupon code invalidates pending results; a response for BIGBUY must not be displayed for VIP100.",
+  "precondition": "Authenticated user, fixed total 600000, active BIGBUY and VIP100, zero prior usage."
+}
+```
+
+### Evidence
+
+[Execution record](../evidence/execution/B-execution.md#b-ui-07).
+
+![B-UI-07](../evidence/screenshots/B/B-UI-07_coupon-response-race.jpg)

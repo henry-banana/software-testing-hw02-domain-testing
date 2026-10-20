@@ -28,30 +28,30 @@ Original SUT files unchanged after run: **PASS**.
 |---|---|---|
 | B-API-01 | PASS | - |
 | B-API-02 | PASS | - |
-| B-API-03 | FAIL | BUG-B01 |
+| B-API-03 | FAIL | FR09-01, FR09-02, FR09-10 |
 | B-API-04 | PASS | - |
 | B-API-05 | PASS | - |
-| B-API-06 | FAIL | BUG-B01 |
-| B-API-07 | FAIL | BUG-B02 |
-| B-API-08 | FAIL | BUG-B02 |
+| B-API-06 | FAIL | FR09-01, FR09-02, FR09-10 |
+| B-API-07 | FAIL | FR09-03, FR09-11 |
+| B-API-08 | FAIL | FR09-03, FR09-11 |
 | B-API-09 | PASS | - |
 | B-API-10 | PASS | - |
 | B-API-11 | PASS | - |
 | B-API-12 | PASS | - |
-| B-API-13 | FAIL | BUG-B03 |
+| B-API-13 | FAIL | FR09-04 |
 | B-API-14 | PASS | - |
 | B-API-15 | PASS | - |
 | B-API-16 | PASS | - |
 | B-API-17 | PASS | - |
 | B-API-18 | PASS | - |
-| B-API-19 | FAIL | BUG-B04 |
-| B-API-20 | FAIL | BUG-B04 |
-| B-API-21 | FAIL | BUG-B04 |
-| B-API-22 | FAIL | BUG-B05 |
-| B-API-23 | FAIL | BUG-B05 |
-| B-API-24 | FAIL | BUG-B01 |
+| B-API-19 | FAIL | FR09-05, FR09-06, FR09-07 |
+| B-API-20 | FAIL | FR09-05, FR09-06, FR09-07 |
+| B-API-21 | FAIL | FR09-05, FR09-06, FR09-07 |
+| B-API-22 | FAIL | FR09-08, FR09-09 |
+| B-API-23 | FAIL | FR09-08, FR09-09 |
+| B-API-24 | FAIL | FR09-01, FR09-02, FR09-10 |
 | B-API-25 | PASS | - |
-| B-API-26 | FAIL | BUG-B02 |
+| B-API-26 | FAIL | FR09-03, FR09-11 |
 
 ## B-API-01
 
