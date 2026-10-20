@@ -1,35 +1,111 @@
 ---
 name: domain-bva-testing
-description: Apply stepwise Domain Testing and Boundary Value Analysis to a supplied feature specification, with traceable cases, actual execution, bugs and AI gap review.
+description: Design and review black-box test cases from requirements using Domain Testing, equivalence partitions, Boundary Value Analysis (BVA), state constraints and traceable evidence.
 ---
 
 # Domain Testing and Boundary Value Analysis
 
-## Inputs and scope
+Turn versioned requirements into predicates, partitions, boundary points and reproducible cases. Keep expected behavior independent of implementation, and designed work separate from executed evidence. This skill tests input domains; it does not model Domain-Driven Design architecture.
 
-Read the supplied feature ID/pool, versioned specification, API contract and available course lecture. List inputs, outputs, mutable state and available interfaces. Record missing rules explicitly. Follow the user's approved execution scope and human review requirements. Never invent screenshots, execution times, signatures or student discoveries. Do not use subagents or Computer Use without the user's authorization.
+## Choose a mode
 
-## Stepwise procedure
+| Request | Mode | Required outcome |
+|---|---|---|
+| New feature or incomplete design | Design | Rules, nominal fixture, partitions, boundaries, cases marked NOT RUN |
+| Existing cases or AI output | Review | Traceability gaps, unsupported claims and visible corrections |
+| Run an authorized plan | Execute | Actual results, relevant readback, verdicts and interface-specific evidence |
 
-1. **Oracle:** paraphrase the exact rule and source section. Keep SRS expected independent of implementation. Record which rules are direct and which are mappings to another interface. Completion: every expected result has a rule or is an observation.
-2. **Domains:** partition values, types, presence, authentication, authorization, ownership and state. Assign stable domain IDs. Hold all other dimensions nominal for one-invalid-condition tests; label deliberate interactions. Completion: each class has representative, expected and TC coverage.
-3. **Boundaries:** identify ordered domains, inequality, equality status and precision. State ON and concrete neighboring values with valid/invalid labels. Enums, missing values and unspecified maxima are not invented numeric boundaries. Completion: boundary table maps to stable TC-IDs.
-4. **Cases:** specify preconditions/reset, exact request or UI inputs, numbered actions, expected, postcondition and seam. Keep literal API field/enum names unchanged. Completion: a second person can reproduce without guessing account state or ellipses in payloads.
-5. **Review:** compare specification, design and source hypotheses. Check masking failures, unsupported assumptions and conflicting domain/TC mappings. Preserve the original AI output and record corrections separately. Completion: no fabricated human verdict or model comparison.
-6. **Execute:** use isolated fixtures and versioned source; record real timestamp, public requests/responses or genuine UI evidence, state readback and hashes. PASS/FAIL require criterion evidence; OBSERVATION is for unspecified oracle; INCOMPLETE is for missing execution/preconditions/evidence. Completion: compiler/API success never implies native UI success.
-7. **Bugs:** group behavior across failed TCs. Include reproducible input/state, expected/actual, precise evidence, source-supported cause or explicit hypothesis, impact limitations and regression checklist. Completion: every failed TC maps to a bug, every counted bug has its file. Publish Issues only in the designated group stage.
-8. **Audit:** reconcile unique ID counts across README/report/cases/raw evidence. Record actual tool, timestamp, prompt, output, correction and human review status. Completion: broken links, placeholders and remaining required actions are listed honestly.
+Honor the requested mode. Design completion does not authorize execution. Continue already authorized work without requesting the same permission again.
 
-## Worked feature - FR-17
+## Load support only when needed
 
-- Specification: six required fields; code unique; type percent/fixed; discount_value>0; min_order_amount>=0; max_uses_per_user>=1; admin-only Create/View/Delete.
-- [Analysis](../../../reports/C-FR17-domain.md): presence/enum/numeric/role classes, integer fixture neighbors and traceability.
-- [Cases](../../../tests/C-FR17-coupon-management.md):30 API+6 UI IDs; [raw execution](../../../evidence/execution/C-api.md).
-- Reproduce API using the exact HTTP steps, fixture and authentication in the linked case report; the recorded run used port3100 and a copied database. Execution helpers are maintained outside the submission repository. Preserve the original SUT.
-- [BUG-C04](../../../bugs/BUG-C04.md): C-API-12/13 are -1/0; [BUG-C06](../../../bugs/BUG-C06.md): C-API-18/19 are -1/0, with zero silently becoming1.
-- UI browser rejection of maxUses0 is separate from backend acceptance. C-UI-06 is supported by the shared after-delete list screenshot and the student clarification. Do not infer an action sequence from a final screenshot alone.
-- [Video link](../../../Video_Links.md); do not describe an existing output as a fresh invocation.
+- Before selecting classes/interactions, read [Domain design](guides/domain-design.md).
+- For ordered values or coupled comparisons, read [Boundary analysis](guides/boundary-analysis.md).
+- Before execution or grading screenshots/logs, read [Execution and evidence](guides/execution-evidence.md).
+- For draft review, bug grouping or totals, read [Review and audit](guides/review-and-audit.md).
+- Without an existing required schema, adapt [Feature record](assets/feature-record.md); never replace a supplied template with it.
+- For CSC13003 EShop only, load [FR-17 example and local adapter](examples/eshop-fr17.md).
+- To evaluate this skill, use [Behavioral scenarios](evals/scenarios.md).
+- For provenance/source conflicts, consult [Sources and design decisions](guides/sources.md).
 
-## Outputs
+## 1. Establish the oracle
 
-One feature analysis with Domain/BVA steps, detailed cases, actual evidence, bug files and gap analysis. Keep planning/coordination notes outside the submission. Preserve exact selected AI template filenames under ai-audit/; no interactions/ directory. Documents remain Markdown; the student handles final format export.
+Read the specification, acceptance criteria, public contract and relevant course guidance. Record versions. Give each behavior a stable rule ID, condition and observable response/postcondition. Distinguish direct requirements, interface mappings, implementation observations and unresolved assumptions.
+
+Keep contractual field names, enums and status tokens exact. Source code can explain a mechanism; it cannot redefine expected behavior. Resolve source conflicts only for affected expectations and continue independent cases. Do not invent Update, rounding, maxima or reset rules from a familiar feature name.
+
+**Done when:** every expectation has a source or an explicit open question/observation.
+
+## 2. Build a valid control
+
+Record the input vector and relevant state: actor/role, ownership, object existence, counters, clock, amount, quantity and interface. Choose one nominal fixture satisfying all known preconditions.
+
+Inspect startup/seed behavior before running it. Use isolated mutable fixtures and preserve original data and pre-existing user edits. Label direct database setup: it establishes state but does not prove the bypassed public workflow.
+
+**Done when:** candidates identify their actor, state and dimensions held nominal.
+
+## 3. Partition the domains
+
+Write predicates and concrete representatives for valid, invalid and unresolved classes. Distinguish absence, null, empty, whitespace, type, format, range, identity and state where semantics differ.
+
+Check overlaps/gaps within each partition set; overlap across dimensions is normal. Prefer one invalid condition per case so earlier validation does not mask the target. Add deliberate interactions as decision rows, state transitions or coupled constraints. Each-choice coverage is not all-combinations coverage.
+
+**Done when:** each retained class has a source, representative, validity and case mapping; omissions are explained.
+
+## 4. Derive boundaries
+
+Identify ordered partition endpoints, comparison equality, units and a justified neighboring step. Show exact points and their valid/invalid classification. Record time resolution/timezone/clock and money precision rather than guessing them.
+
+Distinguish selected business-threshold triplets from complete 3-value BVA over all identified partition endpoints. State the inventory and denominator before reporting coverage. Deduplicate shared points without losing mappings.
+
+For coupled inputs, choose feasible ON points and change a controlled coordinate to either side; name any other constraint crossed. Unsupported maxima/precision remain open questions.
+
+**Done when:** every selected point is reproducible, classified and mapped to rules/cases.
+
+## 5. Specify cases
+
+Preserve stable IDs and required schemas. Each case needs technique and rule/domain/boundary IDs; interface/actor; exact fixture/reset; complete input; numbered actions; sourced expected response/postcondition; and actual/evidence/verdict when executed.
+
+Multiple assertions may establish one business outcome, such as rejection plus unchanged state. Do not invent an exact error string or HTTP status when only rejection is specified. Do not hide payload fields behind an ellipsis.
+
+**Done when:** another tester can reproduce without guessing input or account history.
+
+## 6. Review and execute within scope
+
+Check equality, masking, cross-field constraints and state before execution. Use implementation inspection for hypotheses, not oracle changes. For authorized runs, capture setup, action/request, response and relevant public-interface readback. Separate real observation time from simulated SUT clock and environment failure from product failure.
+
+Loading this skill grants no permission for subagents, browser/device automation, publication or other external mutation. Follow existing user authorization, ask only for missing authorization/input blocking the affected action, and continue independent authorized work.
+
+**Done when:** the evidence proves the criterion, or the missing precondition/step/evidence is explicit.
+
+## 7. Classify and group
+
+Use the caller's vocabulary; otherwise use:
+
+| Status | Criterion |
+|---|---|
+| PASS | Required behavior and applicable postcondition are evidenced |
+| FAIL | Evidence contradicts a sourced requirement |
+| OBSERVATION | Behavior observed, but oracle unspecified/conflicting |
+| INCOMPLETE | Run/record lacks necessary precondition, action or evidence |
+| NOT RUN | Designed case not executed |
+
+A valid update rejected at validation is FAIL for acceptance, even when persistence is unreached. A success alert alone is INCOMPLETE for save-and-reload. API success does not prove UI success. A final screenshot does not independently prove an action sequence; record human attestation separately.
+
+Group failures by behavior and supported cause. Each FAIL needs a finding/mapped bug, not a new bug per boundary value. Separate observed impact from hypothetical risks and source-supported causes from hypotheses.
+
+**Done when:** verdicts explain criterion/evidence and bugs have reproducible traceability.
+
+## 8. Reconcile and deliver
+
+Count unique case IDs, not technique labels, attempts or images:
+
+`designed = PASS + FAIL + OBSERVATION + INCOMPLETE + NOT RUN`
+
+`executed_with_sufficient_evidence = PASS + FAIL + OBSERVATION`
+
+Keep bug counts, screenshot coverage and artifact-quality verdicts separate. Report coverage against named inventories, not unsupported completeness percentages. Flag conflicting definitions of one ID instead of silently merging them.
+
+Deliver requested Markdown analysis/cases/results, bugs and AI corrections. Preserve supplied template structure/filenames. Record actual tools/prompts/outputs/times from available records; leave unknown timestamps, personal decisions and signatures unknown. List pending actions without declaring the whole submission ready.
+
+**Done when:** IDs/counts/links reconcile and final claims state exactly what was verified and what remains unproven.
