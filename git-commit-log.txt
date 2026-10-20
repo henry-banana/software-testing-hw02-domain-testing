@@ -1,9 +1,21 @@
 Git Commit Log — HW02
 
-Snapshot HEAD: bb7954233b7e74b7d40c88806451f4fb5f289f3b
-Exported at UTC: 2026-10-20T04:01:35.461Z
+Snapshot HEAD: f4ca0abab1b439fe402205d524008dd30e3a0931
+Exported at UTC: 2026-10-20T04:15:14.789Z
 Scope: complete reachable history through Snapshot HEAD. The later commit recording this export itself is outside that boundary.
 Dates are actual Git dates; no historical steps were recreated from the old standalone log.
+
+commit f4ca0abab1b439fe402205d524008dd30e3a0931
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T11:15:14+07:00
+
+    docs(evidence): apply student-confirmed shared coupon and mobile screenshots
+
+commit 44b4eaa1aacfa1e168cb6b9f3a47aab0cf6371b4
+Author: Duong Thai Hoa Tong
+Date: 2026-10-20T11:01:35+07:00
+
+    docs(hw02): refresh Git log after helper relocation
 
 commit bb7954233b7e74b7d40c88806451f4fb5f289f3b
 Author: Duong Thai Hoa Tong
